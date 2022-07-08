@@ -142,7 +142,7 @@ void app_idle_task( void )
     bool RF_Cal_Needed = RF_NeedCal(); // device_support library API
     </#if>
     <#if BLESTACK_LOADED>
-    bool BT_RF_Suspended = false;
+    uint8_t BT_RF_Suspended = 0;
     </#if>
 
     if (PDS_Items_Pending${IDLE_TASK_CAL?then(" || RF_Cal_Needed", "")})
@@ -164,7 +164,11 @@ void app_idle_task( void )
                 PDS_StoreItemTaskHandler();
             }
             <#if IDLE_TASK_CAL?has_content && IDLE_TASK_CAL>
+            <#if (BLESTACK_LOADED)>
+            else if ((RF_Cal_Needed) && (BT_RF_Suspended == BT_SYS_RF_SUSPENDED_NO_SLEEP))
+            <#else>
             else if (RF_Cal_Needed)
+            </#if>
             {
                 RF_Timer_Cal(${WSS_ENABLE_MODE});
             }

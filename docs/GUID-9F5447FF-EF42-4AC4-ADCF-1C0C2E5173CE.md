@@ -30,5 +30,5 @@ OSAL \(Operating System Abstraction Layer\) Extension for FreeRTOS provide exten
 -   **[OSAL\_QUEUE\_IsFullISR Function](GUID-624ED883-90AD-42A6-B408-56CE812D1BF1.md)**  
 
 
-**Parent topic:**[PIC32CX-BZ2 Device Support Component Library Help](GUID-2167300F-6A96-440E-83CA-FC9C0C259914.md)
+**Parent topic:**[PIC32CX-BZ Device Support Component Library Help](GUID-2167300F-6A96-440E-83CA-FC9C0C259914.md)
 

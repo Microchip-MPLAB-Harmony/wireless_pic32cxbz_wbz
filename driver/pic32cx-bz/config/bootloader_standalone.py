@@ -62,8 +62,8 @@ def instantiateComponent(libBootloader):
     global DfuTimeBasedInterval
     DfuTimeBasedInterval = libBootloader.createFloatSymbol("BOOTLOADER_DFU_TIMER_INTERVAL", enableDfuCheckbox)
     DfuTimeBasedInterval.setLabel("DFU Wait Time in MillSeconds")
-    DfuTimeBasedInterval.setDefaultValue(400.0)
-    DfuTimeBasedInterval.setMin(200.0)
+    DfuTimeBasedInterval.setDefaultValue(600.0)
+    DfuTimeBasedInterval.setMin(400.0)
     DfuTimeBasedInterval.setMax(15000.0)
     DfuTimeBasedInterval.setVisible(DfuMode.getValue()== 1)
     DfuTimeBasedInterval.setDependencies(enableWaitTimeIntervalOptionAndModifyDependancy, ["BOOTLOADER_DFU_MODE"])
@@ -317,6 +317,9 @@ def instantiateComponent(libBootloader):
     booloaderLinkerFile.setMarkup(True)
     booloaderLinkerFile.setOverwrite(True)
     booloaderLinkerFile.setType("LINKER")
+
+    # Disable Fuse setting since fuse settings will be taken care by application
+    Database.setSymbolValue("core", "FUSE_CONFIG_ENABLE", False)
 ###############################################################################
 ### Process dependency connections to determine which clients are loaded
 ###############################################################################

@@ -107,6 +107,9 @@ void dfu(const IMG_MEM_TOPOLOGY ** tops, uint8_t count)
 }
 
 <#if BOOTLOADER_DFU_MODE == "TIMER_BASED_TRIGGER">
+/** Variable which holds the status of the Expiration of Timer **/
+extern bool timerExpired;
+
 /******************************************************************************
  activityRecvdRestartTimer
  Activity Observed. Restart/Refresh the timer.
@@ -114,6 +117,7 @@ void dfu(const IMG_MEM_TOPOLOGY ** tops, uint8_t count)
 void activityRecvdRestartTimer(void)
 {
     TC0_TimerStop();
+    timerExpired = false;
     TC0_TimerStart();
 }
 </#if>

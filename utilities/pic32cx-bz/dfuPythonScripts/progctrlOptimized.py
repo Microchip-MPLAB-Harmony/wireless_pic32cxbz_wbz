@@ -122,7 +122,7 @@ class ProgController(object):
 			ResBuff += self.UartIntf.read(self.UartIntf.inWaiting())	
 			if len(ResBuff) >= 4:
 				break
-			time.sleep(0.01)
+			time.sleep(0.05)
 			nAttempts += 1
 		if len(ResBuff) >= 4:	
 			ResponseHeader = ResBuff[0:4]

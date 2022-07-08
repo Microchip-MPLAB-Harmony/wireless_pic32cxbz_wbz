@@ -695,18 +695,18 @@ void DEVICE_EnterSleepMode(void)
     // Step 26 : set bt_en_main_clk to 0 to disable BT main clock
     BTZBSYS_REGS->BTZBSYS_SUBSYS_CNTRL_REG0 &= (~0x00100000);  
 
+    // Step 27 : change CLK source in CRU from POSC CLK to FRC CLK
+    CRU_REGS->CRU_OSCCON &= (~0xf01);
+
+    // Request oscillator switch to occur
+    CRU_REGS->CRU_OSCCONSET = CRU_OSCCON_OSWEN_Msk;
+
+    // Wait for indication of successful clock change before proceeding
+    while(CRU_REGS->CRU_OSCCON & CRU_OSCCON_OSWEN_Msk);
+
     // If XTAL clock is OFF
     if ((CFG_REGS->CFG_CFGCON4 & 0x3000) == 0x2000)  // SOSC : XTAL_OFF
     {
-        // Step 27 : change CLK source in CRU from POSC CLK to FRC CLK
-        CRU_REGS->CRU_OSCCON &= (~0xf01); 
-        
-        // Request oscillator switch to occur
-        CRU_REGS->CRU_OSCCONSET = CRU_OSCCON_OSWEN_Msk;
-        
-        // Wait for indication of successful clock change before proceeding
-        while(CRU_REGS->CRU_OSCCON & CRU_OSCCON_OSWEN_Msk);
-
         // Step 27.1 : If XTAL clock is OFF when bt_zb_subsys enters into sleep mode, 
         // set subsys_clk_src_sel to 1 via subsys config register (SUBSYS_CNTRL_REG1_ADDR[4]) to select PLL CLK as SRC clock
         BTZBSYS_REGS->BTZBSYS_SUBSYS_CNTRL_REG1 |= 0x10;
@@ -762,17 +762,17 @@ void DEVICE_ExitSleepMode(void)
         // If XTAL clock is OFF when bt_zb_subsys enters into sleep mode, 
         // set subsys_clk_src_sel to 0 via subsys config register (SUBSYS_CNTRL_REG1_ADDR[4]) to select XTAL CLK as SRC clock
         BTZBSYS_REGS->BTZBSYS_SUBSYS_CNTRL_REG1 &= (~0x10);
-
-        // Step 3 : Change CLK source in CRU from FRC CLK to POSC CLK
-        CRU_REGS->CRU_OSCCON &= (~0xf01);
-        CRU_REGS->CRU_OSCCON |= 0x200;
-
-        // Request oscillator switch to occur
-        CRU_REGS->CRU_OSCCONSET = CRU_OSCCON_OSWEN_Msk;
-
-        // Wait for indication of successful clock change before proceeding
-        while(CRU_REGS->CRU_OSCCON & CRU_OSCCON_OSWEN_Msk);
     }
+
+    // Step 3 : Change CLK source in CRU from FRC CLK to POSC CLK
+    CRU_REGS->CRU_OSCCON &= (~0xf01);
+    CRU_REGS->CRU_OSCCON |= 0x200;
+
+    // Request oscillator switch to occur
+    CRU_REGS->CRU_OSCCONSET = CRU_OSCCON_OSWEN_Msk;
+
+    // Wait for indication of successful clock change before proceeding
+    while(CRU_REGS->CRU_OSCCON & CRU_OSCCON_OSWEN_Msk);
 
     // Step 4 : set bt_en_main_clk to 1 to enable BT main clock
     BTZBSYS_REGS->BTZBSYS_SUBSYS_CNTRL_REG0 |= 0x00100000;

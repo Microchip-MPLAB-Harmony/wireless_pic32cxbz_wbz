@@ -23,7 +23,7 @@ This repository contains the MPLAB® Harmony 3 replaceme solutions and example a
 | Folder     | Description                                                                          |
 | ---        | ---                                                                                  |
 | config     | Wireless pic32cx-bz system services module configuration file                        |
-| [docs](docs/readme.md)    | Wireless pic32cx-bz system services help documentation-md and pdf                    |
+| docs       | Wireless pic32cx-bz system services help documentation-md and pdf                    |
 | drivers    | Driver/Firmware files of pic32cx-bz system services                                  |
 | utilities  | Contains scripts and other utilities                                                 |
 

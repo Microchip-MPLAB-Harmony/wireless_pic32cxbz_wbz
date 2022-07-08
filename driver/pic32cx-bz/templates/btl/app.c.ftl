@@ -884,6 +884,10 @@ void bootloader_functions(void)
 <#if BOOTLOADER_DFU_ENABLE == true>
   bool isWDTEnabled = ((CFG_REGS->CFG_CFGCON2 & CFG_CFGCON2_WDTEN_Msk) == CFG_CFGCON2_WDTEN_Msk ? true : false);
 </#if>
+<#if (BOOTLOADER_DFU_ENABLE == true) && (BOOTLOADER_DFU_MODE == "GPIO_TRIGGER")>
+  /* Set to Digital mode */
+  ((gpio_registers_t*)GPIO_${BOOTLOADER_GPIO_PORT})->GPIO_ANSELCLR = (1 << ${BOOTLOADER_GPIO_PIN});
+</#if>
 
 <#if (BOOTLOADER_DFU_ENABLE == true) || (BOOTLOADER_CONSOLE_ENABLE == true)>
   /* Enable SERCOM${BOOTLOADER_DFU_SERCOM_INSTANCE_NUM} UART fast mode */
