@@ -25,7 +25,7 @@
 print('Load Module: Harmony Wireless PIC32CX-BZ BOOTLOADER SERVICES')
 
 ## pic32cx_bz2_ota
-initOta = Module.CreateComponent('BootloaderServices', 'Bootloader Services', '/Wireless/Driver', 'driver/pic32cx-bz/config/bootloader_services.py')
+initOta = Module.CreateComponent('BootloaderServices', 'Bootloader Services', '/Wireless/Drivers/PIC32CX-BZ System Services', 'driver/pic32cx-bz/config/bootloader_services.py')
 initOta.setDisplayType('PIC32CX-BZ2 Bootloader Services')
 initOta.addCapability('PIC32CX_BZ2_BOOTLOADER_SERVICES', 'PIC32CX_BZ_BOOTLOADER_SERVICES')
 

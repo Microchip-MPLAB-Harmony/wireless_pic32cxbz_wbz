@@ -25,7 +25,7 @@
 print('Load Module: Harmony Wireless PIC32CX-BZ Device Support')
 
 ## Device Support
-initDeviceSupport = Module.CreateComponent('pic32cx_bz3_devsupport', 'Device_Support', '/Wireless', 'driver/pic32cx-bz/config/device_support.py')
+initDeviceSupport = Module.CreateComponent('pic32cx_bz3_devsupport', 'Device_Support', '/Wireless/Drivers/PIC32CX-BZ System Services', 'driver/pic32cx-bz/config/device_support.py')
 initDeviceSupport.setDisplayType('PIC32CX-BZ3 Device Support')
 initDeviceSupport.addCapability('Device_Support_Capability', 'Device_Support', True)
 initDeviceSupport.addDependency('HarmonyCoreDependency', 'Core Service', 'Core Service', True, True)

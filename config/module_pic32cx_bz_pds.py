@@ -37,7 +37,7 @@ deviceName = Variables.get("__PROCESSOR")
 print('Load Module: Harmony Wireless PIC32CX-BZ PDS Support')
 
 ## PDS Support
-initPDSComponent = Module.CreateComponent('pdsSystem', 'PDS_SubSystem', '/Wireless/Driver', 'driver/pic32cx-bz/config/pds_subsystem.py')
+initPDSComponent = Module.CreateComponent('pdsSystem', 'PDS_SubSystem', '/Wireless/Drivers/PIC32CX-BZ System Services', 'driver/pic32cx-bz/config/pds_subsystem.py')
 initPDSComponent.setDisplayType('Persistant Data Storage')
 initPDSComponent.addCapability('pds_Command_Capability', 'PDS_SubSystem', True)
 if (deviceName in pic32cx_bz2_family):

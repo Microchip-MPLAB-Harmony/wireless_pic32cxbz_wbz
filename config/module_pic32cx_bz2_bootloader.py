@@ -25,7 +25,7 @@
 print('Load Module: Harmony Wireless PIC32CX-BZ Bootloader')
 
 ## pic32cx_bz2_bootloader   - standalone
-initBootloaderStandalone = Module.CreateComponent('Bootloader', 'Bootloader', '/Wireless/Driver', 'driver/pic32cx-bz/config/bootloader_standalone.py')
+initBootloaderStandalone = Module.CreateComponent('Bootloader', 'Bootloader', '/Wireless/Drivers/PIC32CX-BZ System Services', 'driver/pic32cx-bz/config/bootloader_standalone.py')
 initBootloaderStandalone.setDisplayType('PIC32CX-BZ2 Bootloader')
 initBootloaderStandalone.addDependency("Bootloader_usart", "UART", None, False, True)
 initBootloaderStandalone.addDependency("Bootloader_timer", "TMR", None, False, True)

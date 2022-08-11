@@ -25,7 +25,7 @@
 print('Load Module: Harmony Wireless PIC32CX-BZ Authentication')
 
 ## pic32cx_bz2_ota
-initOta = Module.CreateComponent('AuthenticationServices', 'Authentication Services', '/Wireless/Driver', 'driver/pic32cx-bz/config/signFW.py')
+initOta = Module.CreateComponent('AuthenticationServices', 'Authentication Services', '/Wireless/Drivers/PIC32CX-BZ System Services', 'driver/pic32cx-bz/config/signFW.py')
 initOta.setDisplayType('PIC32CX-BZ3 Authentication Services')
 initOta.addCapability('PIC32CX_BZ3_AUTHENTICATION_SERVICES', 'PIC32CX_BZ_AUTHENTICATION_SERVICES')
 
