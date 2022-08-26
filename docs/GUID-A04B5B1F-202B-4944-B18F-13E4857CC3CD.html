@@ -1,0 +1,687 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE11" /><meta name="copyright" content="(C) Copyright 2022" />
+<meta name="DC.rights.owner" content="(C) Copyright 2022" />
+<meta name="DC.type" content="topic" />
+<meta name="DC.title" content="PIC32CX-BZ2 Standalone Bootloader Component Help" />
+<meta name="DC.relation" scheme="URI" content="GUID-4552A2E4-E35C-4FD0-9C01-0EE86D4F6163.html" />
+<meta name="DC.relation" scheme="URI" content="GUID-079BEEAB-D3FE-415A-8EA6-F8A704302FCB.html" />
+<meta name="DC.relation" scheme="URI" content="GUID-9B3F465C-7297-4547-B7C6-3AAABEB7E261.html" />
+<meta name="DC.relation" scheme="URI" content="GUID-601EC36F-434F-4CEE-BF96-232B23F39458.html" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD" />
+<meta name="DC.language" content="en-US" />
+<link rel="stylesheet" type="text/css" href="stylesheets/atmel.css" />
+<title>PIC32CX-BZ2 Standalone Bootloader Component Help</title>
+<meta name="Microsoft.Help.Id" content="GUID-2085FE66-A762-4CC0-B054-7F98E8AF999A-GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD" />
+<meta name="Microsoft.Help.TocParent" content="GUID-2085FE66-A762-4CC0-B054-7F98E8AF999A" />
+<meta name="Microsoft.Help.TocOrder" content="0" />
+<meta name="Microsoft.Help.Locale" content="en-US" />
+<meta name="Microsoft.Help.TopicLocale" content="en-US" />
+<meta name="Microsoft.Help.DisplayVersion" content="MPLAB Harmony PIC32CX-BZ System Services Reference A 06/2022" />
+<script language="javascript">
+       
+       if (window.parent.location.protocol != 'file:') {
+				document.addEventListener('click', function(e) {
+				    if (e.target) {
+               if (e.target.nodeName == "A" ) {
+                    if (!e.target.target) {
+                      e.preventDefault();
+                      e.stopPropagation();
+                              
+                      var origUrl = window.parent.location.href.substr(0, window.parent.location.href.indexOf("?"));
+                      if (origUrl.length === 0) {
+                          origUrl = window.parent.location.href;
+                      }
+                      var href= e.target.getAttribute("href");
+                      var parts = href.split("#");
+          
+                      var url = "";
+                      if (parts.length == 2 ) {
+                        if (!parts[0].length) {
+                            url = window.parent.location.search.replace('?','')
+                        } else {
+                            url = parts[0].replace('.html','');
+                        }
+                      } else {
+                        url = parts[0].replace('.html','');
+                      }
+
+                      if (parts.length == 2) {
+                          url += "#" + parts[1];
+                      }
+    
+                      window.parent.location.href = origUrl + "?" + url;
+
+                      return false;
+                    }
+               }
+            }
+				});
+			}
+
+		</script><script language="javascript">
+         
+         function copyContent(content, button) {
+         
+            var textArea = document.createElement("textarea");
+            
+            // Place in the top-left corner of screen regardless of scroll position.
+            textArea.style.position = 'fixed';
+            textArea.style.top = 0;
+            textArea.style.left = 0;
+            
+            // Ensure it has a small width and height. Setting to 1px / 1em
+            // doesn't work as this gives a negative w/h on some browsers.
+            textArea.style.width = '2em';
+            textArea.style.height = '2em';
+            
+            // We don't need padding, reducing the size if it does flash render.
+            textArea.style.padding = 0;
+            
+            // Clean up any borders.
+            textArea.style.border = 'none';
+            textArea.style.outline = 'none';
+            textArea.style.boxShadow = 'none';
+            
+            // Avoid flash of the white box if rendered for any reason.
+            textArea.style.background = 'transparent';
+            
+            textArea.value = content;
+            
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+               var successful = document.execCommand('copy');
+               var msg = successful ? 'successful' : 'unsuccessful';
+               if (!button.classList.contains("copied")){
+                  button.textContent = "Copied";
+                  button.classList.add("copied");
+                  setTimeout(function(){
+                     button.textContent = "Copy";
+                     button.classList.remove("copied");
+                  },1000);
+               }
+            } catch (err) {
+               console.log('Oops, unable to copy');
+            }
+            
+            document.body.removeChild(textArea);
+         }
+         
+         function cpy(id, button) {
+            var element = document.getElementById(id);
+            var content = element.getAttribute("content");
+            
+            copyContent(content, button);
+         }
+         
+         document.addEventListener("DOMContentLoaded", function(event) {
+            document.querySelectorAll(".codeblock").forEach(function(elem) {
+               elem.style.position = "relative";
+               var copy = document.createElement("button");
+               copy.textContent = "Copy";
+               copy.setAttribute("class", "copy-code");
+               
+               var content = elem.textContent;
+               
+               copy.addEventListener("click", function(){
+                  copyContent(content, copy);
+               });
+               
+               elem.addEventListener("mouseenter", function(evt){
+                  elem.prepend(copy);
+               });
+            });
+            
+            document.querySelectorAll(".codeblock").forEach(function(elem) {
+               elem.addEventListener("mouseleave", function(evt){
+                  document.querySelector(".copy-code").remove();
+               });
+            });
+         });
+         
+      </script><script language="javascript">
+          
+          // Add the MathML namespace to html
+          var html = document.getElementsByTagName("html")[0],
+          head = document.getElementsByTagName("head")[0];
+          
+          var mathJax = document.createElement("script");
+          mathJax.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML";
+          head.appendChild(mathJax);
+          
+          html.setAttribute("xmlns:m","http://www.w3.org/1998/Math/MathML");
+          
+          function inIframe() { try { return window.self !== window.top; } catch (e) { return true; } }
+          
+          if (!inIframe()) { 
+          
+          var Default = "index.html?GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD"; 
+          
+          var displaylocation = "value" + window.location.href;
+          
+          var GUIDS = displaylocation.split('GUID');          
+          
+          if (displaylocation.indexOf('#GUID') != -1) {            
+          var First = GUIDS[1].split('.html');  
+          if (GUIDS[3]){First = GUIDS[2].split('.html');}
+          if (GUIDS[4]){First = GUIDS[3].split('.html');}
+          if (GUIDS[5]){First = GUIDS[4].split('.html');}
+          
+          var Second = GUIDS[2].split('#');   
+          if (GUIDS[3]){Second = GUIDS[3].split('#');}
+          if (GUIDS[4]){Second = GUIDS[4].split('#');}
+          if (GUIDS[5]){Second = GUIDS[5].split('#');}
+          
+          Default = "index.html?" + "GUID" + First[0] + "GUID" + Second[0];     
+          }                    
+          window.top.location = Default;
+          }       
+          
+        </script><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /><style xml:space="">
+        
+          button.copy-code{
+            display:none;
+            padding:0.7em 1.4em;
+            margin:0 0.3em 0.3em 0;
+            border-radius:0.15em;
+            box-sizing: border-box;
+            text-decoration:none;
+            font-family:'Roboto',sans-serif;
+            text-transform:uppercase;
+            font-weight:400;
+            color:#FFFFFF;
+            background-color:#9c9c9c;
+            box-shadow:inset 0 -0.6em 0 -0.35em rgba(0,0,0,0.17);
+            text-align:center;
+            position:relative;
+            border: 0;
+            float: right;
+            border-radius: .5em;
+            cursor: pointer;
+          }
+          button.copy-code:active{
+            top:0.1em;
+          }
+          
+          pre:hover button.copy-code{
+            display: inline-block !important;
+          }
+          button.copy-code.copied {
+            cursor: default !important;
+          }
+          
+          
+          @media all and (max-width:30em){
+            button.copy-code{
+              display:block;
+              margin:0.4em auto;
+            }
+          }
+        
+        
+      </style><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /></head>
+<body id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD">
+
+<h1 class="title topictitle1" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__GUID-D9A86BED-B81C-42D8-8657-24BE47C108E3">PIC32CX-BZ2 Standalone Bootloader Component
+                Help</h1>
+<div class="body">
+                <p class="p">PIC32CX-BZ2 bootloader is a standalone harmony component, Using it, one can generate bootloader which is a program that is loaded on internal flash memory and gets executed every
+      time the device powers up or resets. </p>
+
+                <p class="p">Bootloader can be used to upgrade firmware on a target device without the need
+                        for an external programmer or debugger. It does not fully operate on the
+                        device, but can perform various functions prior to starting the main
+                        application</p>
+
+                <div class="p"><strong class="ph b"><u class="ph u">Functionality of Bootloader</u></strong><ul class="ul" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__UL_QDH_5CY_XRB">
+                                <li class="li" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__GUID-F52C4978-469C-434C-BDB4-78F105693386">Loads firmware images to flash over the serial connection using a tool or python script, known as Device Firmware
+        Upgrade (DFU) </li>
+
+                                <li class="li" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__GUID-2DB19E83-86E2-4E8A-912E-CB9E67C7AB1D">Provides
+                                        application protection for firmware</li>
+
+                                <li class="li" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__GUID-288BFB1D-1360-45D6-8990-D1DF2BCA3C82">Replaces
+                                        application firmware</li>
+
+                                <li class="li" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__GUID-324B3FBC-8935-4136-A7C1-C06D1CF4663D">Starts the application </li>
+
+        <li class="li" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__GUID-3EFFA0C5-2BEB-4C67-9D74-154D63A37DC4">If the device wakes from deep sleep, then bootloader directly jumps to the
+          application</li>
+
+                        </ul>
+
+                </div>
+
+                <p class="p"><strong class="ph b"><u class="ph u">Memory Information and Layout of PIC32CXBZ2 device</u></strong>
+                </p>
+
+                <div class="p">
+                        
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_JYW_GYY_HSB" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table 1. </span></span></caption>
+                                        <col style="width:50%" />
+                                        <col style="width:50%" />
+                                        <thead class="thead" style="text-align:left;">
+                                                <tr class="row">
+                                                  <th class="entry cellrowborder" style="vertical-align:middle;" id="d15609e67"><span>Memory Area</span></th>
+
+                                                  <th class="entry cellrowborder" style="vertical-align:middle;" id="d15609e70"><span>Purpose</span></th>
+
+                                                </tr>
+
+                                        </thead>
+
+                                        <tbody class="tbody">
+                                                <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e67 "><span>Boot Flash Size is 0x0 to 0x5E00 –
+                                                  (~24KB)</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e70 "><span>The memory where  bootloader code
+                                                  runs</span></td>
+
+                                                </tr>
+
+                                                <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e67 "><span>Slot 0 base address - 0x01000000</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e70 "><span>The memory where the application firmware
+                                                  runs and the memory where the bootloader copies
+                                                  the new application firmware </span></td>
+
+                                                </tr>
+
+                                                <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e67 "><span>Slot 1 base address - 0x01080000</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e70 "><span>The memory where the received image(Either
+                                                  through DFU or any other way) gets stored. and the
+                                                  memory where bootloader looks for the new image to
+                                                  copy into the Slot 0</span></td>
+
+                                                </tr>
+
+                                        </tbody>
+
+                                </table>
+</div>
+
+                </div>
+
+                <p class="p">The full memory layout can be found here </p>
+
+                <p class="p">
+                        <img class="image" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__IMAGE_CL1_PGZ_XRB" src="GUID-6F204CB4-2DD3-49A2-9F21-DDA8A1AD7762-low.png" /></p>
+
+                <p class="p"><strong class="ph b"><u class="ph u">Boot Flash</u></strong></p>
+
+                <p class="p">In PIC32CXBZ2,  24KB boot flash memory is separated from the main execution
+                        memory. This boot flash is used for bootloader code</p>
+
+                <p class="p"><strong class="ph b"><u class="ph u">Metadata Header</u></strong></p>
+
+                <p class="p">Format of image meta-data header are described below. Notice that some of the
+                        elements in the header is reserved for future expansion and they are not
+                        used in this version of bootloader implementation</p>
+
+                <div class="p">
+                        
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table 2. </span></span></caption>
+                                        <col style="width:" />
+                                        <col style="width:" />
+                                        <col style="width:" />
+          <thead class="thead" style="text-align:left;">
+            <tr class="row">
+              <th class="entry cellrowborder" style="text-align:left;vertical-align:middle;" id="d15609e151"><span>Offset</span></th>
+
+              <th class="entry cellrowborder" style="text-align:left;vertical-align:middle;" id="d15609e154"><span>Name</span></th>
+
+              <th class="entry cellrowborder" style="text-align:left;vertical-align:middle;" id="d15609e157"><span>Description</span></th>
+
+            </tr>
+
+          </thead>
+
+                                        <tbody class="tbody">
+            <tr class="row">
+              <td class="entry cellrowborder" colspan="3" style="text-align:left;vertical-align:middle;" headers="d15609e151 d15609e154 d15609e157 "><span><strong class="ph b">Metadata Header</strong></span></td>
+
+            </tr>
+
+                                                <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e151 "><span>0x00:0x07</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e154 "><span>Filler</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e157 "><span>Set to all zero</span></td>
+
+                                                </tr>
+
+                                                <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e151 "><span>0x08:0x0D</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e154 "><span>MANU_IDENTIFIER *</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e157 "><span>“MCHP” ASCII String Identifier</span></td>
+
+                                                </tr>
+
+                                                <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e151 "><span>0x0C:0x0F</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e154 "><span>Filler</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e157 "><span>Set to all zero</span></td>
+
+                                                </tr>
+
+                                                <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e151 "><span>0x10:0x13</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e154 "><span>SEQ_NUM *</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e157 "><span>Metadata Sequence Number of the image
+                                                  (little endian). Monotonically decreasing image
+                                                  index. Values of 0 or 0xFFFFFFFF indicate that the
+                                                  image is invalid. </span></td>
+
+                                                </tr>
+
+                                                <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e151 "><span>0x14</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e154 "><span>MD_REV</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e157 "><span>Metadata Revision. This field must be set
+                                                  to 0x02 for this version of metadata
+                                                  header</span></td>
+
+                                                </tr>
+
+                                                <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e151 "><span>0x15</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e154 "><span>CONT_IDX</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e157 "><span>
+                <p class="lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_KH5_5CW_3TB">Container Index<br />
+1: Plain firmware image<br />
+2: Encrypted firmware image </p>
+
+              </span></td>
+
+                                                </tr>
+
+                                                <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e151 "><span>0x16</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e154 "><span>MD_AUTH_MTHD *</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e157 "><span>
+                <p class="lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_YLY_VCW_3TB">Metadata authentication method. <br />
+0: None<br />
+1: SHA-256<br />
+2: ECDSA p256 + SHA-256</p>
+
+              </span></td>
+
+                                                </tr>
+
+                                                <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e151 "><span>0x17</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e154 "><span>MD_AUTH_KEY</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e157 "><span>
+                <p class="lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_IRV_WCW_3TB">Key index for authenticating metadata<br />
+0: IB Key<br />
+1: Key #2 <br />
+Reserved for future use. Not for MD_REV 0x01</p>
+
+              </span></td>
+
+                                                </tr>
+
+                                                <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e151 "><span>0x18</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e154 "><span>PL_DEC_MTHD</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e157 "><span>
+                <p class="lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_KVV_XCW_3TB">Payload Decryption method<br />
+0: Plain<br />
+1: AES</p>
+
+              </span></td>
+
+                                                </tr>
+
+                                                <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e151 "><span>0x19</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e154 "><span>PL_DEC_KEY</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e157 "><span>
+                <p class="lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_TSM_YCW_3TB">Key index for decrypting payload<br />
+0: Key #1<br />
+1: Key #2</p>
+
+              </span></td>
+
+                                                </tr>
+
+                                                <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e151 "><span>0x1A:0x1B</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e154 "><span>PL_LEN</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e157 "><span>Metadata payload length. The payload length
+                                                  for this version should be 0x55</span></td>
+
+                                                </tr>
+
+                                                <tr class="row">
+                                                  <td class="entry cellrowborder" colspan="3" style="vertical-align:middle;" headers="d15609e151 d15609e154 d15609e157 "><span><strong class="ph b">Metadata
+                                                  Payload = Firmware Image Header</strong></span></td>
+
+                                                </tr>
+
+                                                <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e151 "><span>0x1C:0x1F</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e154 "><span>FW_IMG_REV *</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e157 "><span>Firmware Image revision (little
+                                                  endian).</span></td>
+
+                                                </tr>
+
+                                                <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e151 "><span>0x20:0x23</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e154 "><span>FW_IMG_LEN</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e157 "><span>Firmware Image length</span></td>
+
+                                                </tr>
+
+                                                <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e151 "><span>0x24</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e154 "><span>FW_IMG_AUTH_MTHD *</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e157 "><span>
+                <p class="lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_OZL_ZCW_3TB">Firmware Image authentication method. For Chimera the acceptable method are ECDSA p256 + SHA-256<br />
+0: None<br />
+1: SHA-256<br />
+2: ECDSA p256 + SHA-256</p>
+
+              </span></td>
+
+                                                </tr>
+
+                                                <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e151 "><span>0x25</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e154 "><span>FW_IMG_AUTH_KEY</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e157 "><span>
+                <p class="lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_FLQ_1DW_3TB">Firmware Image authentication key index<br />
+0: IB key<br />
+1: Key #2 </p>
+
+              </span></td>
+
+                                                </tr>
+
+                                                <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e151 "><span>0x26</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e154 "><span>FW_IMG_DEC_MTHD</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e157 "><span>
+                <p class="lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_FFJ_BDW_3TB">Firmware Image decryption method.<br />
+0: Plain<br />
+1: AES <br />
+Reserved for future use. Not for MD_REV 0x01</p>
+
+              </span></td>
+
+                                                </tr>
+
+                                                <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e151 "><span>0x27</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e154 "><span>FW_IMG_DEC_KEY</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e157 "><span>
+                <p class="lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_PSH_CDW_3TB">Firmware Image decryption key index<br />
+0: Key #1<br />
+1: Key #2 <br />
+Reserved for future use. Not for MD_REV 0x01</p>
+
+              </span></td>
+
+                                                </tr>
+
+                                                <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e151 "><span>0x28</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e154 "><span>FW_IMG_SIG_SZ</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e157 "><span>Firmware Image signature size</span></td>
+
+                                                </tr>
+
+                                                <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e151 "><span>0x29:0x70</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e154 "><span>FW_IMG_SIG</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e157 "><span>
+                <p class="lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_XTG_DDW_3TB">Firmware Image Signature.<br />
+The concatenated R and S term of the ECDSA signature (P-256) of the SHA-256 hash of the firmware image</p>
+
+              </span></td>
+
+                                                </tr>
+
+                                                <tr class="row">
+                                                  <td class="entry cellrowborder" colspan="3" style="vertical-align:middle;" headers="d15609e151 d15609e154 d15609e157 "><span><strong class="ph b">Metadata
+                                                  Footer</strong></span></td>
+
+                                                </tr>
+
+                                                <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e151 "><span>0x1B7</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e154 "><span>MD_SIG_SZ</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e157 "><span>Metadata payload signature size</span></td>
+
+                                                </tr>
+
+                                                <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e151 "><span>0x1B8:0x1FF</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e154 "><span>MD_SIG</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d15609e157 "><span>
+                <p class="lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_HKW_DDW_3TB">Metadata payload signature<br />
+The concatenated R and S term of the ECDSA signature (P-256r1) of the SHA-256 hash of the metadata payload (firmware image header). </p>
+
+              </span></td>
+
+                                                </tr>
+
+                                        </tbody>
+
+                                </table>
+</div>
+
+                </div>
+
+                <p class="p">* Configurable by user</p>
+
+                <p class="p"><u class="ph u"><strong class="ph b">Working of Bootloader</strong></u></p>
+
+                <p class="p">when the application receives new image from a server or via a tool, it
+                        will/should store in the Slot 1 location with meta data header &amp;
+                        firmware and it should trigger software reset so that bootloader code
+                        runs</p>
+
+                <div class="p">Bootloader checks for valid image in Slot 1 by reading the meta data header and
+                        firmware and authenticating the same with the selected authentication
+                        method. If valid image is found and successfully authenticated, then <ul class="ul" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__UL_YGN_2QK_XSB">
+                                <li class="li" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__GUID-362B3526-AAD1-4355-8F6A-B96E72FD09DA">Erases Slot 0</li>
+
+                                <li class="li" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__GUID-EA6D5CA3-55ED-4696-9AC7-B5FFEEBC52D9">Copies the Slot 1 image to Slot 0</li>
+
+                                <li class="li" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__GUID-46819B28-AEA1-4839-A457-72BBA2040587">Verifies the Copy</li>
+
+                        </ul>
+After that it checks for valid image in Slot 0 by validating it, it
+                        jumps to the application if valid image is found</div>
+
+                <p class="p"><u class="ph u"><strong class="ph b">Bootloader usage with DFU</strong></u></p>
+
+                <p class="p">bootloader programmed to the MCU (in DFU mode) receives an application image from
+                        the host over serial interface and writes it to the internal flash in Slot 1
+                        . After loading new image on slot 1, if reset is triggered, then bootloader
+                        erases the slot 0, copies the image from slot 1 to slot 0, verifies the copy
+                        procedure, erases the slot 1. Then bootloader jumps to application which is
+                        the new application image</p>
+
+                <p class="p">Bootloader stores information about the image in Meta Data Header. This is
+                        basically size of 0x200 bytes and gets stored at the start of slot.
+                        Bootloader reads this meta data header and does the authentication procedure
+                        based on the information in meta data header</p>
+
+                <p class="p"><strong class="ph b"><u class="ph u">Flow Diagram of Bootloader</u></strong></p>
+
+                <p class="p">The detailed flow diagram of bootloader with the optional DFU block can be found
+                        below</p>
+
+                <p class="p"><img class="image" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__IMAGE_RC2_VZ1_3SB" src="GUID-4F6F866C-B279-4888-BE8B-E5C1DF40C5E7-low.png" /></p>
+
+        </div>
+
+<div class="related-links">
+<ul class="ullinks">
+<li class="link ulchildlink"><strong><a href="GUID-4552A2E4-E35C-4FD0-9C01-0EE86D4F6163.html">Configuration Options</a></strong><br />
+</li>
+<li class="link ulchildlink"><strong><a href="GUID-079BEEAB-D3FE-415A-8EA6-F8A704302FCB.html">DFU Functionality - Serial image bootloader</a></strong><br />
+</li>
+<li class="link ulchildlink"><strong><a href="GUID-9B3F465C-7297-4547-B7C6-3AAABEB7E261.html">Bootloader API Usage</a></strong><br />
+</li>
+<li class="link ulchildlink"><strong><a href="GUID-601EC36F-434F-4CEE-BF96-232B23F39458.html">DFU API Usage</a></strong><br />
+</li>
+</ul>
+</div></body>
+</html>

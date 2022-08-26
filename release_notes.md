@@ -23,4 +23,4 @@
 - [MPLAB X v6.00](https://www.microchip.com/mplab/mplab-x-ide)
 - [MPLAB® XC32 C/C++ Compiler v4.00](https://www.microchip.com/mplab/compilers)
 -  MPLAB® X IDE plug-ins: 
-  MPLAB® Code Configurator (MCC) v5.1.4 and above.
+  MPLAB® Code Configurator (MCC) v5.1.9 and above.

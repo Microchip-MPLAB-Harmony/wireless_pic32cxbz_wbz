@@ -1,0 +1,1241 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<keywords publicationid="GUID-2085FE66-A762-4CC0-B054-7F98E8AF999A"
+          language="en-US"
+          version="2"
+          documenttitle="MPLAB Harmony PIC32CX-BZ System Services"
+          pubtype="Online Reference"
+          pubsubtype=""
+          pubuserguidesubtype=""
+          pubproductheirarchy=""
+          devices=""
+          revisiondate="20/06/2022 00:00:00"
+          revisionletter="A"
+          isbn=""
+          pubid=""
+          reachid=""
+          description="System services like Device Support, Bootloader, PDS"
+          lastmodified="08/07/2022 06:04:09"
+          covertitle="MPLAB Harmony PIC32CX-BZ System Services"
+          frontcover="">
+   <keyworditem topicid="GUID-EDAF833A-65A8-4C17-8178-AB52010F5638"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>RF System</register>
+      <title>RF System</title>
+      <bitfield/>
+      <keyword>RF System</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-62C7BAFF-836C-4CE5-9489-B549665C44AC"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>wssEnable_t Enum</register>
+      <title>wssEnable_t Enum</title>
+      <bitfield/>
+      <keyword>wssEnable_t</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-B4147259-E267-4C02-B584-20569616762B"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>SYS_ClkGen_Config Function</register>
+      <title>SYS_ClkGen_Config Function</title>
+      <bitfield/>
+      <keyword>SYS_ClkGen_Config</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-F9DDA02A-03F1-4A86-8A4B-9B5067BDF410"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>SYS_Load_Cal Function</register>
+      <title>SYS_Load_Cal Function</title>
+      <bitfield/>
+      <keyword>SYS_Load_Cal</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-D20B7B50-5211-4F70-BA93-38F5AFB937FE"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>RF_NeedCal Function</register>
+      <title>RF_NeedCal Function</title>
+      <bitfield/>
+      <keyword>RF_NeedCal</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-5295302D-44C9-46D6-9AC9-A8EC8BD8D061"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>RF_Timer_Cal Function</register>
+      <title>RF_Timer_Cal Function</title>
+      <bitfield/>
+      <keyword>RF_Timer_Cal</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-3610DABE-8B2A-4194-ADE9-BECF2971F8B4"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>RF_SetIdleMode Function</register>
+      <title>RF_SetIdleMode Function</title>
+      <bitfield/>
+      <keyword>RF_SetIdleMode</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-AF6A889B-746F-4F65-8D41-DD8A4B8FCE9C"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>Temperature_Reading Function</register>
+      <title>Temperature_Reading Function</title>
+      <bitfield/>
+      <keyword>Temperature_Reading</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-B5DC2BA6-61E5-4CF6-B9E9-C5D669141F71"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>PMU_Mode_T Enum</register>
+      <title>PMU_Mode_T Enum</title>
+      <bitfield/>
+      <keyword>PMU_Mode_T</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-27985E91-E0D2-4FA3-8BF8-BA82656F9C77"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>PMU_Get_Mode Function</register>
+      <title>PMU_Get_Mode Function</title>
+      <bitfield/>
+      <keyword>PMU_Get_Mode</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-8793536C-F38F-43EA-A057-DE3BA9715EB9"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>PMU_Set_Mode Function</register>
+      <title>PMU_Set_Mode Function</title>
+      <bitfield/>
+      <keyword>PMU_Set_Mode</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-B7BACAEC-0E3B-473A-8B3D-346E615C76C2"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>PMU_ConfigCurrentSensor Function</register>
+      <title>PMU_ConfigCurrentSensor Function</title>
+      <bitfield/>
+      <keyword>PMU_ConfigCurrentSensor</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-8DFEF195-91C1-4E48-B28E-100B98852F65"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>InformationBlockLoad Function</register>
+      <title>InformationBlockLoad Function</title>
+      <bitfield/>
+      <keyword>InformationBlockLoad</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-76DB3E5C-3201-4663-937C-92CC87FC1608"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>IB_GetBdAddr Function</register>
+      <title>IB_GetBdAddr Function</title>
+      <bitfield/>
+      <keyword>IB_GetBdAddr</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-AFA1DA29-4E94-4EA3-8C98-D7181ED0C312"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>IB_GetMACAddr Function</register>
+      <title>IB_GetMACAddr Function</title>
+      <bitfield/>
+      <keyword>IB_GetMACAddr</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-1FC8FBC1-9083-451F-98AE-88094CA864C6"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>IB_GetAntennaGain Function</register>
+      <title>IB_GetAntennaGain Function</title>
+      <bitfield/>
+      <keyword>IB_GetAntennaGain</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-B30A3A3B-5B44-4F2E-9C0E-11781DD07EC8"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>IB_GetBatVoltage2v2Sar Function</register>
+      <title>IB_GetBatVoltage2v2Sar Function</title>
+      <bitfield/>
+      <keyword>IB_GetBatVoltage2v2Sar</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-D72A7B04-3F6E-408A-ADBF-AC894D945D65"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>IB_GetBatVoltage3v0Sar Function</register>
+      <title>IB_GetBatVoltage3v0Sar Function</title>
+      <bitfield/>
+      <keyword>IB_GetBatVoltage3v0Sar</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-435A3048-D734-4711-9B4A-8E7035AE4747"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>IB_GetRssiOffset Function</register>
+      <title>IB_GetRssiOffset Function</title>
+      <bitfield/>
+      <keyword>IB_GetRssiOffset</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-141C5854-2A82-4DAF-ACA3-C94E8C1DBE17"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>DEVICE_SLEEP_ConfigAclbClk Function</register>
+      <title>DEVICE_SLEEP_ConfigAclbClk Function</title>
+      <bitfield/>
+      <keyword>DEVICE_SLEEP_ConfigAclbClk</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-1BFC4F0D-3A6E-46C0-906B-ED0B302A24A3"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>DEVICE_SLEEP_ConfigRetRam Function</register>
+      <title>DEVICE_SLEEP_ConfigRetRam Function</title>
+      <bitfield/>
+      <keyword>DEVICE_SLEEP_ConfigRetRam</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-1882683B-DF14-4770-9FE0-4B533354E919"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>DEVICE_SLEEP_ConfigRfClk Function</register>
+      <title>DEVICE_SLEEP_ConfigRfClk Function</title>
+      <bitfield/>
+      <keyword>DEVICE_SLEEP_ConfigRfClk</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-1BBFA501-F854-4426-8EB9-91B8DD825F97"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>DEVICE_SLEEP_ConfigRfMbs Function</register>
+      <title>DEVICE_SLEEP_ConfigRfMbs Function</title>
+      <bitfield/>
+      <keyword>DEVICE_SLEEP_ConfigRfMbs</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-4F655CBC-2139-4E8C-89A0-5BEF04905FD5"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>DEVICE_SLEEP_ConfigRfXtal Function</register>
+      <title>DEVICE_SLEEP_ConfigRfXtal Function</title>
+      <bitfield/>
+      <keyword>DEVICE_SLEEP_ConfigRfXtal</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-C54B3EAC-9FFD-458A-8EA2-388E22D8D258"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>DEVICE_SLEEP_ConfigSubSysPllLock Function</register>
+      <title>DEVICE_SLEEP_ConfigSubSysPllLock Function</title>
+      <bitfield/>
+      <keyword>DEVICE_SLEEP_ConfigSubSysPllLock</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-962BEC24-6270-4306-8596-236BD157D012"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>DEVICE_SLEEP_ConfigSubSysXtalReady Function</register>
+      <title>DEVICE_SLEEP_ConfigSubSysXtalReady Function</title>
+      <bitfield/>
+      <keyword>DEVICE_SLEEP_ConfigSubSysXtalReady</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-F7E76DD2-FA51-4CD8-85E8-C41535248CF7"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>DEVICE_SLEEP_DisableDebugBus Function</register>
+      <title>DEVICE_SLEEP_DisableDebugBus Function</title>
+      <bitfield/>
+      <keyword>DEVICE_SLEEP_DisableDebugBus</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-5B276649-6DC6-4941-BF77-079C72DEF916"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>DEVICE_DeepSleepWakeSrc_T Enum</register>
+      <title>DEVICE_DeepSleepWakeSrc_T Enum</title>
+      <bitfield/>
+      <keyword>DEVICE_DeepSleepWakeSrc_T</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-A96B50BD-73CC-4162-A6FB-AECC8A95FE5B"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>DEVICE_ClearDeepSleepReg Function</register>
+      <title>DEVICE_ClearDeepSleepReg Function</title>
+      <bitfield/>
+      <keyword>DEVICE_ClearDeepSleepReg</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-79402B38-EB29-45A2-B098-9C8D8FD5405D"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>DEVICE_deepSleepIntervalCal Function</register>
+      <title>DEVICE_deepSleepIntervalCal Function</title>
+      <bitfield/>
+      <keyword>DEVICE_deepSleepIntervalCal</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-CF8AC400-857E-4BB4-87A4-147B8CE59C98"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>DEVICE_EnterDeepSleep Function</register>
+      <title>DEVICE_EnterDeepSleep Function</title>
+      <bitfield/>
+      <keyword>DEVICE_EnterDeepSleep</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-09C83FD0-D18A-409C-89DF-0CDD7BA43CE0"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>DEVICE_GetDeepSleepWakeUpSrc Function</register>
+      <title>DEVICE_GetDeepSleepWakeUpSrc Function</title>
+      <bitfield/>
+      <keyword>DEVICE_GetDeepSleepWakeUpSrc</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-4F0A69F2-47CB-4CDE-BBBB-020E3AD7A253"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>DEVICE_SetDeepSleepWakeUpSrc Function</register>
+      <title>DEVICE_SetDeepSleepWakeUpSrc Function</title>
+      <bitfield/>
+      <keyword>DEVICE_SetDeepSleepWakeUpSrc</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-9F5447FF-EF42-4AC4-ADCF-1C0C2E5173CE"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>OSAL Extension for FreeRTOS</register>
+      <title>OSAL Extension for FreeRTOS</title>
+      <bitfield/>
+      <keyword>RF System</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-A760B515-B9F4-4861-A9EB-FD80AAE94F30"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>OSAL_QUEUE_Create Function</register>
+      <title>OSAL_QUEUE_Create Function</title>
+      <bitfield/>
+      <keyword>OSAL_QUEUE_Create</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-92FB9B7E-F107-4994-8429-FFABC896EAF4"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>OSAL_QUEUE_CreateSet Function</register>
+      <title>OSAL_QUEUE_CreateSet Function</title>
+      <bitfield/>
+      <keyword>OSAL_QUEUE_CreateSet</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-3944574B-BC67-49E4-BFFF-A0E5EB7CF533"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>OSAL_QUEUE_AddToSet Function</register>
+      <title>OSAL_QUEUE_AddToSet Function</title>
+      <bitfield/>
+      <keyword>OSAL_QUEUE_AddToSet</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-1CB186D5-ECE4-41BE-BADE-FC0E1577DF44"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>OSAL_QUEUE_SelectFromSet Function</register>
+      <title>OSAL_QUEUE_SelectFromSet Function</title>
+      <bitfield/>
+      <keyword>OSAL_QUEUE_SelectFromSet</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-03312605-BBAE-4465-A49A-8338257CF202"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>OSAL_QUEUE_Send Function</register>
+      <title>OSAL_QUEUE_Send Function</title>
+      <bitfield/>
+      <keyword>OSAL_QUEUE_Send</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-A48E118B-6776-4205-A185-1158D6876D4D"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>OSAL_QUEUE_SendISR Function</register>
+      <title>OSAL_QUEUE_SendISR Function</title>
+      <bitfield/>
+      <keyword>OSAL_QUEUE_SendISR</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-E99DC114-8F37-4C2F-A3C3-2FB637EEA751"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>OSAL_QUEUE_Receive Function</register>
+      <title>OSAL_QUEUE_Receive Function</title>
+      <bitfield/>
+      <keyword>OSAL_QUEUE_Receive</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-624ED883-90AD-42A6-B408-56CE812D1BF1"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>OSAL_QUEUE_IsFullISR Function</register>
+      <title>OSAL_QUEUE_IsFullISR Function</title>
+      <bitfield/>
+      <keyword>OSAL_QUEUE_IsFullISR</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-B3D492FD-EE43-4E34-B7E0-43508DC5B865"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>App Idle Task</register>
+      <title>App Idle Task</title>
+      <bitfield/>
+      <keyword>RF System</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-CF31B9F8-A031-4CD3-B9D5-AAC7DF934186"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>app_idle_task Function</register>
+      <title>app_idle_task Function</title>
+      <bitfield/>
+      <keyword>app_idle_task</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-B9EBC7BE-F2C8-4492-9B22-48E9015F3B6E"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>app_idle_updateRtcCnt Function</register>
+      <title>app_idle_updateRtcCnt Function</title>
+      <bitfield/>
+      <keyword>app_idle_updateRtcCnt</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-183B334C-1BDF-4564-A870-F4C2BE978405"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>ITEM_ID_TO_MEM_MAPPING Macro</register>
+      <title>ITEM_ID_TO_MEM_MAPPING Macro</title>
+      <bitfield/>
+      <keyword>ITEM_ID_TO_MEM_MAPPING</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-D08972F4-21A8-4F0E-8273-03AC48C7F790"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>ITEM_UNDER_SECURITY_CONTROL Macro</register>
+      <title>ITEM_UNDER_SECURITY_CONTROL Macro</title>
+      <bitfield/>
+      <keyword>ITEM_UNDER_SECURITY_CONTROL</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-7D9AC457-8781-4DAA-BEDB-6CA258BA5C59"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>PDS_DECLARE_ITEM Macro</register>
+      <title>PDS_DECLARE_ITEM Macro</title>
+      <bitfield/>
+      <keyword>PDS_DECLARE_ITEM</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-4B67B429-8AD1-401B-A4C5-E80B38261F31"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>NO_ITEM_FLAGS Macro</register>
+      <title>NO_ITEM_FLAGS Macro</title>
+      <bitfield/>
+      <keyword>NO_ITEM_FLAGS</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-C51A10C8-084D-4BF8-A6F0-3EE59657C130"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>NO_FILE_MARKS Macro</register>
+      <title>NO_FILE_MARKS Macro</title>
+      <bitfield/>
+      <keyword>NO_FILE_MARKS</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-D6B3AF6D-9520-47FA-AC15-AE93D53328FC"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>PDS_MAX_FILE_SIZE Macro</register>
+      <title>PDS_MAX_FILE_SIZE Macro</title>
+      <bitfield/>
+      <keyword>PDS_MAX_FILE_SIZE</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-C689652B-94C6-440A-90DC-152E945B54A1"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>PDS_DIRECTORY_ID_MASK Macro</register>
+      <title>PDS_DIRECTORY_ID_MASK Macro</title>
+      <bitfield/>
+      <keyword>PDS_DIRECTORY_ID_MASK</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-0FEC3EB2-1308-4A1C-B574-9559D9EC3D32"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>SIZE_MODIFICATION_ALLOWED Macro</register>
+      <title>SIZE_MODIFICATION_ALLOWED Macro</title>
+      <bitfield/>
+      <keyword>SIZE_MODIFICATION_ALLOWED</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-C7436175-9555-4084-8CC2-D745C53F113C"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>PDS_MODULE OFFSET Macro</register>
+      <title>PDS_MODULE OFFSET Macro</title>
+      <bitfield/>
+      <keyword>PDS_MODULE OFFSET</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-259CFA61-09A7-423C-8608-8494531680CC"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>PDS_DataServerState_t Enum</register>
+      <title>PDS_DataServerState_t Enum</title>
+      <bitfield/>
+      <keyword>PDS_DataServerState_t</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-60770A63-E7A8-4C18-9B4D-1A78A64FAFC6"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>ItemIdToMemoryMapping_t Struct</register>
+      <title>ItemIdToMemoryMapping_t Struct</title>
+      <bitfield/>
+      <keyword>ItemIdToMemoryMapping_t</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-133C54E9-8E07-4D8E-BDC4-289780F9AAF2"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>PDS_DirDescr_t Struct</register>
+      <title>PDS_DirDescr_t Struct</title>
+      <bitfield/>
+      <keyword>PDS_DirDescr_t</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-E2612D52-C312-4265-8EE8-A9EA4B8DDDC7"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>PDS_Operation_Offset_t Struct</register>
+      <title>PDS_Operation_Offset_t Struct</title>
+      <bitfield/>
+      <keyword>PDS_Operation_Offset_t</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-B0A065DE-8AA5-45D9-9564-74D2D6B2737A"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>PDS_UpdateMemory_t Struct</register>
+      <title>PDS_UpdateMemory_t Struct</title>
+      <bitfield/>
+      <keyword>PDS_UpdateMemory_t</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-2A4A2013-6E0B-4723-ACFA-4F47F89002D0"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>PDS_AddItemExcpetionFromDeleteAll Function</register>
+      <title>PDS_AddItemExcpetionFromDeleteAll Function</title>
+      <bitfield/>
+      <keyword>PDS_AddItemExcpetionFromDeleteAll</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-1F2868F0-CA59-47E2-80D0-16DF4E8A01CE"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>PDS_Delete Function</register>
+      <title>PDS_Delete Function</title>
+      <bitfield/>
+      <keyword>PDS_Delete</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-8AADBB19-32FD-4C50-AE4F-482599F9D02F"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>PDS_DeleteAll Function</register>
+      <title>PDS_DeleteAll Function</title>
+      <bitfield/>
+      <keyword>PDS_DeleteAll</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-F1364A8C-3E96-429B-A880-609E7A704762"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>PDS_GetItemDescr Function</register>
+      <title>PDS_GetItemDescr Function</title>
+      <bitfield/>
+      <keyword>PDS_GetItemDescr</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-C9597087-8DE9-4755-9D6A-C93DF62BD1E1"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>PDS_GetPendingItemsCount Function</register>
+      <title>PDS_GetPendingItemsCount Function</title>
+      <bitfield/>
+      <keyword>PDS_GetPendingItemsCount</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-AAC3B8D6-B77A-4883-BE1B-0EA0BE4872BC"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>PDS_Init Function</register>
+      <title>PDS_Init Function</title>
+      <bitfield/>
+      <keyword>PDS_Init</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-B1E12C3C-2987-4791-BA2A-54F90EB76C38"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>PDS_InitItems Function</register>
+      <title>PDS_InitItems Function</title>
+      <bitfield/>
+      <keyword>PDS_InitItems</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-C949561B-9512-4FF1-B590-1A41E6336777"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>PDS_IsAbleToRestore Function</register>
+      <title>PDS_IsAbleToRestore Function</title>
+      <bitfield/>
+      <keyword>PDS_IsAbleToRestore</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-FCE3BB9C-EE95-44A0-AD6B-699B9CF1395B"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>PDS_RegisterUpdateMemoryCallback Function</register>
+      <title>PDS_RegisterUpdateMemoryCallback Function</title>
+      <bitfield/>
+      <keyword>PDS_RegisterUpdateMemoryCallback</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-6F51DFED-F916-4803-8B8F-0A9286A08226"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>PDS_RegisterWriteCompleteCallback Function</register>
+      <title>PDS_RegisterWriteCompleteCallback Function</title>
+      <bitfield/>
+      <keyword>PDS_RegisterWriteCompleteCallback</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-7CAED737-9F28-458E-B9A3-1D20184705F0"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>PDS_Restore Function</register>
+      <title>PDS_Restore Function</title>
+      <bitfield/>
+      <keyword>PDS_Restore</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-9FC50B7F-D694-4BE2-94AE-576D308FF56B"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>PDS_Store Function</register>
+      <title>PDS_Store Function</title>
+      <bitfield/>
+      <keyword>PDS_Store</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-5A8DBB18-071C-4159-87F2-E34ED758FCB1"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>PDS_StoreItemTaskHandler Function</register>
+      <title>PDS_StoreItemTaskHandler Function</title>
+      <bitfield/>
+      <keyword>PDS_StoreItemTaskHandler</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-D80A0687-7882-4113-8AC1-DE50E569ECB3"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>FW_IMAGE_BLOCK_SIZE Macro</register>
+      <title>FW_IMAGE_BLOCK_SIZE Macro</title>
+      <bitfield/>
+      <keyword>FW_IMAGE_BLOCK_SIZE</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-40B6BE17-6888-442C-B278-C7315CF29BB6"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>FW_IMAGE_EXPECTED_CONT_IDX Macro</register>
+      <title>FW_IMAGE_EXPECTED_CONT_IDX Macro</title>
+      <bitfield/>
+      <keyword>FW_IMAGE_EXPECTED_CONT_IDX</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-4A279764-C14B-42E7-AE63-74FB5385A12A"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>FW_IMAGE_EXPECTED_PL_LEN Macro</register>
+      <title>FW_IMAGE_EXPECTED_PL_LEN Macro</title>
+      <bitfield/>
+      <keyword>FW_IMAGE_EXPECTED_PL_LEN</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-0B6BCA96-AD39-49A5-ADEE-70FADE4954CE"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>HEADER_SIZE Macro</register>
+      <title>HEADER_SIZE Macro</title>
+      <bitfield/>
+      <keyword>HEADER_SIZE</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-42E66214-74F6-4727-BA23-90B47F7A46D1"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>IMG_MEM_TOPOLOGY_COUNT Macro</register>
+      <title>IMG_MEM_TOPOLOGY_COUNT Macro</title>
+      <bitfield/>
+      <keyword>IMG_MEM_TOPOLOGY_COUNT</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-6D4995AC-20AC-4C62-BB7A-C15D087FB8B5"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>MAX_AUTH_KEY_LEN Macro</register>
+      <title>MAX_AUTH_KEY_LEN Macro</title>
+      <bitfield/>
+      <keyword>MAX_AUTH_KEY_LEN</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-2B957012-A09E-4195-AD9B-7816864AE7D4"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>MAX_MEM_TOPOLOGIES Macro</register>
+      <title>MAX_MEM_TOPOLOGIES Macro</title>
+      <bitfield/>
+      <keyword>MAX_MEM_TOPOLOGIES</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-C41105AD-522B-4866-AC66-75A20110587A"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>MAX_SLOTS Macro</register>
+      <title>MAX_SLOTS Macro</title>
+      <bitfield/>
+      <keyword>MAX_SLOTS</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-2CA9741B-15B1-4C21-8568-66639406EED6"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>METADATA_HEADER_SIZE Macro</register>
+      <title>METADATA_HEADER_SIZE Macro</title>
+      <bitfield/>
+      <keyword>METADATA_HEADER_SIZE</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-8A4CFC3C-660B-4DEA-803D-8B510920C4FA"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>SLOT_PARAMS Struct</register>
+      <title>SLOT_PARAMS Struct</title>
+      <bitfield/>
+      <keyword>SLOT_PARAMS</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-93985CDD-F578-4CB7-AE78-E65FC8AFCF1E"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>SLOT0_BASE_ADDR Macro</register>
+      <title>SLOT0_BASE_ADDR Macro</title>
+      <bitfield/>
+      <keyword>SLOT0_BASE_ADDR</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-05B545E2-37BC-44D7-90A2-033861C5AFB4"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>SLOT0_FIRMWARE Macro</register>
+      <title>SLOT0_FIRMWARE Macro</title>
+      <bitfield/>
+      <keyword>SLOT0_FIRMWARE</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-D850D1AE-FD20-484E-BAD0-1356CA400E66"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>SLOT0_HEADER Macro</register>
+      <title>SLOT0_HEADER Macro</title>
+      <bitfield/>
+      <keyword>SLOT0_HEADER</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-AE441BF4-67BB-443B-96F3-7A167FBC89E4"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>SLOT1_BASE_ADDR Macro</register>
+      <title>SLOT1_BASE_ADDR Macro</title>
+      <bitfield/>
+      <keyword>SLOT1_BASE_ADDR</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-181EFEDD-2EC3-47C5-8B34-A5BCB4C94F9B"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>SLOT1_FIRMWARE Macro</register>
+      <title>SLOT1_FIRMWARE Macro</title>
+      <bitfield/>
+      <keyword>SLOT1_FIRMWARE</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-313F50D3-16E7-49B1-A249-C4C5E027EB83"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>SLOT1_HEADER Macro</register>
+      <title>SLOT1_HEADER Macro</title>
+      <bitfield/>
+      <keyword>SLOT1_HEADER</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-AC61FBEF-AB6A-4211-883E-9B8B67E3EF27"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>UNAUTH_FW_SIZE Macro</register>
+      <title>UNAUTH_FW_SIZE Macro</title>
+      <bitfield/>
+      <keyword>UNAUTH_FW_SIZE</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-F3053C15-A0B6-4DB9-870B-B5953F0CF73D"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>AUTH_STATUS Enum</register>
+      <title>AUTH_STATUS Enum</title>
+      <bitfield/>
+      <keyword>AUTH_STATUS</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-7BCE9F7A-D28B-445B-9ED2-D7EA1B1B4B2F"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>DEVICE_CONTEXT Struct</register>
+      <title>DEVICE_CONTEXT Struct</title>
+      <bitfield/>
+      <keyword>DEVICE_CONTEXT</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-FD428666-13E8-4B77-A4DB-5ED53F992A23"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>IMG_MEM_INTERFACE Struct</register>
+      <title>IMG_MEM_INTERFACE Struct</title>
+      <bitfield/>
+      <keyword>IMG_MEM_INTERFACE</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-34734A12-8C88-4DB1-941A-46CC30B465D7"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>IMG_MEM_TOPOLOGY Struct</register>
+      <title>IMG_MEM_TOPOLOGY Struct</title>
+      <bitfield/>
+      <keyword>IMG_MEM_TOPOLOGY</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-2B7BCE9C-B7BB-4D41-995B-8A109D44C68F"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>VALID_SLOT Struct</register>
+      <title>VALID_SLOT Struct</title>
+      <bitfield/>
+      <keyword>VALID_SLOT</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-99485118-6F10-4B1E-B539-85DCE4019F88"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>FW_IMG_HDR Struct</register>
+      <title>FW_IMG_HDR Struct</title>
+      <bitfield/>
+      <keyword>FW_IMG_HDR</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-2F226F4D-8C80-4A6C-8416-45D070CCB143"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>IMG_MEM_AuthenticateHeaderStart Function</register>
+      <title>IMG_MEM_AuthenticateHeaderStart Function</title>
+      <bitfield/>
+      <keyword>IMG_MEM_AuthenticateHeaderStart</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-36B94A80-5692-4ECF-A2C1-EA0254B835BF"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>IMG_MEM_FindValidTopologies Function</register>
+      <title>IMG_MEM_FindValidTopologies Function</title>
+      <bitfield/>
+      <keyword>IMG_MEM_FindValidTopologies</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-0251276B-DF3F-47DD-8545-BF927AF7DF37"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>IMG_MEM_SlotSort Function</register>
+      <title>IMG_MEM_SlotSort Function</title>
+      <bitfield/>
+      <keyword>IMG_MEM_SlotSort</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-DD8C4D06-9F06-429F-9591-4CFA63D07E97"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>IMG_MEM_ValidateHeader Function</register>
+      <title>IMG_MEM_ValidateHeader Function</title>
+      <bitfield/>
+      <keyword>IMG_MEM_ValidateHeader</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-02FDBC5B-C6C9-43FC-9770-801325FFED37"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>IMG_MEM_AuthenticateHeaderStatusGet Function</register>
+      <title>IMG_MEM_AuthenticateHeaderStatusGet Function</title>
+      <bitfield/>
+      <keyword>IMG_MEM_AuthenticateHeaderStatusGet</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-E19B8456-6CA2-404B-9C0E-0C2C8661E453"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>IMG_MEM_CacheAndValidateHeaders Function</register>
+      <title>IMG_MEM_CacheAndValidateHeaders Function</title>
+      <bitfield/>
+      <keyword>IMG_MEM_CacheAndValidateHeaders</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-0A7A702E-7C09-4487-AF02-48F8EBB5A1DF"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>IMG_MEM_CacheHeader Function</register>
+      <title>IMG_MEM_CacheHeader Function</title>
+      <bitfield/>
+      <keyword>IMG_MEM_CacheHeader</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-4D1778DA-A40E-449E-974B-2A194F3B4526"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>dfu Function</register>
+      <title>dfu Function</title>
+      <bitfield/>
+      <keyword>dfu</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-BFF159D7-FBC0-4F77-9F6B-4188DC546565"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>program_exec_main Function</register>
+      <title>program_exec_main Function</title>
+      <bitfield/>
+      <keyword>program_exec_main</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-68EE2145-0277-44A8-9EAD-5DA10C2A1702"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>Crc32Init Function</register>
+      <title>Crc32Init Function</title>
+      <bitfield/>
+      <keyword>Crc32Init</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-137F1BAC-39B0-4300-8E31-9E072547390A"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>Crc32Add Function</register>
+      <title>Crc32Add Function</title>
+      <bitfield/>
+      <keyword>Crc32Add</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-1C10D202-0B0E-4646-9A39-E851B3C17C04"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>Crc32Result Function</register>
+      <title>Crc32Result Function</title>
+      <bitfield/>
+      <keyword>Crc32Result</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-4C1ABF34-C433-4B31-9C0E-3640379C4505"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>UART_ERROR Enum</register>
+      <title>UART_ERROR Enum</title>
+      <bitfield/>
+      <keyword>UART_ERROR</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-F7CAEC8A-C062-4C3C-AC08-D645032D9E8A"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>UART_Init Function</register>
+      <title>UART_Init Function</title>
+      <bitfield/>
+      <keyword>UART_Init</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-F1605631-7DC9-4572-BCA1-85BBD08E6F01"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>UART_Read Function</register>
+      <title>UART_Read Function</title>
+      <bitfield/>
+      <keyword>UART_Read</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-B25B1045-E18C-4AC4-ABBF-5CB9F6CEBA21"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>UART_Write Function</register>
+      <title>UART_Write Function</title>
+      <bitfield/>
+      <keyword>UART_Write</keyword>
+   </keyworditem>
+</keywords>

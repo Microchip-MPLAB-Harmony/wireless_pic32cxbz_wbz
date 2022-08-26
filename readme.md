@@ -1,7 +1,7 @@
 ﻿![Microchip logo](https://raw.githubusercontent.com/wiki/Microchip-MPLAB-Harmony/Microchip-MPLAB-Harmony.github.io/images/microchip_logo.png)
 ![Harmony logo small](https://raw.githubusercontent.com/wiki/Microchip-MPLAB-Harmony/Microchip-MPLAB-Harmony.github.io/images/microchip_mplab_harmony_logo_small.png)
 
-# MPLAB® Harmony 3 Wireless Pic32cx-bz System Services
+# MPLAB® Harmony 3 Wireless PIC32CX-BZ System Services
 
 MPLAB® Harmony 3 is an extension of the MPLAB® ecosystem for creating embedded firmware solutions for Microchip 32-bit SAM and PIC® microcontroller and microprocessor devices.  Refer to the following links for more information.
 
@@ -23,7 +23,7 @@ This repository contains the MPLAB® Harmony 3 replaceme solutions and example a
 | Folder     | Description                                                                          |
 | ---        | ---                                                                                  |
 | config     | Wireless pic32cx-bz system services module configuration file                        |
-| docs       | Wireless pic32cx-bz system services help documentation-md and pdf                    |
+| **[docs](docs/index.html)**       | Wireless pic32cx-bz system services help documentation-html, md and pdf              |
 | drivers    | Driver/Firmware files of pic32cx-bz system services                                  |
 | utilities  | Contains scripts and other utilities                                                 |
 
@@ -31,10 +31,10 @@ This repository contains the MPLAB® Harmony 3 replaceme solutions and example a
 
 |Service|	Description|
 |---|---|
-|**[Device Support Library](docs/GUID-2167300F-6A96-440E-83CA-FC9C0C259914.md)**	|This service provides help on the Device Support library that can be used as interface with RF System, PMU System, Info Block and Sleep System|
-|**[Persistent Data Server Library](docs/GUID-D08C61D1-8CD6-4D2F-B74D-E58784C9042B.md)**	|	This service provides help on the PDS library that can be used for storing and restoring of important data in non-volatile memory using wear levelling mechanism|
-|**[Standalone Bootloader](docs/GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD.md)**	|	This service provides help on the Standalone Bootloader component that can be used to upgrade firmware on a target device without the need for an external programmer or debugger|
-|**[Bootloader Services](docs/GUID-E95D4418-FDD2-49A3-999F-6EFBA54DDA3D.md)**	|	This service provides help on the Bootloader Services that can be used to create signed firmware image for OTA with the provided header and OTA header information |
+|**[Device Support Library](docs/GUID-2167300F-6A96-440E-83CA-FC9C0C259914.html)**	|This service provides help on the Device Support library that can be used as interface with RF System, PMU System, Info Block and Sleep System|
+|**[Persistent Data Server Library](docs/GUID-D08C61D1-8CD6-4D2F-B74D-E58784C9042B.html)**	|	This service provides help on the PDS library that can be used for storing and restoring of important data in non-volatile memory using wear levelling mechanism|
+|**[Standalone Bootloader](docs/GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD.html)**	|	This service provides help on the Standalone Bootloader component that can be used to upgrade firmware on a target device without the need for an external programmer or debugger|
+|**[Bootloader Services](docs/GUID-E95D4418-FDD2-49A3-999F-6EFBA54DDA3D.html)**	|	This service provides help on the Bootloader Services that can be used to create signed firmware image for OTA with the provided header and OTA header information |
 
 ____
 
