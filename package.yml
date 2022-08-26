@@ -1,0 +1,18 @@
+package:
+  format-version: "1.0.0"
+  name: "wireless_pic32cxbz_wbz"
+  type: "package"
+  status: "production"
+  required: true
+  version: "1.0.0"
+
+  dependencies:
+    - name: "csp"
+      type: "package"
+      version: "3.13.0"
+    - name: "CMSIS-FreeRTOS"
+      type: "package"
+      version: "10.3.1"
+    - name: "dev_packs"
+      type: "package"
+      version: "3.13.0"
