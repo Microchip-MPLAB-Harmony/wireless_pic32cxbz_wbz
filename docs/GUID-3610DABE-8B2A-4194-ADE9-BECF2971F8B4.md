@@ -1,0 +1,19 @@
+# RF_SetIdleMode Function
+
+## C
+
+```c
+void RF_SetIdleMode(void);
+```
+
+## Description
+
+ This routine will the RF subsystem as idle mode.
+
+## Parameters
+
+ None  
+
+## Returns
+
+ None 
