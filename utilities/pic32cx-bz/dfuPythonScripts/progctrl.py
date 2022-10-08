@@ -46,6 +46,7 @@ PE_CMD_GET_DEVICEID         = 0x0A
 PE_CMD_CHANGE_CFG 			= 0x0B
 PE_CMD_GET_CSUM 			= 0x0C
 PE_CMD_PGM_CLUSTER_VERIFY 	= 0x11
+PE_CMD_RESET_DEVICE			= 0x12
 
 PROG_CLUSTER_SIZE = 4096
 ERASE_PAGE_SIZE = 4096
@@ -239,6 +240,22 @@ class ProgController(object):
 			PEVersion = self._LOWORD(Cmd32Res[0])		
 		return PEVersion
 
+	def ResetDevice(self):
+		Status = False
+		
+		Cmd32 = cmd.array('I', [])
+		PEVersion = 0
+		#set exec command
+		U32Data = 0
+		U32Data = self._set_hiword(U32Data, PE_CMD_RESET_DEVICE)
+		U32Data = self._set_loword(U32Data, 0x1)	
+		Cmd32.append(U32Data)
+		
+		#Execute command
+		(Cmd32Res, ResBuff) = self._send_command(Cmd32)
+		print('Reset Command Sent')
+		return Status
+
 	def F32GetDevID(self):
 		Status = False
 		
@@ -270,10 +287,12 @@ class ProgController(object):
 		for element in comlist:
 			try:
 				self.UartIntf = serial.Serial(element.device, 115200)		
-				if self.F32GetPEVersion() > 0:
-					self.debug_print("Connected COM ports: " + str(element.device))
+				if self.F32GetPEVersion() > 0:   
+					self.debug_print("Connected COM ports: " + str(element.device) + str(self.F32GetPEVersion()))
 					return True
 			except serial.SerialException:
+				self.debug_print("Not Connected COM ports: " + str(element.device))
+                
 				pass
 		self.UartIntf = 0
 		return False
@@ -556,5 +575,7 @@ class ProgController(object):
 				Status = self._F32PgmRangeNonPage(FileData, StartingAddress, U32Size, U16CFGMethod)
 		else:
 			Status = self._F32PgmRangeFullRows(FileData, StartingAddress, U32Size, U16CFGMethod)
-			
+		if Status== True:
+			self.ResetDevice()
+
 		return Status

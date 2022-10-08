@@ -786,6 +786,8 @@ def finalizeComponent(libBTZBCore):
 
     print("Setting 'Minimal Stack Size' to 256")
     Database.setSymbolValue("FreeRTOS", "FREERTOS_MINIMAL_STACK_SIZE", 256)
+    
+    Database.setSymbolValue("FreeRTOS", "FREERTOS_INCLUDE_XTASKABORTDELAY", True)
 
     print("Setting 'Memory Management Type' to 'Heap_4'")
     remoteComponent = Database.getComponentByID("FreeRTOS")

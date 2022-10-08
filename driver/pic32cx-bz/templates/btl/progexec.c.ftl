@@ -144,6 +144,11 @@ int32_t program_exec_main(const IMG_MEM_TOPOLOGY ** tops, uint8_t count)
 	/* dispatch commands */   
 	switch( Cmd.cmd )
 	{ 
+	case RESET_CMD:
+		RCON_SoftwareReset();
+		retval = PASS_RESP;
+		break;
+
 	case EXEC_VERSION_CMD:
 		retval = PROG_EXEC_VERSION_NUMBER;   
 		break;  
@@ -221,7 +226,9 @@ int32_t program_exec_main(const IMG_MEM_TOPOLOGY ** tops, uint8_t count)
 	}
 
 	SET_PE_RESPONSE((int8_t *)pe_resp, respSize); 
-   
+<#if BOOTLOADER_DFU_MODE == "TIMER_BASED_TRIGGER">
+	activityRecvdRestartTimer();
+</#if>
    return 0;
    
 } /* end of main */

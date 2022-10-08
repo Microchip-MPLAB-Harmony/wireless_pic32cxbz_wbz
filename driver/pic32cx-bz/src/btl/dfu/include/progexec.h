@@ -78,6 +78,8 @@ typedef struct {
     #define PROG_DBL_WORD_CMD       0xE
     #define PROG_QUAD_DWORD_CMD     0x10
     #define PROG_CLUSTER_VERIFY_CMD 0x11
+    #define RESET_CMD               0x12
+
     #define PE_TEST                 0xF // general purpose test command
 
     // Image cluster verification methods

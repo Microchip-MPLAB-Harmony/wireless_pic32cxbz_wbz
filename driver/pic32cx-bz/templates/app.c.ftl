@@ -63,9 +63,9 @@
 </#if>
 <#if ZIGBEESTACK_LOADED>
 #include "app_zigbee/app_zigbee.h"
-#include <zigbee_device/common/include/z3Device.h>
-#include <zigbee_device/api/include/zgb_api.h>
-#include <zigbee_device/api/include/bdb_api.h>
+#include <z3device/common/include/z3Device.h>
+#include <z3device/stack_interface/zgb_api.h>
+#include <z3device/stack_interface/bdb/include/bdb_api.h>
 #include <osal/osal_freertos.h>
 </#if>
 

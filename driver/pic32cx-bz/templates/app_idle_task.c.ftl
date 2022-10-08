@@ -125,7 +125,9 @@ static uint32_t s_rtcCntBeforeSleep = 0UL;
 static bool s_chkRtcCnt;
 
 </#if>
-
+<#if (ZIGBEESTACK_LOADED)>
+static BaseType_t zigbeeTaskAbortDelayReturn;
+</#if>
 <#if SLEEP_SUPPORTED>
 <#if (ZIGBEESTACK_LOADED)>
 static bool isZBIdleTaskReadyToSleep = false;
@@ -134,7 +136,9 @@ static bool isZBIdleTaskReadyToSleep = false;
 extern bool APP_IsUartReadyToSleep (void);
 </#if>
 </#if>
-
+<#if (ZIGBEESTACK_LOADED)>
+extern TaskHandle_t zigbeeTaskHandle;
+</#if>
 void app_idle_task( void )
 {
     uint8_t PDS_Items_Pending = PDS_GetPendingItemsCount();
@@ -188,6 +192,10 @@ void app_idle_task( void )
         if(ZB_ReadyToSleep())
         </#if>
             isZBIdleTaskReadyToSleep = ZB_ReadyToSleep(); // Checks whether the stack is ready to sleep
+    }
+    else
+    {
+        zigbeeTaskAbortDelayReturn = xTaskAbortDelay(zigbeeTaskHandle);
     }
     </#if>
     <#if (BLESTACK_LOADED)>
@@ -439,7 +447,7 @@ void vPortSuppressTicksAndSleep( TickType_t xExpectedIdleTime )
         /* Enter system sleep mode */
         <#if (ZIGBEESTACK_LOADED)>
         ZB_StopStackTimerBeforeSleep();
-        ZB_EnterSleep();
+        ZB_EnterSleep(isSystemCanSleep);
         </#if>
         DEVICE_EnterSleepMode();
 
@@ -538,7 +546,7 @@ void vPortSuppressTicksAndSleep( TickType_t xExpectedIdleTime )
 
         }
         <#if (ZIGBEESTACK_LOADED)>
-        ZB_WakeUpFromSleep();
+        ZB_WakeUpFromSleep(isSystemCanSleep);
         ZB_RestartStackTimerAfterSleep(ulCompleteTickPeriods);
         isZBIdleTaskReadyToSleep = false;
         </#if>
@@ -553,6 +561,10 @@ void vPortSuppressTicksAndSleep( TickType_t xExpectedIdleTime )
 
         /* Exit with interrupts enabled. */
         __asm volatile( "cpsie i" ::: "memory" );
+        
+        <#if (ZIGBEESTACK_LOADED)>
+        zigbeeTaskAbortDelayReturn = xTaskAbortDelay(zigbeeTaskHandle);
+        </#if>
     }
 }
 </#if>

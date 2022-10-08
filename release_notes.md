@@ -3,6 +3,24 @@
 
 # Microchip MPLAB® Harmony 3 Release Notes
 
+## Wireless PIC32CX-BZ System Services Release v1.1.0
+
+### New Features
+- Added support for Reset cmd - DFU Bootloader
+   
+### Bug Fixes
+- Sleep mode fixes for Zigbee network
+
+### Known Issues
+  None
+
+### Development Tools
+- [MPLAB X v6.00](https://www.microchip.com/mplab/mplab-x-ide)
+- [MPLAB® XC32 C/C++ Compiler v4.00](https://www.microchip.com/mplab/compilers)
+-  MPLAB® X IDE plug-ins: 
+  MPLAB® Code Configurator (MCC) v5.1.9 and above.
+  
+
 ## Wireless PIC32CX-BZ System Services Release v1.0.0
 
 ### New Features

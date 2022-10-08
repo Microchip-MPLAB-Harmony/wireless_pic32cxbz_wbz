@@ -405,8 +405,10 @@ def modifyDfuDependency(symbol, event):
     localComponent = symbol.getComponent()
     if event["value"] == True:
         localComponent.setDependencyEnabled("Bootloader_usart", True) 
+        result = Database.activateComponents(['rcon'])
         print('Set Bootloader_usart dependency = True; modifyDfuDependency')
     else:
+        result = Database.deactivateComponents(['rcon'])
         consoleSymbol = localComponent.getSymbolByID("BOOTLOADER_CONSOLE_ENABLE")
         if (consoleSymbol.getValue() == False):
             localComponent.setDependencyEnabled("Bootloader_usart", False)
