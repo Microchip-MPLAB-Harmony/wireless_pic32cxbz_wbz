@@ -55,12 +55,7 @@
 #include <string.h>
 #include "app.h"
 #include "definitions.h"
-<#if BLESTACK_LOADED>
-#include "app_ble.h"
-<#if ENABLE_DEEP_SLEEP>
-#include "app_ble_dsadv.h"
-</#if>
-</#if>
+${LIST_DS_BLE_INCLUDE_C}
 <#if ZIGBEESTACK_LOADED>
 #include "app_zigbee/app_zigbee.h"
 #include <z3device/common/include/z3Device.h>
@@ -75,6 +70,9 @@
 // Section: Global Data Definitions
 // *****************************************************************************
 // *****************************************************************************
+
+${LIST_DS_BLE_DATA_C}
+
 <#if ZIGBEESTACK_LOADED && (ENABLE_CONSOLE == true) >
 extern void process_UART_evt(char* cmdBuf);
 extern void APP_UartInit(void);
@@ -184,33 +182,14 @@ void APP_Tasks ( void )
         {
             bool appInitialized = true;
             //appData.appQueue = xQueueCreate( 10, sizeof(APP_Msg_T) );
-<#if BLESTACK_LOADED>
-            <#if ENABLE_DEEP_SLEEP == false>
-            APP_BleStackInit();
-            <#if SLEEP_SUPPORTED>
-            RTC_Timer32Start();
-            </#if>            
-            <#else>
-            bool flag=false;
 
-            flag=APP_BleDsadvIsEnable();
+			<#lt>${LIST_DS_BLE_INIT_C}
 
-            if (flag == false)
-            {
-                APP_BleStackInit();
-                APP_BleDsadvStart(flag);
-                <#if SLEEP_SUPPORTED>
-                RTC_Timer32Start();
-                </#if>
-            }
-            else   //Wake up from deep sleep by RTC/INT0/Watch dog
-            {
-                 APP_BleDsadvStart(flag);
-            }
-            </#if>
-</#if>
 <#if SLEEP_SUPPORTED && BLESTACK_LOADED == false>
-            RTC_Timer32Start();
+            if (!(RTC_REGS->MODE0.RTC_CTRLA & RTC_MODE0_CTRLA_ENABLE_Msk))
+            {
+                RTC_Timer32Start();
+            }
 </#if>
 
             if (appInitialized)
@@ -225,18 +204,9 @@ void APP_Tasks ( void )
         {
             if (OSAL_QUEUE_Receive(&appData.appQueue, &appMsg, OSAL_WAIT_FOREVER))
             {
-<#if BLESTACK_LOADED>
-                if(p_appMsg->msgId==APP_MSG_BLE_STACK_EVT)
-                {
-                    // Pass BLE Stack Event Message to User Application for handling
-                    APP_BleStackEvtHandler((STACK_Event_T *)p_appMsg->msgData);
-                }
-                else if(p_appMsg->msgId==APP_MSG_BLE_STACK_LOG)
-                {
-                    // Pass BLE LOG Event Message to User Application for handling
-                    APP_BleStackLogHandler((BT_SYS_LogEvent_T *)p_appMsg->msgData);
-                }
-</#if>
+
+				<#lt>${LIST_DS_BLE_TASK_ENTRY_C}
+
 <#if ZIGBEESTACK_LOADED>
                 if (p_appMsg->msgId == APP_MSG_ZB_STACK_CB)
                 {

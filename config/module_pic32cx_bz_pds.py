@@ -31,7 +31,8 @@ pic32cx_bz2_family = {'PIC32CX1012BZ25048',
 
 pic32cx_bz3_family = {'PIC32CX5109BZ31048',
                       'PIC32CX5109BZ31032',
-                      'WBZ435',
+                      'WBZ351',
+                      'WBZ350',
                       }
 global deviceName
 deviceName = Variables.get("__PROCESSOR")

@@ -162,7 +162,7 @@ def instantiateComponent(libBootloader):
     ############################################################################
     # Add mem_interface.h file
     booloaderMemIntHeaderFile = libBootloader.createFileSymbol(None, None)
-    booloaderMemIntHeaderFile.setSourcePath('driver/pic32cx-bz/src/btl/mem_interface.h')
+    booloaderMemIntHeaderFile.setSourcePath('driver/pic32cx-bz/src/src_bz2/btl/mem_interface.h')
     booloaderMemIntHeaderFile.setOutputName('mem_interface.h')
     booloaderMemIntHeaderFile.setOverwrite(True)
     booloaderMemIntHeaderFile.setDestPath('bootloader')
@@ -172,7 +172,7 @@ def instantiateComponent(libBootloader):
 
     # Add application.h file
     booloaderMemIntHeaderFile = libBootloader.createFileSymbol(None, None)
-    booloaderMemIntHeaderFile.setSourcePath('driver/pic32cx-bz/src/btl/application.h')
+    booloaderMemIntHeaderFile.setSourcePath('driver/pic32cx-bz/src/src_bz2/btl/application.h')
     booloaderMemIntHeaderFile.setOutputName('application.h')
     booloaderMemIntHeaderFile.setOverwrite(True)
     booloaderMemIntHeaderFile.setDestPath('bootloader')
@@ -182,7 +182,7 @@ def instantiateComponent(libBootloader):
 
     # Add flash.c file
     booloaderConfigSrcFile = libBootloader.createFileSymbol(None, None)
-    booloaderConfigSrcFile.setSourcePath('driver/pic32cx-bz/src/btl/flash.c')
+    booloaderConfigSrcFile.setSourcePath('driver/pic32cx-bz/src/src_bz2/btl/flash.c')
     booloaderConfigSrcFile.setOutputName('flash.c')
     booloaderConfigSrcFile.setOverwrite(True)
     booloaderConfigSrcFile.setDestPath('bootloader')
@@ -192,7 +192,7 @@ def instantiateComponent(libBootloader):
 
     # Add crc.h file
     booloaderDfuHeaderFile = libBootloader.createFileSymbol(None, None)
-    booloaderDfuHeaderFile.setSourcePath('driver/pic32cx-bz/src/btl/dfu/include/crc.h')
+    booloaderDfuHeaderFile.setSourcePath('driver/pic32cx-bz/src/src_bz2/btl/dfu/include/crc.h')
     booloaderDfuHeaderFile.setOutputName('crc.h')
     booloaderDfuHeaderFile.setOverwrite(True)
     booloaderDfuHeaderFile.setDestPath('bootloader/dfu/include')
@@ -203,7 +203,7 @@ def instantiateComponent(libBootloader):
 
     # Add progexec.h file
     booloaderDfuHeaderFile = libBootloader.createFileSymbol(None, None)
-    booloaderDfuHeaderFile.setSourcePath('driver/pic32cx-bz/src/btl/dfu/include/progexec.h')
+    booloaderDfuHeaderFile.setSourcePath('driver/pic32cx-bz/src/src_bz2/btl/dfu/include/progexec.h')
     booloaderDfuHeaderFile.setOutputName('progexec.h')
     booloaderDfuHeaderFile.setOverwrite(True)
     booloaderDfuHeaderFile.setDestPath('bootloader/dfu/include')
@@ -214,7 +214,7 @@ def instantiateComponent(libBootloader):
 
     # Add uart.h file - will be removed later
     booloaderDfuHeaderFile = libBootloader.createFileSymbol(None, None)
-    booloaderDfuHeaderFile.setSourcePath('driver/pic32cx-bz/src/btl/dfu/include/uart.h')
+    booloaderDfuHeaderFile.setSourcePath('driver/pic32cx-bz/src/src_bz2/btl/dfu/include/uart.h')
     booloaderDfuHeaderFile.setOutputName('uart.h')
     booloaderDfuHeaderFile.setOverwrite(True)
     booloaderDfuHeaderFile.setDestPath('bootloader/dfu/include')
@@ -225,7 +225,7 @@ def instantiateComponent(libBootloader):
 
     # Add crc.c file
     booloaderDfuSourceFile = libBootloader.createFileSymbol(None, None)
-    booloaderDfuSourceFile.setSourcePath('driver/pic32cx-bz/src/btl/dfu/src/crc.c')
+    booloaderDfuSourceFile.setSourcePath('driver/pic32cx-bz/src/src_bz2/btl/dfu/src/crc.c')
     booloaderDfuSourceFile.setOutputName('crc.c')
     booloaderDfuSourceFile.setOverwrite(True)
     booloaderDfuSourceFile.setDestPath('bootloader/dfu/src')

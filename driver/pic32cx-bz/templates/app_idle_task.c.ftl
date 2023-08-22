@@ -4,12 +4,12 @@
 <#elseif (!BLESTACK_LOADED) && (ZIGBEESTACK_LOADED)>
     <#assign STACKS_IDLE = "(ZB_IsIdle())">
     <#assign STACK_SLEEP_CHECK = "if (((isZBIdleTaskReadyToSleep) &&
-        (xExpectedIdleTime > 512) && (xExpectedIdleTime < 0xfff0)))">
+        (xExpectedIdleTime > 512) && (xExpectedIdleTime < MAX_SLEEP_ALLOWED)))">
 <#elseif (BLESTACK_LOADED) && (ZIGBEESTACK_LOADED)>
     <#assign STACKS_IDLE = "(BT_RF_Suspended && ZB_IsIdle())">
     <#assign STACK_SLEEP_CHECK = "if (isSystemCanSleep &&
         ((isZBIdleTaskReadyToSleep) &&
-        (xExpectedIdleTime > 512) && (xExpectedIdleTime < 0xfff0)))">
+        (xExpectedIdleTime > 512) && (xExpectedIdleTime < MAX_SLEEP_ALLOWED)))">
 <#else>
     <#assign STACKS_IDLE = "(1) // TODO: Modify to evaluate to true only if application is idle">
     <#assign STACK_SLEEP_CHECK = "">
@@ -96,6 +96,13 @@
 #define APP_IDLE_NVIC_PENDSVCLEAR_BIT            ( 1UL << 27UL )
 #define APP_IDLE_NVIC_PEND_SYSTICK_CLEAR_BIT     ( 1UL << 25UL )
 
+<#if (ZIGBEESTACK_LOADED)>
+/* 
+ * Max sleep allowed - user can configure this value
+ */
+#define MAX_SLEEP_ALLOWED   (60*60*1000L) //1 hour
+</#if>
+
 /*
  * The number of SysTick increments that make up one tick period.
  */
@@ -174,7 +181,20 @@ void app_idle_task( void )
             else if (RF_Cal_Needed)
             </#if>
             {
+            <#if (ZIGBEESTACK_LOADED) && (SLEEP_SUPPORTED)>
+              if (ZB_CheckStackSleep())
+              {
+                ZB_WakeUpFromSleep();
                 RF_Timer_Cal(${WSS_ENABLE_MODE});
+                ZB_EnterSleep();
+              }
+              else
+              {
+            </#if>  
+                RF_Timer_Cal(${WSS_ENABLE_MODE});
+            <#if (ZIGBEESTACK_LOADED) && (SLEEP_SUPPORTED)>	
+              }
+            </#if>
             }
             </#if>
             <#if (BLESTACK_LOADED)>
@@ -196,6 +216,7 @@ void app_idle_task( void )
     else
     {
         zigbeeTaskAbortDelayReturn = xTaskAbortDelay(zigbeeTaskHandle);
+        isZBIdleTaskReadyToSleep = false;
     }
     </#if>
     <#if (BLESTACK_LOADED)>
@@ -209,7 +230,7 @@ void app_idle_task( void )
 }
 
 
-<#if (ZIGBEESTACK_LOADED) && (!SLEEP_SUPPORTED)>
+<#if ((ZIGBEESTACK_LOADED) && (!SLEEP_SUPPORTED)) || ((THREADSTACK_LOADED) && (!SLEEP_SUPPORTED))>
 /*
     Devices which do not support Sleep needs to define this function.
 */
@@ -412,6 +433,11 @@ void vPortSuppressTicksAndSleep( TickType_t xExpectedIdleTime )
         APP_IDLE_NVIC_SYSTICK_CTRL_REG &= ~APP_IDLE_NVIC_SYSTICK_ENABLE_BIT;
         
         ulRtcCntBeforeSleep = RTC_Timer32CounterGet();
+		<#if (ZIGBEESTACK_LOADED)>
+		<#if (ENABLE_DEEP_SLEEP == true)>
+		RTC_BackupRegisterSet(0U, ulRtcCntBeforeSleep);
+		</#if>
+		</#if>
 
         app_idle_setRtcTimeout(xExpectedIdleTime, ulRtcCntBeforeSleep);
 
@@ -445,10 +471,19 @@ void vPortSuppressTicksAndSleep( TickType_t xExpectedIdleTime )
         }
 
         /* Enter system sleep mode */
-        <#if (ZIGBEESTACK_LOADED)>
-        ZB_StopStackTimerBeforeSleep();
-        ZB_EnterSleep(isSystemCanSleep);
-        </#if>
+		<#if (ZIGBEESTACK_LOADED)>        
+		<#if (ENABLE_DEEP_SLEEP == true)>
+		ZB_BackupStackParams(xExpectedIdleTime);
+		</#if>      
+		ZB_StopStackTimerBeforeSleep();
+		<#if (!BLESTACK_LOADED)>
+        ZB_BLEClockOnOff(false);        
+		<#if (ENABLE_DEEP_SLEEP == true)>
+		DEVICE_EnterDeepSleep(true, xExpectedIdleTime);        
+		</#if>
+		</#if>
+		</#if>
+        <#if (((ZIGBEESTACK_LOADED) && (ENABLE_DEEP_SLEEP == false)) || (BLESTACK_LOADED) )>
         DEVICE_EnterSleepMode();
 
         if( xModifiableIdleTime > 0 )
@@ -546,9 +581,11 @@ void vPortSuppressTicksAndSleep( TickType_t xExpectedIdleTime )
 
         }
         <#if (ZIGBEESTACK_LOADED)>
-        ZB_WakeUpFromSleep(isSystemCanSleep);
         ZB_RestartStackTimerAfterSleep(ulCompleteTickPeriods);
         isZBIdleTaskReadyToSleep = false;
+        </#if>
+        <#if (!BLESTACK_LOADED) && (ZIGBEESTACK_LOADED)>
+        ZB_BLEClockOnOff(true);
         </#if>
 
         /* Restart SysTick so it runs from APP_IDLE_NVIC_SYSTICK_LOAD_REG
@@ -565,6 +602,7 @@ void vPortSuppressTicksAndSleep( TickType_t xExpectedIdleTime )
         <#if (ZIGBEESTACK_LOADED)>
         zigbeeTaskAbortDelayReturn = xTaskAbortDelay(zigbeeTaskHandle);
         </#if>
+		</#if>
     }
 }
 </#if>

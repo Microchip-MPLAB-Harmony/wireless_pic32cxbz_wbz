@@ -7,6 +7,10 @@
 <#if BLESTACK_LOADED>
 <#assign ITEM_COUNT = ITEM_COUNT + " + (PDS_BLE_MAX_ITEMS_AMOUNT)">
 </#if>
+<#if THREADSTACK_LOADED>
+<#assign ITEM_COUNT = ITEM_COUNT + " + (PDS_OT_MAX_ITEMS_AMOUNT)">
+<#assign DIR_COUNT = DIR_COUNT + " + (PDS_OT_MAX_DIR_AMOUNT)">
+</#if>
 /*******************************************************************************
   PDS Config
 
@@ -54,6 +58,11 @@
 #define PDS_APP_MAX_DIR_MEM_ID_AMOUNT   ${PDS_APPS_DIRECTORY_IDS}
 <#if BLESTACK_LOADED>
 #define PDS_BLE_MAX_ITEMS_AMOUNT        16
+</#if>
+
+<#if THREADSTACK_LOADED>
+#define PDS_OT_MAX_ITEMS_AMOUNT      13
+#define PDS_OT_MAX_DIR_AMOUNT      	 0
 </#if>
 
 #define MAX_PDS_ITEMS_COUNT         ${ITEM_COUNT}

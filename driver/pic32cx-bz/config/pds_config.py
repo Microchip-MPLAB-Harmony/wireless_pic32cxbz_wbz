@@ -31,14 +31,49 @@ pic32cx_bz2_family = {'PIC32CX1012BZ25048',
 
 pic32cx_bz3_family = {'PIC32CX5109BZ31048',
                       'PIC32CX5109BZ31032',
-                      'WBZ435',
+                      'WBZ351',
+                      'WBZ350',
                       }
+
 
 def isOTAEnabled(symbol, event):
     if ((event["value"] == True)):
         symbol.setValue(True)
     else:
         symbol.setValue(False)
+
+def isEnabled(symbol, event):
+    if ((event["value"] == True)):
+        symbol.setValue(True)
+    else:
+        symbol.setValue(False)
+
+def getRetentionRAMSize():
+    components = Database.getActiveComponentIDs()
+    if('pic32cx_bz3_devsupport' in components):
+        return int(Database.getSymbolValue("pic32cx_bz3_devsupport", "TOTAL_RETENTION_RAM_BYTES"))
+    else:
+        return 0
+
+def updateValue(symbol, event):
+    components = Database.getActiveComponentIDs()
+    if('pic32cx_bz3_devsupport' in components):
+        value = int(Database.getSymbolValue("pic32cx_bz3_devsupport", "TOTAL_RETENTION_RAM_BYTES"))
+        Database.setSymbolValue("pdsSystem", "RETENTION_RAM_SIZE", int(value))
+
+def getSleepState():
+    components = Database.getActiveComponentIDs()
+    if('pic32cx_bz3_devsupport' in components):
+        return bool(Database.getSymbolValue("pic32cx_bz3_devsupport", "ENABLE_DEEP_SLEEP"))
+    else:
+        return False
+
+def getRetentionRAMState():
+    components = Database.getActiveComponentIDs()
+    if('pic32cx_bz3_devsupport' in components):
+        return bool(Database.getSymbolValue("pic32cx_bz3_devsupport", "TOTAL_RETENTION_RAM"))
+    else:
+        return False
 
 processor = Variables.get('__PROCESSOR')
 print('processor={}'.format(processor))
@@ -78,6 +113,15 @@ zigbeeStackLoaded.setDefaultValue(['ZIGBEE_COLOR_SCENE_CONTROLLER' or 'ZIGBEE_MU
 zigbeeStackLoaded.setVisible(False)
 
 ############################################################################
+### Add logic for adding Thread stack to app.c
+############################################################################
+# This boolean is controlled in:
+#   onAttachmentConnected or onAttachmentDisconnected
+threadStackLoaded = libPDS.createBooleanSymbol('THREADSTACK_LOADED', None)
+threadStackLoaded.setDefaultValue('OPEN_THREAD' in Database.getActiveComponentIDs())
+threadStackLoaded.setVisible(False)
+
+############################################################################
 ### Add logic for adding OTA as part of Linker file
 ############################################################################
 otaEnabled = libPDS.createBooleanSymbol("OTA_ENABLED", None)
@@ -89,6 +133,25 @@ otaFwSignVerify = libPDS.createBooleanSymbol("OTA_FW_SIGN_VERIFY", None)
 otaFwSignVerify.setDefaultValue(False)
 otaFwSignVerify.setVisible(False)
 otaFwSignVerify.setDependencies(isOTAEnabled, ["BootloaderServices:APP_FW_SIGN_VERIFY"])
+
+############################################################################
+### Add logic for adding Device Support as part of Linker file
+############################################################################
+dsleepEnabled = libPDS.createBooleanSymbol("DEEP_SLEEP_ENABLED", None)
+dsleepEnabled.setDefaultValue(getSleepState())
+dsleepEnabled.setVisible(False)
+dsleepEnabled.setDependencies(isEnabled, ["pic32cx_bz3_devsupport.ENABLE_DEEP_SLEEP"])
+
+retentionRAMVerify = libPDS.createBooleanSymbol("RETENTION_RAM", None)
+retentionRAMVerify.setDefaultValue(getRetentionRAMState())
+retentionRAMVerify.setVisible(False)
+retentionRAMVerify.setDependencies(isEnabled, ["pic32cx_bz3_devsupport.TOTAL_RETENTION_RAM"])
+
+retentionRAMSize = libPDS.createIntegerSymbol("RETENTION_RAM_SIZE", None)
+retentionRAMSize.setDefaultValue(getRetentionRAMSize())
+retentionRAMSize.setVisible(False)
+retentionRAMSize.setDependencies(updateValue, ["pic32cx_bz3_devsupport.TOTAL_RETENTION_RAM"])
+
 ############################################################################
 ### Create Application configuration items for PDS
 ############################################################################
@@ -106,6 +169,11 @@ PDS_DisplayApps1.setMin(0)
 PDS_DisplayApps1.setVisible(True)
 PDS_DisplayApps1.setReadOnly(False)
 
+# PDS_USES_BOOT_FLASH - Applicable/enabled only for BZ3 family
+PDS_UsesBootFlash = libPDS.createBooleanSymbol("PDS_USES_BOOT_FLASH", None)
+PDS_UsesBootFlash.setDefaultValue(False)
+PDS_UsesBootFlash.setVisible(processor in pic32cx_bz3_family)
+PDS_UsesBootFlash.setReadOnly(False)
 
 ############################################################################
 ### Linker File OverWrite - Yog( workaround for PDS)
@@ -114,11 +182,12 @@ pdsLinkerFile = libPDS.createFileSymbol("PDS_LINKER_FILE", None)
 if (processor in pic32cx_bz2_family):
     pdsLinkerFile.setSourcePath("driver/pic32cx-bz/templates/PIC32CX1012BZ25048.ld.ftl")
 elif (processor in pic32cx_bz3_family):
-    pdsLinkerFile.setSourcePath("driver/pic32cx-bz/templates/pds/pic32cx_bz3_pds.ld")
+    pdsLinkerFile.setSourcePath("driver/pic32cx-bz/templates/PIC32CX5109BZ31048.ld.ftl")
 
 
 pdsLinkerFile.setOutputName("{0}.ld".format(processor))
 pdsLinkerFile.setMarkup(True)
 pdsLinkerFile.setOverwrite(True)
 pdsLinkerFile.setType("LINKER")
+
 

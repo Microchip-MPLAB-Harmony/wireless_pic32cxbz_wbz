@@ -36,6 +36,20 @@ def finalizeComponent(pdsComponent):
 
 def instantiateComponent(libPDS):
     print('PDS')
+    pic32cx_bz2_family = {'PIC32CX1012BZ25048',
+                          'PIC32CX1012BZ25032',
+                          'PIC32CX1012BZ24032',
+                          'WBZ451',
+                          'WBZ450',
+                          }
+
+    pic32cx_bz3_family = {'PIC32CX5109BZ31048',
+                          'PIC32CX5109BZ31032',
+                          'WBZ351',
+                          'WBZ350',
+                          }
+    global deviceName
+    deviceName = Variables.get("__PROCESSOR")
     configName = Variables.get('__CONFIGURATION_NAME')
 
     execfile(Module.getPath() +"/driver/pic32cx-bz/config/pds_interface.py")
@@ -80,7 +94,10 @@ def instantiateComponent(libPDS):
     # Add pds.a library
     pds_a = libPDS.createLibrarySymbol(None, None)
     pds_a.setDestPath('driver/pds')
-    pds_a.setSourcePath('driver/pic32cx-bz/src/pds/pds.a')
+    if (deviceName in pic32cx_bz2_family):
+        pds_a.setSourcePath('driver/pic32cx-bz/src/src_bz2/pds/pds_bz2.a')
+    elif (deviceName in pic32cx_bz3_family):
+        pds_a.setSourcePath('driver/pic32cx-bz/src/src_bz3/pds/pds_bz3.a')
     pds_a.setOutputName('pds.a')
 
     ############################################################################
@@ -89,7 +106,10 @@ def instantiateComponent(libPDS):
 
     # Add pds.h file
     pdsHeaderFile = libPDS.createFileSymbol(None, None)
-    pdsHeaderFile.setSourcePath('driver/pic32cx-bz/src/pds/pds.h')
+    if (deviceName in pic32cx_bz2_family):
+        pdsHeaderFile.setSourcePath('driver/pic32cx-bz/src/src_bz2/pds/pds.h')
+    elif (deviceName in pic32cx_bz3_family):
+        pdsHeaderFile.setSourcePath('driver/pic32cx-bz/src/src_bz3/pds/pds.h')
     pdsHeaderFile.setOutputName('pds.h')
     pdsHeaderFile.setOverwrite(True)
     pdsHeaderFile.setDestPath('driver/pds/include')
@@ -120,7 +140,9 @@ REQUIRES_PDS = {'BLE_STACK_LIB': 'BLESTACK_LOADED',
                 'ZIGBEE_TEMPERATURE_COLOR_LIGHT': 'ZIGBEESTACK_LOADED',
                 'ZIGBEE_CUSTOM': 'ZIGBEESTACK_LOADED',
                 'ZIGBEE_GPD_SENSOR': 'ZIGBEESTACK_LOADED',
-                'ZIGBEE_ZAPPSI': 'ZIGBEESTACK_LOADED'}
+                'ZIGBEE_ZAPPSI': 'ZIGBEESTACK_LOADED',
+                'OPEN_THREAD': 'THREADSTACK_LOADED'
+               }
 
 def onAttachmentConnected(source, target):
     Log.writeInfoMessage('pds_subsystem:onAttachmentConnected: source = {} remote = {}'.format(source["component"].getID(), target["component"].getID()))

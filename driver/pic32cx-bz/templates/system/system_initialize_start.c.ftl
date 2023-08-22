@@ -24,7 +24,8 @@
 <#if ENABLE_DEEP_SLEEP == false>
     // Initialize the RF Clock Generator
     SYS_ClkGen_Config();
+<#if PIC32CX_BZ2_DEVICE == true>
 
     // Configure Cache and Wait States
     PCHE_Setup();
-</#if>
+</#if></#if>

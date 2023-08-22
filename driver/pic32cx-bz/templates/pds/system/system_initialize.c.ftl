@@ -20,6 +20,11 @@
 * ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 *******************************************************************************/
+<#if (PDS_USES_BOOT_FLASH == true)>
+    // Unlock write protection in Boot Flash
+    NVM_BootFlashWriteProtectUnlock(0xFFFFFF);
+
+</#if>
     // Initialize PDS- Persistent Data Server
     PDS_Init(MAX_PDS_ITEMS_COUNT, MAX_PDS_DIRECTORIES_COUNT);
 

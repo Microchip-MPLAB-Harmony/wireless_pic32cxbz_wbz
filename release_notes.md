@@ -3,6 +3,26 @@
 
 # Microchip MPLAB® Harmony 3 Release Notes
 
+## Wireless PIC32CX-BZ System Services Release v1.2.0 
+
+### New Features
+- Regulatory Region Support
+- Enhanced Sleep mode and Deep Sleep mode
+
+### Bug fixes
+- Sleep mode fixes for Zigbee Network
+
+### Known Issues
+  None
+
+### Development Tools
+- [MPLAB X v6.15](https://www.microchip.com/mplab/mplab-x-ide)
+- [MPLAB® XC32 C/C++ Compiler v4.21](https://www.microchip.com/mplab/compilers)
+-  MPLAB® X IDE plug-ins: 
+  MPLAB® Code Configurator (MCC) v5.3.7 and above.
+
+
+
 ## Wireless PIC32CX-BZ System Services Release v1.1.0
 
 ### New Features

@@ -23,6 +23,7 @@
 
 
 
+<#if PIC32CX_BZ2_DEVICE == true>
 /*******************************************************************************
   Function:
     void PCHE_Setup ( void )
@@ -52,7 +53,7 @@ __attribute__((ramfunc, long_call, section(".ramfunc"),unique_section)) void PCH
     }
 
 }
-
+</#if>
 <#if ENABLE_DEEP_SLEEP == true>
 void _on_reset(void)
 {
@@ -62,6 +63,7 @@ void _on_reset(void)
     // Initialize the RF Clock Generator
     SYS_ClkGen_Config();
 
+<#if PIC32CX_BZ2_DEVICE == true>
     /* Can't call a RAM function before __pic32c_data_initialization
        Must call a flash function, but in A0 HW version, RAM function is required to avoid HW issue.
        Thus, will not config PCHE before __pic32c_data_initialization in A0 version.
@@ -72,5 +74,6 @@ void _on_reset(void)
         PCHE_REGS->PCHE_CHECON = (PCHE_REGS->PCHE_CHECON & (~(PCHE_CHECON_PFMWS_Msk | PCHE_CHECON_ADRWS_Msk | PCHE_CHECON_PREFEN_Msk))) 
                                         | (PCHE_CHECON_PFMWS(1) | PCHE_CHECON_PREFEN(1));
     }
+</#if>
 }
 </#if>
