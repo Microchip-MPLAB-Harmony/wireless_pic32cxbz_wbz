@@ -3517,7 +3517,7 @@ int wc_ecc_get_curve_size_from_id(int curve_id)
         return ECC_BAD_ARG_E;
     return ecc_sets[curve_idx].size;
 }
-
+#if 0
 /* Returns the curve index that corresponds to a given curve name in
  * ecc_sets[] of ecc.c
  *
@@ -3589,7 +3589,7 @@ int wc_ecc_get_curve_id_from_name(const char* curveName)
 
     return ecc_sets[curve_idx].id;
 }
-
+#endif
 /* Compares a curve parameter (hex, from ecc_sets[]) to given input
  * parameter for equality.
  * encType is WC_TYPE_UNSIGNED_BIN or WC_TYPE_HEX_STR
@@ -6703,11 +6703,13 @@ int ecc_mul2add(ecc_point* A, mp_int* kA,
 int wc_ecc_verify_hash(const byte* sig, word32 siglen, const byte* hash,
                        word32 hashlen, int* res, ecc_key* key)
 {
-    int err;
+    int err = 0;
+#if 0
     mp_int *r = NULL, *s = NULL;
 #if (!defined(WOLFSSL_ASYNC_CRYPT) || !defined(WC_ASYNC_ENABLE_ECC)) && \
     !defined(WOLFSSL_SMALL_STACK)
     mp_int r_lcl, s_lcl;
+#endif
 #endif
 
     if (sig == NULL || hash == NULL || res == NULL || key == NULL) {
