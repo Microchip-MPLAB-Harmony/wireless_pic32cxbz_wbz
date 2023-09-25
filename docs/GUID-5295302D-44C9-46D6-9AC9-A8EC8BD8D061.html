@@ -4,9 +4,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE11" /><meta name="copyright" content="(C) Copyright 2022" />
-<meta name="DC.rights.owner" content="(C) Copyright 2022" />
-<meta name="DC.type" content="topic" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE11" /><meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="topic" />
 <meta name="DC.title" content="RF_Timer_Cal Function" />
 <meta name="DC.relation" scheme="URI" content="GUID-EDAF833A-65A8-4C17-8178-AB52010F5638.html" />
 <meta name="DC.format" content="XHTML" />
@@ -18,7 +18,7 @@
 <meta name="Microsoft.Help.TocOrder" content="0" />
 <meta name="Microsoft.Help.Locale" content="en-US" />
 <meta name="Microsoft.Help.TopicLocale" content="en-US" />
-<meta name="Microsoft.Help.DisplayVersion" content="MPLAB Harmony PIC32CX-BZ System Services Reference A 06/2022" />
+<meta name="Microsoft.Help.DisplayVersion" content="MPLAB Harmony PIC32CX-BZ System Services Reference 3 09/2023" />
 <script language="javascript">
        
        if (window.parent.location.protocol != 'file:') {
@@ -225,33 +225,33 @@
         
       </style><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /></head>
 <body id="rf-timer-cal-function">
-<h1 class="title topictitle1" id="ariaid-title1">RF_Timer_Cal Function</h1><div class="body"></div>
+<h1 class="title topictitle1" id="ariaid-title1" style="">RF_Timer_Cal Function</h1><div class="body"></div>
 <div class="related-links">
 <div class="familylinks">
 <div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="GUID-EDAF833A-65A8-4C17-8178-AB52010F5638.html" title="RF System helps in initialization, calibration and other activities for using RF Sub system">RF System</a></div>
 </div>
-</div><div class="topic nested1" aria-labelledby="ariaid-title2" id="c"><h2 class="title topictitle2" id="ariaid-title2">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">void</strong> <span class="hl-functions">RF_Timer_Cal</span>(wssEnable_t wssEnable);</pre></div>
+</div><div class="topic nested1" aria-labelledby="ariaid-title2" id="c"><h2 class="title topictitle2" id="ariaid-title2" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">void</strong> <span class="hl-functions">RF_Timer_Cal</span>(wssEnable_t wssEnable);</pre></div>
 </div>
-<div class="topic nested1" aria-labelledby="ariaid-title3" id="description"><h2 class="title topictitle2" id="ariaid-title3">Description</h2><div class="body"><p class="p">This routine will calibrate the RF from a Timer event condition. The main
+<div class="topic nested1" aria-labelledby="ariaid-title3" id="description"><h2 class="title topictitle2" id="ariaid-title3" style="">Description</h2><div class="body"><p class="p">This routine will calibrate the RF from a Timer event condition. The main
 functions are TX_Power_Compensation and RSSI_ED_Compensation, which are
 compensation over temperature. Since temperature may change over time, user
 can choose do RF_Timer_Cal over time.</p>
 </div>
 </div>
-<div class="topic nested1" aria-labelledby="ariaid-title4" id="parameters"><h2 class="title topictitle2" id="ariaid-title4">Parameters</h2><div class="body">
-<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="text-align:left;vertical-align:middle;" id="d5158e42"><span>Param</span></th>
-<th class="entry cellrowborder" style="text-align:left;vertical-align:middle;" id="d5158e44"><span>Description</span></th>
+<div class="topic nested1" aria-labelledby="ariaid-title4" id="parameters"><h2 class="title topictitle2" id="ariaid-title4" style="">Parameters</h2><div class="body">
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><col style="width:" /><col style="width:" /><thead class="thead" style="text-align:left;"><tr class="row"><th class="entry cellrowborder" style="text-align:left;vertical-align:middle;" id="d5283e42"><span>Param</span></th>
+<th class="entry cellrowborder" style="text-align:left;vertical-align:middle;" id="d5283e44"><span>Description</span></th>
 </tr>
 </thead>
-<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d5158e42 "><span>wssEnable_t wssEnable</span></td>
-<td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d5158e44 "><span>wireless subsystem enable flag  0: None  1: BLE enable  2: ZB enable  3: BLE enable &amp; ZB enable</span></td>
+<tbody class="tbody"><tr class="row"><td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d5283e42 "><span>wssEnable_t wssEnable</span></td>
+<td class="entry cellrowborder" style="text-align:left;vertical-align:middle;" headers="d5283e44 "><span>wireless subsystem enable flag  0: None  1: BLE enable  2: ZB enable  3: BLE enable &amp; ZB enable</span></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 </div>
-<div class="topic nested1" aria-labelledby="ariaid-title5" id="returns"><h2 class="title topictitle2" id="ariaid-title5">Returns</h2><div class="body"><p class="p">None</p>
+<div class="topic nested1" aria-labelledby="ariaid-title5" id="returns"><h2 class="title topictitle2" id="ariaid-title5" style="">Returns</h2><div class="body"><p class="p">None</p>
 </div>
 </div>
 </body>

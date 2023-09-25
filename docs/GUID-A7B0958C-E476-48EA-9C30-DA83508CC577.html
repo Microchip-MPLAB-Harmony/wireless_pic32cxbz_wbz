@@ -4,9 +4,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE11" /><meta name="copyright" content="(C) Copyright 2022" />
-<meta name="DC.rights.owner" content="(C) Copyright 2022" />
-<meta name="DC.type" content="topic" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE11" /><meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="topic" />
 <meta name="DC.title" content="PDS Library Usage" />
 <meta name="Description" content="PIC32CX-BZ2 Persistent Data Server(PDS) Library Usage" />
 <meta name="DC.relation" scheme="URI" content="GUID-D08C61D1-8CD6-4D2F-B74D-E58784C9042B.html" />
@@ -47,7 +47,7 @@
 <meta name="Microsoft.Help.TocOrder" content="0" />
 <meta name="Microsoft.Help.Locale" content="en-US" />
 <meta name="Microsoft.Help.TopicLocale" content="en-US" />
-<meta name="Microsoft.Help.DisplayVersion" content="MPLAB Harmony PIC32CX-BZ System Services Reference A 06/2022" />
+<meta name="Microsoft.Help.DisplayVersion" content="MPLAB Harmony PIC32CX-BZ System Services Reference 3 09/2023" />
 <script language="javascript">
        
        if (window.parent.location.protocol != 'file:') {
@@ -255,7 +255,7 @@
       </style><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /></head>
 <body id="GUID-A7B0958C-E476-48EA-9C30-DA83508CC577">
 
-<h1 class="title topictitle1" id="GUID-A7B0958C-E476-48EA-9C30-DA83508CC577__GUID-8517E5E9-D350-400A-87FA-FDE34D9A124C">PDS Library Usage</h1>
+<h1 class="title topictitle1" id="GUID-A7B0958C-E476-48EA-9C30-DA83508CC577__GUID-8517E5E9-D350-400A-87FA-FDE34D9A124C" style="">PDS Library Usage</h1>
 
 <div class="body"><p class="shortdesc">PIC32CX-BZ2 Persistent Data Server(PDS) Library Usage</p>
 
@@ -324,7 +324,7 @@
             in the code that may be used by both the stack and the application:</p>
 
         <div class="p">
-            <pre class="pre codeblock"><button title="Copy Code" class="copy-code" onclick="cpy('d19052e95', this);">Copy</button><code id="d19052e95" content="PDS_DECLARE_FILE(memoryId, size, ramAddr, fileMarks)">PDS_DECLARE_FILE(memoryId, size, ramAddr, fileMarks)</code></pre>
+            <pre class="pre codeblock"><code id="d20216e95" content="PDS_DECLARE_FILE(memoryId, size, ramAddr, fileMarks)">PDS_DECLARE_FILE(memoryId, size, ramAddr, fileMarks)</code></pre>
         </div>
 
         <p class="p"><strong class="ph b"><u class="ph u">Directory and Directory Descriptor</u></strong></p>
@@ -357,7 +357,7 @@
         <p class="p">A directory is declared via the PDS_DECLARE_DIR macro in the following way:</p>
 
         <div class="p">
-            <pre class="pre codeblock"><button title="Copy Code" class="copy-code" onclick="cpy('d19052e133', this);">Copy</button><code id="d19052e133" content="PDS_DECLARE_DIR(const PDS_DirDescr_t csGeneralParamsDirDescr) =&#xA;{&#xA;.list = CsGeneralMemoryIdsTable,&#xA;.filesCount = ARRAY_SIZE(CsGeneralMemoryIdsTable),&#xA;.memoryId = BC_GENERAL_PARAMS_MEM_ID&#xA;};&#xA;//Where CsGeneralMemoryIdsTable is the list of objects defined in the following way:&#xA;PROGMEM_DECLARE(const PDS_MemId_t CsGeneralMemoryIdsTable[]) =&#xA;{&#xA;CS_UID_MEM_ID,&#xA;CS_RF_TX_POWER_MEM_ID,&#xA;//other parameters in this list&#xA;}">PDS_DECLARE_DIR(const PDS_DirDescr_t csGeneralParamsDirDescr) =
+            <pre class="pre codeblock"><code id="d20216e133" content="PDS_DECLARE_DIR(const PDS_DirDescr_t csGeneralParamsDirDescr) =&#xA;{&#xA;.list = CsGeneralMemoryIdsTable,&#xA;.filesCount = ARRAY_SIZE(CsGeneralMemoryIdsTable),&#xA;.memoryId = BC_GENERAL_PARAMS_MEM_ID&#xA;};&#xA;//Where CsGeneralMemoryIdsTable is the list of objects defined in the following way:&#xA;PROGMEM_DECLARE(const PDS_MemId_t CsGeneralMemoryIdsTable[]) =&#xA;{&#xA;CS_UID_MEM_ID,&#xA;CS_RF_TX_POWER_MEM_ID,&#xA;//other parameters in this list&#xA;}">PDS_DECLARE_DIR(const PDS_DirDescr_t csGeneralParamsDirDescr) =
 {
 .list = CsGeneralMemoryIdsTable,
 .filesCount = ARRAY_SIZE(CsGeneralMemoryIdsTable),
@@ -381,9 +381,9 @@ CS_RF_TX_POWER_MEM_ID,
                     <col style="width:50%" />
                     <thead class="thead" style="text-align:left;">
                         <tr class="row">
-                            <th class="entry cellrowborder" style="vertical-align:middle;" id="d19052e158"><span>Name</span></th>
+                            <th class="entry cellrowborder" style="vertical-align:middle;" id="d20216e158"><span>Name</span></th>
 
-                            <th class="entry cellrowborder" style="vertical-align:middle;" id="d19052e161"><span>Description</span></th>
+                            <th class="entry cellrowborder" style="vertical-align:middle;" id="d20216e161"><span>Description</span></th>
 
                         </tr>
 
@@ -391,95 +391,95 @@ CS_RF_TX_POWER_MEM_ID,
 
                     <tbody class="tbody">
                         <tr class="row">
-                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d19052e158 "><span>PDS_Init</span></td>
+                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d20216e158 "><span>PDS_Init</span></td>
 
-                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d19052e161 "><span>initializes the Persistence Data Server</span></td>
-
-                        </tr>
-
-                        <tr class="row">
-                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d19052e158 "><span>PDS_InitItems</span></td>
-
-                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d19052e161 "><span>initializes the Persistence Data Server Items</span></td>
+                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d20216e161 "><span>initializes the Persistence Data Server</span></td>
 
                         </tr>
 
                         <tr class="row">
-                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d19052e158 "><span>PDS_Restore</span></td>
+                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d20216e158 "><span>PDS_InitItems</span></td>
 
-                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d19052e161 "><span>Restores data from non-volatile storage</span></td>
+                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d20216e161 "><span>initializes the Persistence Data Server Items</span></td>
 
                         </tr>
 
                         <tr class="row">
-                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d19052e158 "><span>PDS_Store</span></td>
+                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d20216e158 "><span>PDS_Restore</span></td>
 
-                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d19052e161 "><span>Stores data in non-volatile memory in background, not blocking
+                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d20216e161 "><span>Restores data from non-volatile storage</span></td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d20216e158 "><span>PDS_Store</span></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d20216e161 "><span>Stores data in non-volatile memory in background, not blocking
                                 other processes</span></td>
 
                         </tr>
 
                         <tr class="row">
-                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d19052e158 "><span>PDS_DeleteAll</span></td>
+                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d20216e158 "><span>PDS_DeleteAll</span></td>
 
-                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d19052e161 "><span>deletes data from non-volatile storage</span></td>
-
-                        </tr>
-
-                        <tr class="row">
-                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d19052e158 "><span>PDS_AddItemExcpetionFromDeleteAll</span></td>
-
-                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d19052e161 "><span>extempts the item from the Delete All command</span></td>
+                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d20216e161 "><span>deletes data from non-volatile storage</span></td>
 
                         </tr>
 
                         <tr class="row">
-                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d19052e158 "><span>PDS_Delete</span></td>
+                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d20216e158 "><span>PDS_AddItemExcpetionFromDeleteAll</span></td>
 
-                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d19052e161 "><span>removes specified file records from NV Storage</span></td>
+                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d20216e161 "><span>extempts the item from the Delete All command</span></td>
 
                         </tr>
 
                         <tr class="row">
-                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d19052e158 "><span>PDS_IsAbleToRestore</span></td>
+                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d20216e158 "><span>PDS_Delete</span></td>
 
-                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d19052e161 "><span>Checks if the specified PDS file or directory can be restored
+                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d20216e161 "><span>removes specified file records from NV Storage</span></td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d20216e158 "><span>PDS_IsAbleToRestore</span></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d20216e161 "><span>Checks if the specified PDS file or directory can be restored
                                 from non-volatile memory</span></td>
 
                         </tr>
 
                         <tr class="row">
-                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d19052e158 "><span>PDS_RegisterWriteCompleteCallback</span></td>
+                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d20216e158 "><span>PDS_RegisterWriteCompleteCallback</span></td>
 
-                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d19052e161 "><span>registers the callback for the Item Write completion</span></td>
-
-                        </tr>
-
-                        <tr class="row">
-                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d19052e158 "><span>PDS_RegisterUpdateMemoryCallback</span></td>
-
-                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d19052e161 "><span>registers the callback for the Item update memory</span></td>
+                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d20216e161 "><span>registers the callback for the Item Write completion</span></td>
 
                         </tr>
 
                         <tr class="row">
-                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d19052e158 "><span>PDS_StoreItemTaskHandler</span></td>
+                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d20216e158 "><span>PDS_RegisterUpdateMemoryCallback</span></td>
 
-                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d19052e161 "><span>task that handles the store items into NV memory</span></td>
-
-                        </tr>
-
-                        <tr class="row">
-                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d19052e158 "><span>PDS_GetPendingItemsCount</span></td>
-
-                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d19052e161 "><span>gets the number of items pending in the PDS write queue</span></td>
+                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d20216e161 "><span>registers the callback for the Item update memory</span></td>
 
                         </tr>
 
                         <tr class="row">
-                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d19052e158 "><span>PDS_GetItemDescr</span></td>
+                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d20216e158 "><span>PDS_StoreItemTaskHandler</span></td>
 
-                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d19052e161 "><span>gets the item descriptor for the given item ID</span></td>
+                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d20216e161 "><span>task that handles the store items into NV memory</span></td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d20216e158 "><span>PDS_GetPendingItemsCount</span></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d20216e161 "><span>gets the number of items pending in the PDS write queue</span></td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d20216e158 "><span>PDS_GetItemDescr</span></td>
+
+                            <td class="entry cellrowborder" style="vertical-align:middle;" headers="d20216e161 "><span>gets the item descriptor for the given item ID</span></td>
 
                         </tr>
 
