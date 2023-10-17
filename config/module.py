@@ -38,6 +38,8 @@ def loadModule():
                           'WBZ351',
                           'WBZ350',
                           }
+    pic32cx_bz3_module_family = {'WBZ351',
+                                }
     processor = Variables.get('__PROCESSOR')
     print('processor={}'.format(processor))
 
@@ -52,3 +54,8 @@ def loadModule():
         execfile(Module.getPath() + '/config/module_pic32cx_bz2_bootloader.py')
         ## PIC32CX-BZ2 Bootloader services
         execfile(Module.getPath() + '/config/module_pic32cx_bz2_bootloaderServices.py')
+
+    if( processor in pic32cx_bz3_module_family):
+        ## PIC32CX-BZ3 Bootloader
+        execfile(Module.getPath() + '/config/module_pic32cx_bz3_bootloader.py')
+

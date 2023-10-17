@@ -736,7 +736,7 @@ def instantiateComponent(libBTZBCore):
             ('api_table.h', 'driver/pic32cx-bz/src/src_bz3/rom_api/', 'driver/security/'),
 
             ('adapter_api.h', 'driver/pic32cx-bz/src/src_bz3/rom_api/silexpk/', 'driver/security/silexpk/'),
-            ('cmddefs_api.h', 'driver/pic32cx-bz/src/src_bz3/rom_api/silexpk/', 'driversecurity/silexpk/'),
+            ('cmddefs_api.h', 'driver/pic32cx-bz/src/src_bz3/rom_api/silexpk/', 'driver/security/silexpk/'),
             ('core_api.h', 'driver/pic32cx-bz/src/src_bz3/rom_api/silexpk/', 'driver/security/silexpk/'),
             ('dsa_api.h', 'driver/pic32cx-bz/src/src_bz3/rom_api/silexpk/', 'driver/security/silexpk/'),
             ('ec_curves_api.h', 'driver/pic32cx-bz/src/src_bz3/rom_api/silexpk/', 'driver/security/silexpk/'),

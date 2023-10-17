@@ -230,6 +230,13 @@ struct sx_pk_dreq sx_async_ecdsa_verify_go(
 }
 
 
+typedef struct 
+{
+    struct sx_pk_dreq pkreq;  
+    struct sx_pk_config cfg;
+} IMAGE_LOADER_CONTEXT_ECDSA;
+extern IMAGE_LOADER_CONTEXT_ECDSA iCtxEcdsa;
+
 /** Verify ECDSA signature on an elliptic curve
  *
  *  The verification has the following steps:

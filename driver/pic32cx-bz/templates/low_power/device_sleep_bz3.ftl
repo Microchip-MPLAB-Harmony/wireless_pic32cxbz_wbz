@@ -62,6 +62,11 @@
                             & BTZBSYS_SUBSYS_CNTRL_REG1_subsys_dbg_bus_sel_top_Msk) \
                             != BTZBSYS_SUBSYS_CNTRL_REG1_subsys_dbg_bus_sel_top_Msk)
 
+#define BLE_SPI_ADDR_REG    ( * ( ( volatile uint16_t * ) 0x41013002UL ) )
+#define BLE_SPI_W_DATA_REG  ( * ( ( volatile uint16_t * ) 0x41013000UL ) )
+#define BLE_SPI_R_DATA_REG  ( * ( ( volatile uint16_t * ) 0x41013028UL ) )
+#define BLE_RFPWRMGMT_REG   ( * ( ( volatile uint32_t * ) 0x41013004UL ) )
+
 
 /* The action ID for enter/exit sleep. */
 typedef enum DEVICE_SLEEP_ActionId_T
@@ -123,6 +128,7 @@ static uint32_t s_refo5Backup;
 static uint32_t s_refo6Backup;
 
 static uint8_t s_adcCpBackup;
+static uint16_t s_rfRegBackup[6];
 
 // *****************************************************************************
 // *****************************************************************************
@@ -676,6 +682,82 @@ static void device_configAdcCpClk(DEVICE_SLEEP_ActionId_T action)
     }
 }
 
+/* Write to RF register */
+static void device_writeRfReg(uint8_t addr, uint16_t value)
+{
+    BLE_SPI_ADDR_REG = addr;
+    BLE_SPI_W_DATA_REG = value;
+    BLE_RFPWRMGMT_REG |= 0x00100000;
+
+    while(BLE_RFPWRMGMT_REG & 0x00100000);
+}
+
+/* Read from RF register */
+static uint16_t device_readRfReg(uint8_t addr)
+{
+    BLE_SPI_ADDR_REG = addr;
+    BLE_RFPWRMGMT_REG |= 0x00040000;
+
+    while(BLE_RFPWRMGMT_REG & 0x00040000);
+
+    return BLE_SPI_R_DATA_REG;
+}
+
+/* Configure RF Register */
+static void device_configCldo(DEVICE_SLEEP_ActionId_T action)
+{
+    uint16_t tmp;
+
+    if (action == DEVICE_SLEEP_ENTER_SLEEP)
+    {
+        tmp = device_readRfReg(0x09);
+        s_rfRegBackup[0] = tmp;
+        tmp &= ~(1 << 2);
+        device_writeRfReg(0x09, tmp); // [2] BIAS_PTAT_Iref_en = 0
+
+        tmp = device_readRfReg(0x15);
+        s_rfRegBackup[1] = tmp;
+        tmp &= ~((1 << 0) | (1 << 7));
+        tmp |= (1 << 11);
+        device_writeRfReg(0x15, tmp); // [0] BIAS_tsens_en = 0, [7] BIAS_CTAT_en = 0, [11] CLDO_Vbg_Iref_sel_reg = 1
+
+        tmp = device_readRfReg(0x18);
+        s_rfRegBackup[2] = tmp;
+        tmp &= ~(1 << 14);
+        tmp |= (1 << 13);
+        device_writeRfReg(0x18, tmp); // [13] BIAS_BG_en_sel = 1, [14] BIAS_BG_en_reg = 0
+
+        tmp = device_readRfReg(0x22);
+        s_rfRegBackup[3] = tmp;
+        tmp &= ~(1 << 4);
+        device_writeRfReg(0x22, tmp); // [4] Disable RFLDO = 0
+
+        tmp = device_readRfReg(0x2f);
+        s_rfRegBackup[4] = tmp;
+        tmp |= (1 << 7);
+        device_writeRfReg(0x2f, tmp); // [7] CLKGEN_PWDPLL = 1
+
+        tmp = device_readRfReg(0x34);
+        s_rfRegBackup[5] = tmp;
+        tmp |= (1 << 14);
+        device_writeRfReg(0x34, tmp); // [14] CLDO_Vbg_Iref_sel = 1
+    }
+    else        //Restore the settings
+    {
+        device_writeRfReg(0x09, s_rfRegBackup[0]);
+
+        device_writeRfReg(0x15, s_rfRegBackup[1]);
+
+        device_writeRfReg(0x18, s_rfRegBackup[2]);
+
+        device_writeRfReg(0x22, s_rfRegBackup[3]);
+
+        device_writeRfReg(0x2f, s_rfRegBackup[4]);
+
+        device_writeRfReg(0x34, s_rfRegBackup[5]);
+    }
+}
+
 void DEVICE_EnterSleepMode(void)
 {
     // unlock key sequence
@@ -764,6 +846,9 @@ void DEVICE_EnterSleepMode(void)
     // Step 23 : set KEEP_ACLB_CLOCKS_ON to 1 to enable ACLB clocks for SPI access
     DEVICE_SLEEP_ConfigAclbClk(true);
 
+    //Disable the loading at CLDO input inside RF sub-system
+    device_configCldo(DEVICE_SLEEP_ENTER_SLEEP);
+
     // Step 24 : Turn off MBS in RF
     DEVICE_SLEEP_ConfigRfMbs(false);
 
@@ -850,6 +935,9 @@ void DEVICE_ExitSleepMode(void)
     
     // Step 6 : Turn on MBS in RF
     DEVICE_SLEEP_ConfigRfMbs(true);
+
+    //Restore the setting of RF sub-system
+    device_configCldo(DEVICE_SLEEP_EXIT_SLEEP);
 
     // Step 7 : Wait for MBS settling time. Settling time value is 35us
     device_Delay(4);

@@ -283,7 +283,7 @@ static void app_idle_setRtcTimeout(TickType_t expectedIdleTick, uint32_t current
        2. RTC Clock : RTC_Timer32FrequencyGet
        3. expectedIdleTime (ms) * RTC clock (32 kHz) = compareValue value
     */
-    compareValue = (expectedIdleTick * RTC_Timer32FrequencyGet() + (configTICK_RATE_HZ / 2)) / configTICK_RATE_HZ;
+    compareValue = ((uint64_t)expectedIdleTick * RTC_Timer32FrequencyGet() + (configTICK_RATE_HZ / 2)) / configTICK_RATE_HZ;
 
 
     /* Give a compensation value to eliminate the offset between RTC and system timer
