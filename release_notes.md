@@ -3,6 +3,26 @@
 
 # Microchip MPLAB® Harmony 3 Release Notes
 
+## Wireless PIC32CX-BZ System Services Release v1.3.0 
+
+### New Features
+- Added support for PIC32CXBZ3 device and WBZ35x Modules
+
+### Bug fixes
+- None
+
+### Known Issues
+  None
+
+### Development Tools
+- [MPLAB X v6.15](https://www.microchip.com/mplab/mplab-x-ide)
+- [MPLAB® XC32 C/C++ Compiler v4.35](https://www.microchip.com/mplab/compilers)
+-  MPLAB® X IDE plug-ins: 
+  MPLAB® Code Configurator (MCC) v5.3.7 and above.
+
+
+
+
 ## Wireless PIC32CX-BZ System Services Release v1.2.0 
 
 ### New Features
