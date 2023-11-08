@@ -1,11 +1,6 @@
 #ifndef __APPLICATION_H
 #define __APPLICATION_H
 
-#define BUCKLAND_A0                         1
-#define BUCKLAND_A1                         2
-#define BIGBUCK                             3
-
-#define SOC_VER                             BUCKLAND_A0
 
 #define IMG_MEM_TOPOLOGY_COUNT              2
 #define FW_IMAGE_BLOCK_SIZE                 4096
@@ -43,7 +38,6 @@
 #define Swap32(u32) ((uint32_t)(((uint32_t)Swap16((uint32_t)(u32) >> 16)) |\
                            ((uint32_t)Swap16((uint32_t)(u32)) << 16)))
 
-#if SOC_VER == BUCKLAND_A0
 typedef struct __attribute__((packed))
 {
     uint32_t        MD_SEQ_NUM;
@@ -67,77 +61,6 @@ typedef struct __attribute__((packed))
     uint8_t         FW_IMG_SIG[96];
     uint8_t         MD_SIG[96];
 } FW_IMG_HDR;
-#elif SOC_VER == BUCKLAND_A1
-typedef struct __attribute__((packed))
-{
-  uint32_t        filler1;
-  uint32_t        filler2;
-  uint32_t        MD_COHERENCE;
-  uint32_t        filler3;
-  uint32_t        filler4;
-  uint32_t        filler5;
-  uint32_t        filler6;
-  uint32_t        MD_SEQ_NUM;
-  uint8_t         MD_REV;
-  uint8_t         MD_CONT_IDX;
-  uint8_t         MD_AUTH_METHOD;
-  uint8_t         MD_AUTH_KEY;
-  uint8_t         MD_DEC_METHOD;
-  uint8_t         MD_DEC_KEY;
-  uint16_t        MD_PL_LEN;
-    
-  uint32_t        FW_IMG_REV;
-  uint32_t        FW_IMG_SRC_ADDR;
-  uint32_t        FW_IMG_DST_ADDR;
-  uint32_t        FW_IMG_LEN;
-  uint8_t         FW_IMG_AUTH_METHOD;
-  uint8_t         FW_IMG_AUTH_KEY;
-  uint8_t         FW_IMG_DEC_METHOD;
-  uint8_t         FW_IMG_DEC_KEY;
-  uint8_t         FW_IMG_SIG[96];
-  uint8_t         MD_SIG[96];
-} FW_IMG_HDR;
-#elif SOC_VER == BIGBUCK
-typedef struct __attribute__((packed))
-{
-  uint32_t        filler1;
-  uint32_t        filler2;
-  uint32_t        filler3;
-  uint32_t        filler4;
-  uint32_t        filler5;
-  uint32_t        filler6;
-  uint32_t        MD_COHERENCE;
-  uint32_t        filler7;
-  uint32_t        filler8;
-  uint32_t        filler9;
-  uint32_t        filler10;
-  uint32_t        filler11;
-  uint32_t        filler12;
-  uint32_t        filler13;
-  uint32_t        filler14;
-  uint32_t        MD_SEQ_NUM;
-  uint8_t         MD_REV;
-  uint8_t         MD_CONT_IDX;
-  uint8_t         MD_AUTH_METHOD;
-  uint8_t         MD_AUTH_KEY;
-  uint8_t         MD_DEC_METHOD;
-  uint8_t         MD_DEC_KEY;
-  uint16_t        MD_PL_LEN;
-    
-  uint32_t        FW_IMG_REV;
-  uint32_t        FW_IMG_SRC_ADDR;
-  uint32_t        FW_IMG_DST_ADDR;
-  uint32_t        FW_IMG_LEN;
-  uint8_t         FW_IMG_AUTH_METHOD;
-  uint8_t         FW_IMG_AUTH_KEY;
-  uint8_t         FW_IMG_DEC_METHOD;
-  uint8_t         FW_IMG_DEC_KEY;
-  uint8_t         FW_IMG_SIG[96];
-  uint8_t         MD_SIG[96];
-} FW_IMG_HDR;
-#else
-#error "Incorrect SOC_VER selected"
-#endif
 
 const void * GetTopologies(void);
 const void * GetKeysSupported(void);

@@ -384,11 +384,6 @@ bool CopyFlashImage(uint32_t saddr, uint8_t encryption, uint16_t crc16, bool ext
   }
 
   img_header.FW_IMG_SRC_ADDR = taddr+METADATA_HEADER_SIZE;
-#if SOC_VER == BUCKLAND_A1
-  img_header.filler4 = 0;
-  img_header.filler5 = 0;
-  img_header.filler6 = 0;
-#endif
   img_header.MD_SEQ_NUM = seq_num - 1; // 0xFFFFFFFF;
   rom_memset(plain, 0, METADATA_HEADER_SIZE);
   rom_memcpy((uint8_t *) plain, (uint8_t *)&img_header, sizeof (FW_IMG_HDR));
