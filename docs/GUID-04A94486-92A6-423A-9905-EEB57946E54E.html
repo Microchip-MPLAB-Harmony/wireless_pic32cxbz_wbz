@@ -1,0 +1,586 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE11" /><meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="topic" />
+<meta name="DC.title" content="&#34;sxops&#34; interface for Weierstrass elliptic curve computations." />
+<meta name="DC.relation" scheme="URI" content="GUID-82627570-09DA-49A7-95EC-D502E201BEA3.html" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="sxops-interface-for-weierstrass-elliptic-curve-computations" />
+<link rel="stylesheet" type="text/css" href="stylesheets/atmel.css" />
+<title>"sxops" interface for Weierstrass elliptic curve computations.</title>
+<meta name="Microsoft.Help.Id" content="GUID-2085FE66-A762-4CC0-B054-7F98E8AF999A" />
+<meta name="Microsoft.Help.TocParent" content="GUID-2085FE66-A762-4CC0-B054-7F98E8AF999A-GUID-82627570-09DA-49A7-95EC-D502E201BEA3" />
+<meta name="Microsoft.Help.TocOrder" content="0" />
+<meta name="Microsoft.Help.Locale" content="en-US" />
+<meta name="Microsoft.Help.TopicLocale" content="en-US" />
+<meta name="Microsoft.Help.DisplayVersion" content="MPLAB Harmony PIC32CX-BZ System Services Reference 4 10/2023" />
+<script language="javascript">
+       
+       if (window.parent.location.protocol != 'file:') {
+				document.addEventListener('click', function(e) {
+				    if (e.target) {
+               if (e.target.nodeName == "A" ) {
+                    if (!e.target.target) {
+                      e.preventDefault();
+                      e.stopPropagation();
+                              
+                      var origUrl = window.parent.location.href.substr(0, window.parent.location.href.indexOf("?"));
+                      if (origUrl.length === 0) {
+                          origUrl = window.parent.location.href;
+                      }
+                      var href= e.target.getAttribute("href");
+                      var parts = href.split("#");
+          
+                      var url = "";
+                      if (parts.length == 2 ) {
+                        if (!parts[0].length) {
+                            url = window.parent.location.search.replace('?','')
+                        } else {
+                            url = parts[0].replace('.html','');
+                        }
+                      } else {
+                        url = parts[0].replace('.html','');
+                      }
+
+                      if (parts.length == 2) {
+                          url += "#" + parts[1];
+                      }
+    
+                      window.parent.location.href = origUrl + "?" + url;
+
+                      return false;
+                    }
+               }
+            }
+				});
+			}
+
+		</script><script language="javascript">
+         
+         function copyContent(content, button) {
+         
+            var textArea = document.createElement("textarea");
+            
+            // Place in the top-left corner of screen regardless of scroll position.
+            textArea.style.position = 'fixed';
+            textArea.style.top = 0;
+            textArea.style.left = 0;
+            
+            // Ensure it has a small width and height. Setting to 1px / 1em
+            // doesn't work as this gives a negative w/h on some browsers.
+            textArea.style.width = '2em';
+            textArea.style.height = '2em';
+            
+            // We don't need padding, reducing the size if it does flash render.
+            textArea.style.padding = 0;
+            
+            // Clean up any borders.
+            textArea.style.border = 'none';
+            textArea.style.outline = 'none';
+            textArea.style.boxShadow = 'none';
+            
+            // Avoid flash of the white box if rendered for any reason.
+            textArea.style.background = 'transparent';
+            
+            textArea.value = content;
+            
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+               var successful = document.execCommand('copy');
+               var msg = successful ? 'successful' : 'unsuccessful';
+               if (!button.classList.contains("copied")){
+                  button.textContent = "Copied";
+                  button.classList.add("copied");
+                  setTimeout(function(){
+                     button.textContent = "Copy";
+                     button.classList.remove("copied");
+                  },1000);
+               }
+            } catch (err) {
+               console.log('Oops, unable to copy');
+            }
+            
+            document.body.removeChild(textArea);
+         }
+         
+         function cpy(id, button) {
+            var element = document.getElementById(id);
+            var content = element.getAttribute("content");
+            
+            copyContent(content, button);
+         }
+         
+         document.addEventListener("DOMContentLoaded", function(event) {
+            document.querySelectorAll(".codeblock").forEach(function(elem) {
+               elem.style.position = "relative";
+               var copy = document.createElement("button");
+               copy.textContent = "Copy";
+               copy.setAttribute("class", "copy-code");
+               
+               var content = elem.textContent;
+               
+               copy.addEventListener("click", function(){
+                  copyContent(content, copy);
+               });
+               
+               elem.addEventListener("mouseenter", function(evt){
+                  elem.prepend(copy);
+               });
+            });
+            
+            document.querySelectorAll(".codeblock").forEach(function(elem) {
+               elem.addEventListener("mouseleave", function(evt){
+                  document.querySelector(".copy-code").remove();
+               });
+            });
+         });
+         
+      </script><script language="javascript">
+          
+          // Add the MathML namespace to html
+          var html = document.getElementsByTagName("html")[0],
+          head = document.getElementsByTagName("head")[0];
+          
+          var mathJax = document.createElement("script");
+          mathJax.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML";
+          head.appendChild(mathJax);
+          
+          html.setAttribute("xmlns:m","http://www.w3.org/1998/Math/MathML");
+          
+          function inIframe() { try { return window.self !== window.top; } catch (e) { return true; } }
+          
+          if (!inIframe()) { 
+          
+          var Default = "index.html?"; 
+          
+          var displaylocation = "value" + window.location.href;
+          
+          var GUIDS = displaylocation.split('GUID');          
+          
+          if (displaylocation.indexOf('#GUID') != -1) {            
+          var First = GUIDS[1].split('.html');  
+          if (GUIDS[3]){First = GUIDS[2].split('.html');}
+          if (GUIDS[4]){First = GUIDS[3].split('.html');}
+          if (GUIDS[5]){First = GUIDS[4].split('.html');}
+          
+          var Second = GUIDS[2].split('#');   
+          if (GUIDS[3]){Second = GUIDS[3].split('#');}
+          if (GUIDS[4]){Second = GUIDS[4].split('#');}
+          if (GUIDS[5]){Second = GUIDS[5].split('#');}
+          
+          Default = "index.html?" + "GUID" + First[0] + "GUID" + Second[0];     
+          }                    
+          window.top.location = Default;
+          }       
+          
+        </script><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /><style xml:space="">
+        
+          button.copy-code{
+            display:none;
+            padding:0.7em 1.4em;
+            margin:0 0.3em 0.3em 0;
+            border-radius:0.15em;
+            box-sizing: border-box;
+            text-decoration:none;
+            font-family:'Roboto',sans-serif;
+            text-transform:uppercase;
+            font-weight:400;
+            color:#FFFFFF;
+            background-color:#9c9c9c;
+            box-shadow:inset 0 -0.6em 0 -0.35em rgba(0,0,0,0.17);
+            text-align:center;
+            position:relative;
+            border: 0;
+            float: right;
+            border-radius: .5em;
+            cursor: pointer;
+          }
+          button.copy-code:active{
+            top:0.1em;
+          }
+          
+          pre:hover button.copy-code{
+            display: inline-block !important;
+          }
+          button.copy-code.copied {
+            cursor: default !important;
+          }
+          
+          
+          @media all and (max-width:30em){
+            button.copy-code{
+              display:block;
+              margin:0.4em auto;
+            }
+          }
+        
+        
+      </style><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /></head>
+<body>
+<div class="nested0" aria-labelledby="ariaid-title1" id="sxops-interface-for-weierstrass-elliptic-curve-computations"><h1 class="title topictitle1" id="ariaid-title1" style="">"sxops" interface for Weierstrass elliptic curve computations.</h1><div class="body"><p class="p">Simpler functions to perform public key crypto operations. Included directly
+in some interfaces (like sxbuf or OpenSSL engine). The functions
+take input operands (large integers) and output operands
+which will get the computed results.</p>
+<p class="p">Operands have the "sx_op" type. The specific interfaces (like sxbuf) define
+the "sx_op" type.</p>
+<p class="p">@file</p>
+</div>
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="GUID-82627570-09DA-49A7-95EC-D502E201BEA3.html" title="Enter a short description of your topic here (optional).">Silex_PK_API</a></div>
+</div>
+</div></div>
+<div class="topic nested0" aria-labelledby="ariaid-title2" id="eccweierstrass-header-file-macro"><h1 class="title topictitle1" id="ariaid-title2" style="">ECCWEIERSTRASS_HEADER_FILE Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title3" id="c"><h2 class="title topictitle2" id="ariaid-title3" style="">C</h2><div class="body"><pre class="pre codeblock c"><span class="hl-directive">#define</span> <span class="hl-defines">ECCWEIERSTRASS_HEADER_FILE</span>
+</pre><p class="p">/
+Copyright (c) 2018-2020 Silex Insight sa
+Copyright (c) 2018-2020 Beerten Engineering scs
+SPDX-License-Identifier: BSD-3-Clause</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title4" id="make-sure-the-application-is-compatible-with-silexpk-api-version-"><h1 class="title topictitle1" id="ariaid-title4" style="">Make sure the application is compatible with SilexPK API version **/</h1><div class="body"><p class="p">SX_PK_API_ASSERT_COMPATIBLE(1, 3);</p>
+<p class="p">struct sx_pk_ecurve;</p>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title5" id="inline"><h1 class="title topictitle1" id="ariaid-title5" style="">inline</h1><div class="body"><p class="p">Function</p>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title6" id="c-1"><h2 class="title topictitle2" id="ariaid-title6" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">static</strong> <strong class="hl-keyword">inline</strong></pre><p class="p">@addtogroup SX_PK_SXOPS_ECC</p>
+<p class="p">@{</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title7" id="curve-generator-point-for-sx-ecp-ptmult-or-sx-async-ecp-mult-go-"><h1 class="title topictitle1" id="ariaid-title7" style="">Curve generator point for sx_ecp_ptmult() or sx_async_ecp_mult_go() */</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title8" id="sx-ptmult-curve-generator-macro"><h1 class="title topictitle1" id="ariaid-title8" style="">SX_PTMULT_CURVE_GENERATOR Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title9" id="c-2"><h2 class="title topictitle2" id="ariaid-title9" style="">C</h2><div class="body"><pre class="pre codeblock c"><span class="hl-directive">#define</span> <span class="hl-defines">SX_PTMULT_CURVE_GENERATOR</span> NULL
+</pre></div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title10" id="inline-1"><h1 class="title topictitle1" id="ariaid-title10" style="">inline</h1><div class="body"><p class="p">Function</p>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title11" id="c-3"><h2 class="title topictitle2" id="ariaid-title11" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">static</strong> <strong class="hl-keyword">inline</strong></pre><p class="p">@addtogroup SX_PK_SXOPS_ECDSA</p>
+<p class="p">@{</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title12" id="asynchronous-ecdsa-signature-generation"><h1 class="title topictitle1" id="ariaid-title12" style="">Asynchronous ECDSA signature generation</h1><div class="body"><p class="p">Start an ECDSA signature generation on the accelerator
+and return immediately.</p>
+<p class="p">@remark When the operation finishes on the accelerator,
+call sx_async_ecdsa_generate_end()</p>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title13" id="parameters"><h2 class="title topictitle2" id="ariaid-title13" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> curve Elliptic curve on which to perform ECDSA signature</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title14" id="parameters-1"><h2 class="title topictitle2" id="ariaid-title14" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> d Private key</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title15" id="parameters-2"><h2 class="title topictitle2" id="ariaid-title15" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> k Random value</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title16" id="parameters-3"><h2 class="title topictitle2" id="ariaid-title16" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> h Formatted hash digest of message to be signed.  Truncation or padding should be done by user application   @return Acquired acceleration request for this operation static inline struct sx_pk_dreq sx_async_ecdsa_generate_go( const struct sx_pk_ecurve curve, const sx_op d, const sx_op k, const sx_op h) { struct sx_pk_dreq pkreq; struct sx_pk_inops_ecdsa_generate inputs;  pkreq = SX_PK_ACQUIRE_REQ(curve-&gt;cnx, SX_PK_CMD_ECDSA_GEN); if (pkreq.status) return pkreq;  // convert and transfer operands pkreq.status = SX_PK_LIST_ECC_INSLOTS(pkreq.req, curve, 0, (struct sx_pk_slot)&amp;inputs); if (pkreq.status) return pkreq; int opsz = SX_PK_GET_OPSIZE(pkreq.req); SX_PK_OP2MEM(d, inputs.d.addr, opsz); SX_PK_OP2MEM(k, inputs.k.addr, opsz); SX_PK_OP2MEM(h, inputs.h.addr, opsz);  SX_PK_RUN(pkreq.req);  return pkreq; }</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title17" id="finish-asynchronous-non-blocking-ecdsa-generation"><h1 class="title topictitle1" id="ariaid-title17" style="">Finish asynchronous (non-blocking) ECDSA generation.</h1><div class="body"><p class="p">Get the output operands of the ECDSA signature generation  and release the reserved resources.   @pre The operation on the accelerator must be finished before  calling this function.</p>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title18" id="parameters-4"><h2 class="title topictitle2" id="ariaid-title18" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> req The previously acquired acceleration  request for this operation</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title19" id="parameters-5"><h2 class="title topictitle2" id="ariaid-title19" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> r First part of signature</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title20" id="parameters-6"><h2 class="title topictitle2" id="ariaid-title20" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> s Second part of signature static inline void sx_async_ecdsa_generate_end(sx_pk_accel req, sx_op r, sx_op s) { sx_async_finish_pair(req, r, s); }</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title21" id="generate-an-ecdsa-signature-on-an-elliptic-curve"><h1 class="title topictitle1" id="ariaid-title21" style="">Generate an ECDSA signature on an elliptic curve</h1><div class="body"><p class="p">The signature generation has the following steps :  1. P(x1, y1) = k G  2. r = x1 mod n  3. if r == 0 then report failure  4. w = k <sup class="ph sup"> -1 mod n  5. s = k </sup> -1 (h + d r) mod n  6. if s == 0 then report failure  7. signature is the r and s</p>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title22" id="parameters-7"><h2 class="title topictitle2" id="ariaid-title22" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> curve Elliptic curve on which to perform ECDSA signature</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title23" id="parameters-8"><h2 class="title topictitle2" id="ariaid-title23" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> d Private key</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title24" id="parameters-9"><h2 class="title topictitle2" id="ariaid-title24" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> k Random value</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title25" id="parameters-10"><h2 class="title topictitle2" id="ariaid-title25" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> h Digest of message to be signed  Truncation or padding should be done by user application</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title26" id="parameters-11"><h2 class="title topictitle2" id="ariaid-title26" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> r First part of signature</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title27" id="parameters-12"><h2 class="title topictitle2" id="ariaid-title27" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> s Second part of signature   @return ::SX_OK  @return ::SX_ERR_INVALID_PARAM  @return ::SX_ERR_NOT_INVERTIBLE  @return ::SX_ERR_INVALID_SIGNATURE  @return ::SX_ERR_OUT_OF_RANGE  @return ::SX_ERR_UNKNOWN_ERROR  @return ::SX_ERR_BUSY  @return ::SX_ERR_NOT_IMPLEMENTED  @return ::SX_ERR_OPERAND_TOO_LARGE  @return ::SX_ERR_PLATFORM_ERROR  @return ::SX_ERR_EXPIRED   @see sx_async_ecdsa_generate_go(), sx_async_ecdsa_generate_end() for  an asynchronous version static inline int sx_ecdsa_generate( const struct sx_pk_ecurve curve, const sx_op d, const sx_op k, const sx_op h, sx_op r, sx_op s) { uint32_t status; struct sx_pk_dreq pkreq;  pkreq = sx_async_ecdsa_generate_go(curve, d, k, h); if (pkreq.status) return pkreq.status; status = SX_PK_WAIT(pkreq.req); sx_async_ecdsa_generate_end(pkreq.req, r, s);  return status; }</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title28" id="asynchronous-non-blocking-ecdsa-verification"><h1 class="title topictitle1" id="ariaid-title28" style="">Asynchronous (non-blocking) ECDSA verification.</h1><div class="body"><p class="p">Start an ECDSA signature verification on the accelerator  and return immediately.   @remark When the operation finishes on the accelerator,  call SX_PK_RELEASE_REQ()</p>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title29" id="parameters-13"><h2 class="title topictitle2" id="ariaid-title29" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> curve Elliptic curve on which to perform ECDSA verification</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title30" id="parameters-14"><h2 class="title topictitle2" id="ariaid-title30" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> qx x-coordinate of public key. Point (qx, qy) should be on the curve</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title31" id="parameters-15"><h2 class="title topictitle2" id="ariaid-title31" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> qy y-coordinate of public key. Point (qx, qy) should be on the curve</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title32" id="parameters-16"><h2 class="title topictitle2" id="ariaid-title32" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> r First part of signature to verify</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title33" id="parameters-17"><h2 class="title topictitle2" id="ariaid-title33" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> s Second part of signature to verify</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title34" id="parameters-18"><h2 class="title topictitle2" id="ariaid-title34" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> h Digest of message to be signed   @return Acquired acceleration request for this operation static inline struct sx_pk_dreq sx_async_ecdsa_verify_go( const struct sx_pk_ecurve curve, const sx_op qx, const sx_op qy, const sx_op r, const sx_op s, const sx_op h) { struct sx_pk_dreq pkreq; struct sx_pk_inops_ecdsa_verify inputs;  pkreq = SX_PK_ACQUIRE_REQ(curve-&gt;cnx, SX_PK_CMD_ECDSA_VER); if (pkreq.status) return pkreq;  // convert and transfer operands pkreq.status = SX_PK_LIST_ECC_INSLOTS(pkreq.req, curve, 0, (struct sx_pk_slot)&amp;inputs); if (pkreq.status) return pkreq; int opsz = SX_PK_GET_OPSIZE(pkreq.req); SX_PK_OP2MEM(qx, inputs.qx.addr, opsz); SX_PK_OP2MEM(qy, inputs.qy.addr, opsz); SX_PK_OP2MEM(r, inputs.r.addr, opsz); SX_PK_OP2MEM(s, inputs.s.addr, opsz); SX_PK_OP2MEM(h, inputs.h.addr, opsz);  SX_PK_RUN(pkreq.req);  return pkreq; }</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title35" id="verify-ecdsa-signature-on-an-elliptic-curve"><h1 class="title topictitle1" id="ariaid-title35" style="">Verify ECDSA signature on an elliptic curve</h1><div class="body"><p class="p">The verification has the following steps:  1. check qx and qy are smaller than q from the domain  2. Check that Q lies on the elliptic curve from the domain  3. Check that r and s are smaller than n  4. w = s ^ -1 mod n  5. u1 = h w mod n  6. u2 = r w mod n  7. X(x1, y1) = u1 G + u2 Q  8. If X is invalid, then the signature is invalid  9. v = x1 mod n  10. Accept signature if and only if v == r</p>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title36" id="parameters-19"><h2 class="title topictitle2" id="ariaid-title36" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> curve Elliptic curve on which to perform ECDSA verification</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title37" id="parameters-20"><h2 class="title topictitle2" id="ariaid-title37" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> qx x-coordinate of public key. Point (qx, qy) should be on the curve</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title38" id="parameters-21"><h2 class="title topictitle2" id="ariaid-title38" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> qy y-coordinate of public key. Point (qx, qy) should be on the curve</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title39" id="parameters-22"><h2 class="title topictitle2" id="ariaid-title39" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> r First part of signature to verify</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title40" id="parameters-23"><h2 class="title topictitle2" id="ariaid-title40" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> s Second part of signature to verify</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title41" id="parameters-24"><h2 class="title topictitle2" id="ariaid-title41" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> h Digest of message to be signed   @return ::SX_OK  @return ::SX_ERR_INVALID_PARAM  @return ::SX_ERR_NOT_INVERTIBLE  @return ::SX_ERR_INVALID_SIGNATURE  @return ::SX_ERR_OUT_OF_RANGE  @return ::SX_ERR_UNKNOWN_ERROR  @return ::SX_ERR_BUSY  @return ::SX_ERR_NOT_IMPLEMENTED  @return ::SX_ERR_OPERAND_TOO_LARGE  @return ::SX_ERR_PLATFORM_ERROR  @return ::SX_ERR_EXPIRED   @see sx_async_ecdsa_verify_go() for an asynchronous version static inline int sx_ecdsa_verify( const struct sx_pk_ecurve curve, const sx_op qx, const sx_op qy, const sx_op r, const sx_op s, const sx_op h) { uint32_t status; struct sx_pk_dreq pkreq;  pkreq = sx_async_ecdsa_verify_go(curve, qx, qy, r, s, h); if (pkreq.status) return pkreq.status;  status = SX_PK_WAIT(pkreq.req); SX_PK_RELEASE_REQ(pkreq.req);  return status; }</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title42" id="-"><h1 class="title topictitle1" id="ariaid-title42" style="">@} */</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title43" id="inline-2"><h1 class="title topictitle1" id="ariaid-title43" style="">inline</h1><div class="body"><p class="p">Function</p>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title44" id="c-4"><h2 class="title topictitle2" id="ariaid-title44" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">static</strong> <strong class="hl-keyword">inline</strong></pre><p class="p">@addtogroup SX_PK_SXOPS_ECOPS   @{</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title45" id="asynchronous-ec-point-multiplication"><h1 class="title topictitle1" id="ariaid-title45" style="">Asynchronous EC point multiplication.</h1><div class="body"><p class="p">Starts an EC point multiplication on the accelerator  and return immediately.   @remark When the operation finishes on the accelerator,  call sx_async_ecp_mult_end()</p>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title46" id="parameters-25"><h2 class="title topictitle2" id="ariaid-title46" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> curve Elliptic curve used to perform point multiplication</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title47" id="parameters-26"><h2 class="title topictitle2" id="ariaid-title47" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> k Scalar that multiplies point P</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title48" id="parameters-27"><h2 class="title topictitle2" id="ariaid-title48" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> Py x-coordinate of point P</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title49" id="parameters-28"><h2 class="title topictitle2" id="ariaid-title49" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> Px y-coordinate of point P   @return Acquired acceleration request for this operation static inline struct sx_pk_dreq sx_async_ecp_mult_go( const struct sx_pk_ecurve curve, const sx_op k, const sx_op Px, const sx_op Py) { struct sx_pk_dreq pkreq;  pkreq = SX_PK_ACQUIRE_REQ(curve-&gt;cnx, SX_PK_CMD_ECC_PTMUL); if (pkreq.status) return pkreq;  struct sx_pk_inops_ecp_mult inputs; pkreq.status = SX_PK_LIST_ECC_INSLOTS(pkreq.req, curve, 0, (struct sx_pk_slot)&amp;inputs); if (pkreq.status) return pkreq; int opsz = SX_PK_GET_OPSIZE(pkreq.req); SX_PK_OP2MEM(k, inputs.k.addr, opsz); if (Px == SX_PTMULT_CURVE_GENERATOR) { SX_PK_WRITE_CURVE_GEN(pkreq.req, curve, inputs.px, inputs.py); } else { SX_PK_OP2MEM(Px, inputs.px.addr, opsz); SX_PK_OP2MEM(Py, inputs.py.addr, opsz); }  SX_PK_RUN(pkreq.req);  return pkreq; }</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title50" id="finish-asynchronous-ec-point-multiplication"><h1 class="title topictitle1" id="ariaid-title50" style="">Finish asynchronous EC point multiplication.</h1><div class="body"><p class="p">Get the output operands of the EC point multiplication  and release the reserved resources.   @pre The operation on the accelerator must be finished before  calling this function.</p>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title51" id="parameters-29"><h2 class="title topictitle2" id="ariaid-title51" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> req The previously acquired acceleration  request for this operation</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title52" id="parameters-30"><h2 class="title topictitle2" id="ariaid-title52" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> Rx x-coordinate of resulting point R</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title53" id="parameters-31"><h2 class="title topictitle2" id="ariaid-title53" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> Ry y-coordinate of resulting point R static inline void sx_async_ecp_mult_end( sx_pk_accel req, sx_op Rx, sx_op Ry) { sx_async_finish_pair(req, Rx, Ry); }</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title54" id="compute-point-multiplication-on-an-elliptic-curve"><h1 class="title topictitle1" id="ariaid-title54" style="">Compute point multiplication on an elliptic curve</h1><div class="body"><p class="p">(Rx, Ry) = k (Px, Py)</p>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title55" id="parameters-32"><h2 class="title topictitle2" id="ariaid-title55" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> curve Elliptic curve used to perform point multiplication</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title56" id="parameters-33"><h2 class="title topictitle2" id="ariaid-title56" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> k Scalar that multiplies point P</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title57" id="parameters-34"><h2 class="title topictitle2" id="ariaid-title57" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> Py x-coordinate of point P</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title58" id="parameters-35"><h2 class="title topictitle2" id="ariaid-title58" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> Px y-coordinate of point P</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title59" id="parameters-36"><h2 class="title topictitle2" id="ariaid-title59" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> Rx x-coordinate of resulting point R</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title60" id="parameters-37"><h2 class="title topictitle2" id="ariaid-title60" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> Ry y-coordinate of resulting point R   @return ::SX_OK  @return ::SX_ERR_NOT_INVERTIBLE  @return ::SX_ERR_OUT_OF_RANGE  @return ::SX_ERR_POINT_NOT_ON_CURVE  @return ::SX_ERR_INVALID_PARAM  @return ::SX_ERR_UNKNOWN_ERROR  @return ::SX_ERR_BUSY  @return ::SX_ERR_NOT_IMPLEMENTED  @return ::SX_ERR_OPERAND_TOO_LARGE  @return ::SX_ERR_PLATFORM_ERROR  @return ::SX_ERR_EXPIRED   @see sx_async_ecp_mult_go(), sx_async_ecp_mult_end()  for an asynchronous versions static inline int sx_ecp_ptmult( const struct sx_pk_ecurve curve, const sx_op k, const sx_op Px, const sx_op Py, sx_op Rx, sx_op Ry) { int status; struct sx_pk_dreq pkreq;  pkreq = sx_async_ecp_mult_go(curve, k, Px, Py); if (pkreq.status) return pkreq.status;  status = SX_PK_WAIT(pkreq.req); sx_async_ecp_mult_end(pkreq.req, Rx, Ry);  return status; }</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title61" id="asynchronous-ec-point-doubling"><h1 class="title topictitle1" id="ariaid-title61" style="">Asynchronous EC point doubling.</h1><div class="body"><p class="p">Starts an EC point doubling on the accelerator  and return immediately.   @remark When the operation finishes on the accelerator,  call sx_async_ecp_double_end()</p>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title62" id="parameters-38"><h2 class="title topictitle2" id="ariaid-title62" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> curve Elliptic curve used to perform point doubling</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title63" id="parameters-39"><h2 class="title topictitle2" id="ariaid-title63" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> py x-coordinate of point P</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title64" id="parameters-40"><h2 class="title topictitle2" id="ariaid-title64" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> px y-coordinate of point P   @return Acquired acceleration request for this operation static inline struct sx_pk_dreq sx_async_ecp_double_go( const struct sx_pk_ecurve curve, const sx_op px, const sx_op py) { struct sx_pk_dreq pkreq;  pkreq = SX_PK_ACQUIRE_REQ(curve-&gt;cnx, SX_PK_CMD_ECC_PT_DOUBLE); if (pkreq.status) return pkreq;  struct sx_pk_inops_ecp_double inputs; pkreq.status = SX_PK_LIST_ECC_INSLOTS(pkreq.req, curve, 0, (struct sx_pk_slot)&amp;inputs); if (pkreq.status) return pkreq; int opsz = SX_PK_GET_OPSIZE(pkreq.req); SX_PK_OP2MEM(px, inputs.px.addr, opsz); SX_PK_OP2MEM(py, inputs.py.addr, opsz);  SX_PK_RUN(pkreq.req);  return pkreq; }</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title65" id="finish-asynchronous-ec-point-doubling"><h1 class="title topictitle1" id="ariaid-title65" style="">Finish asynchronous EC point doubling.</h1><div class="body"><p class="p">Get the output operands of the EC point doubling  and release the reserved resources.   @pre The operation on the accelerator must be finished before  calling this function</p>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title66" id="parameters-41"><h2 class="title topictitle2" id="ariaid-title66" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> req The previously acquired acceleration  request for this operation</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title67" id="parameters-42"><h2 class="title topictitle2" id="ariaid-title67" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> rx x-coordinate of resulting point R</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title68" id="parameters-43"><h2 class="title topictitle2" id="ariaid-title68" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> ry y-coordinate of resulting point R static inline void sx_async_ecp_double_end( sx_pk_accel req, sx_op rx, sx_op ry) { sx_async_finish_pair(req, rx, ry); }</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title69" id="compute-point-doubling-on-an-elliptic-curve"><h1 class="title topictitle1" id="ariaid-title69" style="">Compute point doubling on an elliptic curve</h1><div class="body"><p class="p">(Rx, Ry) = 2 (Px, Py)</p>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title70" id="parameters-44"><h2 class="title topictitle2" id="ariaid-title70" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> curve Elliptic curve used to perform point doubling</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title71" id="parameters-45"><h2 class="title topictitle2" id="ariaid-title71" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> py x-coordinate of point P</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title72" id="parameters-46"><h2 class="title topictitle2" id="ariaid-title72" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> px y-coordinate of point P</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title73" id="parameters-47"><h2 class="title topictitle2" id="ariaid-title73" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> rx x-coordinate of resulting point R</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title74" id="parameters-48"><h2 class="title topictitle2" id="ariaid-title74" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> ry y-coordinate of resulting point R   @return ::SX_OK  @return ::SX_ERR_NOT_INVERTIBLE  @return ::SX_ERR_OUT_OF_RANGE  @return ::SX_ERR_POINT_NOT_ON_CURVE  @return ::SX_ERR_INVALID_PARAM  @return ::SX_ERR_UNKNOWN_ERROR  @return ::SX_ERR_BUSY  @return ::SX_ERR_NOT_IMPLEMENTED  @return ::SX_ERR_OPERAND_TOO_LARGE  @return ::SX_ERR_PLATFORM_ERROR  @return ::SX_ERR_EXPIRED   @see sx_async_ecp_double_go(), sx_async_ecp_double_end()  for an asynchronous verion static inline int sx_ecp_double( const struct sx_pk_ecurve curve, const sx_op px, const sx_op py, sx_op rx, sx_op ry) { int status; struct sx_pk_dreq pkreq;  pkreq = sx_async_ecp_double_go(curve, px, py); if (pkreq.status) return pkreq.status;  status = SX_PK_WAIT(pkreq.req); sx_async_ecp_double_end(pkreq.req, rx, ry);  return status; }</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title75" id="asynchronous-non-blocking-ec-point-on-curve-check"><h1 class="title topictitle1" id="ariaid-title75" style="">Asynchronous (non-blocking) EC point on curve check.</h1><div class="body"><p class="p">Starts an EC point on curve check on the accelerator  and return immediately.   @remark When the operation finishes on the accelerator,  call SX_PK_RELEASE_REQ()</p>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title76" id="parameters-49"><h2 class="title topictitle2" id="ariaid-title76" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> curve Elliptic curve used to validate point</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title77" id="parameters-50"><h2 class="title topictitle2" id="ariaid-title77" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> px x-coordinate of point P</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title78" id="parameters-51"><h2 class="title topictitle2" id="ariaid-title78" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> py y-coordinate of point P   @return Acquired acceleration request for this operation static inline struct sx_pk_dreq sx_async_ec_ptoncurve_go( const struct sx_pk_ecurve curve, const sx_op px, const sx_op py) { struct sx_pk_dreq pkreq;  pkreq = SX_PK_ACQUIRE_REQ(curve-&gt;cnx, SX_PK_CMD_ECC_PTONCURVE); if (pkreq.status) return pkreq;  struct sx_pk_inops_ec_ptoncurve inputs; pkreq.status = SX_PK_LIST_ECC_INSLOTS(pkreq.req, curve, 0, (struct sx_pk_slot)&amp;inputs); if (pkreq.status) return pkreq; int opsz = SX_PK_GET_OPSIZE(pkreq.req);  SX_PK_OP2MEM(px, inputs.px.addr, opsz); SX_PK_OP2MEM(py, inputs.py.addr, opsz);  SX_PK_RUN(pkreq.req);  return pkreq; }</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title79" id="check-if-the-given-point-is-on-the-given-elliptic-curve"><h1 class="title topictitle1" id="ariaid-title79" style="">Check if the given point is on the given elliptic curve</h1><div class="body"><p class="p">It succeeds if the following checks pass:  For GF(p):  1. px &lt; p  2. py &lt; p  3. py<sup class="ph sup">2 == px</sup>3 + a px + b mod p  For GF(2<sup class="ph sup">m), where q = 2</sup>m  1. px &lt; q  2. py &lt; q  3. py<sup class="ph sup">2 + px py == px</sup>3 + a px^2 + b mod q</p>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title80" id="parameters-52"><h2 class="title topictitle2" id="ariaid-title80" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> curve Elliptic curve used to validate point</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title81" id="parameters-53"><h2 class="title topictitle2" id="ariaid-title81" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> px x-coordinate of point P</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title82" id="parameters-54"><h2 class="title topictitle2" id="ariaid-title82" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> py y-coordinate of point P   @return ::SX_OK  @return ::SX_ERR_NOT_INVERTIBLE  @return ::SX_ERR_OUT_OF_RANGE  @return ::SX_ERR_POINT_NOT_ON_CURVE  @return ::SX_ERR_INVALID_PARAM  @return ::SX_ERR_UNKNOWN_ERROR  @return ::SX_ERR_BUSY  @return ::SX_ERR_NOT_IMPLEMENTED  @return ::SX_ERR_OPERAND_TOO_LARGE  @return ::SX_ERR_PLATFORM_ERROR  @return ::SX_ERR_EXPIRED static inline int sx_ec_ptoncurve( const struct sx_pk_ecurve curve, const sx_op px, const sx_op py) { int status; struct sx_pk_dreq pkreq;  pkreq = sx_async_ec_ptoncurve_go(curve, px, py); if (pkreq.status) return pkreq.status;  status = SX_PK_WAIT(pkreq.req); SX_PK_RELEASE_REQ(pkreq.req);  return status; }</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title83" id="asynchronous-non-blocking-ec-point-decompression"><h1 class="title topictitle1" id="ariaid-title83" style="">Asynchronous (non-blocking) EC point decompression.</h1><div class="body"><p class="p">Starts an EC point decompression on the accelerator  and return immediately.   @remark When the operation finishes on the accelerator,  call sx_async_ec_pt_decompression_end()</p>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title84" id="parameters-55"><h2 class="title topictitle2" id="ariaid-title84" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> curve Elliptic curve used to validate point</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title85" id="parameters-56"><h2 class="title topictitle2" id="ariaid-title85" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> x x-coordinate of point to decompress</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title86" id="parameters-57"><h2 class="title topictitle2" id="ariaid-title86" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> y_lsb Least Significant Bit of y-coordinate   @return Acquired acceleration request for this operation static inline struct sx_pk_dreq sx_async_ec_pt_decompression_go( const struct sx_pk_ecurve curve, const sx_op x, const int y_lsb) { struct sx_pk_dreq pkreq;  pkreq = SX_PK_ACQUIRE_REQ(curve-&gt;cnx, SX_PK_CMD_ECC_PT_DECOMP); if (pkreq.status) return pkreq;  struct sx_pk_inops_ec_pt_decompression inputs; pkreq.status = SX_PK_LIST_ECC_INSLOTS(pkreq.req, curve, ((y_lsb &amp; 1) &lt;&lt; 29), (struct sx_pk_slot)&amp;inputs); if (pkreq.status) return pkreq; int opsz = SX_PK_GET_OPSIZE(pkreq.req);  SX_PK_OP2MEM(x, inputs.x.addr, opsz);  SX_PK_RUN(pkreq.req);  return pkreq; }</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title87" id="finish-asynchronous-non-blocking-ec-point-decompression"><h1 class="title topictitle1" id="ariaid-title87" style="">Finish asynchronous (non-blocking) EC point decompression.</h1><div class="body"><p class="p">Get the output operand of the EC point decompression  and release the reserved resources.   @pre The operation on the accelerator must be finished before  calling this function.</p>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title88" id="parameters-58"><h2 class="title topictitle2" id="ariaid-title88" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> req The previously acquired acceleration  request for this operation</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title89" id="parameters-59"><h2 class="title topictitle2" id="ariaid-title89" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> y y-coordinate of decompressed point static inline void sx_async_ec_pt_decompression_end( sx_pk_accel req, sx_op y) { sx_async_finish_single(req, y); }</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title90" id="ecc-point-decompression"><h1 class="title topictitle1" id="ariaid-title90" style="">ECC point decompression</h1><div class="body"><p class="p">Recover the y coordinate of a point using  x value and LSB of y:  1. y = sqrt(x^3 + a x + b) | Param | Description |
+|:----- |:----------- |</p>
+<p class="p">| 2. if (y &amp; 1) != y_lsb then y = p | y  with a and p the curve parameters  3. else return ::SX_ERR_NOT_QUADRATIC_RESIDUE   @remark: Point decompression is supported for GF(p) only</p>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title91" id="parameters-60"><h2 class="title topictitle2" id="ariaid-title91" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> curve Elliptic curve used to validate point</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title92" id="parameters-61"><h2 class="title topictitle2" id="ariaid-title92" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> x x-coordinate of point to decompress</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title93" id="parameters-62"><h2 class="title topictitle2" id="ariaid-title93" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> y_lsb Least Significant Bit of y-coordinate</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title94" id="parameters-63"><h2 class="title topictitle2" id="ariaid-title94" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> y y-coordinate of decompressed point   @return ::SX_OK  @return ::SX_ERR_NOT_QUADRATIC_RESIDUE  @return ::SX_ERR_INVALID_PARAM  @return ::SX_ERR_UNKNOWN_ERROR  @return ::SX_ERR_BUSY  @return ::SX_ERR_NOT_IMPLEMENTED  @return ::SX_ERR_OPERAND_TOO_LARGE  @return ::SX_ERR_PLATFORM_ERROR  @return ::SX_ERR_EXPIRED static inline int sx_ec_pt_decompression( const struct sx_pk_ecurve curve, const sx_op x, const int y_lsb, sx_op y) { int status; struct sx_pk_dreq pkreq;  pkreq = sx_async_ec_pt_decompression_go(curve, x, y_lsb); if (pkreq.status) return pkreq.status;  status = SX_PK_WAIT(pkreq.req); sx_async_ec_pt_decompression_end(pkreq.req, y);  return status; }</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title95" id="addtogroup-sx-pk-sxops-ecops"><h1 class="title topictitle1" id="ariaid-title95" style="">@addtogroup SX_PK_SXOPS_ECOPS</h1><div class="body"><p class="p">@{</p>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title96" id="asynchronous-non-blocking-ec-point-addition"><h1 class="title topictitle1" id="ariaid-title96" style="">Asynchronous (non-blocking) EC point addition.</h1><div class="body"><p class="p">Start an EC point addition on the accelerator  and return immediately.   @remark When the operation finishes on the accelerator,  call sx_async_ecp_add_end()</p>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title97" id="parameters-64"><h2 class="title topictitle2" id="ariaid-title97" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> curve Elliptic curve to perform EC point addition</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title98" id="parameters-65"><h2 class="title topictitle2" id="ariaid-title98" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> p1x x-coordinate of first point</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title99" id="parameters-66"><h2 class="title topictitle2" id="ariaid-title99" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> p1y y-coordinate of first point</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title100" id="parameters-67"><h2 class="title topictitle2" id="ariaid-title100" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> p2x x-coordinate of second point</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title101" id="parameters-68"><h2 class="title topictitle2" id="ariaid-title101" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> p2y y-coordinate of second point   @return Acquired acceleration request for this operation static inline struct sx_pk_dreq sx_async_ecp_add_go( const struct sx_pk_ecurve curve, const sx_op p1x, const sx_op p1y, const sx_op p2x, const sx_op p2y) { struct sx_pk_dreq pkreq;  pkreq = SX_PK_ACQUIRE_REQ(curve-&gt;cnx, SX_PK_CMD_ECC_PT_ADD); if (pkreq.status) return pkreq;  struct sx_pk_inops_ecp_add inputs; pkreq.status = SX_PK_LIST_ECC_INSLOTS(pkreq.req, curve, 0, (struct sx_pk_slot)&amp;inputs); if (pkreq.status) return pkreq; int opsz = SX_PK_GET_OPSIZE(pkreq.req); SX_PK_OP2MEM(p1x, inputs.p1x.addr, opsz); SX_PK_OP2MEM(p1y, inputs.p1y.addr, opsz); SX_PK_OP2MEM(p2x, inputs.p2x.addr, opsz); SX_PK_OP2MEM(p2y, inputs.p2y.addr, opsz);  SX_PK_RUN(pkreq.req);  return pkreq; }</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title102" id="finish-asynchronous-non-blocking-ec-point-addition"><h1 class="title topictitle1" id="ariaid-title102" style="">Finish asynchronous (non-blocking) EC point addition.</h1><div class="body"><p class="p">Get the output operands of the EC point addition  and release the reserved resources.   @pre The operation on the accelerator must be finished before  calling this function.</p>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title103" id="parameters-69"><h2 class="title topictitle2" id="ariaid-title103" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> req The previously acquired acceleration  request for this operation</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title104" id="parameters-70"><h2 class="title topictitle2" id="ariaid-title104" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> rx x-coordinate of resulting addition point</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title105" id="parameters-71"><h2 class="title topictitle2" id="ariaid-title105" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> ry y-coordinate of resulting addition point static inline void sx_async_ecp_add_end( sx_pk_accel req, sx_op rx, sx_op ry) { sx_async_finish_pair(req, rx, ry); }</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title106" id="compute-point-addition-on-an-elliptic-curve"><h1 class="title topictitle1" id="ariaid-title106" style="">Compute point addition on an elliptic curve</h1><div class="body"><p class="p">(Rx, Ry) = P1 + P2   If P1 == P2 returns an SX_ERR_NOT_INVERTIBLE error   @remark Use point doubling operation for the addition of equal points</p>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title107" id="parameters-72"><h2 class="title topictitle2" id="ariaid-title107" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> curve Elliptic curve to do point addition</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title108" id="parameters-73"><h2 class="title topictitle2" id="ariaid-title108" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> p1x x-coordinate of point P1</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title109" id="parameters-74"><h2 class="title topictitle2" id="ariaid-title109" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> p1y y-coordinate of point P1</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title110" id="parameters-75"><h2 class="title topictitle2" id="ariaid-title110" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> p2x x-coordinate of point P2</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title111" id="parameters-76"><h2 class="title topictitle2" id="ariaid-title111" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> p2y y-coordinate of point P2</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title112" id="parameters-77"><h2 class="title topictitle2" id="ariaid-title112" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> rx x-coordinate of resulting point R</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title113" id="parameters-78"><h2 class="title topictitle2" id="ariaid-title113" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> ry y-coordinate of resulting point R   @return ::SX_OK  @return ::SX_ERR_NOT_INVERTIBLE  @return ::SX_ERR_OUT_OF_RANGE  @return ::SX_ERR_POINT_NOT_ON_CURVE  @return ::SX_ERR_INVALID_PARAM  @return ::SX_ERR_UNKNOWN_ERROR  @return ::SX_ERR_BUSY  @return ::SX_ERR_NOT_IMPLEMENTED  @return ::SX_ERR_OPERAND_TOO_LARGE  @return ::SX_ERR_PLATFORM_ERROR  @return ::SX_ERR_EXPIRED   @remark Use point doubling operation for the addition of equal points  @see sx_ecp_double() static inline int sx_ecp_ptadd( const struct sx_pk_ecurve curve, const sx_op p1x, const sx_op p1y, const sx_op p2x, const sx_op p2y, sx_op rx, sx_op ry) { int status; struct sx_pk_dreq pkreq;  pkreq = sx_async_ecp_add_go(curve, p1x, p1y, p2x, p2y); if (pkreq.status) return pkreq.status;  status = SX_PK_WAIT(pkreq.req); sx_async_ecp_add_end(pkreq.req, rx, ry);  return status; }}</p>
+</div>
+</div>
+</div>
+</body>
+</html>

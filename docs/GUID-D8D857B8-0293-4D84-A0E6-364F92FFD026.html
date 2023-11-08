@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE11" /><meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="topic" />
+<meta name="DC.title" content="Cryptographic message hashing SHA-1." />
+<meta name="DC.relation" scheme="URI" content="GUID-E5AC2B5B-4DA1-4D7D-A714-901692577E30.html" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="cryptographic-message-hashing-sha-1" />
+<link rel="stylesheet" type="text/css" href="stylesheets/atmel.css" />
+<title>Cryptographic message hashing SHA-1.</title>
+<meta name="Microsoft.Help.Id" content="GUID-2085FE66-A762-4CC0-B054-7F98E8AF999A" />
+<meta name="Microsoft.Help.TocParent" content="GUID-2085FE66-A762-4CC0-B054-7F98E8AF999A-GUID-E5AC2B5B-4DA1-4D7D-A714-901692577E30" />
+<meta name="Microsoft.Help.TocOrder" content="0" />
+<meta name="Microsoft.Help.Locale" content="en-US" />
+<meta name="Microsoft.Help.TopicLocale" content="en-US" />
+<meta name="Microsoft.Help.DisplayVersion" content="MPLAB Harmony PIC32CX-BZ System Services Reference 4 10/2023" />
+<script language="javascript">
+       
+       if (window.parent.location.protocol != 'file:') {
+				document.addEventListener('click', function(e) {
+				    if (e.target) {
+               if (e.target.nodeName == "A" ) {
+                    if (!e.target.target) {
+                      e.preventDefault();
+                      e.stopPropagation();
+                              
+                      var origUrl = window.parent.location.href.substr(0, window.parent.location.href.indexOf("?"));
+                      if (origUrl.length === 0) {
+                          origUrl = window.parent.location.href;
+                      }
+                      var href= e.target.getAttribute("href");
+                      var parts = href.split("#");
+          
+                      var url = "";
+                      if (parts.length == 2 ) {
+                        if (!parts[0].length) {
+                            url = window.parent.location.search.replace('?','')
+                        } else {
+                            url = parts[0].replace('.html','');
+                        }
+                      } else {
+                        url = parts[0].replace('.html','');
+                      }
+
+                      if (parts.length == 2) {
+                          url += "#" + parts[1];
+                      }
+    
+                      window.parent.location.href = origUrl + "?" + url;
+
+                      return false;
+                    }
+               }
+            }
+				});
+			}
+
+		</script><script language="javascript">
+         
+         function copyContent(content, button) {
+         
+            var textArea = document.createElement("textarea");
+            
+            // Place in the top-left corner of screen regardless of scroll position.
+            textArea.style.position = 'fixed';
+            textArea.style.top = 0;
+            textArea.style.left = 0;
+            
+            // Ensure it has a small width and height. Setting to 1px / 1em
+            // doesn't work as this gives a negative w/h on some browsers.
+            textArea.style.width = '2em';
+            textArea.style.height = '2em';
+            
+            // We don't need padding, reducing the size if it does flash render.
+            textArea.style.padding = 0;
+            
+            // Clean up any borders.
+            textArea.style.border = 'none';
+            textArea.style.outline = 'none';
+            textArea.style.boxShadow = 'none';
+            
+            // Avoid flash of the white box if rendered for any reason.
+            textArea.style.background = 'transparent';
+            
+            textArea.value = content;
+            
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+               var successful = document.execCommand('copy');
+               var msg = successful ? 'successful' : 'unsuccessful';
+               if (!button.classList.contains("copied")){
+                  button.textContent = "Copied";
+                  button.classList.add("copied");
+                  setTimeout(function(){
+                     button.textContent = "Copy";
+                     button.classList.remove("copied");
+                  },1000);
+               }
+            } catch (err) {
+               console.log('Oops, unable to copy');
+            }
+            
+            document.body.removeChild(textArea);
+         }
+         
+         function cpy(id, button) {
+            var element = document.getElementById(id);
+            var content = element.getAttribute("content");
+            
+            copyContent(content, button);
+         }
+         
+         document.addEventListener("DOMContentLoaded", function(event) {
+            document.querySelectorAll(".codeblock").forEach(function(elem) {
+               elem.style.position = "relative";
+               var copy = document.createElement("button");
+               copy.textContent = "Copy";
+               copy.setAttribute("class", "copy-code");
+               
+               var content = elem.textContent;
+               
+               copy.addEventListener("click", function(){
+                  copyContent(content, copy);
+               });
+               
+               elem.addEventListener("mouseenter", function(evt){
+                  elem.prepend(copy);
+               });
+            });
+            
+            document.querySelectorAll(".codeblock").forEach(function(elem) {
+               elem.addEventListener("mouseleave", function(evt){
+                  document.querySelector(".copy-code").remove();
+               });
+            });
+         });
+         
+      </script><script language="javascript">
+          
+          // Add the MathML namespace to html
+          var html = document.getElementsByTagName("html")[0],
+          head = document.getElementsByTagName("head")[0];
+          
+          var mathJax = document.createElement("script");
+          mathJax.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML";
+          head.appendChild(mathJax);
+          
+          html.setAttribute("xmlns:m","http://www.w3.org/1998/Math/MathML");
+          
+          function inIframe() { try { return window.self !== window.top; } catch (e) { return true; } }
+          
+          if (!inIframe()) { 
+          
+          var Default = "index.html?"; 
+          
+          var displaylocation = "value" + window.location.href;
+          
+          var GUIDS = displaylocation.split('GUID');          
+          
+          if (displaylocation.indexOf('#GUID') != -1) {            
+          var First = GUIDS[1].split('.html');  
+          if (GUIDS[3]){First = GUIDS[2].split('.html');}
+          if (GUIDS[4]){First = GUIDS[3].split('.html');}
+          if (GUIDS[5]){First = GUIDS[4].split('.html');}
+          
+          var Second = GUIDS[2].split('#');   
+          if (GUIDS[3]){Second = GUIDS[3].split('#');}
+          if (GUIDS[4]){Second = GUIDS[4].split('#');}
+          if (GUIDS[5]){Second = GUIDS[5].split('#');}
+          
+          Default = "index.html?" + "GUID" + First[0] + "GUID" + Second[0];     
+          }                    
+          window.top.location = Default;
+          }       
+          
+        </script><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /><style xml:space="">
+        
+          button.copy-code{
+            display:none;
+            padding:0.7em 1.4em;
+            margin:0 0.3em 0.3em 0;
+            border-radius:0.15em;
+            box-sizing: border-box;
+            text-decoration:none;
+            font-family:'Roboto',sans-serif;
+            text-transform:uppercase;
+            font-weight:400;
+            color:#FFFFFF;
+            background-color:#9c9c9c;
+            box-shadow:inset 0 -0.6em 0 -0.35em rgba(0,0,0,0.17);
+            text-align:center;
+            position:relative;
+            border: 0;
+            float: right;
+            border-radius: .5em;
+            cursor: pointer;
+          }
+          button.copy-code:active{
+            top:0.1em;
+          }
+          
+          pre:hover button.copy-code{
+            display: inline-block !important;
+          }
+          button.copy-code.copied {
+            cursor: default !important;
+          }
+          
+          
+          @media all and (max-width:30em){
+            button.copy-code{
+              display:block;
+              margin:0.4em auto;
+            }
+          }
+        
+        
+      </style><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /></head>
+<body>
+<div class="nested0" aria-labelledby="ariaid-title1" id="cryptographic-message-hashing-sha-1"><h1 class="title topictitle1" id="ariaid-title1" style="">Cryptographic message hashing SHA-1.</h1><div class="body"></div>
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="GUID-E5AC2B5B-4DA1-4D7D-A714-901692577E30.html" title="Enter a short description of your topic here (optional).">SX_symcrypt_API</a></div>
+</div>
+</div></div>
+<div class="topic nested0" aria-labelledby="ariaid-title2" id="sxsymcrypt-sha1-api-file-macro"><h1 class="title topictitle1" id="ariaid-title2" style="">SXSYMCRYPT_SHA1_API_FILE Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title3" id="c"><h2 class="title topictitle2" id="ariaid-title3" style="">C</h2><div class="body"><pre class="pre codeblock c"><span class="hl-directive">#define</span> <span class="hl-defines">SXSYMCRYPT_SHA1_API_FILE</span>
+</pre><p class="p">@file</p>
+<p class="p">@copyright Copyright (c) 2019-2020 Silex Insight. All Rights reserved.</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title4" id="hash-algorithm-sha-1-secure-hash-algorithm-1"><h1 class="title topictitle1" id="ariaid-title4" style="">Hash algorithm SHA-1 (Secure Hash Algorithm 1)</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title5" id="sxhashalg-sha1-macro"><h1 class="title topictitle1" id="ariaid-title5" style="">SXHASHALG_SHA1 Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title6" id="c-1"><h2 class="title topictitle2" id="ariaid-title6" style="">C</h2><div class="body"><pre class="pre codeblock c"><span class="hl-directive">#define</span> <span class="hl-defines">SXHASHALG_SHA1</span> ((<strong class="hl-keyword">const</strong> <strong class="hl-keyword">struct</strong> sxhashalg )((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SXHASHALG_SHA1)))
+</pre><p class="p">Deprecated algorithm. NIST formally deprecated use of SHA-1 in 2011
+and disallowed its use for digital signatures in 2013. SHA-3 or SHA-2
+are recommended instead.</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title7" id="prepares-a-sha1-hash-operation-context"><h1 class="title topictitle1" id="ariaid-title7" style="">Prepares a SHA1 hash operation context</h1><div class="body"><p class="p">This function initializes the user allocated object \p c with a new hash
+operation context and reserves the HW resource.</p>
+<p class="p">After successful execution of this function, the context \p c can be passed
+to any of the hashing functions.</p>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title8" id="parameters"><h2 class="title topictitle2" id="ariaid-title8" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> c hash operation context</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title9" id="parameters-1"><h2 class="title topictitle2" id="ariaid-title9" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> csz size of the hash operation context  @return ::SX_OK  @return ::SX_ERR_INCOMPATIBLE_HW  @return ::SX_ERR_RETRY  | Param | Description |
+|:----- |:----------- |</p>
+<p class="p">| @remark | SHA1 digest size is 20 bytes</p>
+</div>
+</div>
+</div>
+</body>
+</html>

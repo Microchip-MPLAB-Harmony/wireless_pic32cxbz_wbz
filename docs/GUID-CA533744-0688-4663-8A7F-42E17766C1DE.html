@@ -1,0 +1,732 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE11" /><meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="topic" />
+<meta name="DC.title" content="Asymmetric cryptographic acceleration core interface" />
+<meta name="DC.relation" scheme="URI" content="GUID-82627570-09DA-49A7-95EC-D502E201BEA3.html" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="asymmetric-cryptographic-acceleration-core-interface" />
+<link rel="stylesheet" type="text/css" href="stylesheets/atmel.css" />
+<title>Asymmetric cryptographic acceleration core interface</title>
+<meta name="Microsoft.Help.Id" content="GUID-2085FE66-A762-4CC0-B054-7F98E8AF999A" />
+<meta name="Microsoft.Help.TocParent" content="GUID-2085FE66-A762-4CC0-B054-7F98E8AF999A-GUID-82627570-09DA-49A7-95EC-D502E201BEA3" />
+<meta name="Microsoft.Help.TocOrder" content="0" />
+<meta name="Microsoft.Help.Locale" content="en-US" />
+<meta name="Microsoft.Help.TopicLocale" content="en-US" />
+<meta name="Microsoft.Help.DisplayVersion" content="MPLAB Harmony PIC32CX-BZ System Services Reference 4 10/2023" />
+<script language="javascript">
+       
+       if (window.parent.location.protocol != 'file:') {
+				document.addEventListener('click', function(e) {
+				    if (e.target) {
+               if (e.target.nodeName == "A" ) {
+                    if (!e.target.target) {
+                      e.preventDefault();
+                      e.stopPropagation();
+                              
+                      var origUrl = window.parent.location.href.substr(0, window.parent.location.href.indexOf("?"));
+                      if (origUrl.length === 0) {
+                          origUrl = window.parent.location.href;
+                      }
+                      var href= e.target.getAttribute("href");
+                      var parts = href.split("#");
+          
+                      var url = "";
+                      if (parts.length == 2 ) {
+                        if (!parts[0].length) {
+                            url = window.parent.location.search.replace('?','')
+                        } else {
+                            url = parts[0].replace('.html','');
+                        }
+                      } else {
+                        url = parts[0].replace('.html','');
+                      }
+
+                      if (parts.length == 2) {
+                          url += "#" + parts[1];
+                      }
+    
+                      window.parent.location.href = origUrl + "?" + url;
+
+                      return false;
+                    }
+               }
+            }
+				});
+			}
+
+		</script><script language="javascript">
+         
+         function copyContent(content, button) {
+         
+            var textArea = document.createElement("textarea");
+            
+            // Place in the top-left corner of screen regardless of scroll position.
+            textArea.style.position = 'fixed';
+            textArea.style.top = 0;
+            textArea.style.left = 0;
+            
+            // Ensure it has a small width and height. Setting to 1px / 1em
+            // doesn't work as this gives a negative w/h on some browsers.
+            textArea.style.width = '2em';
+            textArea.style.height = '2em';
+            
+            // We don't need padding, reducing the size if it does flash render.
+            textArea.style.padding = 0;
+            
+            // Clean up any borders.
+            textArea.style.border = 'none';
+            textArea.style.outline = 'none';
+            textArea.style.boxShadow = 'none';
+            
+            // Avoid flash of the white box if rendered for any reason.
+            textArea.style.background = 'transparent';
+            
+            textArea.value = content;
+            
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+               var successful = document.execCommand('copy');
+               var msg = successful ? 'successful' : 'unsuccessful';
+               if (!button.classList.contains("copied")){
+                  button.textContent = "Copied";
+                  button.classList.add("copied");
+                  setTimeout(function(){
+                     button.textContent = "Copy";
+                     button.classList.remove("copied");
+                  },1000);
+               }
+            } catch (err) {
+               console.log('Oops, unable to copy');
+            }
+            
+            document.body.removeChild(textArea);
+         }
+         
+         function cpy(id, button) {
+            var element = document.getElementById(id);
+            var content = element.getAttribute("content");
+            
+            copyContent(content, button);
+         }
+         
+         document.addEventListener("DOMContentLoaded", function(event) {
+            document.querySelectorAll(".codeblock").forEach(function(elem) {
+               elem.style.position = "relative";
+               var copy = document.createElement("button");
+               copy.textContent = "Copy";
+               copy.setAttribute("class", "copy-code");
+               
+               var content = elem.textContent;
+               
+               copy.addEventListener("click", function(){
+                  copyContent(content, copy);
+               });
+               
+               elem.addEventListener("mouseenter", function(evt){
+                  elem.prepend(copy);
+               });
+            });
+            
+            document.querySelectorAll(".codeblock").forEach(function(elem) {
+               elem.addEventListener("mouseleave", function(evt){
+                  document.querySelector(".copy-code").remove();
+               });
+            });
+         });
+         
+      </script><script language="javascript">
+          
+          // Add the MathML namespace to html
+          var html = document.getElementsByTagName("html")[0],
+          head = document.getElementsByTagName("head")[0];
+          
+          var mathJax = document.createElement("script");
+          mathJax.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML";
+          head.appendChild(mathJax);
+          
+          html.setAttribute("xmlns:m","http://www.w3.org/1998/Math/MathML");
+          
+          function inIframe() { try { return window.self !== window.top; } catch (e) { return true; } }
+          
+          if (!inIframe()) { 
+          
+          var Default = "index.html?"; 
+          
+          var displaylocation = "value" + window.location.href;
+          
+          var GUIDS = displaylocation.split('GUID');          
+          
+          if (displaylocation.indexOf('#GUID') != -1) {            
+          var First = GUIDS[1].split('.html');  
+          if (GUIDS[3]){First = GUIDS[2].split('.html');}
+          if (GUIDS[4]){First = GUIDS[3].split('.html');}
+          if (GUIDS[5]){First = GUIDS[4].split('.html');}
+          
+          var Second = GUIDS[2].split('#');   
+          if (GUIDS[3]){Second = GUIDS[3].split('#');}
+          if (GUIDS[4]){Second = GUIDS[4].split('#');}
+          if (GUIDS[5]){Second = GUIDS[5].split('#');}
+          
+          Default = "index.html?" + "GUID" + First[0] + "GUID" + Second[0];     
+          }                    
+          window.top.location = Default;
+          }       
+          
+        </script><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /><style xml:space="">
+        
+          button.copy-code{
+            display:none;
+            padding:0.7em 1.4em;
+            margin:0 0.3em 0.3em 0;
+            border-radius:0.15em;
+            box-sizing: border-box;
+            text-decoration:none;
+            font-family:'Roboto',sans-serif;
+            text-transform:uppercase;
+            font-weight:400;
+            color:#FFFFFF;
+            background-color:#9c9c9c;
+            box-shadow:inset 0 -0.6em 0 -0.35em rgba(0,0,0,0.17);
+            text-align:center;
+            position:relative;
+            border: 0;
+            float: right;
+            border-radius: .5em;
+            cursor: pointer;
+          }
+          button.copy-code:active{
+            top:0.1em;
+          }
+          
+          pre:hover button.copy-code{
+            display: inline-block !important;
+          }
+          button.copy-code.copied {
+            cursor: default !important;
+          }
+          
+          
+          @media all and (max-width:30em){
+            button.copy-code{
+              display:block;
+              margin:0.4em auto;
+            }
+          }
+        
+        
+      </style><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /></head>
+<body>
+<div class="nested0" aria-labelledby="ariaid-title1" id="asymmetric-cryptographic-acceleration-core-interface"><h1 class="title topictitle1" id="ariaid-title1" style="">Asymmetric cryptographic acceleration core interface</h1><div class="body"><p class="p">@file</p>
+</div>
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="GUID-82627570-09DA-49A7-95EC-D502E201BEA3.html" title="Enter a short description of your topic here (optional).">Silex_PK_API</a></div>
+</div>
+</div></div>
+<div class="topic nested0" aria-labelledby="ariaid-title2" id="core-header-file-macro"><h1 class="title topictitle1" id="ariaid-title2" style="">CORE_HEADER_FILE Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title3" id="c"><h2 class="title topictitle2" id="ariaid-title3" style="">C</h2><div class="body"><pre class="pre codeblock c"><span class="hl-directive">#define</span> <span class="hl-defines">CORE_HEADER_FILE</span>
+</pre><p class="p">/
+Copyright (c) 2018-2020 Silex Insight sa
+Copyright (c) 2014-2020 Beerten Engineering scs
+SPDX-License-Identifier: BSD-3-Clause</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title4" id="default-operand-endianness"><h1 class="title topictitle1" id="ariaid-title4" style="">Default operand endianness</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title5" id="sx-pk-op-default-endianness-macro"><h1 class="title topictitle1" id="ariaid-title5" style="">SX_PK_OP_DEFAULT_ENDIANNESS Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title6" id="c-1"><h2 class="title topictitle2" id="ariaid-title6" style="">C</h2><div class="body"><pre class="pre codeblock c"><span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_OP_DEFAULT_ENDIANNESS</span> <span class="hl-number">1</span>
+</pre><p class="p">0: little endian
+1: big endian</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title7" id="struct-function"><h1 class="title topictitle1" id="ariaid-title7" style="">struct Function</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title8" id="c-2"><h2 class="title topictitle2" id="ariaid-title8" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">struct</strong> sx_pk_accel sx_pk_accel;</pre><p class="p">@addtogroup SX_PK_CORE</p>
+<p class="p">@{</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title9" id="acceleration-request"><h1 class="title topictitle1" id="ariaid-title9" style="">Acceleration request</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title10" id="struct"><h1 class="title topictitle1" id="ariaid-title10" style="">Struct</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title11" id="c-3"><h2 class="title topictitle2" id="ariaid-title11" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">struct</strong> sx_pk_accel sx_pk_accel;
+
+/ SilexPK and hardware constraints /
+<strong class="hl-keyword">struct</strong> sx_pk_constraints {
+    / Maximum simultaneous requests any application can configure. /
+    <strong class="hl-keyword">int</strong> maxpending;
+};
+</pre><p class="p">A public key operation for offload on a hardware accelerator</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title12" id="return-silexpk-constraints"><h1 class="title topictitle1" id="ariaid-title12" style="">Return SilexPK constraints</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title13" id="sx-pk-list-constraints-macro"><h1 class="title topictitle1" id="ariaid-title13" style="">SX_PK_LIST_CONSTRAINTS Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title14" id="c-4"><h2 class="title topictitle2" id="ariaid-title14" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">struct</strong> sx_pk_constraints (FUNC_SX_PK_LIST_CONSTRAINTS)(<strong class="hl-keyword">int</strong> index, <strong class="hl-keyword">int</strong> usermemsz);
+<span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_LIST_CONSTRAINTS</span> ((FUNC_SX_PK_LIST_CONSTRAINTS)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_LIST_CONSTRAINTS)))
+</pre><p class="p">If maxpending in sx_pk_constraints is 0, than SilexPK cannot be used
+with the given environment.</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title15" id="parameters"><h2 class="title topictitle2" id="ariaid-title15" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> index Index should always be 0</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title16" id="parameters-1"><h2 class="title topictitle2" id="ariaid-title16" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> usermemsz User memory size provided in bytes. Should be non zero for  BA414 AHBMaster and BA414 baremetal with no static memory  @return Constraints of SilexPK</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title17" id="description-of-the-hardware-accelerator-capabilities-and-features"><h1 class="title topictitle1" id="ariaid-title17" style="">Description of the (hardware) accelerator capabilities and features.*/</h1><div class="body"><p class="p">struct sx_pk_capabilities {</p>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title18" id="maximum-pending-requests-at-any-time-"><h1 class="title topictitle1" id="ariaid-title18" style="">Maximum pending requests at any time. */</h1><div class="body"><p class="p">int maxpending;</p>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title19" id="maximum-operand-size-for-prime-field-operands-0-when-not-supported-"><h1 class="title topictitle1" id="ariaid-title19" style="">Maximum operand size for prime field operands. 0 when not supported. */</h1><div class="body"><p class="p">int max_gfp_opsz;</p>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title20" id="maximum-operand-size-for-elliptic-curve-operands-0-when-not-supported-"><h1 class="title topictitle1" id="ariaid-title20" style="">Maximum operand size for elliptic curve operands. 0 when not supported. */</h1><div class="body"><p class="p">int max_ecc_opsz;</p>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title21" id="maximum-operand-size-for-binary-field-operands-0-when-not-supported-"><h1 class="title topictitle1" id="ariaid-title21" style="">Maximum operand size for binary field operands. 0 when not supported. */</h1><div class="body"><p class="p">int max_gfb_opsz;</p>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title22" id="operand-size-for-ik-operands-0-when-not-supported-"><h1 class="title topictitle1" id="ariaid-title22" style="">Operand size for IK operands. 0 when not supported. */</h1><div class="body"><p class="p">int ik_opsz;
+};</p>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title23" id="opaque-structure-for-offload-with-silexpk-library-"><h1 class="title topictitle1" id="ariaid-title23" style="">Opaque structure for offload with SilexPK library */</h1><div class="body"><p class="p">struct sx_pk_cnx;</p>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title24" id="return-the-crypto-acceleration-capabilities-and-features"><h1 class="title topictitle1" id="ariaid-title24" style="">Return the crypto acceleration capabilities and features</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title25" id="sx-pk-fetch-capabilities-macro"><h1 class="title topictitle1" id="ariaid-title25" style="">SX_PK_FETCH_CAPABILITIES Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title26" id="c-5"><h2 class="title topictitle2" id="ariaid-title26" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">const</strong> <strong class="hl-keyword">struct</strong> sx_pk_capabilities (FUNC_SX_PK_FETCH_CAPABILITIES)(<strong class="hl-keyword">struct</strong> sx_pk_cnx cnx);
+<span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_FETCH_CAPABILITIES</span> ((FUNC_SX_PK_FETCH_CAPABILITIES)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_FETCH_CAPABILITIES)))
+</pre></div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title27" id="parameters-2"><h2 class="title topictitle2" id="ariaid-title27" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> cnx Connection structure obtained through SX_PK_OPEN() at startup  @return NULL on failure  @return Capabilities of the accelerator on success</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title28" id="library-configuration-for-sx-pk-open-"><h1 class="title topictitle1" id="ariaid-title28" style="">Library configuration for SX_PK_OPEN() */</h1><div class="body"><p class="p">struct sx_pk_config {</p>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title29" id="maximum-simultaneous-requests-the-application-will-start"><h1 class="title topictitle1" id="ariaid-title29" style="">Maximum simultaneous requests the application will start.</h1><div class="body"><p class="p">Set to 0 to use library default.
+int maxpending;</p>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title30" id="device-index-to-use"><h1 class="title topictitle1" id="ariaid-title30" style="">Device index to use.</h1><div class="body"><p class="p">For special use cases with multiple independent hardware
+accelerators. In case of doubt, leave to 0.
+int devidx;</p>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title31" id="user-memory-"><h1 class="title topictitle1" id="ariaid-title31" style="">User memory */</h1><div class="body"><p class="p">long long usrmem;</p>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title32" id="size-of-user-provided-memory-"><h1 class="title topictitle1" id="ariaid-title32" style="">Size of user provided memory */</h1><div class="body"><p class="p">size_t usrmemsz;</p>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title33" id="personalization-string-for-ik-"><h1 class="title topictitle1" id="ariaid-title33" style="">Personalization string for IK */</h1><div class="body"><p class="p">uint32_t personalization;</p>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title34" id="personalization-string-size-in-32-bit-words"><h1 class="title topictitle1" id="ariaid-title34" style="">Personalization string size in 32 bit words</h1><div class="body"><p class="p">If the size is 0 the personalization string
+is considered NULL and will not be used.
+int personalization_sz;
+};</p>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title35" id="open-silexpk-and-related-hardware-and-allocate-internal-resources"><h1 class="title topictitle1" id="ariaid-title35" style="">Open SilexPK and related hardware and allocate internal resources</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title36" id="sx-pk-open-macro"><h1 class="title topictitle1" id="ariaid-title36" style="">SX_PK_OPEN Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title37" id="c-6"><h2 class="title topictitle2" id="ariaid-title37" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">struct</strong> sx_pk_cnx (FUNC_SX_PK_OPEN)(<strong class="hl-keyword">struct</strong> sx_pk_config cfg);
+<span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_OPEN</span> ((FUNC_SX_PK_OPEN)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_OPEN)))
+</pre></div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title38" id="parameters-3"><h2 class="title topictitle2" id="ariaid-title38" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> cfg Configuration to customize SilexPK to  application specific needs.  @return NULL on failure  @return Connection structure for future SilexPK calls on success.  Can be used with SilexPK functions to run operations.   @see SX_PK_CLOSE()</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title39" id="finish-using-any-public-key-acceleration"><h1 class="title topictitle1" id="ariaid-title39" style="">Finish using any public key acceleration.</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title40" id="sx-pk-close-macro"><h1 class="title topictitle1" id="ariaid-title40" style="">SX_PK_CLOSE Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title41" id="c-7"><h2 class="title topictitle2" id="ariaid-title41" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">void</strong> (FUNC_SX_PK_CLOSE)(<strong class="hl-keyword">struct</strong> sx_pk_cnx cnx);
+<span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_CLOSE</span> ((FUNC_SX_PK_CLOSE)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_CLOSE)))
+</pre><p class="p">No other hardware acceleration function can be called after this.</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title42" id="parameters-4"><h2 class="title topictitle2" id="ariaid-title42" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> cnx Connection structure obtained through SX_PK_OPEN() at startup</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title43" id="encapsulated-acceleration-request"><h1 class="title topictitle1" id="ariaid-title43" style="">Encapsulated acceleration request</h1><div class="body"><p class="p">This structure is used by SX_PK_ACQUIRE_REQ()
+and _go() functions as a return value
+struct sx_pk_dreq
+{</p>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title44" id="the-acquired-acceleration-request-"><h1 class="title topictitle1" id="ariaid-title44" style="">The acquired acceleration request **/</h1><div class="body"><p class="p">sx_pk_accel req;</p>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title45" id="the-status-of-sx-pk-acquire-req-"><h1 class="title topictitle1" id="ariaid-title45" style="">The status of SX_PK_ACQUIRE_REQ() **/</h1><div class="body"><p class="p">int status;
+};</p>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title46" id="get-a-silexpk-request-instance-locked-to-perform-the-given-operation"><h1 class="title topictitle1" id="ariaid-title46" style="">Get a SilexPK request instance locked to perform the given operation</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title47" id="sx-pk-acquire-req-macro"><h1 class="title topictitle1" id="ariaid-title47" style="">SX_PK_ACQUIRE_REQ Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title48" id="c-8"><h2 class="title topictitle2" id="ariaid-title48" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">struct</strong> sx_pk_dreq (FUNC_SX_PK_ACQUIRE_REQ)(<strong class="hl-keyword">struct</strong> sx_pk_cnx cnx, <strong class="hl-keyword">const</strong> <strong class="hl-keyword">struct</strong> sx_pk_cmd_def cmd);
+<span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_ACQUIRE_REQ</span> ((FUNC_SX_PK_ACQUIRE_REQ)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_ACQUIRE_REQ)))
+</pre><p class="p">The returned sx_pk_dreq structure contains a status and a pointer to
+a reserved hardware accelerator instance. That pointer is only valid
+and usable if status is non-zero.</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title49" id="parameters-5"><h2 class="title topictitle2" id="ariaid-title49" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> cnx Connection structure obtained through SX_PK_OPEN() at startup</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title50" id="parameters-6"><h2 class="title topictitle2" id="ariaid-title50" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> cmd The command definition (for example ::SX_PK_CMD_MOD_EXP)  @return The acquired acceleration request for this operation   @see SX_PK_RELEASE_REQ()</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title51" id="least-significant-bit-of-ax-is-1-flag-a-"><h1 class="title topictitle1" id="ariaid-title51" style="">Least significant bit of Ax is 1 (flag A) */</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title52" id="least-significant-bit-of-rx-is-1-flag-b-"><h1 class="title topictitle1" id="ariaid-title52" style="">Least significant bit of Rx is 1 (flag B) */</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title53" id="pk-op-flags-eddsa-rx-lsb-macro"><h1 class="title topictitle1" id="ariaid-title53" style="">PK_OP_FLAGS_EDDSA_RX_LSB Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title54" id="c-9"><h2 class="title topictitle2" id="ariaid-title54" style="">C</h2><div class="body"><pre class="pre codeblock c"><span class="hl-directive">#define</span> <span class="hl-defines">PK_OP_FLAGS_EDDSA_RX_LSB</span> (<span class="hl-number">1</span> &lt;&lt; <span class="hl-number">30</span>)
+</pre></div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title55" id="return-the-instance-number-of-the-hardware-accelerator-for-this-request"><h1 class="title topictitle1" id="ariaid-title55" style="">Return the instance number of the hardware accelerator for this request</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title56" id="int-typedef"><h1 class="title topictitle1" id="ariaid-title56" style="">int Typedef</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title57" id="c-10"><h2 class="title topictitle2" id="ariaid-title57" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">unsigned</strong> <strong class="hl-keyword">int</strong> (FUNC_SX_PK_GET_REQ_ID)(sx_pk_accel req);
+</pre></div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title58" id="sx-pk-get-req-id-macro"><h1 class="title topictitle1" id="ariaid-title58" style="">SX_PK_GET_REQ_ID Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title59" id="c-11"><h2 class="title topictitle2" id="ariaid-title59" style="">C</h2><div class="body"><pre class="pre codeblock c"><span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_GET_REQ_ID</span> ((FUNC_SX_PK_GET_REQ_ID)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_GET_REQ_ID)))
+</pre></div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title60" id="parameters-7"><h2 class="title topictitle2" id="ariaid-title60" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> req The acceleration request obtained  through SX_PK_ACQUIRE_REQ()  @return instance number of the hardware accelerator for this request</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title61" id="add-the-context-pointer-to-an-acceleration-request"><h1 class="title topictitle1" id="ariaid-title61" style="">Add the context pointer to an acceleration request</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title62" id="func-sx-pk-set-user-contextsx-pk-accel-typedef"><h1 class="title topictitle1" id="ariaid-title62" style="">(FUNC_SX_PK_SET_USER_CONTEXT)(sx_pk_accel Typedef</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title63" id="c-12"><h2 class="title topictitle2" id="ariaid-title63" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">void</strong> (FUNC_SX_PK_SET_USER_CONTEXT)(sx_pk_accel req, <strong class="hl-keyword">void</strong> context);
+</pre></div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title64" id="sx-pk-set-user-context-macro"><h1 class="title topictitle1" id="ariaid-title64" style="">SX_PK_SET_USER_CONTEXT Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title65" id="c-13"><h2 class="title topictitle2" id="ariaid-title65" style="">C</h2><div class="body"><pre class="pre codeblock c"><span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_SET_USER_CONTEXT</span> ((FUNC_SX_PK_SET_USER_CONTEXT)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_SET_USER_CONTEXT)))
+</pre><p class="p">The attached pointer can be retrieved by SX_PK_GET_USER_CONTEXT().
+After SX_PK_RELEASE_REQ(), the context pointer is not available
+anymore.</p>
+<p class="p">The context can represent any content the user may associate with the PK request.</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title66" id="parameters-8"><h2 class="title topictitle2" id="ariaid-title66" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> req The acquired acceleration request</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title67" id="parameters-9"><h2 class="title topictitle2" id="ariaid-title67" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> context Pointer to context   @see SX_PK_GET_USER_CONTEXT()</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title68" id="get-the-context-pointer-from-an-acceleration-request"><h1 class="title topictitle1" id="ariaid-title68" style="">Get the context pointer from an acceleration request</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title69" id="func-sx-pk-get-user-contextsx-pk-accel-typedef"><h1 class="title topictitle1" id="ariaid-title69" style="">(FUNC_SX_PK_GET_USER_CONTEXT)(sx_pk_accel Typedef</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title70" id="c-14"><h2 class="title topictitle2" id="ariaid-title70" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">void</strong> (FUNC_SX_PK_GET_USER_CONTEXT)(sx_pk_accel req);
+</pre></div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title71" id="sx-pk-get-user-context-macro"><h1 class="title topictitle1" id="ariaid-title71" style="">SX_PK_GET_USER_CONTEXT Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title72" id="c-15"><h2 class="title topictitle2" id="ariaid-title72" style="">C</h2><div class="body"><pre class="pre codeblock c"><span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_GET_USER_CONTEXT</span> ((FUNC_SX_PK_GET_USER_CONTEXT)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_GET_USER_CONTEXT)))
+</pre></div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title73" id="parameters-10"><h2 class="title topictitle2" id="ariaid-title73" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> req The acquired acceleration request  @return Context pointer from an acceleration request   @see SX_PK_SET_USER_CONTEXT()</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title74" id="return-the-global-operands-size-detected-for-the-request"><h1 class="title topictitle1" id="ariaid-title74" style="">Return the global operands size detected for the request</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title75" id="func-sx-pk-get-opsizesx-pk-accel-typedef"><h1 class="title topictitle1" id="ariaid-title75" style="">(FUNC_SX_PK_GET_OPSIZE)(sx_pk_accel Typedef</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title76" id="c-16"><h2 class="title topictitle2" id="ariaid-title76" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">int</strong> (FUNC_SX_PK_GET_OPSIZE)(sx_pk_accel req);
+</pre></div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title77" id="sx-pk-get-opsize-macro"><h1 class="title topictitle1" id="ariaid-title77" style="">SX_PK_GET_OPSIZE Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title78" id="c-17"><h2 class="title topictitle2" id="ariaid-title78" style="">C</h2><div class="body"><pre class="pre codeblock c"><span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_GET_OPSIZE</span> ((FUNC_SX_PK_GET_OPSIZE)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_GET_OPSIZE)))
+</pre></div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title79" id="parameters-11"><h2 class="title topictitle2" id="ariaid-title79" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> req The acquired acceleration request  @return Operand size for the request</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title80" id="operand-slot-structure-"><h1 class="title topictitle1" id="ariaid-title80" style="">Operand slot structure */</h1><div class="body"><p class="p">struct sx_pk_slot
+{</p>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title81" id="memory-address-of-the-operand-slot-"><h1 class="title topictitle1" id="ariaid-title81" style="">Memory address of the operand slot **/</h1><div class="body"><p class="p">char addr;
+};</p>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title82" id="pair-of-slots"><h1 class="title topictitle1" id="ariaid-title82" style="">Pair of slots</h1><div class="body"><p class="p">Used to store large values
+struct sx_pk_dblslot
+{</p>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title83" id="first-slot-"><h1 class="title topictitle1" id="ariaid-title83" style="">First slot **/</h1><div class="body"><p class="p">struct sx_pk_slot a;</p>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title84" id="second-slot-"><h1 class="title topictitle1" id="ariaid-title84" style="">Second slot **/</h1><div class="body"><p class="p">struct sx_pk_slot b;
+};</p>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title85" id="list-slots-for-input-operands-for-an-ecc-operation"><h1 class="title topictitle1" id="ariaid-title85" style="">List slots for input operands for an ECC operation</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title86" id="sx-pk-list-ecc-inslots-macro"><h1 class="title topictitle1" id="ariaid-title86" style="">SX_PK_LIST_ECC_INSLOTS Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title87" id="c-18"><h2 class="title topictitle2" id="ariaid-title87" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">int</strong> (FUNC_SX_PK_LIST_ECC_INSLOTS)(sx_pk_accel req, <strong class="hl-keyword">const</strong> <strong class="hl-keyword">struct</strong> sx_pk_ecurve curve, <strong class="hl-keyword">int</strong> flags, <strong class="hl-keyword">struct</strong> sx_pk_slot inputs);
+<span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_LIST_ECC_INSLOTS</span> ((FUNC_SX_PK_LIST_ECC_INSLOTS)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_LIST_ECC_INSLOTS)))
+</pre><p class="p">Once the function completes with ::SX_OK,
+write each operand to the address
+found in the corresponding slot.</p>
+<p class="p">That applies to all ECC operations.</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title88" id="parameters-12"><h2 class="title topictitle2" id="ariaid-title88" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> req The acceleration request obtained  through SX_PK_ACQUIRE_REQ()</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title89" id="parameters-13"><h2 class="title topictitle2" id="ariaid-title89" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> curve The curve used for that ECC operation</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title90" id="parameters-14"><h2 class="title topictitle2" id="ariaid-title90" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> flags Operation specific flags</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title91" id="parameters-15"><h2 class="title topictitle2" id="ariaid-title91" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> inputs List of input slots that will be filled in.  See inputslots.h for predefined lists of input slots per operation.   @return ::SX_OK  @return ::SX_ERR_OPERAND_TOO_LARGE  @return ::SX_ERR_BUSY</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title92" id="list-slots-for-input-operands-for-a-gfp-modular-operation"><h1 class="title topictitle1" id="ariaid-title92" style="">List slots for input operands for a GF(p) modular operation.</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title93" id="sx-pk-list-gfp-inslots-macro"><h1 class="title topictitle1" id="ariaid-title93" style="">SX_PK_LIST_GFP_INSLOTS Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title94" id="c-19"><h2 class="title topictitle2" id="ariaid-title94" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">int</strong> (FUNC_SX_PK_LIST_GFP_INSLOTS)(sx_pk_accel req, <strong class="hl-keyword">const</strong> <strong class="hl-keyword">int</strong> opsizes, <strong class="hl-keyword">struct</strong> sx_pk_slot inputs);
+<span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_LIST_GFP_INSLOTS</span> ((FUNC_SX_PK_LIST_GFP_INSLOTS)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_LIST_GFP_INSLOTS)))
+</pre><p class="p">Once the function completes with ::SX_OK,
+write each operands to the address
+found in the corresponding slot.</p>
+<p class="p">That applies to all operations except ECC.</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title95" id="parameters-16"><h2 class="title topictitle2" id="ariaid-title95" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> req The acceleration request obtained  through SX_PK_ACQUIRE_REQ()</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title96" id="parameters-17"><h2 class="title topictitle2" id="ariaid-title96" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> opsizes List of operand sizes in bytes</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title97" id="parameters-18"><h2 class="title topictitle2" id="ariaid-title97" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> inputs List of input slots that will be filled in.  See inputslots.h for predefined lists of input slots per operation.   @return ::SX_OK  @return ::SX_ERR_OPERAND_TOO_LARGE  @return ::SX_ERR_BUSY</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title98" id="run-the-operation-request-in-hardware"><h1 class="title topictitle1" id="ariaid-title98" style="">Run the operation request in hardware.</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title99" id="func-sx-pk-runsx-pk-accel-typedef"><h1 class="title topictitle1" id="ariaid-title99" style="">(FUNC_SX_PK_RUN)(sx_pk_accel Typedef</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title100" id="c-20"><h2 class="title topictitle2" id="ariaid-title100" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">void</strong> (FUNC_SX_PK_RUN)(sx_pk_accel req);
+</pre></div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title101" id="sx-pk-run-macro"><h1 class="title topictitle1" id="ariaid-title101" style="">SX_PK_RUN Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title102" id="c-21"><h2 class="title topictitle2" id="ariaid-title102" style="">C</h2><div class="body"><pre class="pre codeblock c"><span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_RUN</span> ((FUNC_SX_PK_RUN)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_RUN)))
+</pre><p class="p">@pre To be called after all operands have been written in the slots
+obtainded with SX_PK_LIST_ECC_INSLOTS() or SX_PK_LIST_GFP_INSLOTS().
+After that the acceleration request is pending.</p>
+<p class="p">@post The caller should wait until the operation finishes with
+SX_PK_WAIT() or do polling by using sx_pk_has_finished().</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title103" id="parameters-19"><h2 class="title topictitle2" id="ariaid-title103" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> req The acceleration request obtained  through SX_PK_ACQUIRE_REQ()</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title104" id="check-if-the-current-operation-is-still-ongoing-or-finished"><h1 class="title topictitle1" id="ariaid-title104" style="">Check if the current operation is still ongoing or finished</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title105" id="func-sx-pk-get-statussx-pk-accel-typedef"><h1 class="title topictitle1" id="ariaid-title105" style="">(FUNC_SX_PK_GET_STATUS)(sx_pk_accel Typedef</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title106" id="c-22"><h2 class="title topictitle2" id="ariaid-title106" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">int</strong> (FUNC_SX_PK_GET_STATUS)(sx_pk_accel req);
+</pre></div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title107" id="sx-pk-get-status-macro"><h1 class="title topictitle1" id="ariaid-title107" style="">SX_PK_GET_STATUS Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title108" id="c-23"><h2 class="title topictitle2" id="ariaid-title108" style="">C</h2><div class="body"><pre class="pre codeblock c"><span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_GET_STATUS</span> ((FUNC_SX_PK_GET_STATUS)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_GET_STATUS)))
+</pre><p class="p">Read the status of a request. When the accelerator is still
+busy, return ::SX_ERR_BUSY. When the accelerator
+finished, return ::SX_OK. May only be called after SX_PK_RUN().
+May not be called after sx_pk_has_finished() or other functions
+like SX_PK_WAIT() reported that the operation finished.</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title109" id="parameters-20"><h2 class="title topictitle2" id="ariaid-title109" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> req The acceleration request obtained  through SX_PK_ACQUIRE_REQ()  @return Any \ref SX_PK_STATUS "status code"</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title110" id="legacy-name-of-sx-pk-get-status-"><h1 class="title topictitle1" id="ariaid-title110" style="">Legacy name of SX_PK_GET_STATUS() **/</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title111" id="wait-until-the-current-operation-finishes"><h1 class="title topictitle1" id="ariaid-title111" style="">Wait until the current operation finishes.</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title112" id="func-sx-pk-waitsx-pk-accel-typedef"><h1 class="title topictitle1" id="ariaid-title112" style="">(FUNC_SX_PK_WAIT)(sx_pk_accel Typedef</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title113" id="c-24"><h2 class="title topictitle2" id="ariaid-title113" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">int</strong> (FUNC_SX_PK_WAIT)(sx_pk_accel req);
+</pre></div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title114" id="sx-pk-wait-macro"><h1 class="title topictitle1" id="ariaid-title114" style="">SX_PK_WAIT Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title115" id="c-25"><h2 class="title topictitle2" id="ariaid-title115" style="">C</h2><div class="body"><pre class="pre codeblock c"><span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_WAIT</span> ((FUNC_SX_PK_WAIT)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_WAIT)))
+</pre><p class="p">After the operation finishes, return the operation status code.</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title116" id="parameters-21"><h2 class="title topictitle2" id="ariaid-title116" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> req The acceleration request obtained  through SX_PK_ACQUIRE_REQ()  @return Any \ref SX_PK_STATUS "status code"</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title117" id="clear-the-interrupt-request-signal"><h1 class="title topictitle1" id="ariaid-title117" style="">Clear the interrupt request signal</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title118" id="func-sx-pk-clear-irqvoid-typedef"><h1 class="title topictitle1" id="ariaid-title118" style="">(FUNC_SX_PK_CLEAR_IRQ)(void); Typedef</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title119" id="c-26"><h2 class="title topictitle2" id="ariaid-title119" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">void</strong> (FUNC_SX_PK_CLEAR_IRQ)(<strong class="hl-keyword">void</strong>);
+</pre></div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title120" id="sx-pk-clearirq-macro"><h1 class="title topictitle1" id="ariaid-title120" style="">SX_PK_CLEARIRQ Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title121" id="c-27"><h2 class="title topictitle2" id="ariaid-title121" style="">C</h2><div class="body"><pre class="pre codeblock c"><span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_CLEARIRQ</span> ((FUNC_SX_PK_CLEAR_IRQ)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_CLEARIRQ)))
+</pre><p class="p">Clear the IRQ request signal</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title122" id="return-the-public-key-acceleration-request-which-finished-its-operation"><h1 class="title topictitle1" id="ariaid-title122" style="">Return the public key acceleration request which finished its operation.</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title123" id="sx-pk-pop-finished-req-macro"><h1 class="title topictitle1" id="ariaid-title123" style="">SX_PK_POP_FINISHED_REQ Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title124" id="c-28"><h2 class="title topictitle2" id="ariaid-title124" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> sx_pk_accel (FUNC_SX_PK_POP_FINISHED_REQ)(<strong class="hl-keyword">struct</strong> sx_pk_cnx cnx);
+<span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_POP_FINISHED_REQ</span> ((FUNC_SX_PK_POP_FINISHED_REQ)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_POP_FINISHED_REQ)))
+</pre><p class="p">If no public key accelerator finished or none has an operation, return NULL.
+The results from the returned sx_pk_accel should be used as soon as
+possible and the instances given back with SX_PK_RELEASE_REQ().</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title125" id="parameters-22"><h2 class="title topictitle2" id="ariaid-title125" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> cnx Connection structure obtained through SX_PK_OPEN() at startup  @return NULL when no public key accelerator finished or none has an operation  @return The acceleration request which finished its operation</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title126" id="return-a-platform-notification-that-notifies-when-a-request-completed"><h1 class="title topictitle1" id="ariaid-title126" style="">Return a platform notification that notifies when a request completed.</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title127" id="sx-pk-get-global-notification-id-macro"><h1 class="title topictitle1" id="ariaid-title127" style="">SX_PK_GET_GLOBAL_NOTIFICATION_ID Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title128" id="c-29"><h2 class="title topictitle2" id="ariaid-title128" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">int</strong> (FUNC_SX_PK_GET_GLOBAL_NOTIFICATION_ID)(<strong class="hl-keyword">struct</strong> sx_pk_cnx cnx);
+<span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_GET_GLOBAL_NOTIFICATION_ID</span> ((FUNC_SX_PK_GET_GLOBAL_NOTIFICATION_ID)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_GET_GLOBAL_NOTIFICATION_ID)))
+</pre><p class="p">The platform notification id is:</p>
+<ul class="ul"><li class="li"><p class="p">-1 if not available</p>
+</li>
+<li class="li"><p class="p">a fd on POSIX systems</p>
+</li>
+<li class="li"><p class="p">an interrupt line number</p>
+</li>
+</ul>
+<p class="p">When a request completes the notification will activate.
+The fd will become readable and the interrupt line will
+generate an interrupt. The returned platform notification can
+be used once. After the platform notification or after
+SX_PK_POP_FINISHED_REQ(), the notification id shall not
+be used anymore.</p>
+<p class="p">May not be used in combination with SX_PK_WAIT().</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title129" id="parameters-23"><h2 class="title topictitle2" id="ariaid-title129" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> cnx Connection structure obtained through SX_PK_OPEN() at startup  @return platform notification id</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title130" id="legacy-name-of-sx-pk-get-global-notification-id-"><h1 class="title topictitle1" id="ariaid-title130" style="">Legacy name of SX_PK_GET_GLOBAL_NOTIFICATION_ID() **/</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title131" id="return-a-platform-notification-id-of-completion-of-this-request"><h1 class="title topictitle1" id="ariaid-title131" style="">Return a platform notification id of completion of this request</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title132" id="func-sx-pk-get-req-completion-idsx-pk-accel-typedef"><h1 class="title topictitle1" id="ariaid-title132" style="">(FUNC_SX_PK_GET_REQ_COMPLETION_ID)(sx_pk_accel Typedef</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title133" id="c-30"><h2 class="title topictitle2" id="ariaid-title133" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">int</strong> (FUNC_SX_PK_GET_REQ_COMPLETION_ID)(sx_pk_accel req);
+</pre></div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title134" id="sx-pk-get-req-completion-id-macro"><h1 class="title topictitle1" id="ariaid-title134" style="">SX_PK_GET_REQ_COMPLETION_ID Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title135" id="c-31"><h2 class="title topictitle2" id="ariaid-title135" style="">C</h2><div class="body"><pre class="pre codeblock c"><span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_GET_REQ_COMPLETION_ID</span> ((FUNC_SX_PK_GET_REQ_COMPLETION_ID)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_GET_REQ_COMPLETION_ID)))
+</pre><p class="p">The platform notification id is:</p>
+<ul class="ul"><li class="li"><p class="p">-1 if not available</p>
+</li>
+<li class="li"><p class="p">a fd on POSIX systems</p>
+</li>
+<li class="li"><p class="p">an interrupt line number</p>
+</li>
+</ul>
+<p class="p">When the request completes the notification will activate.
+The fd will become readable and the interrupt line will
+generate an interrupt. After it was used or after
+SX_PK_POP_FINISHED_REQ(), the fd or interrupt line
+shall not be used anymore.</p>
+<p class="p">May not be used in combination with SX_PK_WAIT().</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title136" id="parameters-24"><h2 class="title topictitle2" id="ariaid-title136" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> req The acceleration request obtained  through SX_PK_ACQUIRE_REQ()  @return platform notification id</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title137" id="fetch-array-of-addresses-to-output-operands"><h1 class="title topictitle1" id="ariaid-title137" style="">Fetch array of addresses to output operands</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title138" id="char-typedef"><h1 class="title topictitle1" id="ariaid-title138" style="">char Typedef</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title139" id="c-32"><h2 class="title topictitle2" id="ariaid-title139" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">const</strong> <strong class="hl-keyword">char</strong> (FUNC_SX_PK_GET_OUTPUT_OPS)(sx_pk_accel req);
+</pre></div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title140" id="sx-pk-get-output-ops-macro"><h1 class="title topictitle1" id="ariaid-title140" style="">SX_PK_GET_OUTPUT_OPS Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title141" id="c-33"><h2 class="title topictitle2" id="ariaid-title141" style="">C</h2><div class="body"><pre class="pre codeblock c"><span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_GET_OUTPUT_OPS</span> ((FUNC_SX_PK_GET_OUTPUT_OPS)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_GET_OUTPUT_OPS)))
+</pre></div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title142" id="parameters-25"><h2 class="title topictitle2" id="ariaid-title142" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> req The acceleration request obtained  through SX_PK_ACQUIRE_REQ()  @return Array of addresses to output operands</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title143" id="give-back-the-public-key-acceleration-request"><h1 class="title topictitle1" id="ariaid-title143" style="">Give back the public key acceleration request.</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title144" id="func-sx-pk-release-reqsx-pk-accel-typedef"><h1 class="title topictitle1" id="ariaid-title144" style="">(FUNC_SX_PK_RELEASE_REQ)(sx_pk_accel Typedef</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title145" id="c-34"><h2 class="title topictitle2" id="ariaid-title145" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">void</strong> (FUNC_SX_PK_RELEASE_REQ)(sx_pk_accel req);
+</pre></div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title146" id="sx-pk-release-req-macro"><h1 class="title topictitle1" id="ariaid-title146" style="">SX_PK_RELEASE_REQ Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title147" id="c-35"><h2 class="title topictitle2" id="ariaid-title147" style="">C</h2><div class="body"><pre class="pre codeblock c"><span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_RELEASE_REQ</span> ((FUNC_SX_PK_RELEASE_REQ)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_RELEASE_REQ)))
+</pre><p class="p">Release the reserved resources</p>
+<p class="p">@pre SX_PK_ACQUIRE_REQ() should have been called
+before this function is called and not
+being in use by the hardware</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title148" id="parameters-26"><h2 class="title topictitle2" id="ariaid-title148" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> req The acceleration request obtained  through SX_PK_ACQUIRE_REQ()  operation has finished</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title149" id="elliptic-curve-configuration-and-parameters"><h1 class="title topictitle1" id="ariaid-title149" style="">Elliptic curve configuration and parameters.</h1><div class="body"><p class="p">To be used only via the functions in ec_curves.h The internal members of the
+structure should not be accessed directly.
+struct sx_pk_ecurve {
+uint32_t curveflags;
+int sz;
+const char params;
+int offset;
+struct sx_pk_cnx cnx;
+};</p>
+<p class="p">}</p>
+</div>
+</div>
+</body>
+</html>

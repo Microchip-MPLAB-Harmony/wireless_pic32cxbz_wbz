@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE11" /><meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="topic" />
+<meta name="DC.title" content="Simpler functions for base ED25519 operations" />
+<meta name="DC.relation" scheme="URI" content="GUID-82627570-09DA-49A7-95EC-D502E201BEA3.html" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="simpler-functions-for-base-ed25519-operations" />
+<link rel="stylesheet" type="text/css" href="stylesheets/atmel.css" />
+<title>Simpler functions for base ED25519 operations</title>
+<meta name="Microsoft.Help.Id" content="GUID-2085FE66-A762-4CC0-B054-7F98E8AF999A" />
+<meta name="Microsoft.Help.TocParent" content="GUID-2085FE66-A762-4CC0-B054-7F98E8AF999A-GUID-82627570-09DA-49A7-95EC-D502E201BEA3" />
+<meta name="Microsoft.Help.TocOrder" content="0" />
+<meta name="Microsoft.Help.Locale" content="en-US" />
+<meta name="Microsoft.Help.TopicLocale" content="en-US" />
+<meta name="Microsoft.Help.DisplayVersion" content="MPLAB Harmony PIC32CX-BZ System Services Reference 4 10/2023" />
+<script language="javascript">
+       
+       if (window.parent.location.protocol != 'file:') {
+				document.addEventListener('click', function(e) {
+				    if (e.target) {
+               if (e.target.nodeName == "A" ) {
+                    if (!e.target.target) {
+                      e.preventDefault();
+                      e.stopPropagation();
+                              
+                      var origUrl = window.parent.location.href.substr(0, window.parent.location.href.indexOf("?"));
+                      if (origUrl.length === 0) {
+                          origUrl = window.parent.location.href;
+                      }
+                      var href= e.target.getAttribute("href");
+                      var parts = href.split("#");
+          
+                      var url = "";
+                      if (parts.length == 2 ) {
+                        if (!parts[0].length) {
+                            url = window.parent.location.search.replace('?','')
+                        } else {
+                            url = parts[0].replace('.html','');
+                        }
+                      } else {
+                        url = parts[0].replace('.html','');
+                      }
+
+                      if (parts.length == 2) {
+                          url += "#" + parts[1];
+                      }
+    
+                      window.parent.location.href = origUrl + "?" + url;
+
+                      return false;
+                    }
+               }
+            }
+				});
+			}
+
+		</script><script language="javascript">
+         
+         function copyContent(content, button) {
+         
+            var textArea = document.createElement("textarea");
+            
+            // Place in the top-left corner of screen regardless of scroll position.
+            textArea.style.position = 'fixed';
+            textArea.style.top = 0;
+            textArea.style.left = 0;
+            
+            // Ensure it has a small width and height. Setting to 1px / 1em
+            // doesn't work as this gives a negative w/h on some browsers.
+            textArea.style.width = '2em';
+            textArea.style.height = '2em';
+            
+            // We don't need padding, reducing the size if it does flash render.
+            textArea.style.padding = 0;
+            
+            // Clean up any borders.
+            textArea.style.border = 'none';
+            textArea.style.outline = 'none';
+            textArea.style.boxShadow = 'none';
+            
+            // Avoid flash of the white box if rendered for any reason.
+            textArea.style.background = 'transparent';
+            
+            textArea.value = content;
+            
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+               var successful = document.execCommand('copy');
+               var msg = successful ? 'successful' : 'unsuccessful';
+               if (!button.classList.contains("copied")){
+                  button.textContent = "Copied";
+                  button.classList.add("copied");
+                  setTimeout(function(){
+                     button.textContent = "Copy";
+                     button.classList.remove("copied");
+                  },1000);
+               }
+            } catch (err) {
+               console.log('Oops, unable to copy');
+            }
+            
+            document.body.removeChild(textArea);
+         }
+         
+         function cpy(id, button) {
+            var element = document.getElementById(id);
+            var content = element.getAttribute("content");
+            
+            copyContent(content, button);
+         }
+         
+         document.addEventListener("DOMContentLoaded", function(event) {
+            document.querySelectorAll(".codeblock").forEach(function(elem) {
+               elem.style.position = "relative";
+               var copy = document.createElement("button");
+               copy.textContent = "Copy";
+               copy.setAttribute("class", "copy-code");
+               
+               var content = elem.textContent;
+               
+               copy.addEventListener("click", function(){
+                  copyContent(content, copy);
+               });
+               
+               elem.addEventListener("mouseenter", function(evt){
+                  elem.prepend(copy);
+               });
+            });
+            
+            document.querySelectorAll(".codeblock").forEach(function(elem) {
+               elem.addEventListener("mouseleave", function(evt){
+                  document.querySelector(".copy-code").remove();
+               });
+            });
+         });
+         
+      </script><script language="javascript">
+          
+          // Add the MathML namespace to html
+          var html = document.getElementsByTagName("html")[0],
+          head = document.getElementsByTagName("head")[0];
+          
+          var mathJax = document.createElement("script");
+          mathJax.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML";
+          head.appendChild(mathJax);
+          
+          html.setAttribute("xmlns:m","http://www.w3.org/1998/Math/MathML");
+          
+          function inIframe() { try { return window.self !== window.top; } catch (e) { return true; } }
+          
+          if (!inIframe()) { 
+          
+          var Default = "index.html?"; 
+          
+          var displaylocation = "value" + window.location.href;
+          
+          var GUIDS = displaylocation.split('GUID');          
+          
+          if (displaylocation.indexOf('#GUID') != -1) {            
+          var First = GUIDS[1].split('.html');  
+          if (GUIDS[3]){First = GUIDS[2].split('.html');}
+          if (GUIDS[4]){First = GUIDS[3].split('.html');}
+          if (GUIDS[5]){First = GUIDS[4].split('.html');}
+          
+          var Second = GUIDS[2].split('#');   
+          if (GUIDS[3]){Second = GUIDS[3].split('#');}
+          if (GUIDS[4]){Second = GUIDS[4].split('#');}
+          if (GUIDS[5]){Second = GUIDS[5].split('#');}
+          
+          Default = "index.html?" + "GUID" + First[0] + "GUID" + Second[0];     
+          }                    
+          window.top.location = Default;
+          }       
+          
+        </script><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /><style xml:space="">
+        
+          button.copy-code{
+            display:none;
+            padding:0.7em 1.4em;
+            margin:0 0.3em 0.3em 0;
+            border-radius:0.15em;
+            box-sizing: border-box;
+            text-decoration:none;
+            font-family:'Roboto',sans-serif;
+            text-transform:uppercase;
+            font-weight:400;
+            color:#FFFFFF;
+            background-color:#9c9c9c;
+            box-shadow:inset 0 -0.6em 0 -0.35em rgba(0,0,0,0.17);
+            text-align:center;
+            position:relative;
+            border: 0;
+            float: right;
+            border-radius: .5em;
+            cursor: pointer;
+          }
+          button.copy-code:active{
+            top:0.1em;
+          }
+          
+          pre:hover button.copy-code{
+            display: inline-block !important;
+          }
+          button.copy-code.copied {
+            cursor: default !important;
+          }
+          
+          
+          @media all and (max-width:30em){
+            button.copy-code{
+              display:block;
+              margin:0.4em auto;
+            }
+          }
+        
+        
+      </style><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /></head>
+<body>
+<div class="nested0" aria-labelledby="ariaid-title1" id="simpler-functions-for-base-ed25519-operations"><h1 class="title topictitle1" id="ariaid-title1" style="">Simpler functions for base ED25519 operations</h1><div class="body"><p class="p">@file</p>
+</div>
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="GUID-82627570-09DA-49A7-95EC-D502E201BEA3.html" title="Enter a short description of your topic here (optional).">Silex_PK_API</a></div>
+</div>
+</div></div>
+<div class="topic nested0" aria-labelledby="ariaid-title2" id="ed25519-header-file-macro"><h1 class="title topictitle1" id="ariaid-title2" style="">ED25519_HEADER_FILE Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title3" id="c"><h2 class="title topictitle2" id="ariaid-title3" style="">C</h2><div class="body"><pre class="pre codeblock c"><span class="hl-directive">#define</span> <span class="hl-defines">ED25519_HEADER_FILE</span>
+</pre><p class="p">/
+Copyright (c) 2018-2020 Silex Insight sa
+Copyright (c) 2018-2020 Beerten Engineering scs
+SPDX-License-Identifier: BSD-3-Clause</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title4" id="size-in-bytes-of-a-reduced-value-in-ed25519-operations-"><h1 class="title topictitle1" id="ariaid-title4" style="">Size in bytes of a reduced value in ED25519 operations */</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title5" id="size-in-bytes-of-an-encoded-ed25519-point-"><h1 class="title topictitle1" id="ariaid-title5" style="">Size in bytes of an encoded ED25519 point */</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title6" id="sx-ed25519-pt-sz-macro"><h1 class="title topictitle1" id="ariaid-title6" style="">SX_ED25519_PT_SZ Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title7" id="c-1"><h2 class="title topictitle2" id="ariaid-title7" style="">C</h2><div class="body"><pre class="pre codeblock c"><span class="hl-directive">#define</span> <span class="hl-defines">SX_ED25519_PT_SZ</span> <span class="hl-number">32</span>
+</pre></div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title8" id="size-in-bytes-of-a-digest-in-ed25519-operations-"><h1 class="title topictitle1" id="ariaid-title8" style="">Size in bytes of a digest in ED25519 operations */</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title9" id="sx-ed25519-dgst-sz-macro"><h1 class="title topictitle1" id="ariaid-title9" style="">SX_ED25519_DGST_SZ Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title10" id="c-2"><h2 class="title topictitle2" id="ariaid-title10" style="">C</h2><div class="body"><pre class="pre codeblock c"><span class="hl-directive">#define</span> <span class="hl-defines">SX_ED25519_DGST_SZ</span> (<span class="hl-number">32</span> <span class="hl-number">2</span>)
+</pre><p class="p">@addtogroup SX_PK_ED25519</p>
+<p class="p">@{</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title11" id="an-encoded-ed25519-point-"><h1 class="title topictitle1" id="ariaid-title11" style="">An encoded ED25519 point */</h1><div class="body"><p class="p">struct sx_ed25519_pt {</p>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title12" id="bytes-array-representing-encoded-point-for-ed25519-"><h1 class="title topictitle1" id="ariaid-title12" style="">Bytes array representing encoded point for ED25519 **/</h1><div class="body"><p class="p">char encoded<span class="xref"></span>;
+};</p>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title13" id="a-ed25519-scalar-value-"><h1 class="title topictitle1" id="ariaid-title13" style="">A ED25519 scalar value */</h1><div class="body"><p class="p">struct sx_ed25519_v {</p>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title14" id="bytes-array-representing-scalar-for-ed25519-"><h1 class="title topictitle1" id="ariaid-title14" style="">Bytes array representing scalar for ED25519 **/</h1><div class="body"><p class="p">char bytes<span class="xref"></span>;
+};</p>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title15" id="a-hash-digest-used-in-the-ed25519-protocol-"><h1 class="title topictitle1" id="ariaid-title15" style="">A hash digest used in the ED25519 protocol */</h1><div class="body"><p class="p">struct sx_ed25519_dgst {</p>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title16" id="bytes-array-of-hash-digest-"><h1 class="title topictitle1" id="ariaid-title16" style="">Bytes array of hash digest **/</h1><div class="body"><p class="p">char bytes<span class="xref"></span>;
+};</p>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title17" id="eddsa-point-multiplication-ed25519"><h1 class="title topictitle1" id="ariaid-title17" style="">EDDSA point multiplication (ED25519)</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title18" id="sx-ed25519-ptmult-macro"><h1 class="title topictitle1" id="ariaid-title18" style="">SX_ED25519_PTMULT Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title19" id="c-3"><h2 class="title topictitle2" id="ariaid-title19" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">int</strong> (FUNC_SX_ED25519_PTMULT)(<strong class="hl-keyword">struct</strong> sx_pk_cnx cnx, <strong class="hl-keyword">const</strong> <strong class="hl-keyword">struct</strong> sx_ed25519_dgst r, <strong class="hl-keyword">struct</strong> sx_ed25519_pt pt);
+<span class="hl-directive">#define</span> <span class="hl-defines">SX_ED25519_PTMULT</span> ((FUNC_SX_ED25519_PTMULT)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_ED25519_PTMULT)))
+</pre><p class="p">Compute R = r G, where r is a scalar which can be up to twice the
+size of the other operands. G is the generator point for the curve.
+The point R is encoded in pt.</p>
+<p class="p">When computing the public key, the scalar 'r' is the secret scalar based on
+the clamped hash digest of the private key.</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title20" id="parameters"><h2 class="title topictitle2" id="ariaid-title20" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> cnx Connection structure obtained through SX_PK_OPEN() at startup</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title21" id="parameters-1"><h2 class="title topictitle2" id="ariaid-title21" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> r Secret scalar based on the clamped hash digest of the private key</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title22" id="parameters-2"><h2 class="title topictitle2" id="ariaid-title22" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> pt Encoded resulting R point   @return ::SX_OK  @return ::SX_ERR_INVALID_PARAM  @return ::SX_ERR_UNKNOWN_ERROR  @return ::SX_ERR_BUSY  @return ::SX_ERR_NOT_IMPLEMENTED  @return ::SX_ERR_OPERAND_TOO_LARGE  @return ::SX_ERR_PLATFORM_ERROR  @return ::SX_ERR_EXPIRED   @see SX_ASYNC_ED25519_PTMULT_GO() and SX_ASYNC_ED25519_PTMULT_END()  for an asynchronous version</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title23" id="asynchronous-eddsa-point-multiplication-ed25519"><h1 class="title topictitle1" id="ariaid-title23" style="">Asynchronous EDDSA point multiplication (ED25519)</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title24" id="sx-async-ed25519-ptmult-go-macro"><h1 class="title topictitle1" id="ariaid-title24" style="">SX_ASYNC_ED25519_PTMULT_GO Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title25" id="c-4"><h2 class="title topictitle2" id="ariaid-title25" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">struct</strong> sx_pk_dreq (FUNC_SX_ASYNC_ED25519_PTMULT_GO)(<strong class="hl-keyword">struct</strong> sx_pk_cnx cnx, <strong class="hl-keyword">const</strong> <strong class="hl-keyword">struct</strong> sx_ed25519_dgst r);
+<span class="hl-directive">#define</span> <span class="hl-defines">SX_ASYNC_ED25519_PTMULT_GO</span> ((FUNC_SX_ASYNC_ED25519_PTMULT_GO)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_ASYNC_ED25519_PTMULT_GO)))
+</pre><p class="p">Start an EDDSA point multiplication on the accelerator
+and return immediately.</p>
+<p class="p">@remark When the operation finishes on the accelerator,
+call SX_ASYNC_ED25519_PTMULT_END()</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title26" id="parameters-3"><h2 class="title topictitle2" id="ariaid-title26" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> cnx Connection structure obtained through SX_PK_OPEN() at startup</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title27" id="parameters-4"><h2 class="title topictitle2" id="ariaid-title27" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> r Secret scalar based on the clamped hash digest of the private key   @return Acquired acceleration request for this operation   @see SX_ASYNC_ED25519_PTMULT_END() and SX_ED25519_PTMULT()</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title28" id="collect-the-result-of-asynchronous-eddsa-point-multiplication-ed25519"><h1 class="title topictitle1" id="ariaid-title28" style="">Collect the result of asynchronous EDDSA point multiplication (ED25519)</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title29" id="sx-async-ed25519-ptmult-end-macro"><h1 class="title topictitle1" id="ariaid-title29" style="">SX_ASYNC_ED25519_PTMULT_END Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title30" id="c-5"><h2 class="title topictitle2" id="ariaid-title30" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">void</strong> (FUNC_SX_ASYNC_ED25519_PTMULT_END)(sx_pk_accel req, <strong class="hl-keyword">struct</strong> sx_ed25519_pt pt);
+<span class="hl-directive">#define</span> <span class="hl-defines">SX_ASYNC_ED25519_PTMULT_END</span> ((FUNC_SX_ASYNC_ED25519_PTMULT_END)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_ASYNC_ED25519_PTMULT_END)))
+</pre><p class="p">Get the output operands of the EDDSA point multiplication
+and release the reserved resources.</p>
+<p class="p">@pre The operation on the accelerator must be finished before
+calling this function.</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title31" id="parameters-5"><h2 class="title topictitle2" id="ariaid-title31" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> req The previously acquired acceleration  request for this operation</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title32" id="parameters-6"><h2 class="title topictitle2" id="ariaid-title32" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> pt Encoded resulting R point   @see SX_ASYNC_ED25519_PTMULT_GO() and SX_ED25519_PTMULT()</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title33" id="compute-signature-scalar-s-for-pure-eddsa-ed25519"><h1 class="title topictitle1" id="ariaid-title33" style="">Compute signature scalar s for pure EDDSA (ED25519).</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title34" id="sx-ed25519-sign-macro"><h1 class="title topictitle1" id="ariaid-title34" style="">SX_ED25519_SIGN Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title35" id="c-6"><h2 class="title topictitle2" id="ariaid-title35" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">int</strong> (FUNC_SX_ED25519_SIGN)(<strong class="hl-keyword">struct</strong> sx_pk_cnx cnx, <strong class="hl-keyword">const</strong> <strong class="hl-keyword">struct</strong> sx_ed25519_dgst k, <strong class="hl-keyword">const</strong> <strong class="hl-keyword">struct</strong> sx_ed25519_dgst r, <strong class="hl-keyword">const</strong> <strong class="hl-keyword">struct</strong> sx_ed25519_v s, <strong class="hl-keyword">struct</strong> sx_ed25519_v sig_s);
+<span class="hl-directive">#define</span> <span class="hl-defines">SX_ED25519_SIGN</span> ((FUNC_SX_ED25519_SIGN)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_ED25519_SIGN)))
+</pre><p class="p">This represents the second step in computing an EDDSA signature.</p>
+<p class="p">This step computes sig_s :
+sig_s = (r + k s) % l</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title36" id="parameters-7"><h2 class="title topictitle2" id="ariaid-title36" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> cnx Connection structure obtained through SX_PK_OPEN() at startup</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title37" id="parameters-8"><h2 class="title topictitle2" id="ariaid-title37" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> k Hash of the encoded point R, the public key and the message.  It is interpreted as a scalar with a size double of other operands</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title38" id="parameters-9"><h2 class="title topictitle2" id="ariaid-title38" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> r Secret nonce already used in the first signature step</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title39" id="parameters-10"><h2 class="title topictitle2" id="ariaid-title39" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> s Secret scalar derived from the private key</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title40" id="parameters-11"><h2 class="title topictitle2" id="ariaid-title40" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> sig_s Second part of the EDDSA signature   @return ::SX_OK  @return ::SX_ERR_INVALID_PARAM  @return ::SX_ERR_UNKNOWN_ERROR  @return ::SX_ERR_BUSY  @return ::SX_ERR_NOT_IMPLEMENTED  @return ::SX_ERR_OPERAND_TOO_LARGE  @return ::SX_ERR_PLATFORM_ERROR  @return ::SX_ERR_EXPIRED   @see sx_async_ed25519_sign_go() and SX_ASYNC_ED25519_SIGN_END()  for an asynchronous version</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title41" id="asynchronous-second-part-signature-generation-for-pure-eddsa-ed25519"><h1 class="title topictitle1" id="ariaid-title41" style="">Asynchronous second part signature generation for pure EDDSA (ED25519).</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title42" id="sx-pk-async-ed25519-sign-go-macro"><h1 class="title topictitle1" id="ariaid-title42" style="">SX_PK_ASYNC_ED25519_SIGN_GO Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title43" id="c-7"><h2 class="title topictitle2" id="ariaid-title43" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">struct</strong> sx_pk_dreq (FUNC_SX_PK_ASYNC_ED25519_SIGN_GO)(<strong class="hl-keyword">struct</strong> sx_pk_cnx cnx, <strong class="hl-keyword">const</strong> <strong class="hl-keyword">struct</strong> sx_ed25519_dgst k, <strong class="hl-keyword">const</strong> <strong class="hl-keyword">struct</strong> sx_ed25519_dgst r, <strong class="hl-keyword">const</strong> <strong class="hl-keyword">struct</strong> sx_ed25519_v s);
+<span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_ASYNC_ED25519_SIGN_GO</span> ((FUNC_SX_PK_ASYNC_ED25519_SIGN_GO)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_ASYNC_ED25519_SIGN_GO)))
+</pre><p class="p">Start an ED25519 signature generation on the accelerator
+and return immediately.</p>
+<p class="p">@remark When the operation finishes on the accelerator,
+call SX_ASYNC_ED25519_SIGN_END()</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title44" id="parameters-12"><h2 class="title topictitle2" id="ariaid-title44" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> cnx Connection structure obtained through SX_PK_OPEN() at startup</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title45" id="parameters-13"><h2 class="title topictitle2" id="ariaid-title45" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> k Hash of the encoded point R, the public key and the message.  It is interpreted as a scalar with a size double of other operands</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title46" id="parameters-14"><h2 class="title topictitle2" id="ariaid-title46" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> r Secret nonce already used in the first signature step</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title47" id="parameters-15"><h2 class="title topictitle2" id="ariaid-title47" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> s Secret scalar derived from the private key   @return Acquired acceleration request for this operation   @see SX_ED25519_SIGN() and SX_ASYNC_ED25519_SIGN_END()</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title48" id="collect-the-result-of-asynchronous-computation-of-ed25519-signature-scalar"><h1 class="title topictitle1" id="ariaid-title48" style="">Collect the result of asynchronous computation of ED25519 signature scalar</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title49" id="sx-async-ed25519-sign-end-macro"><h1 class="title topictitle1" id="ariaid-title49" style="">SX_ASYNC_ED25519_SIGN_END Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title50" id="c-8"><h2 class="title topictitle2" id="ariaid-title50" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">void</strong> (FUNC_SX_ASYNC_ED25519_SIGN_END)(sx_pk_accel req, <strong class="hl-keyword">struct</strong> sx_ed25519_v sig_s);
+<span class="hl-directive">#define</span> <span class="hl-defines">SX_ASYNC_ED25519_SIGN_END</span> ((FUNC_SX_ASYNC_ED25519_SIGN_END)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_ASYNC_ED25519_SIGN_END)))
+</pre><p class="p">Get the output operands of the ED25519 signature generation
+and release the reserved resources.</p>
+<p class="p">@pre The operation on the accelerator must be finished before
+calling this function.</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title51" id="parameters-16"><h2 class="title topictitle2" id="ariaid-title51" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> req The previously acquired acceleration  request for this operation</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title52" id="parameters-17"><h2 class="title topictitle2" id="ariaid-title52" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> sig_s Second part of the ED25519 signature   @see SX_PK_ASYNC_ED25519_SIGN_GO() and SX_ED25519_SIGN()</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title53" id="verify-an-eddsa-signature-ed25519"><h1 class="title topictitle1" id="ariaid-title53" style="">Verify an EDDSA signature (ED25519)</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title54" id="sx-ed25519-verify-macro"><h1 class="title topictitle1" id="ariaid-title54" style="">SX_ED25519_VERIFY Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title55" id="c-9"><h2 class="title topictitle2" id="ariaid-title55" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">int</strong> (FUNC_SX_ED25519_VERIFY)(<strong class="hl-keyword">struct</strong> sx_pk_cnx cnx, <strong class="hl-keyword">const</strong> <strong class="hl-keyword">struct</strong> sx_ed25519_dgst k, <strong class="hl-keyword">const</strong> <strong class="hl-keyword">struct</strong> sx_ed25519_pt a, <strong class="hl-keyword">const</strong> <strong class="hl-keyword">struct</strong> sx_ed25519_v sig_s, <strong class="hl-keyword">const</strong> <strong class="hl-keyword">struct</strong> sx_ed25519_pt r);
+<span class="hl-directive">#define</span> <span class="hl-defines">SX_ED25519_VERIFY</span> ((FUNC_SX_ED25519_VERIFY)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_ED25519_VERIFY)))
+</pre><p class="p">It checks if sig_s G - k A matches R.</p>
+<p class="p">sig_s and the encoded point R form the signature. The points A and R are
+passed in their encoded form via 'a' and 'r'.</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title56" id="parameters-18"><h2 class="title topictitle2" id="ariaid-title56" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> cnx Connection structure obtained through SX_PK_OPEN() at startup</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title57" id="parameters-19"><h2 class="title topictitle2" id="ariaid-title57" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> k Hash of the encoded point R, the public key and the message.  It is interpreted as a scalar with a size double of other operands</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title58" id="parameters-20"><h2 class="title topictitle2" id="ariaid-title58" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> a Encoded public key</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title59" id="parameters-21"><h2 class="title topictitle2" id="ariaid-title59" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> sig_s Second part of the signature</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title60" id="parameters-22"><h2 class="title topictitle2" id="ariaid-title60" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> r Encoded first part of the signature   @return ::SX_OK  @return ::SX_ERR_OUT_OF_RANGE  @return ::SX_ERR_POINT_NOT_ON_CURVE  @return ::SX_ERR_INVALID_SIGNATURE  @return ::SX_ERR_INVALID_PARAM  @return ::SX_ERR_UNKNOWN_ERROR  @return ::SX_ERR_BUSY  @return ::SX_ERR_NOT_IMPLEMENTED  @return ::SX_ERR_OPERAND_TOO_LARGE  @return ::SX_ERR_PLATFORM_ERROR  @return ::SX_ERR_EXPIRED   @see SX_ASYNC_ED25519_VERIFY_GO()  for an asynchronous version</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title61" id="asynchronous-non-blocking-verify-an-ed25519-signature"><h1 class="title topictitle1" id="ariaid-title61" style="">Asynchronous (non-blocking) verify an ED25519 signature.</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title62" id="sx-async-ed25519-verify-go-macro"><h1 class="title topictitle1" id="ariaid-title62" style="">SX_ASYNC_ED25519_VERIFY_GO Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title63" id="c-10"><h2 class="title topictitle2" id="ariaid-title63" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">struct</strong> sx_pk_dreq (FUNC_SX_ASYNC_ED25519_VERIFY_GO)(<strong class="hl-keyword">struct</strong> sx_pk_cnx cnx, <strong class="hl-keyword">const</strong> <strong class="hl-keyword">struct</strong> sx_ed25519_dgst k, <strong class="hl-keyword">const</strong> <strong class="hl-keyword">struct</strong> sx_ed25519_pt a, <strong class="hl-keyword">const</strong> <strong class="hl-keyword">struct</strong> sx_ed25519_v sig_s, <strong class="hl-keyword">const</strong> <strong class="hl-keyword">struct</strong> sx_ed25519_pt r);
+<span class="hl-directive">#define</span> <span class="hl-defines">SX_ASYNC_ED25519_VERIFY_GO</span> ((FUNC_SX_ASYNC_ED25519_VERIFY_GO)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_ASYNC_ED25519_VERIFY_GO)))
+</pre><p class="p">Start an ED25519 signature generation on the accelerator
+and return immediately.</p>
+<p class="p">@remark When the operation finishes on the accelerator,
+call SX_PK_RELEASE_REQ()</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title64" id="parameters-23"><h2 class="title topictitle2" id="ariaid-title64" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> cnx Connection structure obtained through SX_PK_OPEN() at startup</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title65" id="parameters-24"><h2 class="title topictitle2" id="ariaid-title65" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> k Hash of the encoded point R, the public key and the message.  It is interpreted as a scalar with a size double of other operands</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title66" id="parameters-25"><h2 class="title topictitle2" id="ariaid-title66" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> a Encoded public key</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title67" id="parameters-26"><h2 class="title topictitle2" id="ariaid-title67" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> sig_s Second part of the signature</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title68" id="parameters-27"><h2 class="title topictitle2" id="ariaid-title68" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> r Encoded first part of the signature   @return Acquired acceleration request for this operation   @see SX_ED25519_VERIFY()</p>
+<p class="p">}</p>
+</div>
+</div>
+</div>
+</body>
+</html>

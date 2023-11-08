@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <keywords publicationid="GUID-2085FE66-A762-4CC0-B054-7F98E8AF999A"
           language="en-US"
-          version="3"
+          version="4"
           documenttitle="MPLAB Harmony PIC32CX-BZ System Services"
           pubtype="Online Reference"
           pubsubtype=""
           pubuserguidesubtype=""
           pubproducthierarchy=""
           devices="WBZ450, WBZ451, PIC32CX-BZ2"
-          revisiondate="08/09/2023 00:00:00"
-          revisionletter="3"
+          revisiondate="02/10/2023 00:00:00"
+          revisionletter="4"
           isbn=""
           pubid=""
           reachid=""
           description="System services like Device Support, Bootloader, PDS"
-          lastmodified="25/09/2023 17:42:12"
+          lastmodified="08/11/2023 20:41:41"
           covertitle="MPLAB Harmony PIC32CX-BZ System Services"
           frontcover="">
    <keyworditem topicid="GUID-EDAF833A-65A8-4C17-8178-AB52010F5638"
@@ -4900,5 +4900,137 @@
       <title>UART_Write Function</title>
       <bitfield/>
       <keyword>UART_Write</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-9D2DBA97-140B-4DEA-A9BF-A14020B464F5"
+                nocomponent="true"
+                parent="">
+      <device>WBZ450</device>
+      <module/>
+      <component/>
+      <register>RF System</register>
+      <title>RF System</title>
+      <bitfield/>
+      <keyword>WBZ450;RF System</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-9D2DBA97-140B-4DEA-A9BF-A14020B464F5"
+                nocomponent="true"
+                parent="">
+      <device>WBZ451</device>
+      <module/>
+      <component/>
+      <register>RF System</register>
+      <title>RF System</title>
+      <bitfield/>
+      <keyword>WBZ451;RF System</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-9D2DBA97-140B-4DEA-A9BF-A14020B464F5"
+                nocomponent="true"
+                parent="">
+      <device>PIC32CX-BZ2</device>
+      <module/>
+      <component/>
+      <register>RF System</register>
+      <title>RF System</title>
+      <bitfield/>
+      <keyword>PIC32CX-BZ2;RF System</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-9D2DBA97-140B-4DEA-A9BF-A14020B464F5"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>RF System</register>
+      <title>RF System</title>
+      <bitfield/>
+      <keyword>RF System</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-51FD9A2A-6D80-455D-B236-6554EB19EEA3"
+                nocomponent="true"
+                parent="">
+      <device>WBZ450</device>
+      <module/>
+      <component/>
+      <register>OSAL Extension for FreeRTOS</register>
+      <title>OSAL Extension for FreeRTOS</title>
+      <bitfield/>
+      <keyword>WBZ450;RF System</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-51FD9A2A-6D80-455D-B236-6554EB19EEA3"
+                nocomponent="true"
+                parent="">
+      <device>WBZ451</device>
+      <module/>
+      <component/>
+      <register>OSAL Extension for FreeRTOS</register>
+      <title>OSAL Extension for FreeRTOS</title>
+      <bitfield/>
+      <keyword>WBZ451;RF System</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-51FD9A2A-6D80-455D-B236-6554EB19EEA3"
+                nocomponent="true"
+                parent="">
+      <device>PIC32CX-BZ2</device>
+      <module/>
+      <component/>
+      <register>OSAL Extension for FreeRTOS</register>
+      <title>OSAL Extension for FreeRTOS</title>
+      <bitfield/>
+      <keyword>PIC32CX-BZ2;RF System</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-51FD9A2A-6D80-455D-B236-6554EB19EEA3"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>OSAL Extension for FreeRTOS</register>
+      <title>OSAL Extension for FreeRTOS</title>
+      <bitfield/>
+      <keyword>RF System</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-BD25E707-A5F1-44A2-9D31-2A71D87619DD"
+                nocomponent="true"
+                parent="">
+      <device>WBZ450</device>
+      <module/>
+      <component/>
+      <register>App Idle Task</register>
+      <title>App Idle Task</title>
+      <bitfield/>
+      <keyword>WBZ450;RF System</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-BD25E707-A5F1-44A2-9D31-2A71D87619DD"
+                nocomponent="true"
+                parent="">
+      <device>WBZ451</device>
+      <module/>
+      <component/>
+      <register>App Idle Task</register>
+      <title>App Idle Task</title>
+      <bitfield/>
+      <keyword>WBZ451;RF System</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-BD25E707-A5F1-44A2-9D31-2A71D87619DD"
+                nocomponent="true"
+                parent="">
+      <device>PIC32CX-BZ2</device>
+      <module/>
+      <component/>
+      <register>App Idle Task</register>
+      <title>App Idle Task</title>
+      <bitfield/>
+      <keyword>PIC32CX-BZ2;RF System</keyword>
+   </keyworditem>
+   <keyworditem topicid="GUID-BD25E707-A5F1-44A2-9D31-2A71D87619DD"
+                nocomponent="true"
+                parent="">
+      <device/>
+      <module/>
+      <component/>
+      <register>App Idle Task</register>
+      <title>App Idle Task</title>
+      <bitfield/>
+      <keyword>RF System</keyword>
    </keyworditem>
 </keywords>

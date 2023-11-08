@@ -8,6 +8,7 @@
 <meta name="DC.rights.owner" content="(C) Copyright 2023" />
 <meta name="generator" content="DITA-OT" /><meta name="DC.type" content="topic" />
 <meta name="DC.title" content="PIC32CX-BZ2 Standalone Bootloader Component Help" />
+<meta name="DC.relation" scheme="URI" content="GUID-FFC9758F-305D-4A4A-A577-726CDCFA18C7.html" />
 <meta name="DC.relation" scheme="URI" content="GUID-4552A2E4-E35C-4FD0-9C01-0EE86D4F6163.html" />
 <meta name="DC.relation" scheme="URI" content="GUID-079BEEAB-D3FE-415A-8EA6-F8A704302FCB.html" />
 <meta name="DC.relation" scheme="URI" content="GUID-9B3F465C-7297-4547-B7C6-3AAABEB7E261.html" />
@@ -18,11 +19,11 @@
 <link rel="stylesheet" type="text/css" href="stylesheets/atmel.css" />
 <title>PIC32CX-BZ2 Standalone Bootloader Component Help</title>
 <meta name="Microsoft.Help.Id" content="GUID-2085FE66-A762-4CC0-B054-7F98E8AF999A-GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD" />
-<meta name="Microsoft.Help.TocParent" content="GUID-2085FE66-A762-4CC0-B054-7F98E8AF999A" />
+<meta name="Microsoft.Help.TocParent" content="GUID-2085FE66-A762-4CC0-B054-7F98E8AF999A-GUID-FFC9758F-305D-4A4A-A577-726CDCFA18C7" />
 <meta name="Microsoft.Help.TocOrder" content="0" />
 <meta name="Microsoft.Help.Locale" content="en-US" />
 <meta name="Microsoft.Help.TopicLocale" content="en-US" />
-<meta name="Microsoft.Help.DisplayVersion" content="MPLAB Harmony PIC32CX-BZ System Services Reference 3 09/2023" />
+<meta name="Microsoft.Help.DisplayVersion" content="MPLAB Harmony PIC32CX-BZ System Services Reference 4 10/2023" />
 <script language="javascript">
        
        if (window.parent.location.protocol != 'file:') {
@@ -270,9 +271,9 @@
                                         <col style="width:50%" />
                                         <thead class="thead" style="text-align:left;">
                                                 <tr class="row">
-                                                  <th class="entry cellrowborder" style="vertical-align:middle;" id="d16556e67"><span>Memory Area</span></th>
+                                                  <th class="entry cellrowborder" style="vertical-align:middle;" id="d63831e67"><span>Memory Area</span></th>
 
-                                                  <th class="entry cellrowborder" style="vertical-align:middle;" id="d16556e70"><span>Purpose</span></th>
+                                                  <th class="entry cellrowborder" style="vertical-align:middle;" id="d63831e70"><span>Purpose</span></th>
 
                                                 </tr>
 
@@ -280,27 +281,27 @@
 
                                         <tbody class="tbody">
                                                 <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e67 "><span>Boot Flash Size is 0x0 to 0x5E00 –
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e67 "><span>Boot Flash Size is 0x0 to 0x5E00 –
                                                   (~24KB)</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e70 "><span>The memory where  bootloader code
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e70 "><span>The memory where  bootloader code
                                                   runs</span></td>
 
                                                 </tr>
 
                                                 <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e67 "><span>Slot 0 base address - 0x01000000</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e67 "><span>Slot 0 base address - 0x01000000</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e70 "><span>The memory where the application firmware
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e70 "><span>The memory where the application firmware
                                                   runs and the memory where the bootloader copies
                                                   the new application firmware </span></td>
 
                                                 </tr>
 
                                                 <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e67 "><span>Slot 1 base address - 0x01080000</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e67 "><span>Slot 1 base address - 0x01080000</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e70 "><span>The memory where the received image(Either
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e70 "><span>The memory where the received image(Either
                                                   through DFU or any other way) gets stored. and the
                                                   memory where bootloader looks for the new image to
                                                   copy into the Slot 0</span></td>
@@ -338,11 +339,11 @@
                                         <col style="width:" />
           <thead class="thead" style="text-align:left;">
             <tr class="row">
-              <th class="entry cellrowborder" style="text-align:left;vertical-align:middle;" id="d16556e151"><span>Offset</span></th>
+              <th class="entry cellrowborder" style="text-align:left;vertical-align:middle;" id="d63831e151"><span>Offset</span></th>
 
-              <th class="entry cellrowborder" style="text-align:left;vertical-align:middle;" id="d16556e154"><span>Name</span></th>
+              <th class="entry cellrowborder" style="text-align:left;vertical-align:middle;" id="d63831e154"><span>Name</span></th>
 
-              <th class="entry cellrowborder" style="text-align:left;vertical-align:middle;" id="d16556e157"><span>Description</span></th>
+              <th class="entry cellrowborder" style="text-align:left;vertical-align:middle;" id="d63831e157"><span>Description</span></th>
 
             </tr>
 
@@ -350,43 +351,43 @@
 
                                         <tbody class="tbody">
             <tr class="row">
-              <td class="entry cellrowborder" colspan="3" style="text-align:left;vertical-align:middle;" headers="d16556e151 d16556e154 d16556e157 "><span><strong class="ph b">Metadata Header</strong></span></td>
+              <td class="entry cellrowborder" colspan="3" style="text-align:left;vertical-align:middle;" headers="d63831e151 d63831e154 d63831e157 "><span><strong class="ph b">Metadata Header</strong></span></td>
 
             </tr>
 
                                                 <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e151 "><span>0x00:0x07</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x00:0x07</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e154 "><span>Filler</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>Filler</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e157 "><span>Set to all zero</span></td>
-
-                                                </tr>
-
-                                                <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e151 "><span>0x08:0x0D</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e154 "><span>MANU_IDENTIFIER *</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e157 "><span>“MCHP” ASCII String Identifier</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>Set to all zero</span></td>
 
                                                 </tr>
 
                                                 <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e151 "><span>0x0C:0x0F</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x08:0x0D</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e154 "><span>Filler</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>MANU_IDENTIFIER *</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e157 "><span>Set to all zero</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>“MCHP” ASCII String Identifier</span></td>
 
                                                 </tr>
 
                                                 <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e151 "><span>0x10:0x13</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x0C:0x0F</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e154 "><span>SEQ_NUM *</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>Filler</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e157 "><span>Metadata Sequence Number of the image
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>Set to all zero</span></td>
+
+                                                </tr>
+
+                                                <tr class="row">
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x10:0x13</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>SEQ_NUM *</span></td>
+
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>Metadata Sequence Number of the image
                                                   (little endian). Monotonically decreasing image
                                                   index. Values of 0 or 0xFFFFFFFF indicate that the
                                                   image is invalid. </span></td>
@@ -394,22 +395,22 @@
                                                 </tr>
 
                                                 <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e151 "><span>0x14</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x14</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e154 "><span>MD_REV</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>MD_REV</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e157 "><span>Metadata Revision. This field must be set
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>Metadata Revision. This field must be set
                                                   to 0x02 for this version of metadata
                                                   header</span></td>
 
                                                 </tr>
 
                                                 <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e151 "><span>0x15</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x15</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e154 "><span>CONT_IDX</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>CONT_IDX</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e157 "><span>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>
                 <p class="lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_KH5_5CW_3TB">Container Index<br />
 1: Plain firmware image<br />
 2: Encrypted firmware image </p>
@@ -419,11 +420,11 @@
                                                 </tr>
 
                                                 <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e151 "><span>0x16</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x16</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e154 "><span>MD_AUTH_MTHD *</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>MD_AUTH_MTHD *</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e157 "><span>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>
                 <p class="lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_YLY_VCW_3TB">Metadata authentication method. <br />
 0: None<br />
 1: SHA-256<br />
@@ -434,11 +435,11 @@
                                                 </tr>
 
                                                 <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e151 "><span>0x17</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x17</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e154 "><span>MD_AUTH_KEY</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>MD_AUTH_KEY</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e157 "><span>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>
                 <p class="lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_IRV_WCW_3TB">Key index for authenticating metadata<br />
 0: IB Key<br />
 1: Key #2 <br />
@@ -449,11 +450,11 @@ Reserved for future use. Not for MD_REV 0x01</p>
                                                 </tr>
 
                                                 <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e151 "><span>0x18</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x18</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e154 "><span>PL_DEC_MTHD</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>PL_DEC_MTHD</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e157 "><span>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>
                 <p class="lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_KVV_XCW_3TB">Payload Decryption method<br />
 0: Plain<br />
 1: AES</p>
@@ -463,11 +464,11 @@ Reserved for future use. Not for MD_REV 0x01</p>
                                                 </tr>
 
                                                 <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e151 "><span>0x19</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x19</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e154 "><span>PL_DEC_KEY</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>PL_DEC_KEY</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e157 "><span>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>
                 <p class="lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_TSM_YCW_3TB">Key index for decrypting payload<br />
 0: Key #1<br />
 1: Key #2</p>
@@ -477,46 +478,46 @@ Reserved for future use. Not for MD_REV 0x01</p>
                                                 </tr>
 
                                                 <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e151 "><span>0x1A:0x1B</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x1A:0x1B</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e154 "><span>PL_LEN</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>PL_LEN</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e157 "><span>Metadata payload length. The payload length
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>Metadata payload length. The payload length
                                                   for this version should be 0x55</span></td>
 
                                                 </tr>
 
                                                 <tr class="row">
-                                                  <td class="entry cellrowborder" colspan="3" style="vertical-align:middle;" headers="d16556e151 d16556e154 d16556e157 "><span><strong class="ph b">Metadata
+                                                  <td class="entry cellrowborder" colspan="3" style="vertical-align:middle;" headers="d63831e151 d63831e154 d63831e157 "><span><strong class="ph b">Metadata
                                                   Payload = Firmware Image Header</strong></span></td>
 
                                                 </tr>
 
                                                 <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e151 "><span>0x1C:0x1F</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x1C:0x1F</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e154 "><span>FW_IMG_REV *</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>FW_IMG_REV *</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e157 "><span>Firmware Image revision (little
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>Firmware Image revision (little
                                                   endian).</span></td>
 
                                                 </tr>
 
                                                 <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e151 "><span>0x20:0x23</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x20:0x23</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e154 "><span>FW_IMG_LEN</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>FW_IMG_LEN</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e157 "><span>Firmware Image length</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>Firmware Image length</span></td>
 
                                                 </tr>
 
                                                 <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e151 "><span>0x24</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x24</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e154 "><span>FW_IMG_AUTH_MTHD *</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>FW_IMG_AUTH_MTHD *</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e157 "><span>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>
                 <p class="lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_OZL_ZCW_3TB">Firmware Image authentication method. For Chimera the acceptable method are ECDSA p256 + SHA-256<br />
 0: None<br />
 1: SHA-256<br />
@@ -527,11 +528,11 @@ Reserved for future use. Not for MD_REV 0x01</p>
                                                 </tr>
 
                                                 <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e151 "><span>0x25</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x25</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e154 "><span>FW_IMG_AUTH_KEY</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>FW_IMG_AUTH_KEY</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e157 "><span>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>
                 <p class="lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_FLQ_1DW_3TB">Firmware Image authentication key index<br />
 0: IB key<br />
 1: Key #2 </p>
@@ -541,11 +542,11 @@ Reserved for future use. Not for MD_REV 0x01</p>
                                                 </tr>
 
                                                 <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e151 "><span>0x26</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x26</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e154 "><span>FW_IMG_DEC_MTHD</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>FW_IMG_DEC_MTHD</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e157 "><span>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>
                 <p class="lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_FFJ_BDW_3TB">Firmware Image decryption method.<br />
 0: Plain<br />
 1: AES <br />
@@ -556,11 +557,11 @@ Reserved for future use. Not for MD_REV 0x01</p>
                                                 </tr>
 
                                                 <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e151 "><span>0x27</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x27</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e154 "><span>FW_IMG_DEC_KEY</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>FW_IMG_DEC_KEY</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e157 "><span>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>
                 <p class="lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_PSH_CDW_3TB">Firmware Image decryption key index<br />
 0: Key #1<br />
 1: Key #2 <br />
@@ -571,20 +572,20 @@ Reserved for future use. Not for MD_REV 0x01</p>
                                                 </tr>
 
                                                 <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e151 "><span>0x28</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x28</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e154 "><span>FW_IMG_SIG_SZ</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>FW_IMG_SIG_SZ</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e157 "><span>Firmware Image signature size</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>Firmware Image signature size</span></td>
 
                                                 </tr>
 
                                                 <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e151 "><span>0x29:0x70</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x29:0x70</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e154 "><span>FW_IMG_SIG</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>FW_IMG_SIG</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e157 "><span>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>
                 <p class="lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_XTG_DDW_3TB">Firmware Image Signature.<br />
 The concatenated R and S term of the ECDSA signature (P-256) of the SHA-256 hash of the firmware image</p>
 
@@ -593,26 +594,26 @@ The concatenated R and S term of the ECDSA signature (P-256) of the SHA-256 hash
                                                 </tr>
 
                                                 <tr class="row">
-                                                  <td class="entry cellrowborder" colspan="3" style="vertical-align:middle;" headers="d16556e151 d16556e154 d16556e157 "><span><strong class="ph b">Metadata
+                                                  <td class="entry cellrowborder" colspan="3" style="vertical-align:middle;" headers="d63831e151 d63831e154 d63831e157 "><span><strong class="ph b">Metadata
                                                   Footer</strong></span></td>
 
                                                 </tr>
 
                                                 <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e151 "><span>0x1B7</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x1B7</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e154 "><span>MD_SIG_SZ</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>MD_SIG_SZ</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e157 "><span>Metadata payload signature size</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>Metadata payload signature size</span></td>
 
                                                 </tr>
 
                                                 <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e151 "><span>0x1B8:0x1FF</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x1B8:0x1FF</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e154 "><span>MD_SIG</span></td>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>MD_SIG</span></td>
 
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d16556e157 "><span>
+                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>
                 <p class="lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_HKW_DDW_3TB">Metadata payload signature<br />
 The concatenated R and S term of the ECDSA signature (P-256r1) of the SHA-256 hash of the metadata payload (firmware image header). </p>
 
@@ -683,5 +684,9 @@ After that it checks for valid image in Slot 0 by validating it, it
 <li class="link ulchildlink"><strong><a href="GUID-601EC36F-434F-4CEE-BF96-232B23F39458.html">DFU API Usage</a></strong><br />
 </li>
 </ul>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="GUID-FFC9758F-305D-4A4A-A577-726CDCFA18C7.html">PIC32CX-BZ2 System Services</a></div>
+</div>
 </div></body>
 </html>

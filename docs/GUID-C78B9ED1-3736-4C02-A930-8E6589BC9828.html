@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE11" /><meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="topic" />
+<meta name="DC.title" content="&#34;sxops&#34; interface to read &amp; write operands from/to memory" />
+<meta name="DC.relation" scheme="URI" content="GUID-82627570-09DA-49A7-95EC-D502E201BEA3.html" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="sxops-interface-to-read--write-operands-fromto-memory" />
+<link rel="stylesheet" type="text/css" href="stylesheets/atmel.css" />
+<title>"sxops" interface to read &amp; write operands from/to memory</title>
+<meta name="Microsoft.Help.Id" content="GUID-2085FE66-A762-4CC0-B054-7F98E8AF999A" />
+<meta name="Microsoft.Help.TocParent" content="GUID-2085FE66-A762-4CC0-B054-7F98E8AF999A-GUID-82627570-09DA-49A7-95EC-D502E201BEA3" />
+<meta name="Microsoft.Help.TocOrder" content="0" />
+<meta name="Microsoft.Help.Locale" content="en-US" />
+<meta name="Microsoft.Help.TopicLocale" content="en-US" />
+<meta name="Microsoft.Help.DisplayVersion" content="MPLAB Harmony PIC32CX-BZ System Services Reference 4 10/2023" />
+<script language="javascript">
+       
+       if (window.parent.location.protocol != 'file:') {
+				document.addEventListener('click', function(e) {
+				    if (e.target) {
+               if (e.target.nodeName == "A" ) {
+                    if (!e.target.target) {
+                      e.preventDefault();
+                      e.stopPropagation();
+                              
+                      var origUrl = window.parent.location.href.substr(0, window.parent.location.href.indexOf("?"));
+                      if (origUrl.length === 0) {
+                          origUrl = window.parent.location.href;
+                      }
+                      var href= e.target.getAttribute("href");
+                      var parts = href.split("#");
+          
+                      var url = "";
+                      if (parts.length == 2 ) {
+                        if (!parts[0].length) {
+                            url = window.parent.location.search.replace('?','')
+                        } else {
+                            url = parts[0].replace('.html','');
+                        }
+                      } else {
+                        url = parts[0].replace('.html','');
+                      }
+
+                      if (parts.length == 2) {
+                          url += "#" + parts[1];
+                      }
+    
+                      window.parent.location.href = origUrl + "?" + url;
+
+                      return false;
+                    }
+               }
+            }
+				});
+			}
+
+		</script><script language="javascript">
+         
+         function copyContent(content, button) {
+         
+            var textArea = document.createElement("textarea");
+            
+            // Place in the top-left corner of screen regardless of scroll position.
+            textArea.style.position = 'fixed';
+            textArea.style.top = 0;
+            textArea.style.left = 0;
+            
+            // Ensure it has a small width and height. Setting to 1px / 1em
+            // doesn't work as this gives a negative w/h on some browsers.
+            textArea.style.width = '2em';
+            textArea.style.height = '2em';
+            
+            // We don't need padding, reducing the size if it does flash render.
+            textArea.style.padding = 0;
+            
+            // Clean up any borders.
+            textArea.style.border = 'none';
+            textArea.style.outline = 'none';
+            textArea.style.boxShadow = 'none';
+            
+            // Avoid flash of the white box if rendered for any reason.
+            textArea.style.background = 'transparent';
+            
+            textArea.value = content;
+            
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+               var successful = document.execCommand('copy');
+               var msg = successful ? 'successful' : 'unsuccessful';
+               if (!button.classList.contains("copied")){
+                  button.textContent = "Copied";
+                  button.classList.add("copied");
+                  setTimeout(function(){
+                     button.textContent = "Copy";
+                     button.classList.remove("copied");
+                  },1000);
+               }
+            } catch (err) {
+               console.log('Oops, unable to copy');
+            }
+            
+            document.body.removeChild(textArea);
+         }
+         
+         function cpy(id, button) {
+            var element = document.getElementById(id);
+            var content = element.getAttribute("content");
+            
+            copyContent(content, button);
+         }
+         
+         document.addEventListener("DOMContentLoaded", function(event) {
+            document.querySelectorAll(".codeblock").forEach(function(elem) {
+               elem.style.position = "relative";
+               var copy = document.createElement("button");
+               copy.textContent = "Copy";
+               copy.setAttribute("class", "copy-code");
+               
+               var content = elem.textContent;
+               
+               copy.addEventListener("click", function(){
+                  copyContent(content, copy);
+               });
+               
+               elem.addEventListener("mouseenter", function(evt){
+                  elem.prepend(copy);
+               });
+            });
+            
+            document.querySelectorAll(".codeblock").forEach(function(elem) {
+               elem.addEventListener("mouseleave", function(evt){
+                  document.querySelector(".copy-code").remove();
+               });
+            });
+         });
+         
+      </script><script language="javascript">
+          
+          // Add the MathML namespace to html
+          var html = document.getElementsByTagName("html")[0],
+          head = document.getElementsByTagName("head")[0];
+          
+          var mathJax = document.createElement("script");
+          mathJax.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML";
+          head.appendChild(mathJax);
+          
+          html.setAttribute("xmlns:m","http://www.w3.org/1998/Math/MathML");
+          
+          function inIframe() { try { return window.self !== window.top; } catch (e) { return true; } }
+          
+          if (!inIframe()) { 
+          
+          var Default = "index.html?"; 
+          
+          var displaylocation = "value" + window.location.href;
+          
+          var GUIDS = displaylocation.split('GUID');          
+          
+          if (displaylocation.indexOf('#GUID') != -1) {            
+          var First = GUIDS[1].split('.html');  
+          if (GUIDS[3]){First = GUIDS[2].split('.html');}
+          if (GUIDS[4]){First = GUIDS[3].split('.html');}
+          if (GUIDS[5]){First = GUIDS[4].split('.html');}
+          
+          var Second = GUIDS[2].split('#');   
+          if (GUIDS[3]){Second = GUIDS[3].split('#');}
+          if (GUIDS[4]){Second = GUIDS[4].split('#');}
+          if (GUIDS[5]){Second = GUIDS[5].split('#');}
+          
+          Default = "index.html?" + "GUID" + First[0] + "GUID" + Second[0];     
+          }                    
+          window.top.location = Default;
+          }       
+          
+        </script><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /><style xml:space="">
+        
+          button.copy-code{
+            display:none;
+            padding:0.7em 1.4em;
+            margin:0 0.3em 0.3em 0;
+            border-radius:0.15em;
+            box-sizing: border-box;
+            text-decoration:none;
+            font-family:'Roboto',sans-serif;
+            text-transform:uppercase;
+            font-weight:400;
+            color:#FFFFFF;
+            background-color:#9c9c9c;
+            box-shadow:inset 0 -0.6em 0 -0.35em rgba(0,0,0,0.17);
+            text-align:center;
+            position:relative;
+            border: 0;
+            float: right;
+            border-radius: .5em;
+            cursor: pointer;
+          }
+          button.copy-code:active{
+            top:0.1em;
+          }
+          
+          pre:hover button.copy-code{
+            display: inline-block !important;
+          }
+          button.copy-code.copied {
+            cursor: default !important;
+          }
+          
+          
+          @media all and (max-width:30em){
+            button.copy-code{
+              display:block;
+              margin:0.4em auto;
+            }
+          }
+        
+        
+      </style><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /></head>
+<body>
+<div class="nested0" aria-labelledby="ariaid-title1" id="sxops-interface-to-read--write-operands-fromto-memory"><h1 class="title topictitle1" id="ariaid-title1" style="">"sxops" interface to read &amp; write operands from/to memory</h1><div class="body"><p class="p">@file</p>
+</div>
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="GUID-82627570-09DA-49A7-95EC-D502E201BEA3.html" title="Enter a short description of your topic here (optional).">Silex_PK_API</a></div>
+</div>
+</div></div>
+<div class="topic nested0" aria-labelledby="ariaid-title2" id="adapter-header-file-macro"><h1 class="title topictitle1" id="ariaid-title2" style="">ADAPTER_HEADER_FILE Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title3" id="c"><h2 class="title topictitle2" id="ariaid-title3" style="">C</h2><div class="body"><pre class="pre codeblock c"><span class="hl-directive">#define</span> <span class="hl-defines">ADAPTER_HEADER_FILE</span>
+</pre><p class="p">/
+Copyright (c) 2018-2020 Silex Insight sa
+Copyright (c) 2018-2020 Beerten Engineering scs
+SPDX-License-Identifier: BSD-3-Clause</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title4" id="write-the-operand-into-memory-filling-sz-bytes-0-pading-if-needed"><h1 class="title topictitle1" id="ariaid-title4" style="">Write the operand into memory filling 'sz' bytes, 0-pading if needed</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title5" id="func-sx-pk-op2mem-leconst-typedef"><h1 class="title topictitle1" id="ariaid-title5" style="">(FUNC_SX_PK_OP2MEM_LE)(const Typedef</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title6" id="c-1"><h2 class="title topictitle2" id="ariaid-title6" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">void</strong> (FUNC_SX_PK_OP2MEM_LE)(<strong class="hl-keyword">const</strong> sx_op op, <strong class="hl-keyword">char</strong> mem, <strong class="hl-keyword">int</strong> sz);
+</pre></div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title7" id="sx-pk-op2mem-le-macro"><h1 class="title topictitle1" id="ariaid-title7" style="">SX_PK_OP2MEM_LE Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title8" id="c-2"><h2 class="title topictitle2" id="ariaid-title8" style="">C</h2><div class="body"><pre class="pre codeblock c"><span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_OP2MEM_LE</span> ((FUNC_SX_PK_OP2MEM_LE)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_OP2MEM_LE)))
+</pre><p class="p">in little endian format</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title9" id="parameters"><h2 class="title topictitle2" id="ariaid-title9" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> op Operand written to memory. Data should have a  size smaller or equal to 'sz'</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title10" id="parameters-1"><h2 class="title topictitle2" id="ariaid-title10" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> mem Memory address to write the operand to</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title11" id="parameters-2"><h2 class="title topictitle2" id="ariaid-title11" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> sz Size in bytes of the operand</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title12" id="write-the-operand-into-memory-filling-sz-bytes-0-pading-if-needed-1"><h1 class="title topictitle1" id="ariaid-title12" style="">Write the operand into memory filling 'sz' bytes, 0-pading if needed</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title13" id="func-sx-pk-op2mem-beconst-typedef"><h1 class="title topictitle1" id="ariaid-title13" style="">(FUNC_SX_PK_OP2MEM_BE)(const Typedef</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title14" id="c-3"><h2 class="title topictitle2" id="ariaid-title14" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">void</strong> (FUNC_SX_PK_OP2MEM_BE)(<strong class="hl-keyword">const</strong> sx_op op, <strong class="hl-keyword">char</strong> mem, <strong class="hl-keyword">int</strong> sz);
+</pre></div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title15" id="sx-pk-op2mem-be-macro"><h1 class="title topictitle1" id="ariaid-title15" style="">SX_PK_OP2MEM_BE Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title16" id="c-4"><h2 class="title topictitle2" id="ariaid-title16" style="">C</h2><div class="body"><pre class="pre codeblock c"><span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_OP2MEM_BE</span> ((FUNC_SX_PK_OP2MEM_BE)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_OP2MEM_BE)))
+</pre><p class="p">in big endian format</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title17" id="parameters-3"><h2 class="title topictitle2" id="ariaid-title17" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> op Operand written to memory. Data should have a  size smaller or equal to 'sz'</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title18" id="parameters-4"><h2 class="title topictitle2" id="ariaid-title18" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> mem Memory address to write the operand to</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title19" id="parameters-5"><h2 class="title topictitle2" id="ariaid-title19" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> sz Size in bytes of the operand</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title20" id="write-the-operand-into-memory-filling-sz-bytes-0-pading-if-needed-2"><h1 class="title topictitle1" id="ariaid-title20" style="">Write the operand into memory filling 'sz' bytes, 0-pading if needed</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title21" id="func-sx-pk-op2memconst-typedef"><h1 class="title topictitle1" id="ariaid-title21" style="">(FUNC_SX_PK_OP2MEM)(const Typedef</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title22" id="c-5"><h2 class="title topictitle2" id="ariaid-title22" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">void</strong> (FUNC_SX_PK_OP2MEM)(<strong class="hl-keyword">const</strong> sx_op op, <strong class="hl-keyword">char</strong> mem, <strong class="hl-keyword">int</strong> sz);
+</pre></div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title23" id="sx-pk-op2mem-macro"><h1 class="title topictitle1" id="ariaid-title23" style="">SX_PK_OP2MEM Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title24" id="c-6"><h2 class="title topictitle2" id="ariaid-title24" style="">C</h2><div class="body"><pre class="pre codeblock c"><span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_OP2MEM</span> ((FUNC_SX_PK_OP2MEM)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_OP2MEM)))
+</pre></div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title25" id="parameters-6"><h2 class="title topictitle2" id="ariaid-title25" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> op Operand written to memory. Data should have  a size smaller or equal to 'sz'</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title26" id="parameters-7"><h2 class="title topictitle2" id="ariaid-title26" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> mem Memory address to write the operand to</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title27" id="parameters-8"><h2 class="title topictitle2" id="ariaid-title27" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> sz Size in bytes of the operand</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title28" id="write-the-operand-into-memory-which-has-the-exact-size-needed"><h1 class="title topictitle1" id="ariaid-title28" style="">Write the operand into memory which has the exact size needed</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title29" id="func-sx-pk-op2vmem-leconst-typedef"><h1 class="title topictitle1" id="ariaid-title29" style="">(FUNC_SX_PK_OP2VMEM_LE)(const Typedef</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title30" id="c-7"><h2 class="title topictitle2" id="ariaid-title30" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">void</strong> (FUNC_SX_PK_OP2VMEM_LE)(<strong class="hl-keyword">const</strong> sx_op op, <strong class="hl-keyword">char</strong> mem);
+</pre></div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title31" id="sx-pk-op2vmem-le-macro"><h1 class="title topictitle1" id="ariaid-title31" style="">SX_PK_OP2VMEM_LE Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title32" id="c-8"><h2 class="title topictitle2" id="ariaid-title32" style="">C</h2><div class="body"><pre class="pre codeblock c"><span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_OP2VMEM_LE</span> ((FUNC_SX_PK_OP2VMEM_LE)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_OP2VMEM_LE)))
+</pre><p class="p">in little endian format</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title33" id="parameters-9"><h2 class="title topictitle2" id="ariaid-title33" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> op Operand written to memory</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title34" id="parameters-10"><h2 class="title topictitle2" id="ariaid-title34" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> mem Memory address to write the operand to</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title35" id="write-the-operand-into-memory-which-has-the-exact-size-needed-1"><h1 class="title topictitle1" id="ariaid-title35" style="">Write the operand into memory which has the exact size needed</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title36" id="func-sx-pk-op2vmem-beconst-typedef"><h1 class="title topictitle1" id="ariaid-title36" style="">(FUNC_SX_PK_OP2VMEM_BE)(const Typedef</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title37" id="c-9"><h2 class="title topictitle2" id="ariaid-title37" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">void</strong> (FUNC_SX_PK_OP2VMEM_BE)(<strong class="hl-keyword">const</strong> sx_op op, <strong class="hl-keyword">char</strong> mem);
+</pre></div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title38" id="sx-pk-op2vmem-be-macro"><h1 class="title topictitle1" id="ariaid-title38" style="">SX_PK_OP2VMEM_BE Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title39" id="c-10"><h2 class="title topictitle2" id="ariaid-title39" style="">C</h2><div class="body"><pre class="pre codeblock c"><span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_OP2VMEM_BE</span> ((FUNC_SX_PK_OP2VMEM_BE)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_OP2VMEM_BE)))
+</pre><p class="p">in big endian format</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title40" id="parameters-11"><h2 class="title topictitle2" id="ariaid-title40" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> op Operand written to memory</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title41" id="parameters-12"><h2 class="title topictitle2" id="ariaid-title41" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> mem Memory address to write the operand to</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title42" id="write-the-operand-into-memory-which-has-the-exact-size-needed-2"><h1 class="title topictitle1" id="ariaid-title42" style="">Write the operand into memory which has the exact size needed</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title43" id="func-sx-pk-op2vmemconst-typedef"><h1 class="title topictitle1" id="ariaid-title43" style="">(FUNC_SX_PK_OP2VMEM)(const Typedef</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title44" id="c-11"><h2 class="title topictitle2" id="ariaid-title44" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">void</strong> (FUNC_SX_PK_OP2VMEM)(<strong class="hl-keyword">const</strong> sx_op op, <strong class="hl-keyword">char</strong> mem);
+</pre></div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title45" id="sx-pk-op2vmem-macro"><h1 class="title topictitle1" id="ariaid-title45" style="">SX_PK_OP2VMEM Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title46" id="c-12"><h2 class="title topictitle2" id="ariaid-title46" style="">C</h2><div class="body"><pre class="pre codeblock c"><span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_OP2VMEM</span> ((FUNC_SX_PK_OP2VMEM)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_OP2VMEM)))
+</pre></div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title47" id="parameters-13"><h2 class="title topictitle2" id="ariaid-title47" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> op Operand written to memory. Data should be in big endian</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title48" id="parameters-14"><h2 class="title topictitle2" id="ariaid-title48" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> mem Memory address to write the operand to</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title49" id="convert-raw-little-endian-bytes-format-to-operand"><h1 class="title topictitle1" id="ariaid-title49" style="">Convert raw little endian bytes format to operand</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title50" id="func-sx-pk-mem2op-leconst-typedef"><h1 class="title topictitle1" id="ariaid-title50" style="">(FUNC_SX_PK_MEM2OP_LE)(const Typedef</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title51" id="c-13"><h2 class="title topictitle2" id="ariaid-title51" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">void</strong> (FUNC_SX_PK_MEM2OP_LE)(<strong class="hl-keyword">const</strong> <strong class="hl-keyword">char</strong> mem, <strong class="hl-keyword">int</strong> sz, sx_op op);
+</pre></div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title52" id="sx-pk-mem2op-le-macro"><h1 class="title topictitle1" id="ariaid-title52" style="">SX_PK_MEM2OP_LE Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title53" id="c-14"><h2 class="title topictitle2" id="ariaid-title53" style="">C</h2><div class="body"><pre class="pre codeblock c"><span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_MEM2OP_LE</span> ((FUNC_SX_PK_MEM2OP_LE)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_MEM2OP_LE)))
+</pre></div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title54" id="parameters-15"><h2 class="title topictitle2" id="ariaid-title54" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> mem Memory address to read the operand from</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title55" id="parameters-16"><h2 class="title topictitle2" id="ariaid-title55" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> sz Size in bytes of the memory to read</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title56" id="parameters-17"><h2 class="title topictitle2" id="ariaid-title56" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> op Operand in which the raw little endian bytes are written.  Its size should be bigger or equal to 'sz'</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title57" id="convert-raw-big-endian-bytes-format-to-operand"><h1 class="title topictitle1" id="ariaid-title57" style="">Convert raw big endian bytes format to operand</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title58" id="func-sx-pk-mem2op-beconst-typedef"><h1 class="title topictitle1" id="ariaid-title58" style="">(FUNC_SX_PK_MEM2OP_BE)(const Typedef</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title59" id="c-15"><h2 class="title topictitle2" id="ariaid-title59" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">void</strong> (FUNC_SX_PK_MEM2OP_BE)(<strong class="hl-keyword">const</strong> <strong class="hl-keyword">char</strong> mem, <strong class="hl-keyword">int</strong> sz, sx_op op);
+</pre></div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title60" id="sx-pk-mem2op-be-macro"><h1 class="title topictitle1" id="ariaid-title60" style="">SX_PK_MEM2OP_BE Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title61" id="c-16"><h2 class="title topictitle2" id="ariaid-title61" style="">C</h2><div class="body"><pre class="pre codeblock c"><span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_MEM2OP_BE</span> ((FUNC_SX_PK_MEM2OP_BE)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_MEM2OP_BE)))
+</pre></div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title62" id="parameters-18"><h2 class="title topictitle2" id="ariaid-title62" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> mem Memory address to read the operand from</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title63" id="parameters-19"><h2 class="title topictitle2" id="ariaid-title63" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> sz Size in bytes of the memory to read</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title64" id="parameters-20"><h2 class="title topictitle2" id="ariaid-title64" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> op Operand in which the raw little endian bytes are written.  Its size should be bigger or equal to 'sz'</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title65" id="convert-raw-bytes-to-operand"><h1 class="title topictitle1" id="ariaid-title65" style="">Convert raw bytes to operand</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title66" id="func-sx-pk-mem2opconst-typedef"><h1 class="title topictitle1" id="ariaid-title66" style="">(FUNC_SX_PK_MEM2OP)(const Typedef</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title67" id="c-17"><h2 class="title topictitle2" id="ariaid-title67" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">void</strong> (FUNC_SX_PK_MEM2OP)(<strong class="hl-keyword">const</strong> <strong class="hl-keyword">char</strong> mem, <strong class="hl-keyword">int</strong> sz, sx_op op);
+</pre></div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title68" id="sx-pk-mem2op-macro"><h1 class="title topictitle1" id="ariaid-title68" style="">SX_PK_MEM2OP Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title69" id="c-18"><h2 class="title topictitle2" id="ariaid-title69" style="">C</h2><div class="body"><pre class="pre codeblock c"><span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_MEM2OP</span> ((FUNC_SX_PK_MEM2OP)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_MEM2OP)))
+</pre></div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title70" id="parameters-21"><h2 class="title topictitle2" id="ariaid-title70" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> mem Memory address to read the operand from</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title71" id="parameters-22"><h2 class="title topictitle2" id="ariaid-title71" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> sz Size in bytes of the memory to read.</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title72" id="parameters-23"><h2 class="title topictitle2" id="ariaid-title72" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> op Operand in which the raw little endian bytes are written.  Its size should be bigger or equal to 'sz'</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title73" id="return-the-size-in-bytes-of-the-operand"><h1 class="title topictitle1" id="ariaid-title73" style="">Return the size in bytes of the operand.</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title74" id="func-sx-op-sizeconst-typedef"><h1 class="title topictitle1" id="ariaid-title74" style="">(FUNC_SX_OP_SIZE)(const Typedef</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title75" id="c-19"><h2 class="title topictitle2" id="ariaid-title75" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">int</strong> (FUNC_SX_OP_SIZE)(<strong class="hl-keyword">const</strong> sx_op op);
+</pre></div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title76" id="parameters-24"><h2 class="title topictitle2" id="ariaid-title76" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> op Operand  @return Operand size in bytes</p>
+</div>
+</div>
+</div>
+</body>
+</html>

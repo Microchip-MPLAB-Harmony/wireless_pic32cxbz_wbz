@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE11" /><meta name="copyright" content="(C) Copyright 2023" />
+<meta name="DC.rights.owner" content="(C) Copyright 2023" />
+<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="topic" />
+<meta name="DC.title" content="Predefined and custom elliptic curve definitions" />
+<meta name="DC.relation" scheme="URI" content="GUID-82627570-09DA-49A7-95EC-D502E201BEA3.html" />
+<meta name="DC.format" content="XHTML" />
+<meta name="DC.identifier" content="predefined-and-custom-elliptic-curve-definitions" />
+<link rel="stylesheet" type="text/css" href="stylesheets/atmel.css" />
+<title>Predefined and custom elliptic curve definitions</title>
+<meta name="Microsoft.Help.Id" content="GUID-2085FE66-A762-4CC0-B054-7F98E8AF999A" />
+<meta name="Microsoft.Help.TocParent" content="GUID-2085FE66-A762-4CC0-B054-7F98E8AF999A-GUID-82627570-09DA-49A7-95EC-D502E201BEA3" />
+<meta name="Microsoft.Help.TocOrder" content="0" />
+<meta name="Microsoft.Help.Locale" content="en-US" />
+<meta name="Microsoft.Help.TopicLocale" content="en-US" />
+<meta name="Microsoft.Help.DisplayVersion" content="MPLAB Harmony PIC32CX-BZ System Services Reference 4 10/2023" />
+<script language="javascript">
+       
+       if (window.parent.location.protocol != 'file:') {
+				document.addEventListener('click', function(e) {
+				    if (e.target) {
+               if (e.target.nodeName == "A" ) {
+                    if (!e.target.target) {
+                      e.preventDefault();
+                      e.stopPropagation();
+                              
+                      var origUrl = window.parent.location.href.substr(0, window.parent.location.href.indexOf("?"));
+                      if (origUrl.length === 0) {
+                          origUrl = window.parent.location.href;
+                      }
+                      var href= e.target.getAttribute("href");
+                      var parts = href.split("#");
+          
+                      var url = "";
+                      if (parts.length == 2 ) {
+                        if (!parts[0].length) {
+                            url = window.parent.location.search.replace('?','')
+                        } else {
+                            url = parts[0].replace('.html','');
+                        }
+                      } else {
+                        url = parts[0].replace('.html','');
+                      }
+
+                      if (parts.length == 2) {
+                          url += "#" + parts[1];
+                      }
+    
+                      window.parent.location.href = origUrl + "?" + url;
+
+                      return false;
+                    }
+               }
+            }
+				});
+			}
+
+		</script><script language="javascript">
+         
+         function copyContent(content, button) {
+         
+            var textArea = document.createElement("textarea");
+            
+            // Place in the top-left corner of screen regardless of scroll position.
+            textArea.style.position = 'fixed';
+            textArea.style.top = 0;
+            textArea.style.left = 0;
+            
+            // Ensure it has a small width and height. Setting to 1px / 1em
+            // doesn't work as this gives a negative w/h on some browsers.
+            textArea.style.width = '2em';
+            textArea.style.height = '2em';
+            
+            // We don't need padding, reducing the size if it does flash render.
+            textArea.style.padding = 0;
+            
+            // Clean up any borders.
+            textArea.style.border = 'none';
+            textArea.style.outline = 'none';
+            textArea.style.boxShadow = 'none';
+            
+            // Avoid flash of the white box if rendered for any reason.
+            textArea.style.background = 'transparent';
+            
+            textArea.value = content;
+            
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+               var successful = document.execCommand('copy');
+               var msg = successful ? 'successful' : 'unsuccessful';
+               if (!button.classList.contains("copied")){
+                  button.textContent = "Copied";
+                  button.classList.add("copied");
+                  setTimeout(function(){
+                     button.textContent = "Copy";
+                     button.classList.remove("copied");
+                  },1000);
+               }
+            } catch (err) {
+               console.log('Oops, unable to copy');
+            }
+            
+            document.body.removeChild(textArea);
+         }
+         
+         function cpy(id, button) {
+            var element = document.getElementById(id);
+            var content = element.getAttribute("content");
+            
+            copyContent(content, button);
+         }
+         
+         document.addEventListener("DOMContentLoaded", function(event) {
+            document.querySelectorAll(".codeblock").forEach(function(elem) {
+               elem.style.position = "relative";
+               var copy = document.createElement("button");
+               copy.textContent = "Copy";
+               copy.setAttribute("class", "copy-code");
+               
+               var content = elem.textContent;
+               
+               copy.addEventListener("click", function(){
+                  copyContent(content, copy);
+               });
+               
+               elem.addEventListener("mouseenter", function(evt){
+                  elem.prepend(copy);
+               });
+            });
+            
+            document.querySelectorAll(".codeblock").forEach(function(elem) {
+               elem.addEventListener("mouseleave", function(evt){
+                  document.querySelector(".copy-code").remove();
+               });
+            });
+         });
+         
+      </script><script language="javascript">
+          
+          // Add the MathML namespace to html
+          var html = document.getElementsByTagName("html")[0],
+          head = document.getElementsByTagName("head")[0];
+          
+          var mathJax = document.createElement("script");
+          mathJax.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML";
+          head.appendChild(mathJax);
+          
+          html.setAttribute("xmlns:m","http://www.w3.org/1998/Math/MathML");
+          
+          function inIframe() { try { return window.self !== window.top; } catch (e) { return true; } }
+          
+          if (!inIframe()) { 
+          
+          var Default = "index.html?"; 
+          
+          var displaylocation = "value" + window.location.href;
+          
+          var GUIDS = displaylocation.split('GUID');          
+          
+          if (displaylocation.indexOf('#GUID') != -1) {            
+          var First = GUIDS[1].split('.html');  
+          if (GUIDS[3]){First = GUIDS[2].split('.html');}
+          if (GUIDS[4]){First = GUIDS[3].split('.html');}
+          if (GUIDS[5]){First = GUIDS[4].split('.html');}
+          
+          var Second = GUIDS[2].split('#');   
+          if (GUIDS[3]){Second = GUIDS[3].split('#');}
+          if (GUIDS[4]){Second = GUIDS[4].split('#');}
+          if (GUIDS[5]){Second = GUIDS[5].split('#');}
+          
+          Default = "index.html?" + "GUID" + First[0] + "GUID" + Second[0];     
+          }                    
+          window.top.location = Default;
+          }       
+          
+        </script><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /><style xml:space="">
+        
+          button.copy-code{
+            display:none;
+            padding:0.7em 1.4em;
+            margin:0 0.3em 0.3em 0;
+            border-radius:0.15em;
+            box-sizing: border-box;
+            text-decoration:none;
+            font-family:'Roboto',sans-serif;
+            text-transform:uppercase;
+            font-weight:400;
+            color:#FFFFFF;
+            background-color:#9c9c9c;
+            box-shadow:inset 0 -0.6em 0 -0.35em rgba(0,0,0,0.17);
+            text-align:center;
+            position:relative;
+            border: 0;
+            float: right;
+            border-radius: .5em;
+            cursor: pointer;
+          }
+          button.copy-code:active{
+            top:0.1em;
+          }
+          
+          pre:hover button.copy-code{
+            display: inline-block !important;
+          }
+          button.copy-code.copied {
+            cursor: default !important;
+          }
+          
+          
+          @media all and (max-width:30em){
+            button.copy-code{
+              display:block;
+              margin:0.4em auto;
+            }
+          }
+        
+        
+      </style><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /></head>
+<body>
+<div class="nested0" aria-labelledby="ariaid-title1" id="predefined-and-custom-elliptic-curve-definitions"><h1 class="title topictitle1" id="ariaid-title1" style="">Predefined and custom elliptic curve definitions</h1><div class="body"><p class="p">@file</p>
+</div>
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="GUID-82627570-09DA-49A7-95EC-D502E201BEA3.html" title="Enter a short description of your topic here (optional).">Silex_PK_API</a></div>
+</div>
+</div></div>
+<div class="topic nested0" aria-labelledby="ariaid-title2" id="ec-curves-header-file-macro"><h1 class="title topictitle1" id="ariaid-title2" style="">EC_CURVES_HEADER_FILE Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title3" id="c"><h2 class="title topictitle2" id="ariaid-title3" style="">C</h2><div class="body"><pre class="pre codeblock c"><span class="hl-directive">#define</span> <span class="hl-defines">EC_CURVES_HEADER_FILE</span>
+</pre><p class="p">/
+Copyright (c) 2018-2020 Silex Insight sa
+Copyright (c) 2018-2020 Beerten Engineering scs
+SPDX-License-Identifier: BSD-3-Clause</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title4" id="int-function"><h1 class="title topictitle1" id="ariaid-title4" style="">int Function</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title5" id="c-1"><h2 class="title topictitle2" id="ariaid-title5" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">int</strong> (*FUNC_SX_PK_CURVE_OPSIZE)(<strong class="hl-keyword">const</strong> <strong class="hl-keyword">struct</strong> sx_pk_ecurve *curve);</pre><p class="p">@addtogroup SX_PK_CURVES</p>
+<p class="p">@{</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title6" id="slots-to-write-custom-curve-parameters-into-"><h1 class="title topictitle1" id="ariaid-title6" style="">Slots to write custom curve parameters into. */</h1><div class="body"><p class="p">struct sx_curve_slots {
+struct sx_pk_slot p; /&lt; Field size of curve /
+struct sx_pk_slot n; /&lt; Order of curve /
+struct sx_pk_slot gx; /&lt; x-coordinate of generator point of curve /
+struct sx_pk_slot gy; /&lt; y-coordinate of generator point of curve /
+struct sx_pk_slot a; /&lt; Curve parameter a /
+struct sx_pk_slot b; /&lt; Curve parameter b /
+};</p>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title7" id="create-a-prime-elliptic-curve"><h1 class="title topictitle1" id="ariaid-title7" style="">Create a prime elliptic curve</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title8" id="sx-pk-create-ecp-curve-macro"><h1 class="title topictitle1" id="ariaid-title8" style="">SX_PK_CREATE_ECP_CURVE Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title9" id="c-2"><h2 class="title topictitle2" id="ariaid-title9" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">void</strong> (FUNC_SX_PK_CREATE_ECP_CURVE)( <strong class="hl-keyword">struct</strong> sx_pk_cnx cnx, <strong class="hl-keyword">struct</strong> sx_pk_ecurve curve, <strong class="hl-keyword">char</strong> mem, <strong class="hl-keyword">int</strong> sz, <strong class="hl-keyword">struct</strong> sx_curve_slots slots);
+<span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_CREATE_ECP_CURVE</span> ((FUNC_SX_PK_CREATE_ECP_CURVE)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_CREATE_ECP_CURVE)))
+</pre><p class="p">@remark When this function returns, copy the paramters of the
+curve into the slots returned in 'slots'. After that, you can
+use the prime elliptic curve</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title10" id="parameters"><h2 class="title topictitle2" id="ariaid-title10" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> cnx Connection structure obtained through SX_PK_OPEN() at startup</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title11" id="parameters-1"><h2 class="title topictitle2" id="ariaid-title11" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> curve Curve to initialise as a prime elliptic curve</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title12" id="parameters-2"><h2 class="title topictitle2" id="ariaid-title12" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> mem Memory for the parameters of the curve. The size of  the memory should be 6 time sz as there are 6 curve parameters of size sz</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title13" id="parameters-3"><h2 class="title topictitle2" id="ariaid-title13" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> sz Size of the curve in bytes</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title14" id="parameters-4"><h2 class="title topictitle2" id="ariaid-title14" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> slots Slots for the curve parameters   @see SX_PK_CREATE_ECB_CURVE() and SX_PK_DESTROY_EC_CURVE()</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title15" id="create-a-binary-elliptic-curve"><h1 class="title topictitle1" id="ariaid-title15" style="">Create a binary elliptic curve</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title16" id="sx-pk-create-ecb-curve-macro"><h1 class="title topictitle1" id="ariaid-title16" style="">SX_PK_CREATE_ECB_CURVE Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title17" id="c-3"><h2 class="title topictitle2" id="ariaid-title17" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">void</strong> (FUNC_SX_PK_CREATE_ECB_CURVE)(<strong class="hl-keyword">struct</strong> sx_pk_cnx cnx, <strong class="hl-keyword">struct</strong> sx_pk_ecurve curve, <strong class="hl-keyword">char</strong> mem, <strong class="hl-keyword">int</strong> sz, <strong class="hl-keyword">struct</strong> sx_curve_slots slots);
+<span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_CREATE_ECB_CURVE</span> ((FUNC_SX_PK_CREATE_ECB_CURVE)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_CREATE_ECB_CURVE)))
+</pre><p class="p">@remark When this function returns, copy the paramters of the
+curve into the slots returned in 'slots'. After that, you can
+use the binary elliptic curve</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title18" id="parameters-5"><h2 class="title topictitle2" id="ariaid-title18" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> cnx Connection structure obtained through SX_PK_OPEN() at startup</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title19" id="parameters-6"><h2 class="title topictitle2" id="ariaid-title19" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> curve Curve to initialise as a binary elliptic curve</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title20" id="parameters-7"><h2 class="title topictitle2" id="ariaid-title20" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> mem Memory for the parameters of the curve. The size of  the memory should be 6 time sz as there are 6 curve parameters of size sz</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title21" id="parameters-8"><h2 class="title topictitle2" id="ariaid-title21" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> sz Size of the curve in bytes</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title22" id="parameters-9"><h2 class="title topictitle2" id="ariaid-title22" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> slots Slots for the curve parameters   @see SX_PK_CREATE_ECP_CURVE() and SX_PK_DESTROY_EC_CURVE()</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title23" id="destroy-a-custom-ecp-or-ecb-curve"><h1 class="title topictitle1" id="ariaid-title23" style="">Destroy a custom ecp or ecb curve</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title24" id="sx-pk-destroy-ec-curve-macro"><h1 class="title topictitle1" id="ariaid-title24" style="">SX_PK_DESTROY_EC_CURVE Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title25" id="c-4"><h2 class="title topictitle2" id="ariaid-title25" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">void</strong> (FUNC_SX_PK_DESTROY_EC_CURVE)(<strong class="hl-keyword">struct</strong> sx_pk_ecurve curve);
+<span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_DESTROY_EC_CURVE</span> ((FUNC_SX_PK_DESTROY_EC_CURVE)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_DESTROY_EC_CURVE)))
+</pre><p class="p">Destroy a curve created previously by SX_PK_CREATE_ECP_CURVE()
+or SX_PK_CREATE_ECB_CURVE().</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title26" id="parameters-10"><h2 class="title topictitle2" id="ariaid-title26" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> curve Initialised curve to destroy</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title27" id="get-a-reference-to-the-predefined-nist-p192-elliptic-curve"><h1 class="title topictitle1" id="ariaid-title27" style="">Get a reference to the predefined NIST P192 elliptic curve</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title28" id="sx-pk-get-curve-nistp192-macro"><h1 class="title topictitle1" id="ariaid-title28" style="">SX_PK_GET_CURVE_NISTP192 Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title29" id="c-5"><h2 class="title topictitle2" id="ariaid-title29" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">struct</strong> sx_pk_ecurve (FUNC_SX_PK_GET_CURVE_NISTP192)(<strong class="hl-keyword">struct</strong> sx_pk_cnx cnx);
+<span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_GET_CURVE_NISTP192</span> ((FUNC_SX_PK_GET_CURVE_NISTP192)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_GET_CURVE_NISTP192)))
+</pre></div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title30" id="parameters-11"><h2 class="title topictitle2" id="ariaid-title30" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> cnx Connection structure obtained through SX_PK_OPEN() at startup  @return Curve structure for P192 curve</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title31" id="get-a-reference-to-the-predefined-nist-p256-elliptic-curve"><h1 class="title topictitle1" id="ariaid-title31" style="">Get a reference to the predefined NIST P256 elliptic curve</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title32" id="sx-pk-get-curve-nistp256-macro"><h1 class="title topictitle1" id="ariaid-title32" style="">SX_PK_GET_CURVE_NISTP256 Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title33" id="c-6"><h2 class="title topictitle2" id="ariaid-title33" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">struct</strong> sx_pk_ecurve (FUNC_SX_PK_GET_CURVE_NISTP256)(<strong class="hl-keyword">struct</strong> sx_pk_cnx cnx);
+<span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_GET_CURVE_NISTP256</span> ((FUNC_SX_PK_GET_CURVE_NISTP256)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_GET_CURVE_NISTP256)))
+</pre></div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title34" id="parameters-12"><h2 class="title topictitle2" id="ariaid-title34" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> cnx Connection structure obtained through SX_PK_OPEN() at startup  @return Curve structure for P256 curve</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title35" id="get-a-reference-to-the-predefined-nist-p384-elliptic-curve"><h1 class="title topictitle1" id="ariaid-title35" style="">Get a reference to the predefined NIST P384 elliptic curve</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title36" id="sx-pk-get-curve-nistp384-macro"><h1 class="title topictitle1" id="ariaid-title36" style="">SX_PK_GET_CURVE_NISTP384 Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title37" id="c-7"><h2 class="title topictitle2" id="ariaid-title37" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">struct</strong> sx_pk_ecurve (FUNC_SX_PK_GET_CURVE_NISTP384)(<strong class="hl-keyword">struct</strong> sx_pk_cnx cnx);
+<span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_GET_CURVE_NISTP384</span> ((FUNC_SX_PK_GET_CURVE_NISTP384)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_GET_CURVE_NISTP384)))
+</pre></div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title38" id="parameters-13"><h2 class="title topictitle2" id="ariaid-title38" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> cnx Connection structure obtained through SX_PK_OPEN() at startup  @return Curve structure for P384 curve</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title39" id="get-a-reference-to-the-predefined-nist-p521-elliptic-curve"><h1 class="title topictitle1" id="ariaid-title39" style="">Get a reference to the predefined NIST P521 elliptic curve</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title40" id="sx-pk-get-curve-nistp521-macro"><h1 class="title topictitle1" id="ariaid-title40" style="">SX_PK_GET_CURVE_NISTP521 Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title41" id="c-8"><h2 class="title topictitle2" id="ariaid-title41" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">struct</strong> sx_pk_ecurve (FUNC_SX_PK_GET_CURVE_NISTP521)(<strong class="hl-keyword">struct</strong> sx_pk_cnx cnx);
+<span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_GET_CURVE_NISTP521</span> ((FUNC_SX_PK_GET_CURVE_NISTP521)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_GET_CURVE_NISTP521)))
+</pre></div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title42" id="parameters-14"><h2 class="title topictitle2" id="ariaid-title42" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> cnx Connection structure obtained through SX_PK_OPEN() at startup  @return Curve structure for P521 curve</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title43" id="get-a-reference-to-the-predefined-ed25519-elliptic-curve"><h1 class="title topictitle1" id="ariaid-title43" style="">Get a reference to the predefined ED25519 elliptic curve</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title44" id="sx-pk-get-curve-ed25519-macro"><h1 class="title topictitle1" id="ariaid-title44" style="">SX_PK_GET_CURVE_ED25519 Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title45" id="c-9"><h2 class="title topictitle2" id="ariaid-title45" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">struct</strong> sx_pk_ecurve (FUNC_SX_PK_GET_CURVE_ED25519)(<strong class="hl-keyword">struct</strong> sx_pk_cnx cnx);
+<span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_GET_CURVE_ED25519</span> ((FUNC_SX_PK_GET_CURVE_ED25519)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_GET_CURVE_ED25519)))
+</pre></div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title46" id="parameters-15"><h2 class="title topictitle2" id="ariaid-title46" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> cnx Connection structure obtained through SX_PK_OPEN() at startup  @return Curve structure for ED25519 curve</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title47" id="get-a-reference-to-the-predefined-ed448-elliptic-curve"><h1 class="title topictitle1" id="ariaid-title47" style="">Get a reference to the predefined ED448 elliptic curve</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title48" id="sx-pk-get-curve-ed448-macro"><h1 class="title topictitle1" id="ariaid-title48" style="">SX_PK_GET_CURVE_ED448 Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title49" id="c-10"><h2 class="title topictitle2" id="ariaid-title49" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">struct</strong> sx_pk_ecurve (FUNC_SX_PK_GET_CURVE_ED448)(<strong class="hl-keyword">struct</strong> sx_pk_cnx cnx);
+<span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_GET_CURVE_ED448</span> ((FUNC_SX_PK_GET_CURVE_ED448)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_GET_CURVE_ED448)))
+</pre></div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title50" id="parameters-16"><h2 class="title topictitle2" id="ariaid-title50" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> cnx Connection structure obtained through SX_PK_OPEN() at startup  @return Curve structure for ED448 curve</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title51" id="get-a-reference-to-the-predefined-x25519-elliptic-curve"><h1 class="title topictitle1" id="ariaid-title51" style="">Get a reference to the predefined X25519 elliptic curve</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title52" id="sx-pk-get-curve-x25519-macro"><h1 class="title topictitle1" id="ariaid-title52" style="">SX_PK_GET_CURVE_X25519 Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title53" id="c-11"><h2 class="title topictitle2" id="ariaid-title53" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">struct</strong> sx_pk_ecurve (FUNC_SX_PK_GET_CURVE_X25519)(<strong class="hl-keyword">struct</strong> sx_pk_cnx cnx);
+<span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_GET_CURVE_X25519</span> ((FUNC_SX_PK_GET_CURVE_X25519)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_GET_CURVE_X25519)))
+</pre></div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title54" id="parameters-17"><h2 class="title topictitle2" id="ariaid-title54" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> cnx Connection structure obtained through SX_PK_OPEN() at startup  @return Curve structure for X25519 curve</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title55" id="get-a-reference-to-the-predefined-x448-elliptic-curve"><h1 class="title topictitle1" id="ariaid-title55" style="">Get a reference to the predefined X448 elliptic curve</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title56" id="sx-pk-get-curve-x448-macro"><h1 class="title topictitle1" id="ariaid-title56" style="">SX_PK_GET_CURVE_X448 Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title57" id="c-12"><h2 class="title topictitle2" id="ariaid-title57" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">struct</strong> sx_pk_ecurve (FUNC_SX_PK_GET_CURVE_X448)(<strong class="hl-keyword">struct</strong> sx_pk_cnx cnx);
+<span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_GET_CURVE_X448</span> ((FUNC_SX_PK_GET_CURVE_X448)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_GET_CURVE_X448)))
+</pre></div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title58" id="parameters-18"><h2 class="title topictitle2" id="ariaid-title58" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> cnx Connection structure obtained through SX_PK_OPEN() at startup  @return Curve structure for X448 curve</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title59" id="get-a-reference-to-the-predefined-sec-p256k1-elliptic-curve"><h1 class="title topictitle1" id="ariaid-title59" style="">Get a reference to the predefined SEC p256k1 elliptic curve</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title60" id="sx-pk-get-curve-secp256k1-macro"><h1 class="title topictitle1" id="ariaid-title60" style="">SX_PK_GET_CURVE_SECP256K1 Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title61" id="c-13"><h2 class="title topictitle2" id="ariaid-title61" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">struct</strong> sx_pk_ecurve (FUNC_SX_PK_GET_CURVE_SECP256K1)(<strong class="hl-keyword">struct</strong> sx_pk_cnx cnx);
+<span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_GET_CURVE_SECP256K1</span> ((FUNC_SX_PK_GET_CURVE_SECP256K1)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_GET_CURVE_SECP256K1)))
+</pre></div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title62" id="parameters-19"><h2 class="title topictitle2" id="ariaid-title62" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> cnx Connection structure obtained through SX_PK_OPEN() at startup  @return Curve structure for SEC p256k1 curve</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title63" id="get-a-reference-to-the-predefined-fp256-elliptic-curve"><h1 class="title topictitle1" id="ariaid-title63" style="">Get a reference to the predefined fp256 elliptic curve</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title64" id="sx-pk-get-curve-fp256-macro"><h1 class="title topictitle1" id="ariaid-title64" style="">SX_PK_GET_CURVE_FP256 Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title65" id="c-14"><h2 class="title topictitle2" id="ariaid-title65" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">struct</strong> sx_pk_ecurve (FUNC_SX_PK_GET_CURVE_FP256)(<strong class="hl-keyword">struct</strong> sx_pk_cnx cnx);
+<span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_GET_CURVE_FP256</span> ((FUNC_SX_PK_GET_CURVE_FP256)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_GET_CURVE_FP256)))
+</pre></div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title66" id="parameters-20"><h2 class="title topictitle2" id="ariaid-title66" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> cnx Connection structure obtained through SX_PK_OPEN() at startup  @return Curve structure for fp256 curve (used in SM2)</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title67" id="write-the-generator-point-of-the-curve-into-the-slots-internal"><h1 class="title topictitle1" id="ariaid-title67" style="">Write the generator point of the curve into the slots (internal)</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title68" id="sx-pk-write-curve-gen-macro"><h1 class="title topictitle1" id="ariaid-title68" style="">SX_PK_WRITE_CURVE_GEN Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title69" id="c-15"><h2 class="title topictitle2" id="ariaid-title69" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">void</strong> (FUNC_SX_PK_WRITE_CURVE_GEN)(sx_pk_accel pk, <strong class="hl-keyword">const</strong> <strong class="hl-keyword">struct</strong> sx_pk_ecurve curve, <strong class="hl-keyword">struct</strong> sx_pk_slot px, <strong class="hl-keyword">struct</strong> sx_pk_slot py);
+<span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_WRITE_CURVE_GEN</span> ((FUNC_SX_PK_WRITE_CURVE_GEN)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_AEAD_CREATE_AESGCM_ENC)))
+</pre><p class="p">Write the parameter gx &amp; gy from curve to px.addr &amp; py.addr respectively</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title70" id="parameters-21"><h2 class="title topictitle2" id="ariaid-title70" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> pk The accelerator request</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title71" id="parameters-22"><h2 class="title topictitle2" id="ariaid-title71" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> curve Initialised curve to get generator point from.</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title72" id="parameters-23"><h2 class="title topictitle2" id="ariaid-title72" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> px x-coordinate slot of generator point. The curve generator  (x-coordinate) will be written to this address</p>
+</div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title73" id="parameters-24"><h2 class="title topictitle2" id="ariaid-title73" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> py y-coordinate slot of generator point. The curve generator  (y-coordinate) will be written to this address</p>
+</div>
+</div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title74" id="return-the-operand-size-in-bytes-for-the-given-curve"><h1 class="title topictitle1" id="ariaid-title74" style="">Return the operand size in bytes for the given curve</h1><div class="body"></div>
+</div>
+<div class="topic nested0" aria-labelledby="ariaid-title75" id="sx-pk-curve-opsize-macro"><h1 class="title topictitle1" id="ariaid-title75" style="">SX_PK_CURVE_OPSIZE Macro</h1><div class="body"></div>
+<div class="topic nested1" aria-labelledby="ariaid-title76" id="c-16"><h2 class="title topictitle2" id="ariaid-title76" style="">C</h2><div class="body"><pre class="pre codeblock c"><strong class="hl-keyword">typedef</strong> <strong class="hl-keyword">int</strong> (FUNC_SX_PK_CURVE_OPSIZE)(<strong class="hl-keyword">const</strong> <strong class="hl-keyword">struct</strong> sx_pk_ecurve curve);
+<span class="hl-directive">#define</span> <span class="hl-defines">SX_PK_CURVE_OPSIZE</span> ((FUNC_SX_PK_CURVE_OPSIZE)((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SX_PK_CURVE_OPSIZE)))
+</pre></div>
+</div>
+<div class="topic nested1" aria-labelledby="ariaid-title77" id="parameters-25"><h2 class="title topictitle2" id="ariaid-title77" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> curve Initialised curve to get operand size from  @return Operand size in bytes for the given curve</p>
+<p class="p">}</p>
+</div>
+</div>
+</div>
+</body>
+</html>
