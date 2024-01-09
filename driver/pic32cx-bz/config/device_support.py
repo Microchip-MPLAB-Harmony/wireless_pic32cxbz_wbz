@@ -70,7 +70,7 @@ REQUIRES_APP_IDLE_TASK = {
         'ZIGBEE_GPD_SENSOR': 'ZIGBEESTACK_LOADED',
         'ZIGBEE_ZAPPSI': 'ZIGBEESTACK_LOADED',
         'OPEN_THREAD': 'THREADSTACK_LOADED',
-        'IEEE_802154_PHY': '802154_PHY_LOADED'}
+        'IEEE_802154_PHY': 'IEEE_802154_PHY_LOADED'}
 
 
 REQUIRES_RTC_SUPPORT = {}
@@ -141,7 +141,7 @@ def configWSSEnable(component, targetID, connected):
                 if 'ZIGBEE' in stackName and REQUIRES_WSSENABLE_MODE[stackName]:
                     zigbee_loaded = True
                     
-                if 'IEEE802154_PHY' in stackName and REQUIRES_WSSENABLE_MODE[stackName]:
+                if 'IEEE_802154_PHY' in stackName and REQUIRES_WSSENABLE_MODE[stackName]:
                     zigbee_loaded = True
 
                 if 'OPEN_THREAD' in stackName and REQUIRES_WSSENABLE_MODE[stackName]:
@@ -818,7 +818,7 @@ def instantiateComponent(libBTZBCore):
     ############################################################################
     # This boolean is controlled configAppIdleTask called by:
     #   onAttachmentConnected or onAttachmentDisconnected
-    phyLoaded = libBTZBCore.createBooleanSymbol('802154_PHY_LOADED', None)
+    phyLoaded = libBTZBCore.createBooleanSymbol('IEEE_802154_PHY_LOADED', None)
     phyLoaded.setDefaultValue('IEEE_802154_PHY' in activeComponents)
     phyLoaded.setVisible(False)
 

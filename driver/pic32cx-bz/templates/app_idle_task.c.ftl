@@ -191,10 +191,32 @@ void app_idle_task( void )
               else
               {
             </#if>  
-                RF_Timer_Cal(${WSS_ENABLE_MODE});
+            
+            <#if (THREADSTACK_LOADED) || (IEEE_802154_PHY_LOADED)>
+               PHY_TrxStatus_t trxStatus = PHY_GetTrxStatus();
+               OSAL_CRITSECT_DATA_TYPE intStatus;
+               if (trxStatus == PHY_TRX_SLEEP)
+               {
+                   PHY_TrxWakeup();
+                   intStatus = OSAL_CRIT_Enter(OSAL_CRIT_TYPE_LOW);
+                   RF_Timer_Cal(WSS_ENABLE_ZB);
+                   OSAL_CRIT_Leave(OSAL_CRIT_TYPE_LOW, intStatus);
+                   PHY_TrxSleep(SLEEP_MODE_1);
+               }
+               else
+               {
+                   intStatus = OSAL_CRIT_Enter(OSAL_CRIT_TYPE_LOW);
+            </#if>
+                   RF_Timer_Cal(${WSS_ENABLE_MODE});
+            <#if (THREADSTACK_LOADED) || (IEEE_802154_PHY_LOADED)>
+                   OSAL_CRIT_Leave(OSAL_CRIT_TYPE_LOW, intStatus);
+               }
+            </#if>
+            
             <#if (ZIGBEESTACK_LOADED) && (SLEEP_SUPPORTED)>	
               }
             </#if>
+
             }
             </#if>
             <#if (BLESTACK_LOADED)>
