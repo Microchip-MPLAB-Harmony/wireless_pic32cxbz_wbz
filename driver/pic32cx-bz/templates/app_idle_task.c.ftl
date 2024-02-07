@@ -205,11 +205,9 @@ void app_idle_task( void )
                }
                else
                {
-                   intStatus = OSAL_CRIT_Enter(OSAL_CRIT_TYPE_LOW);
             </#if>
                    RF_Timer_Cal(${WSS_ENABLE_MODE});
             <#if (THREADSTACK_LOADED) || (IEEE_802154_PHY_LOADED)>
-                   OSAL_CRIT_Leave(OSAL_CRIT_TYPE_LOW, intStatus);
                }
             </#if>
             
