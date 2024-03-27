@@ -3,6 +3,12 @@
 
 # Microchip MPLAB® Harmony 3 Release Notes
 
+## Wireless PIC32CX-BZ System Services Release v1.3.1 
+
+### Bug fixes
+- Sleep mode fixes for Thread Network.
+- IEEE 802154 PHY corrections for RF calibration.
+
 ## Wireless PIC32CX-BZ System Services Release v1.3.0 
 
 ### New Features
