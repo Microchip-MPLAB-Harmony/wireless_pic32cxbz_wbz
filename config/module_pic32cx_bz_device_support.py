@@ -25,6 +25,7 @@ pic32cx_bz2_family = {'PIC32CX1012BZ25048',
                       'PIC32CX1012BZ24032',
                       'WBZ451',
                       'WBZ450',
+                      'WBZ451H',
                       }
 
 pic32cx_bz3_family = {'PIC32CX5109BZ31048',

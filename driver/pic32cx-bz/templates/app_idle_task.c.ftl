@@ -1,10 +1,24 @@
-<#if (BLESTACK_LOADED) && (!ZIGBEESTACK_LOADED)>
+<#if (BLESTACK_LOADED) && (!ZIGBEESTACK_LOADED) && (!THREADSTACK_LOADED) && (!IEEE_802154_MAC_LOADED)>
     <#assign STACKS_IDLE = "(BT_RF_Suspended)">
     <#assign STACK_SLEEP_CHECK = "if (isSystemCanSleep)">
 <#elseif (!BLESTACK_LOADED) && (ZIGBEESTACK_LOADED)>
     <#assign STACKS_IDLE = "(ZB_IsIdle())">
     <#assign STACK_SLEEP_CHECK = "if (((isZBIdleTaskReadyToSleep) &&
         (xExpectedIdleTime > 512) && (xExpectedIdleTime < MAX_SLEEP_ALLOWED)))">
+<#elseif (THREADSTACK_LOADED || IEEE_802154_MAC_LOADED) && (!BLESTACK_LOADED)>
+	<#if THREADSTACK_LOADED>
+	<#assign STACKS_IDLE = "(otIsIdle())">
+	<#else>
+	<#assign STACKS_IDLE = "(1) // TODO: Modify to evaluate to true only if application is idle">
+	</#if>
+    <#assign STACK_SLEEP_CHECK = "if (isSystemCanSleep)">
+<#elseif (THREADSTACK_LOADED || IEEE_802154_MAC_LOADED) && (BLESTACK_LOADED)>
+	<#if THREADSTACK_LOADED>
+	<#assign STACKS_IDLE = "(BT_RF_Suspended && otIsIdle())">
+	<#else>
+	<#assign STACKS_IDLE = "(BT_RF_Suspended)">
+	</#if>
+    <#assign STACK_SLEEP_CHECK = "if (isSystemCanSleep)">
 <#elseif (BLESTACK_LOADED) && (ZIGBEESTACK_LOADED)>
     <#assign STACKS_IDLE = "(BT_RF_Suspended && ZB_IsIdle())">
     <#assign STACK_SLEEP_CHECK = "if (isSystemCanSleep &&
@@ -54,7 +68,7 @@
 // DOM-IGNORE-END
 
 #include "definitions.h"
-<#if SLEEP_SUPPORTED>
+<#if (SLEEP_SUPPORTED || (ZB_DEEP_SLEEP_SUPPORTED || OT_DEEP_SLEEP_SUPPORTED || MAC_DEEP_SLEEP_SUPPORTED))>
 /*-----------------------------------------------------------*/
 
 /* Ensure the SysTick is clocked at the same frequency as the core. */
@@ -96,6 +110,11 @@
 #define APP_IDLE_NVIC_PENDSVCLEAR_BIT            ( 1UL << 27UL )
 #define APP_IDLE_NVIC_PEND_SYSTICK_CLEAR_BIT     ( 1UL << 25UL )
 
+<#if PIC32CX_BZ2_HPA_DEVICE == true>
+/* Bypass pin control for HPA module */
+#define APP_IDLE_HpaByPassSetLow()               (GPIOB_REGS->GPIO_LATCLR = (1U << 1U))
+</#if>
+
 <#if (ZIGBEESTACK_LOADED)>
 /* 
  * Max sleep allowed - user can configure this value
@@ -135,7 +154,7 @@ static bool s_chkRtcCnt;
 <#if (ZIGBEESTACK_LOADED)>
 static BaseType_t zigbeeTaskAbortDelayReturn;
 </#if>
-<#if SLEEP_SUPPORTED>
+<#if (SLEEP_SUPPORTED || ZB_DEEP_SLEEP_SUPPORTED)> 
 <#if (ZIGBEESTACK_LOADED)>
 static bool isZBIdleTaskReadyToSleep = false;
 </#if>
@@ -181,7 +200,7 @@ void app_idle_task( void )
             else if (RF_Cal_Needed)
             </#if>
             {
-            <#if (ZIGBEESTACK_LOADED) && (SLEEP_SUPPORTED)>
+            <#if ((ZIGBEESTACK_LOADED) && (SLEEP_SUPPORTED || ZB_DEEP_SLEEP_SUPPORTED)) >
               if (ZB_CheckStackSleep())
               {
                 ZB_WakeUpFromSleep();
@@ -191,7 +210,6 @@ void app_idle_task( void )
               else
               {
             </#if>  
-            
             <#if (THREADSTACK_LOADED) || (IEEE_802154_PHY_LOADED)>
                PHY_TrxStatus_t trxStatus = PHY_GetTrxStatus();
                OSAL_CRITSECT_DATA_TYPE intStatus;
@@ -210,11 +228,9 @@ void app_idle_task( void )
             <#if (THREADSTACK_LOADED) || (IEEE_802154_PHY_LOADED)>
                }
             </#if>
-            
-            <#if (ZIGBEESTACK_LOADED) && (SLEEP_SUPPORTED)>	
+            <#if ((ZIGBEESTACK_LOADED) && (SLEEP_SUPPORTED || ZB_DEEP_SLEEP_SUPPORTED))>	
               }
             </#if>
-
             }
             </#if>
             <#if (BLESTACK_LOADED)>
@@ -222,7 +238,7 @@ void app_idle_task( void )
             </#if>
         }
     }
-<#if SLEEP_SUPPORTED>
+<#if (SLEEP_SUPPORTED || ZB_DEEP_SLEEP_SUPPORTED) >
     <#if (ZIGBEESTACK_LOADED)>
     if (ZB_IsIdle())
     {
@@ -239,7 +255,7 @@ void app_idle_task( void )
         isZBIdleTaskReadyToSleep = false;
     }
     </#if>
-    <#if (BLESTACK_LOADED)>
+    <#if (BLE_SLEEP_SUPPORTED)>
     /*
       Request BT to enter sleep mode, BLE stack will check if it can enter or not.
       Return true means that BT enters sleep mode.
@@ -250,7 +266,7 @@ void app_idle_task( void )
 }
 
 
-<#if ((ZIGBEESTACK_LOADED) && (!SLEEP_SUPPORTED)) || ((THREADSTACK_LOADED) && (!SLEEP_SUPPORTED))>
+<#if ((ZIGBEESTACK_LOADED) && (!SLEEP_SUPPORTED && !ZB_DEEP_SLEEP_SUPPORTED)) || ((THREADSTACK_LOADED || IEEE_802154_PHY_LOADED || IEEE_802154_MAC_LOADED) && ((!OT_DEEP_SLEEP_SUPPORTED) && (!MAC_DEEP_SLEEP_SUPPORTED)))>
 /*
     Devices which do not support Sleep needs to define this function.
 */
@@ -260,7 +276,7 @@ void vPortSuppressTicksAndSleep( TickType_t xExpectedIdleTime )
 }
 </#if>
 
-<#if SLEEP_SUPPORTED>
+<#if SLEEP_SUPPORTED || (ZB_DEEP_SLEEP_SUPPORTED || OT_DEEP_SLEEP_SUPPORTED || MAC_DEEP_SLEEP_SUPPORTED)>
 /* 
    Record RTC counter value in each tick interrupt to ensure the real time RTC counter value be recorded
    during system is active. Then RTC tickless idle mode can use this value to calculate how much tim passed
@@ -337,6 +353,7 @@ static void app_idle_setRtcTimeout(TickType_t expectedIdleTick, uint32_t current
     }
 }
 
+<#if ZIGBEESTACK_LOADED || BLESTACK_LOADED>
 /* Clear RTC compare value and disable interrupt. */
 static void app_idle_DisableRtcInt(void)
 {
@@ -358,6 +375,7 @@ static uint32_t app_idle_RtcCntOffset(uint32_t prev, uint32_t current)
         return (complement + current + 1);
     }
 }
+</#if>
 
 /*
  * Setup the systick timer to generate the tick interrupts at the required
@@ -423,7 +441,7 @@ void vPortSuppressTicksAndSleep( TickType_t xExpectedIdleTime )
         return;
     }
 
-    <#if (BLESTACK_LOADED)>
+    <#if (BLE_SLEEP_SUPPORTED)>
     /* Check if BT allow system to enter sleep mode */
     if (BT_SYS_AllowSystemSleep(RTC_Timer32FrequencyGet(), RTC_Timer32CounterGet()))
     {
@@ -489,6 +507,11 @@ void vPortSuppressTicksAndSleep( TickType_t xExpectedIdleTime )
             /* Disable current sensor to improve current consumption. */
             PMU_ConfigCurrentSensor(false);
         }
+
+        <#if PIC32CX_BZ2_HPA_DEVICE == true>
+        /* Pull low bypass pin for HPA module  */
+        APP_IDLE_HpaByPassSetLow();
+        </#if>
 
         /* Enter system sleep mode */
 		<#if (ZIGBEESTACK_LOADED)>        

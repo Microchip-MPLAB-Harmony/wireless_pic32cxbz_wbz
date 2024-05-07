@@ -1,6 +1,11 @@
     // Initialize RF System
     SYS_Load_Cal(${WSS_ENABLE_MODE});
  
+ <#if PIC32CX_BZ2_HPA_DEVICE == true>
+    //Enable the FEM module control for HPA module.
+    RF_HpaInit();
+
+</#if>
     // Set up OSAL for RF Stack Library usage
     osalAPIList.OSAL_CRIT_Enter      = OSAL_CRIT_Enter;
     osalAPIList.OSAL_CRIT_Leave      = OSAL_CRIT_Leave;
@@ -39,5 +44,4 @@
 	</#if>
 	</#if>
 </#if>
-
 

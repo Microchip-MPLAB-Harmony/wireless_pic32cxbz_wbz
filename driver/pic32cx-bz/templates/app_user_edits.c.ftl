@@ -69,7 +69,7 @@
  * Add the following code:
     app_idle_task();
 
-<#if SLEEP_SUPPORTED>
+<#if (SLEEP_SUPPORTED || (ZB_DEEP_SLEEP_SUPPORTED || (OT_DEEP_SLEEP_SUPPORTED || MAC_DEEP_SLEEP_SUPPORTED))) >
  * Step 3
  * ------
  * Add code to the function:

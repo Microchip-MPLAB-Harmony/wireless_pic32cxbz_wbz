@@ -185,7 +185,7 @@ void APP_Tasks ( void )
 
 			<#lt>${LIST_DS_BLE_INIT_C}
 
-<#if SLEEP_SUPPORTED && BLESTACK_LOADED == false>
+<#if (SLEEP_SUPPORTED || ((ZB_DEEP_SLEEP_SUPPORTED == true) || ((OT_DEEP_SLEEP_SUPPORTED == true) || (MAC_DEEP_SLEEP_SUPPORTED == true)))) && (BLESTACK_LOADED == false)>
             if (!(RTC_REGS->MODE0.RTC_CTRLA & RTC_MODE0_CTRLA_ENABLE_Msk))
             {
                 RTC_Timer32Start();
