@@ -33,11 +33,16 @@ pic32cx_bz2_family = {'PIC32CX1012BZ25048',
                       'PIC32CX1012BZ24032',
                       'WBZ451',
                       'WBZ450',
+                      'WBZ451H',
                       }
 
 pic32cx_bz2_48pin_family = {'PIC32CX1012BZ25048',
                             'WBZ451',
+                            'WBZ451H',
                             }
+
+pic32cx_bz2_hpa_family = {'WBZ451H',
+                          }
 
 pic32cx_bz3_family = {'PIC32CX5109BZ31048',
                       'PIC32CX5109BZ31032',
@@ -70,7 +75,8 @@ REQUIRES_APP_IDLE_TASK = {
         'ZIGBEE_GPD_SENSOR': 'ZIGBEESTACK_LOADED',
         'ZIGBEE_ZAPPSI': 'ZIGBEESTACK_LOADED',
         'OPEN_THREAD': 'THREADSTACK_LOADED',
-        'IEEE_802154_PHY': 'IEEE_802154_PHY_LOADED'}
+        'IEEE_802154_PHY': 'IEEE_802154_PHY_LOADED',
+        'IEEE_802154_MAC': 'IEEE_802154_MAC_LOADED'}
 
 
 REQUIRES_RTC_SUPPORT = {}
@@ -93,11 +99,218 @@ RADIOSTACK_COMPONENTS = [
         'ZIGBEE_GPD_SENSOR',
         'ZIGBEE_ZAPPSI',
         'OPEN_THREAD',
-        'IEEE_802154_PHY'
+        'IEEE_802154_PHY',
+        'IEEE_802154_MAC'
+        ]
+
+ZIGBEE_COMPONENTS = [
+        'ZIGBEE_COLOR_SCENE_CONTROLLER',
+        'ZIGBEE_MULTI_SENSOR',
+        'ZIGBEE_COMBINED_INTERFACE',
+        'ZIGBEE_THERMOSTAT',
+        'ZIGBEE_IAS_ACE',
+        'ZIGBEE_ON_OFF_LIGHT',
+        'ZIGBEE_DIMMABLE_LIGHT',
+        'ZIGBEE_COLOR_LIGHT',
+        'ZIGBEE_EXTENDED_COLOR_LIGHT',
+        'ZIGBEE_TEMPERATURE_COLOR_LIGHT',
+        'ZIGBEE_CUSTOM',
+        'ZIGBEE_MACWSNTESTER',
+        'ZIGBEE_GPD_SENSOR',
+        'ZIGBEE_ZAPPSI'
         ]
 
 activeComponents = Database.getActiveComponentIDs()
 
+# Protocol
+PROTO_BLE   = 0
+PROTO_ZB    = 1
+
+# Device
+DEV_WBZ451  = 0
+DEV_WBZ450  = 1
+DEV_WBZ451H = 2
+DEV_WBZ35X  = 3
+
+# Column Index of TxBackoffTable
+COL_REG = 0     # Regulatory
+COL_MD  = 1     # Mode
+COL_VAL = 2     # Value of Backoff
+
+# Regulatory
+REG_ETSI_UK  = 0
+REG_FCC_IC   = 1
+REG_JAPAN    = 2
+REG_KOREA    = 3
+REG_CHINA    = 4
+REG_TAIWAN   = 5
+NUM_REG      = 6
+
+# Mode
+MD_NON_FHSS = 0
+MD_FHSS     = 1
+
+# Column Index of Dev Tx Info
+COL_COND_TX_MAX = 0
+COL_ANT_GAIN    = 1
+
+# Device Tx Power Table
+devTxInfo = [
+    #Conducted Tx Power-Max(COL_COND_TX_MAX), Antenna Gain(COL_ANT_GAIN)
+    [12, 3], # DEV_WBZ451
+    [6,  5], # DEV_WBZ450
+    [20, 4], # DEV_WBZ451H
+    [11, 3], # DEV_WBZ35X
+    ]
+
+devDefMaxTxVal =[
+    devTxInfo[DEV_WBZ451][COL_COND_TX_MAX] + devTxInfo[DEV_WBZ451][COL_ANT_GAIN],   # DEV_WBZ451
+    devTxInfo[DEV_WBZ450][COL_COND_TX_MAX] + devTxInfo[DEV_WBZ450][COL_ANT_GAIN],   # DEV_WBZ450
+    devTxInfo[DEV_WBZ451H][COL_COND_TX_MAX] + devTxInfo[DEV_WBZ451H][COL_ANT_GAIN], # DEV_WBZ451H
+    devTxInfo[DEV_WBZ35X][COL_COND_TX_MAX] + devTxInfo[DEV_WBZ35X][COL_ANT_GAIN],   # DEV_WBZ35X
+    ]
+
+# BLE Backoff tables
+bleTxBackoffTableForWBZ451 = [
+    # Regulatory(COL_REG), Mode(COL_MD), Value of Backoff(COL_VAL)
+    # Non-FHSS
+    [REG_ETSI_UK, MD_NON_FHSS, 9],
+    [REG_FCC_IC, MD_NON_FHSS, devDefMaxTxVal[DEV_WBZ451]],
+    [REG_JAPAN, MD_NON_FHSS, 12],
+    [REG_KOREA, MD_NON_FHSS, 9],
+    [REG_CHINA, MD_NON_FHSS, devDefMaxTxVal[DEV_WBZ451]],
+    [REG_TAIWAN, MD_NON_FHSS, devDefMaxTxVal[DEV_WBZ451]],
+    # FHSS
+    [REG_ETSI_UK, MD_FHSS, devDefMaxTxVal[DEV_WBZ451]],
+    [REG_FCC_IC, MD_FHSS, devDefMaxTxVal[DEV_WBZ451]],
+    [REG_JAPAN, MD_FHSS, 12],
+    [REG_KOREA, MD_FHSS, 9],
+    [REG_CHINA, MD_FHSS, devDefMaxTxVal[DEV_WBZ451]],
+    [REG_TAIWAN, MD_FHSS, devDefMaxTxVal[DEV_WBZ451]],
+    ]
+
+bleTxBackoffTableForWBZ450 = [
+    # Regulatory(COL_REG), Mode(COL_MD), Value of Backoff(COL_VAL)
+    # Non-FHSS
+    [REG_ETSI_UK, MD_NON_FHSS, devDefMaxTxVal[DEV_WBZ450]],
+    [REG_FCC_IC, MD_NON_FHSS, devDefMaxTxVal[DEV_WBZ450]],
+    [REG_JAPAN, MD_NON_FHSS, devDefMaxTxVal[DEV_WBZ450]],
+    [REG_KOREA, MD_NON_FHSS, devDefMaxTxVal[DEV_WBZ450]],
+    [REG_CHINA, MD_NON_FHSS, devDefMaxTxVal[DEV_WBZ450]],
+    [REG_TAIWAN, MD_NON_FHSS, devDefMaxTxVal[DEV_WBZ450]],
+    # FHSS
+    [REG_ETSI_UK, MD_FHSS, devDefMaxTxVal[DEV_WBZ450]],
+    [REG_FCC_IC, MD_FHSS, devDefMaxTxVal[DEV_WBZ450]],
+    [REG_JAPAN, MD_FHSS, devDefMaxTxVal[DEV_WBZ450]],
+    [REG_KOREA, MD_FHSS, devDefMaxTxVal[DEV_WBZ450]],
+    [REG_CHINA, MD_FHSS, devDefMaxTxVal[DEV_WBZ450]],
+    [REG_TAIWAN, MD_FHSS, devDefMaxTxVal[DEV_WBZ450]],
+    ]
+
+bleTxBackoffTableForWBZ451H = [
+    # Regulatory(COL_REG), Mode(COL_MD), Value of Backoff(COL_VAL)
+    # Non-FHSS
+    [REG_ETSI_UK, MD_NON_FHSS, 9],
+    [REG_FCC_IC, MD_NON_FHSS, devDefMaxTxVal[DEV_WBZ451H]],
+    [REG_JAPAN, MD_NON_FHSS, 14],
+    [REG_KOREA, MD_NON_FHSS, 10],
+    [REG_CHINA, MD_NON_FHSS, 20],
+    [REG_TAIWAN, MD_NON_FHSS, devDefMaxTxVal[DEV_WBZ451H]],
+    # FHSS
+    [REG_ETSI_UK, MD_FHSS, 20],
+    [REG_FCC_IC, MD_FHSS, devDefMaxTxVal[DEV_WBZ451H]],
+    [REG_JAPAN, MD_FHSS, 14],
+    [REG_KOREA, MD_FHSS, 10],
+    [REG_CHINA, MD_FHSS, 20],
+    [REG_TAIWAN, MD_FHSS, devDefMaxTxVal[DEV_WBZ451H]],
+    ]
+
+bleTxBackoffTableForWBZ35X = [
+    # Regulatory(COL_REG), Mode(COL_MD), Value of Backoff(COL_VAL)
+    # Non-FHSS
+    [REG_ETSI_UK, MD_NON_FHSS, 8],
+    [REG_FCC_IC, MD_NON_FHSS, devDefMaxTxVal[DEV_WBZ35X]],
+    [REG_JAPAN, MD_NON_FHSS, 11],
+    [REG_KOREA, MD_NON_FHSS, 10],
+    [REG_CHINA, MD_NON_FHSS, devDefMaxTxVal[DEV_WBZ35X]],
+    [REG_TAIWAN, MD_NON_FHSS, devDefMaxTxVal[DEV_WBZ35X]],
+    # FHSS
+    [REG_ETSI_UK, MD_FHSS, devDefMaxTxVal[DEV_WBZ35X]],
+    [REG_FCC_IC, MD_FHSS, devDefMaxTxVal[DEV_WBZ35X]],
+    [REG_JAPAN, MD_FHSS, 11],
+    [REG_KOREA, MD_FHSS, 10],
+    [REG_CHINA, MD_FHSS, devDefMaxTxVal[DEV_WBZ35X]],
+    [REG_TAIWAN, MD_FHSS, devDefMaxTxVal[DEV_WBZ35X]],
+    ]
+
+# Zigbee Backoff tables
+zbTxBackoffTableForWBZ451 = [
+    # Regulatory(COL_REG), Mode(COL_MD), Value of Backoff(COL_VAL)
+    # Non-FHSS
+    [REG_ETSI_UK, MD_NON_FHSS, 11],
+    [REG_FCC_IC, MD_NON_FHSS, devDefMaxTxVal[DEV_WBZ451]],
+    [REG_JAPAN, MD_NON_FHSS, 12],
+    [REG_KOREA, MD_NON_FHSS, 8],
+    [REG_CHINA, MD_NON_FHSS, devDefMaxTxVal[DEV_WBZ451]],
+    [REG_TAIWAN, MD_NON_FHSS, devDefMaxTxVal[DEV_WBZ451]],
+    ]
+
+zbTxBackoffTableForWBZ450 = [
+    # Regulatory(COL_REG), Mode(COL_MD), Value of Backoff(COL_VAL)
+    # Non-FHSS
+    [REG_ETSI_UK, MD_NON_FHSS, devDefMaxTxVal[DEV_WBZ450]],
+    [REG_FCC_IC, MD_NON_FHSS, devDefMaxTxVal[DEV_WBZ450]],
+    [REG_JAPAN, MD_NON_FHSS, devDefMaxTxVal[DEV_WBZ450]],
+    [REG_KOREA, MD_NON_FHSS, devDefMaxTxVal[DEV_WBZ450]],
+    [REG_CHINA, MD_NON_FHSS, devDefMaxTxVal[DEV_WBZ450]],
+    [REG_TAIWAN, MD_NON_FHSS, devDefMaxTxVal[DEV_WBZ450]],
+    ]
+
+zbTxBackoffTableForWBZ451H = [
+    # Regulatory(COL_REG), Mode(COL_MD), Value of Backoff(COL_VAL)
+    # Non-FHSS
+    [REG_ETSI_UK, MD_NON_FHSS, 10],
+    [REG_FCC_IC, MD_NON_FHSS, 10],
+    [REG_JAPAN, MD_NON_FHSS, 14],
+    [REG_KOREA, MD_NON_FHSS, 10],
+    [REG_CHINA, MD_NON_FHSS, 20],
+    [REG_TAIWAN, MD_NON_FHSS, devDefMaxTxVal[DEV_WBZ451H]],
+    ]
+
+zbTxBackoffTableForWBZ35X = [
+    # Regulatory(COL_REG), Mode(COL_MD), Value of Backoff(COL_VAL)
+    # Non-FHSS
+    [REG_ETSI_UK, MD_NON_FHSS, 10],
+    [REG_FCC_IC, MD_NON_FHSS, devDefMaxTxVal[DEV_WBZ35X]],
+    [REG_JAPAN, MD_NON_FHSS, 11],
+    [REG_KOREA, MD_NON_FHSS, devDefMaxTxVal[DEV_WBZ35X]],
+    [REG_CHINA, MD_NON_FHSS, 8],
+    [REG_TAIWAN, MD_NON_FHSS, devDefMaxTxVal[DEV_WBZ35X]],
+    ]
+
+devTxBackoffTable=[
+    # DEV_WBZ451, DEV_WBZ450, DEV_WBZ451H, DEV_WBZ35X
+    [bleTxBackoffTableForWBZ451, bleTxBackoffTableForWBZ450, bleTxBackoffTableForWBZ451H, bleTxBackoffTableForWBZ35X], # PROTO_BLE
+    [zbTxBackoffTableForWBZ451, zbTxBackoffTableForWBZ450, zbTxBackoffTableForWBZ451H, zbTxBackoffTableForWBZ35X], # PROTO_ZB
+    ]
+
+# Column of RegulatoryRegionList
+COL_ETSI_UK = REG_ETSI_UK
+COL_FCC_IC  = REG_FCC_IC
+COL_JAPAN   = REG_JAPAN
+COL_KOREA   = REG_KOREA
+COL_CHINA   = REG_CHINA
+COL_TAIWAN  = REG_TAIWAN
+NUM_COL_REG  = NUM_REG
+
+regEnList=[
+    False, # COL_ETSI_UK
+    False, # COL_FCC_IC
+    False, # COL_JAPAN
+    False, # COL_KOREA
+    False, # COL_CHINA
+    False, # COL_TAIWAN
+    ]
 
 def configWSSEnable(component, targetID, connected):
     """
@@ -142,6 +355,9 @@ def configWSSEnable(component, targetID, connected):
                     zigbee_loaded = True
                     
                 if 'IEEE_802154_PHY' in stackName and REQUIRES_WSSENABLE_MODE[stackName]:
+                    zigbee_loaded = True
+                    
+                if 'IEEE_802154_MAC' in stackName and REQUIRES_WSSENABLE_MODE[stackName]:
                     zigbee_loaded = True
 
                 if 'OPEN_THREAD' in stackName and REQUIRES_WSSENABLE_MODE[stackName]:
@@ -298,25 +514,97 @@ def updatePREFEN(symbol, event):
     symbol.setValue(getCorePREFEN())
 
 
+def calcTxPwrBackoff(devIdx, protoType, regEnList, antGain):
+
+    txTbl = devTxBackoffTable[protoType][devIdx]
+    txPwrMaxNonFHSS = devDefMaxTxVal[devIdx]
+    txPwrMaxFHSS = txPwrMaxNonFHSS
+
+    # Find the least value in all regulatory regions.
+    for idxRgn in range(NUM_COL_REG):
+        #print(idxRgn)
+        if regEnList[idxRgn]:
+            if (protoType == PROTO_BLE):
+                # Non-FHSS
+                txPwrMaxNonFHSS = min(txPwrMaxNonFHSS, txTbl[idxRgn][COL_VAL])
+                # FHSS
+                txPwrMaxFHSS= min(txPwrMaxFHSS, txTbl[idxRgn+NUM_COL_REG][COL_VAL])
+            elif (protoType == PROTO_ZB):
+                # Non-FHSS
+                txPwrMaxNonFHSS = min(txPwrMaxNonFHSS, txTbl[idxRgn][COL_VAL])
+
+    # Find the least value between "the least value in all regulatory regions" and "the max conducted power + custom antenna gain"
+    if (protoType == PROTO_BLE):
+        txPwrMaxNonFHSS = min(txPwrMaxNonFHSS, devTxInfo[devIdx][COL_COND_TX_MAX] + antGain)
+        txPwrMaxFHSS = min(txPwrMaxFHSS, devTxInfo[devIdx][COL_COND_TX_MAX] + antGain)
+    elif (protoType == PROTO_ZB):
+        txPwrMaxNonFHSS = min(txPwrMaxNonFHSS, devTxInfo[devIdx][COL_COND_TX_MAX] + antGain)
+
+    return txPwrMaxNonFHSS, txPwrMaxFHSS;
+
+def notifyTxPwrInfo(component):
+
+    global deviceName
+
+    # Device Idx
+    if deviceName == 'WBZ451' or deviceName == 'PIC32CX1012BZ25048' or deviceName == 'PIC32CX1012BZ25032':
+        devIdx = DEV_WBZ451
+    elif deviceName == 'WBZ450' or deviceName == 'PIC32CX1012BZ24032':
+        devIdx = DEV_WBZ450
+    elif deviceName == 'WBZ451H':
+        devIdx = DEV_WBZ451H
+    elif deviceName == 'WBZ351' or deviceName == 'WBZ350' or deviceName == 'PIC32CX5109BZ31048' or deviceName == 'PIC32CX5109BZ31032': # no backoff table received
+        devIdx = DEV_WBZ35X
+    else:
+        print("Not supported device")
+        return;
+
+    # Regulatory regions enabled
+    regEnList[COL_ETSI_UK]  = component.getSymbolValue('ETSI_REGION')
+    regEnList[COL_FCC_IC]   = component.getSymbolValue('FCC_REGION')
+    regEnList[COL_JAPAN]    = component.getSymbolValue('JAPAN_REGION')
+    regEnList[COL_KOREA]    = component.getSymbolValue('KOREA_REGION')
+    regEnList[COL_CHINA]    = component.getSymbolValue('CHINA_REGION')
+    regEnList[COL_TAIWAN]   = component.getSymbolValue('TAIWAN_REGION')
+    
+    # Antenna Gain
+    if (component.getSymbolValue('CUSTOM_ANT_ENABLE')):
+        antGain = component.getSymbolValue('CUSTOM_ANT_GAIN')
+    else:
+        antGain = devTxInfo[devIdx][COL_ANT_GAIN]
+    
+    # Send message to all active components after the calculation of backoff value(upper limit).
+    for client in RADIOSTACK_COMPONENTS:
+        if client in Database.getActiveComponentIDs():
+            if (client == 'BLE_STACK_LIB'):
+                protoType = PROTO_BLE
+            elif (client in ZIGBEE_COMPONENTS) or (client == 'OPEN_THREAD') or (client == 'IEEE_802154_PHY') or (client == 'IEEE_802154_MAC'):
+                protoType = PROTO_ZB
+            else:
+                break;
+            
+            # Max value(backoff value)
+            txPwrMaxNonFHSS, txPwrMaxFHSS = calcTxPwrBackoff(devIdx, protoType, regEnList, antGain)
+            
+            # Message of max value for Non-FHSS/FHSS
+            Log.writeInfoMessage('{:<17}: Sending  - target={} ID={} Value={}'.format('device_support', client, 'TX_PWR_MAX_NON_FHSS', txPwrMaxNonFHSS))
+            Database.sendMessage(client, "ANTENNA_GAIN_CHANGE", {'target': client, 'TX_PWR_MAX_NON_FHSS':txPwrMaxNonFHSS})
+            
+            if (protoType == PROTO_BLE):
+                Log.writeInfoMessage('{:<17}: Sending  - target={} ID={} Value={}'.format('device_support', client, 'TX_PWR_MAX_FHSS', txPwrMaxFHSS))
+                Database.sendMessage(client, "ANTENNA_GAIN_CHANGE", {'target': client, 'TX_PWR_MAX_FHSS':txPwrMaxFHSS})
+            
+            # Message of Gain value
+            Database.sendMessage(client, "ANTENNA_GAIN_CHANGE", {'target': client, 'CUSTOM_ANT_GAIN':antGain})
+
 def antGainEnable(symbol, event):
     Log.writeInfoMessage('device_support:antGainEnable(symbolID:{}, eventID:{}, eventValue:{})'.format(symbol.getID(), event["id"], event["value"]))
     if('CUSTOM_ANT_ENABLE' == event["id"]):
         symbol.setVisible(event["value"])
 
-    sendAntMessage(event["id"], event["value"])
-
-
 def antGainChanged(symbol, event):
-    Log.writeInfoMessage('device_support:antGainChanged(symbolID:{}, eventID:{}, eventValue:{})'.format(symbol.getID(), event["id"], event["value"]))
-    sendAntMessage(event["id"], event["value"])
-
-
-def sendAntMessage(id, value):
-    # This message function shares custom antenna configuration information with RADIOSTACK_COMPONENTS
-    for client in RADIOSTACK_COMPONENTS:
-        if client in Database.getActiveComponentIDs():
-            Log.writeInfoMessage('{:<17}: Sending  - target={} ID={} Value={}'.format('device_support', client, id, value))
-            Database.sendMessage(client, "ANTENNA_GAIN_CHANGE", {'target': client, id:value})
+    Log.writeInfoMessage('device_support:antGainChanged(symbolID:{}, eventID:{}, eventValue:{})'.format(symbol.getID(), event["id"], event["value"]))    
+    notifyTxPwrInfo(symbol.getComponent())
 
 def getBLEStackLibDsadven():
     components = Database.getActiveComponentIDs()
@@ -797,6 +1085,7 @@ def instantiateComponent(libBTZBCore):
     ############################################################################
     # This boolean is controlled configAppIdleTask called by:
     #   onAttachmentConnected or onAttachmentDisconnected
+    global zigbeeStackLoaded
     zigbeeStackLoaded = libBTZBCore.createBooleanSymbol('ZIGBEESTACK_LOADED', None)
     zigbeeStackLoaded.setDefaultValue(['ZIGBEE_COLOR_SCENE_CONTROLLER' or 'ZIGBEE_MULTI_SENSOR' or 'ZIGBEE_COMBINED_INTERFACE' or 
                                       'ZIGBEE_THERMOSTAT' or 'ZIGBEE_IAS_ACE' or 'ZIGBEE_ON_OFF_LIGHT' or 'ZIGBEE_DIMMABLE_LIGHT' or 
@@ -809,6 +1098,7 @@ def instantiateComponent(libBTZBCore):
     ############################################################################
     # This boolean is controlled configAppIdleTask called by:
     #   onAttachmentConnected or onAttachmentDisconnected
+    global threadStackLoaded 
     threadStackLoaded = libBTZBCore.createBooleanSymbol('THREADSTACK_LOADED', None)
     threadStackLoaded.setDefaultValue('OPEN_THREAD' in activeComponents)
     threadStackLoaded.setVisible(False)
@@ -821,6 +1111,16 @@ def instantiateComponent(libBTZBCore):
     phyLoaded = libBTZBCore.createBooleanSymbol('IEEE_802154_PHY_LOADED', None)
     phyLoaded.setDefaultValue('IEEE_802154_PHY' in activeComponents)
     phyLoaded.setVisible(False)
+    
+    ############################################################################
+    ### Add logic for adding MAC to app.c
+    ############################################################################
+    # This boolean is controlled configAppIdleTask called by:
+    #   onAttachmentConnected or onAttachmentDisconnected
+    global macLoaded
+    macLoaded = libBTZBCore.createBooleanSymbol('IEEE_802154_MAC_LOADED', None)
+    macLoaded.setDefaultValue('IEEE_802154_MAC' in activeComponents)
+    macLoaded.setVisible(False)
 
     ############################################################################
     ### Add logic for setting wssEnable_t mode
@@ -993,7 +1293,7 @@ def instantiateComponent(libBTZBCore):
     customAntennaGainEnable = libBTZBCore.createBooleanSymbol('CUSTOM_ANT_ENABLE', None)
     customAntennaGainEnable.setLabel('Enable Custom Antenna Gain')
     customAntennaGainEnable.setValue(False)
-    customAntennaGainEnable.setDependencies(antGainChanged, ["CUSTOM_ANT_GAIN", "ETSI_REGION", "FCC_REGION", "JAPAN_REGION", "KOREA_REGION", "CHINA_REGION", "TAIWAN_REGION"])
+    customAntennaGainEnable.setDependencies(antGainChanged, ["CUSTOM_ANT_ENABLE", "CUSTOM_ANT_GAIN", "ETSI_REGION", "FCC_REGION", "JAPAN_REGION", "KOREA_REGION", "CHINA_REGION", "TAIWAN_REGION"])
 
 
     ############################################################################
@@ -1002,9 +1302,13 @@ def instantiateComponent(libBTZBCore):
     customAntennaGain = libBTZBCore.createIntegerSymbol('CUSTOM_ANT_GAIN', customAntennaGainEnable)
     customAntennaGain.setLabel('Custom Antenna Gain (dBm)')
     if( deviceName == 'WBZ450' ):
-        customAntennaGain.setDefaultValue(5)
-    else:
-        customAntennaGain.setDefaultValue(3)
+        customAntennaGain.setDefaultValue(devTxInfo[DEV_WBZ450][COL_ANT_GAIN])
+    elif ( deviceName == 'WBZ451' ):
+        customAntennaGain.setDefaultValue(devTxInfo[DEV_WBZ451][COL_ANT_GAIN])
+    elif ( deviceName == 'WBZ451H' ):
+        customAntennaGain.setDefaultValue(devTxInfo[DEV_WBZ451H][COL_ANT_GAIN])
+    else: # WBZ350/351
+        customAntennaGain.setDefaultValue(devTxInfo[DEV_WBZ35X][COL_ANT_GAIN])
 
     customAntennaGain.setMin(-5)
     customAntennaGain.setMax(6)
@@ -1033,14 +1337,51 @@ def instantiateComponent(libBTZBCore):
     ############################################################################
     ### Add Sleep support for radio stacks
     ############################################################################
+    global sleepSupportEnable
     sleepSupportEnable = libBTZBCore.createBooleanSymbol("SLEEP_SUPPORTED", None)
     sleepSupportEnable.setReadOnly(True)
-    sleepSupportEnable.setLabel("Sleep support required by radio stack")
+    sleepSupportEnable.setLabel("Sleep support required by System")
     # This value is controlled by handleRTC_Support():
     sleepSupportEnable.setDefaultValue(False)
     sleepSupportEnable.setVisible(False)
 
+    # For BLE Sleep
+    global bleSleepSupportEnable
+    bleSleepSupportEnable = libBTZBCore.createBooleanSymbol("BLE_SLEEP_SUPPORTED", None)
+    bleSleepSupportEnable.setReadOnly(True)
+    bleSleepSupportEnable.setLabel("Sleep support required by BLE stack")
+    bleSleepSupportEnable.setDefaultValue(False)
+    bleSleepSupportEnable.setVisible(False)
 
+    # For Zigbee Sleep
+    global zbSleepSupportEnable
+    zbSleepSupportEnable = libBTZBCore.createBooleanSymbol("ZB_SLEEP_SUPPORTED", None)
+    zbSleepSupportEnable.setReadOnly(True)
+    zbSleepSupportEnable.setLabel("Sleep support required by Zigbee stack")
+    zbSleepSupportEnable.setDefaultValue(False)
+    zbSleepSupportEnable.setVisible(False)
+
+    global zbDeepSleepSupportEnable
+    zbDeepSleepSupportEnable = libBTZBCore.createBooleanSymbol("ZB_DEEP_SLEEP_SUPPORTED", None)
+    zbDeepSleepSupportEnable.setReadOnly(True)
+    zbDeepSleepSupportEnable.setLabel("Sleep support required by Zigbee stack")
+    zbDeepSleepSupportEnable.setDefaultValue(False)
+    zbDeepSleepSupportEnable.setVisible(False)
+    
+    global otDeepSleepSupportEnable
+    otDeepSleepSupportEnable = libBTZBCore.createBooleanSymbol("OT_DEEP_SLEEP_SUPPORTED", None)
+    otDeepSleepSupportEnable.setReadOnly(True)
+    otDeepSleepSupportEnable.setLabel("Sleep support required by Thread stack")
+    otDeepSleepSupportEnable.setDefaultValue(False)
+    otDeepSleepSupportEnable.setVisible(False)
+    
+    global macDeepSleepSupportEnable
+    macDeepSleepSupportEnable = libBTZBCore.createBooleanSymbol("MAC_DEEP_SLEEP_SUPPORTED", None)
+    macDeepSleepSupportEnable.setReadOnly(True)
+    macDeepSleepSupportEnable.setLabel("Sleep support required by Standlone MAC")
+    macDeepSleepSupportEnable.setDefaultValue(False)
+    macDeepSleepSupportEnable.setVisible(False)
+    
     ############################################################################
     ### Configure XC32 compiler settings
     ############################################################################
@@ -1078,6 +1419,11 @@ def instantiateComponent(libBTZBCore):
     pic32cxbzPinDevice = libBTZBCore.createBooleanSymbol('PIC32CX_BZ2_48PIN_DEVICE', None)
     pic32cxbzPinDevice.setDefaultValue(deviceName in pic32cx_bz2_48pin_family)
     pic32cxbzPinDevice.setVisible(False)
+
+    # This boolean identifies the device is PIC32CX-BZ2 HPA device
+    pic32cxbzHpaDevice = libBTZBCore.createBooleanSymbol('PIC32CX_BZ2_HPA_DEVICE', None)
+    pic32cxbzHpaDevice.setDefaultValue(deviceName in pic32cx_bz2_hpa_family)
+    pic32cxbzHpaDevice.setVisible(False)
 
     ############################################################################
     ### PIC32CX-BZ3 family Identification symbol
@@ -1136,18 +1482,7 @@ def onAttachmentConnected(source, target):
         configAppIdleTask(source["component"], targetID, True)
 
     # send initial Custom Antenna values to clients
-    if targetID in RADIOSTACK_COMPONENTS:
-        # Log.writeInfoMessage('device_support:onAttachmentConnected: CUSTOM_ANT_ENABLE symbol: {}'.format(source["component"].getSymbolByID("CUSTOM_ANT_ENABLE").getID()))
-        sendAntMessage('CUSTOM_ANT_ENABLE', source["component"].getSymbolByID("CUSTOM_ANT_ENABLE").getValue())
-        sendAntMessage('CUSTOM_ANT_GAIN', source["component"].getSymbolByID("CUSTOM_ANT_GAIN").getValue())
-        sendAntMessage('ETSI_REGION', source["component"].getSymbolByID("ETSI_REGION").getValue())
-        sendAntMessage('FCC_REGION', source["component"].getSymbolByID("FCC_REGION").getValue())
-        sendAntMessage('JAPAN_REGION', source["component"].getSymbolByID("JAPAN_REGION").getValue())
-        sendAntMessage('KOREA_REGION', source["component"].getSymbolByID("KOREA_REGION").getValue())
-        sendAntMessage('CHINA_REGION', source["component"].getSymbolByID("CHINA_REGION").getValue())
-        sendAntMessage('TAIWAN_REGION', source["component"].getSymbolByID("TAIWAN_REGION").getValue())
-
-
+    notifyTxPwrInfo(source["component"])
 
     if targetID == 'rtc':
         Database.setSymbolValue("rtc", "RTC_MODE0_INTENSET_CMP0_ENABLE", True)
@@ -1191,82 +1526,167 @@ def handleRTC_Support(args):
     rtcRequested = args['rtcRequired']
     REQUIRES_RTC_SUPPORT[args['source']] = rtcRequested
 
-    # locate the SLEEP_SUPPORTED symbols in the Database
     localComponent = Database.getComponentByID(args['target'])
     if (localComponent):
         localComponentID = localComponent.getID()
-        rtcRequiredSymbol = (localComponent.getSymbolByID('SLEEP_SUPPORTED') or localComponent.getSymbolByID('ENABLE_DEEP_SLEEP'))
 
     Log.writeInfoMessage('device_support:handleRTC_Support target ID = {}'.format(localComponentID))
 
     # if any entries in REQUIRES_RTC_SUPPORT are True then rtcRequired is True
     rtcRequired = not all(required==False for required in REQUIRES_RTC_SUPPORT.values())
-    rtcRequiredSymbol.setValue(rtcRequired)
+
+    # if any entries in REQUIRES_RTC_SUPPORT are True load the RTC
+    if rtcRequired:
+        if "rtc" in Database.getActiveComponentIDs():
+            print('RTC already exists')
+        else:
+            activateRTC = Database.activateComponents(["rtc"])
+            connectRTC = Database.connectDependencies([[localComponentID, 'RTC_Module', 'rtc', 'RTC_TMR']])
+    elif "rtc" in Database.getActiveComponentIDs():
+        deactivateRTC = Database.deactivateComponents(["rtc"])
+
+def getSystemSleepState():
+    if (sleepSupportEnable.getValue()):
+        return True
+    return False
+
+def getBleSleepState():
+    if (bleSleepSupportEnable.getValue()):
+        return True
+    return False
+
+def getZbSleepState():
+    if (zbSleepSupportEnable.getValue()):
+        return True
+    return False
+
+def handleSleepEnable(args):
+    Log.writeInfoMessage('device_support:handleSleepEnable')
+    for arg in args:
+        Log.writeInfoMessage("    arg['{:>12}'] = '{}'".format(arg, str(args[arg])))
+
+    # locate the SLEEP_SUPPORTED symbols in the Database
+    sleepEnabled = args['isEnabled']
+    requestSource = args['source']
 
     global deviceSleepHeaderFile
     global deviceSleepSourceFile
 
-    # if any entries in REQUIRES_RTC_SUPPORT are True load the RTC
-    if rtcRequired:
-        activateRTC = Database.activateComponents(["rtc"])
-        connectRTC = Database.connectDependencies([[localComponentID, 'RTC_Module', 'rtc', 'RTC_TMR']])
+    if sleepEnabled:
+        sleepSupportEnable.setValue(True)
         deviceSleepHeaderFile.setEnabled(True)
         deviceSleepSourceFile.setEnabled(True)
 
-    elif "rtc" in Database.getActiveComponentIDs():
-        deactivateRTC = Database.deactivateComponents(["rtc"])
-        deviceSleepHeaderFile.setEnabled(False)
-        deviceSleepSourceFile.setEnabled(False)
+        if (deviceName in pic32cx_bz2_family):
+            handleRTC_Support({"target": "pic32cx_bz2_devsupport", "source": "pic32cx_bz2_devsupport", "rtcRequired": True})
+        elif (deviceName in pic32cx_bz3_family):
+            handleRTC_Support({"target": "pic32cx_bz3_devsupport", "source": "pic32cx_bz3_devsupport", "rtcRequired": True})
+
+        if (requestSource == "BLE_STACK_LIB"):
+            print("BLE requests Sleep")
+            bleSleepSupportEnable.setValue(True)
+        elif (requestSource == "ZB_STACK_LIB"):
+            print("ZB requests Sleep")
+            zbSleepSupportEnable.setValue(True)
+    else:
+        if (requestSource == "BLE_STACK_LIB"):
+            print("BLE requests to disable Sleep")
+            bleSleepSupportEnable.setValue(False)
+        elif (requestSource == "ZB_STACK_LIB"):
+            print("ZB requests to Disable Sleep")
+            zbSleepSupportEnable.setValue(False)
+
+        # Disable sleep mode implementation only when both of BLE and ZB sleep are disabled
+        if (getBleSleepState() == False and getZbSleepState() == False):
+            print("Both of BLE and ZB disable Sleep")
+            sleepSupportEnable.setValue(False)
+            deviceSleepHeaderFile.setEnabled(False)
+            deviceSleepSourceFile.setEnabled(False)
+
+            # Do no disable RTC if deep sleep is enabled
+            if (getDeepSleepState() == False):
+                if (deviceName in pic32cx_bz2_family):
+                    handleRTC_Support({"target": "pic32cx_bz2_devsupport", "source": "pic32cx_bz2_devsupport", "rtcRequired": False})
+                elif (deviceName in pic32cx_bz3_family):
+                    handleRTC_Support({"target": "pic32cx_bz3_devsupport", "source": "pic32cx_bz3_devsupport", "rtcRequired": False})
 
 
 # Dependency callback called upon PMU Mode Setting is enabled
 def enablePMUModeSettingOption(symbol, event):
     symbol.setVisible(event["value"])
 
+def handleDeepSleepFile(args):
+    dsEnabled = args['isEnabled']
+
+    if (dsEnabled == True):
+        #print("handleDeepSleepFile Enable")
+        deviceDeepSleepHeaderFile.setEnabled(True)
+        deviceDeepSleepSourceFile.setEnabled(True)
+        if (zigbeeStackLoaded.getValue() == True):
+          zbDeepSleepSupportEnable.setValue(True)
+        if (threadStackLoaded.getValue() == True):
+          otDeepSleepSupportEnable.setValue(True)
+        if(macLoaded.getValue() == True):
+          macDeepSleepSupportEnable.setValue(True)
+
+        if (deviceName in pic32cx_bz2_family):
+            handleRTC_Support({"target": "pic32cx_bz2_devsupport", "source": "pic32cx_bz2_devsupport", "rtcRequired": True})
+        elif (deviceName in pic32cx_bz3_family):
+            handleRTC_Support({"target": "pic32cx_bz3_devsupport", "source": "pic32cx_bz3_devsupport", "rtcRequired": True})
+    else:
+        #print("handleDeepSleepFile Disable")
+        deviceDeepSleepHeaderFile.setEnabled(False)
+        deviceDeepSleepSourceFile.setEnabled(False)
+        if (zigbeeStackLoaded.getValue() == True):
+          zbDeepSleepSupportEnable.setValue(False)
+        if (threadStackLoaded.getValue() == True):  
+          otDeepSleepSupportEnable.setValue(False)
+        if(macLoaded.getValue() == True):
+          macDeepSleepSupportEnable.setValue(False)
+        # Do no disable RTC if sleep mode is enabled
+        if (getSystemSleepState() == False):
+            if (deviceName in pic32cx_bz2_family):
+                handleRTC_Support({"target": "pic32cx_bz2_devsupport", "source": "pic32cx_bz2_devsupport", "rtcRequired": False})
+            elif (deviceName in pic32cx_bz3_family):
+                handleRTC_Support({"target": "pic32cx_bz3_devsupport", "source": "pic32cx_bz3_devsupport", "rtcRequired": False})
+
 def handleDeepSleepEnable(args):
     deepSleepEnable.setValue(args["isEnabled"])
     global deviceDeepSleepHeaderFile
     global deviceDeepSleepSourceFile
-    if (args["isEnabled"] == True):
-        deviceDeepSleepHeaderFile.setEnabled(True)
-        deviceDeepSleepSourceFile.setEnabled(True)
-        deepSleepEnable.setReadOnly(True)
+
+    dsEnabled = args['isEnabled']
+
+    if (dsEnabled == True):
         print("handleDeepSleepEnable setting True")
+        deepSleepEnable.setReadOnly(True)
+        handleDeepSleepFile(args)
+
     else:
-        deviceDeepSleepHeaderFile.setEnabled(False)
-        deviceDeepSleepSourceFile.setEnabled(False)
-        deepSleepEnable.setReadOnly(False)
         print("handleDeepSleepEnable setting False")
+        deepSleepEnable.setReadOnly(False)
+        handleDeepSleepFile(args)
+
 
 def enableRetentionRAMSetting(symbol, event):
     if ((event["value"] == True)):
-        deepSleepEnable.setValue(True)
         if(event["source"] == "BLE_STACK_LIB:GAP_DSAVD_EN"):
             print("GAP_DSADV_EN enabled")
         else:
             print("enable deep sleep setting enabled")
             if (deviceName in pic32cx_bz2_family):
-                handleRTC_Support({"target": "pic32cx_bz2_devsupport", "source": "pic32cx_bz2_devsupport", "rtcRequired": True})
-                deviceDeepSleepHeaderFile.setEnabled(True)
-                deviceDeepSleepSourceFile.setEnabled(True)
+                handleDeepSleepFile({"target": "pic32cx_bz2_devsupport", "source": "pic32cx_bz2_devsupport", "isEnabled": True})
             elif (deviceName in pic32cx_bz3_family):
-                handleRTC_Support({"target": "pic32cx_bz3_devsupport", "source": "pic32cx_bz3_devsupport", "rtcRequired": True})
-                deviceDeepSleepHeaderFile.setEnabled(True)
-                deviceDeepSleepSourceFile.setEnabled(True)
+                handleDeepSleepFile({"target": "pic32cx_bz3_devsupport", "source": "pic32cx_bz3_devsupport", "isEnabled": True})
     else:
-        deepSleepEnable.setValue(False)
         if(event["source"] == "BLE_STACK_LIB:GAP_DSAVD_EN"):
             print("GAP_DSADV_EN disabled")
         else:
             print("enable deep sleep setting disabled")
             if (deviceName in pic32cx_bz2_family):
-                handleRTC_Support({"target": "pic32cx_bz2_devsupport", "source": "pic32cx_bz2_devsupport", "rtcRequired": False})
-                deviceDeepSleepHeaderFile.setEnabled(False)
-                deviceDeepSleepSourceFile.setEnabled(False)
+                handleDeepSleepFile({"target": "pic32cx_bz2_devsupport", "source": "pic32cx_bz2_devsupport", "isEnabled": False})
             elif (deviceName in pic32cx_bz3_family):
-                handleRTC_Support({"target": "pic32cx_bz3_devsupport", "source": "pic32cx_bz3_devsupport", "rtcRequired": False})
-                deviceDeepSleepHeaderFile.setEnabled(False)
-                deviceDeepSleepSourceFile.setEnabled(False)
+                handleDeepSleepFile({"target": "pic32cx_bz3_devsupport", "source": "pic32cx_bz3_devsupport", "isEnabled": False})
 
 def enableStackRetentionRAM(symbol, event):
     if(getDeepSleepState() and (deviceName in pic32cx_bz3_family)):
@@ -1306,7 +1726,19 @@ def handleMessage(messageID, args):
             payload:    {
                         'target':       <this module>
                         'source':       <module name>,
-                        'rtcRequired:   True/False,
+                        'rtcRequired':   True/False,
+                        }
+        SLEEP_ENABLE:   specifies if sleep mode is enabled
+            payload:    {
+                        'target':       <this module>
+                        'source':       <module name>,
+                        'isEnabled':     True/False,
+                        }
+        DEEP_SLEEP_ENABLE: specifies if sleep mode is enabled
+            payload:    {
+                        'target':       <this module>
+                        'source':       <module name>,
+                        'isEnabled':     True/False,
                         }
     '''
     Log.writeInfoMessage("device_support:handleMessage ID='{}'".format(messageID))
@@ -1316,6 +1748,8 @@ def handleMessage(messageID, args):
         # for arg in args:
         #     Log.writeInfoMessage("    arg['{:>12}'] = '{}'".format(arg, args[arg]))
         handleRTC_Support(args)
+    elif (messageID == "SLEEP_ENABLE"):
+        handleSleepEnable(args)
     elif (messageID == "DEEP_SLEEP_ENABLE"):
         handleDeepSleepEnable(args)
 
