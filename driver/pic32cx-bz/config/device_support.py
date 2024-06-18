@@ -212,15 +212,15 @@ bleTxBackoffTableForWBZ451H = [
     # Non-FHSS
     [REG_ETSI_UK, MD_NON_FHSS, 9],
     [REG_FCC_IC, MD_NON_FHSS, devDefMaxTxVal[DEV_WBZ451H]],
-    [REG_JAPAN, MD_NON_FHSS, 14],
-    [REG_KOREA, MD_NON_FHSS, 10],
+    [REG_JAPAN, MD_NON_FHSS, 12],
+    [REG_KOREA, MD_NON_FHSS, devDefMaxTxVal[DEV_WBZ451H]],
     [REG_CHINA, MD_NON_FHSS, 20],
     [REG_TAIWAN, MD_NON_FHSS, devDefMaxTxVal[DEV_WBZ451H]],
     # FHSS
     [REG_ETSI_UK, MD_FHSS, 20],
     [REG_FCC_IC, MD_FHSS, devDefMaxTxVal[DEV_WBZ451H]],
-    [REG_JAPAN, MD_FHSS, 14],
-    [REG_KOREA, MD_FHSS, 10],
+    [REG_JAPAN, MD_FHSS, 12],
+    [REG_KOREA, MD_FHSS, devDefMaxTxVal[DEV_WBZ451H]],
     [REG_CHINA, MD_FHSS, 20],
     [REG_TAIWAN, MD_FHSS, devDefMaxTxVal[DEV_WBZ451H]],
     ]
@@ -270,9 +270,9 @@ zbTxBackoffTableForWBZ451H = [
     # Regulatory(COL_REG), Mode(COL_MD), Value of Backoff(COL_VAL)
     # Non-FHSS
     [REG_ETSI_UK, MD_NON_FHSS, 10],
-    [REG_FCC_IC, MD_NON_FHSS, 10],
-    [REG_JAPAN, MD_NON_FHSS, 14],
-    [REG_KOREA, MD_NON_FHSS, 10],
+    [REG_FCC_IC, MD_NON_FHSS, devDefMaxTxVal[DEV_WBZ451H]],
+    [REG_JAPAN, MD_NON_FHSS, 12],
+    [REG_KOREA, MD_NON_FHSS, 16],
     [REG_CHINA, MD_NON_FHSS, 20],
     [REG_TAIWAN, MD_NON_FHSS, devDefMaxTxVal[DEV_WBZ451H]],
     ]

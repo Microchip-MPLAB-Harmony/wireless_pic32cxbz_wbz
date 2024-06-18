@@ -9,7 +9,7 @@ package:
   dependencies:
     - name: "csp"
       type: "package"
-      version: "v3.18.4"
+      version: "v3.19.0"
     - name: "CMSIS-FreeRTOS"
       type: "package"
       version: "v11.1.0"
@@ -24,4 +24,4 @@ package:
       version: "v5.4.0"
     - name: "bsp"
       type: "package"
-      version: "v3.18.0"
+      version: "v3.20.0"
