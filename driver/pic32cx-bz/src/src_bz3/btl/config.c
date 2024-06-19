@@ -522,7 +522,7 @@ const KEYS_SUPPORTED validKeyTypes =
   
   Return:
     Pointer to the list of supported topologies
-
+*/
 const void * GetTopologies(void)
 {
     return &imgMems[0];
