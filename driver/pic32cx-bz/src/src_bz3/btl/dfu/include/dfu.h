@@ -27,6 +27,21 @@
 #ifndef _DFU_H
 #define _DFU_H
 
+/* Function:
+    void dfu(const IMG_MEM_TOPOLOGY ** tops, uint8_t count)
+
+  Description:
+    This function provides interface to perform device firmware update
+
+  Input:
+    tops - list of topologies
+    count - the number of topologies
+  
+  Return:
+    None
+ 
+  Remarks:
+*/
 void dfu(const IMG_MEM_TOPOLOGY ** tops, uint8_t count);
 extern int32_t program_exec_main(const IMG_MEM_TOPOLOGY ** tops, uint8_t count);
 

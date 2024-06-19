@@ -30,11 +30,43 @@
 #include "application.h"
 #include "mem_interface.h"
 
+
+/* Function:
+    void Flash_Initialize(void)
+
+  Description:
+    This function initialize flash operation
+
+  Input:
+    None
+  
+  Return:
+    None
+
+  Remarks:
+*/
 void Flash_Initialize(void)
 {
   NVM_Initialize();
 }
 
+
+/* Function:
+    uint8_t Flash_WriteData(uint8_t *data, uint32_t addr, uint32_t rcount)
+
+  Description:
+    This function write data to eflash
+
+  Input:
+    data - pointer to the data to be written
+    addr - the flash address that data writes to
+    rcount - the amount to data to be written to flash
+  
+  Return:
+    status to indicate if write operation successful
+
+  Remarks:
+*/
 uint8_t Flash_WriteData(uint8_t *data, uint32_t addr, uint32_t rcount)
 {
     bool written = false;
@@ -65,12 +97,46 @@ uint8_t Flash_WriteData(uint8_t *data, uint32_t addr, uint32_t rcount)
     return 0;
 }
 
+
+/* Function:
+    uint8_t Flash_ReadData(bool fastRead, uint8_t *buffer, uint32_t addr, uint32_t count)
+
+  Description:
+    This function read data from flash to buffer in RAM
+
+  Input:
+    fastRead - boolean to indicate if invoking fast read, not used in this revision
+    buffer - pointer to the buffer to hold the data which reads out
+    addr - the flash address that data reads from
+    count - the amount to data to be read from flash
+  
+  Return:
+    status to indicate if read operation successful
+
+  Remarks:
+*/
 uint8_t Flash_ReadData(bool fastRead, uint8_t *buffer, uint32_t addr, uint32_t count)
 {
   NVM_Read( (uint32_t *)buffer, count, addr );
   return 0;
 }
 
+
+/* Function:
+    uint8_t Flash_EraseSector(uint32_t addr, uint16_t pageCount)
+
+  Description:
+    This function erase data from specific flash address
+
+  Input:
+    addr - the flash address that data is to erased
+    pageCount - the number of pages of flash data to be erased
+  
+  Return:
+    status to indicate if erase operation successful
+
+  Remarks:
+*/
 uint8_t Flash_EraseSector(uint32_t addr, uint16_t pageCount)
 {
     uint8_t erased = 0;
@@ -97,6 +163,21 @@ uint8_t Flash_EraseSector(uint32_t addr, uint16_t pageCount)
     return 0;  
 }
 
+/* Function:
+    uint32_t Flash_ReadJedecId(void)
+
+  Description:
+    This function retrieved JedecID from the flash. It is not implemented 
+    in this revision
+
+  Input:
+    None
+  
+  Return:
+    Jedec ID that is read from flash
+
+  Remarks:
+*/
 uint32_t Flash_ReadJedecId(void)
 {
   return 0;
@@ -114,6 +195,21 @@ const IMG_MEM_INTERFACE flashInterface =
 
 DRV_HANDLE sst26_handle = DRV_HANDLE_INVALID;
 
+
+/* Function:
+    void SST_Initialize(void)
+
+  Description:
+    This function initialize the driver before accessing SST external flash
+
+  Input:
+    None
+  
+  Return:
+    None
+
+  Remarks:
+*/
 void SST_Initialize(void)
 {
   if( sst26_handle == DRV_HANDLE_INVALID)
@@ -122,6 +218,23 @@ void SST_Initialize(void)
   }
 }
 
+
+/* Function:
+    uint8_t SST_WriteData(uint8_t *data, uint32_t addr, uint32_t rcount)
+
+  Description:
+    This function write data to SST external flash
+
+  Input:
+    data - pointer to the data to be written
+    addr - the SST flash address that data writes to
+    rcount - the amount to data to be written to flash
+  
+  Return:
+    status to indicate if write operation successful
+
+  Remarks:
+*/
 uint8_t SST_WriteData(uint8_t *data, uint32_t addr, uint32_t rcount)
 {
     bool written = false;
@@ -152,6 +265,23 @@ uint8_t SST_WriteData(uint8_t *data, uint32_t addr, uint32_t rcount)
     return 0;
 }
 
+/* Function:
+    uint8_t SST_ReadData(bool fastRead, uint8_t *buffer, uint32_t addr, uint32_t count)
+
+  Description:
+    This function read data from SST external flash to buffer in RAM
+
+  Input:
+    fastRead - boolean to indicate if invoking fast read, not used in this revision
+    buffer - pointer to the buffer to hold the data which reads out
+    addr - the SST external flash address that data reads from
+    count - the amount to data to be read from flash
+  
+  Return:
+    status to indicate if read operation successful
+
+  Remarks:
+*/
 uint8_t SST_ReadData(bool fastRead, uint8_t *buffer, uint32_t addr, uint32_t count)
 {
   bool status;
@@ -173,6 +303,21 @@ void __attribute__((optimize("-O0"))) delay(uint32_t d)
     i--; 
 }
 
+/* Function:
+    uint8_t SST_EraseSector(uint32_t addr, uint16_t pageCount)
+
+  Description:
+    This function erase data from specific SST external flash address
+
+  Input:
+    addr - the SST external flash address that data is to erased
+    pageCount - the number of pages of flash data to be erased
+  
+  Return:
+    status to indicate if erase operation successful
+
+  Remarks:
+*/
 uint8_t SST_EraseSector(uint32_t addr, uint16_t pageCount)
 {
   bool status;
@@ -197,6 +342,20 @@ uint8_t SST_EraseSector(uint32_t addr, uint16_t pageCount)
   return 0;
 }
 
+/* Function:
+    uint32_t SST_ReadJedecId(void)
+
+  Description:
+    This function retrieved JedecID from the SST external flash. 
+
+  Input:
+    None
+  
+  Return:
+    Jedec ID that is read from SST external flash
+
+  Remarks:
+*/
 uint32_t SST_ReadJedecId(void)
 {
   bool status;
@@ -352,12 +511,37 @@ const KEYS_SUPPORTED validKeyTypes =
     .fwDecKeyIndicies = &validKeyIndex,
 };
 
+/* Function:
+    const void * GetTopologies(void)
+
+  Description:
+    This function get list of topologies supported in this device
+
+  Input:
+    None
+  
+  Return:
+    Pointer to the list of supported topologies
 
 const void * GetTopologies(void)
 {
     return &imgMems[0];
 }
 
+/* Function:
+    const void * GetKeysSupported(void)
+
+  Description:
+    This function get list of key types supported in this device
+
+  Input:
+    None
+  
+  Return:
+    Pointer to the list of supported key types
+
+  Remarks:
+*/
 const void * GetKeysSupported(void)
 {
     return &validKeyTypes;
