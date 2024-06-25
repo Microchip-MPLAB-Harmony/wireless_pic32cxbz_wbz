@@ -1,266 +1,319 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html
-  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE11" /><meta name="copyright" content="(C) Copyright 2023" />
-<meta name="DC.rights.owner" content="(C) Copyright 2023" />
-<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="topic" />
-<meta name="DC.title" content="Cryptographic message hashing SHA-1." />
-<meta name="DC.relation" scheme="URI" content="GUID-E5AC2B5B-4DA1-4D7D-A714-901692577E30.html" />
-<meta name="DC.format" content="XHTML" />
-<meta name="DC.identifier" content="cryptographic-message-hashing-sha-1" />
-<link rel="stylesheet" type="text/css" href="stylesheets/atmel.css" />
-<title>Cryptographic message hashing SHA-1.</title>
-<meta name="Microsoft.Help.Id" content="GUID-2085FE66-A762-4CC0-B054-7F98E8AF999A" />
-<meta name="Microsoft.Help.TocParent" content="GUID-2085FE66-A762-4CC0-B054-7F98E8AF999A-GUID-E5AC2B5B-4DA1-4D7D-A714-901692577E30" />
-<meta name="Microsoft.Help.TocOrder" content="0" />
-<meta name="Microsoft.Help.Locale" content="en-US" />
-<meta name="Microsoft.Help.TopicLocale" content="en-US" />
-<meta name="Microsoft.Help.DisplayVersion" content="MPLAB Harmony PIC32CX-BZ System Services Reference 4 10/2023" />
-<script language="javascript">
-       
-       if (window.parent.location.protocol != 'file:') {
-				document.addEventListener('click', function(e) {
-				    if (e.target) {
-               if (e.target.nodeName == "A" ) {
-                    if (!e.target.target) {
-                      e.preventDefault();
-                      e.stopPropagation();
-                              
-                      var origUrl = window.parent.location.href.substr(0, window.parent.location.href.indexOf("?"));
-                      if (origUrl.length === 0) {
-                          origUrl = window.parent.location.href;
-                      }
-                      var href= e.target.getAttribute("href");
-                      var parts = href.split("#");
-          
-                      var url = "";
-                      if (parts.length == 2 ) {
-                        if (!parts[0].length) {
-                            url = window.parent.location.search.replace('?','')
-                        } else {
-                            url = parts[0].replace('.html','');
-                        }
-                      } else {
-                        url = parts[0].replace('.html','');
-                      }
-
-                      if (parts.length == 2) {
-                          url += "#" + parts[1];
-                      }
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us" data-whc_version="24.1">
+    <head><link rel="shortcut icon" href="oxygen-webhelp\template\resources/images/favicon.ico"/><link rel="icon" href="oxygen-webhelp\template\resources/images/favicon.ico"/><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="description" content="#define SXSYMCRYPT_SHA1_API_FILE @file @copyright Copyright (c) 2019-2020 Silex Insight. All Rights reserved. #define SXHASHALG_SHA1 (( const struct sxhashalg )((uint32_t )(API_TABLE_BASE_ADDRESS + ..."/><meta name="copyright" content="(C) Copyright 2024"/><meta name="generator" content="DITA-OT"/><title> Cryptographic message hashing SHA-1.</title><!--  Generated with Oxygen version 24.1, build number 2022062014.  --><meta name="wh-path2root" content=""/><meta name="wh-toc-id" content="&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;&lt;?workdir /D:\InfoShare\Data\Publish\Data\csk2m13l54v\work\temp?&gt;&lt;?workdir-uri file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/temp/?&gt;&lt;?path2project?&gt;&lt;?path2project-uri ./?&gt;&lt;?path2rootmap-uri ./?&gt;&lt;dita xmlns:dita-ot=&#34;http://dita-ot.sourceforge.net/ns/201007/dita-ot&#34; xmlns:ditaarch=&#34;http://dita.oasis-open.org/architecture/2005/&#34; ditaarch:DITAArchVersion=&#34;2.0&#34; specializations=&#34;@props/audience @props/deliveryTarget @props/otherprops @props/platform @props/product&#34;&gt;&lt;topic class=&#34;- topic/topic &#34; ditaarch:DITAArchVersion=&#34;2.0&#34; specializations=&#34;@props/audience @props/deliveryTarget @props/otherprops @props/platform @props/product&#34; id=&#34;cryptographic-message-hashing-sha-1&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md&#34; xtrc=&#34;topic:1;184:15&#34; domains=&#34;a(props audience) a(props deliveryTarget) a(props otherprops) a(props platform) a(props product)&#34;&gt;&lt;title class=&#34;- topic/title &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md&#34; xtrc=&#34;title:1;184:15&#34;&gt;Cryptographic message hashing SHA-1.&lt;/title&gt;&lt;body class=&#34;- topic/body &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md&#34; xtrc=&#34;body:1;184:15&#34;/&gt;&lt;related-links class=&#34;- topic/related-links &#34;&gt;&lt;linkpool class=&#34;- topic/linkpool &#34; mapkeyref=&#34;GUID-D1BC16D5-C0DF-4B29-97E7-19AAEC885FC2&#34; xtrc=&#34;topicref:8;6:1174&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-1F93C322-D6EA-4EC1-BAFE-0B54463DC1AC.ditamap&#34;&gt;&lt;link class=&#34;- topic/link &#34; format=&#34;dita&#34; href=&#34;GUID-E5AC2B5B-4DA1-4D7D-A714-901692577E30.xml&#34; mapclass=&#34;- map/topicref &#34; role=&#34;parent&#34; scope=&#34;local&#34; type=&#34;topic&#34; xtrc=&#34;topicref:3;6:400&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-1F93C322-D6EA-4EC1-BAFE-0B54463DC1AC.ditamap&#34;&gt;&lt;?ditaot usertext?&gt;&lt;linktext class=&#34;- topic/linktext &#34;&gt;&lt;?ditaot gentext?&gt;SX_symcrypt_API&lt;/linktext&gt;&lt;/link&gt;&lt;/linkpool&gt;&lt;/related-links&gt;&lt;/topic&gt;&lt;topic class=&#34;- topic/topic &#34; ditaarch:DITAArchVersion=&#34;2.0&#34; specializations=&#34;@props/audience @props/deliveryTarget @props/otherprops @props/platform @props/product&#34; id=&#34;sxsymcrypt-sha1-api-file-macro&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md&#34; xtrc=&#34;topic:2;184:15&#34; domains=&#34;a(props audience) a(props deliveryTarget) a(props otherprops) a(props platform) a(props product)&#34;&gt;&lt;title class=&#34;- topic/title &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md&#34; xtrc=&#34;title:2;184:15&#34;&gt;SXSYMCRYPT_SHA1_API_FILE Macro&lt;/title&gt;&lt;body class=&#34;- topic/body &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md&#34; xtrc=&#34;body:2;184:15&#34;/&gt;&lt;topic class=&#34;- topic/topic &#34; ditaarch:DITAArchVersion=&#34;2.0&#34; specializations=&#34;@props/audience @props/deliveryTarget @props/otherprops @props/platform @props/product&#34; id=&#34;c&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md&#34; xtrc=&#34;topic:3;184:15&#34; domains=&#34;a(props audience) a(props deliveryTarget) a(props otherprops) a(props platform) a(props product)&#34;&gt;&lt;title class=&#34;- topic/title &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md&#34; xtrc=&#34;title:3;184:15&#34;&gt;C&lt;/title&gt;&lt;body class=&#34;- topic/body &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md&#34; xtrc=&#34;body:3;184:15&#34;&gt;&lt;codeblock class=&#34;+ topic/pre pr-d/codeblock &#34; xml:space=&#34;preserve&#34; outputclass=&#34;c&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md&#34; xtrc=&#34;codeblock:1;184:15&#34;&gt;#define SXSYMCRYPT_SHA1_API_FILE &lt;/codeblock&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md&#34; xtrc=&#34;p:1;184:15&#34;&gt;@file&lt;/p&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md&#34; xtrc=&#34;p:2;184:15&#34;&gt;@copyright Copyright (c) 2019-2020 Silex Insight. All Rights reserved.&lt;/p&gt;&lt;/body&gt;&lt;/topic&gt;&lt;/topic&gt;&lt;topic class=&#34;- topic/topic &#34; ditaarch:DITAArchVersion=&#34;2.0&#34; specializations=&#34;@props/audience @props/deliveryTarget @props/otherprops @props/platform @props/product&#34; id=&#34;hash-algorithm-sha-1-secure-hash-algorithm-1&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md&#34; xtrc=&#34;topic:4;184:15&#34; domains=&#34;a(props audience) a(props deliveryTarget) a(props otherprops) a(props platform) a(props product)&#34;&gt;&lt;title class=&#34;- topic/title &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md&#34; xtrc=&#34;title:4;184:15&#34;&gt;Hash algorithm SHA-1 (Secure Hash Algorithm 1)&lt;/title&gt;&lt;body class=&#34;- topic/body &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md&#34; xtrc=&#34;body:4;184:15&#34;/&gt;&lt;/topic&gt;&lt;topic class=&#34;- topic/topic &#34; ditaarch:DITAArchVersion=&#34;2.0&#34; specializations=&#34;@props/audience @props/deliveryTarget @props/otherprops @props/platform @props/product&#34; id=&#34;sxhashalg-sha1-macro&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md&#34; xtrc=&#34;topic:5;184:15&#34; domains=&#34;a(props audience) a(props deliveryTarget) a(props otherprops) a(props platform) a(props product)&#34;&gt;&lt;title class=&#34;- topic/title &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md&#34; xtrc=&#34;title:5;184:15&#34;&gt;SXHASHALG_SHA1 Macro&lt;/title&gt;&lt;body class=&#34;- topic/body &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md&#34; xtrc=&#34;body:5;184:15&#34;/&gt;&lt;topic class=&#34;- topic/topic &#34; ditaarch:DITAArchVersion=&#34;2.0&#34; specializations=&#34;@props/audience @props/deliveryTarget @props/otherprops @props/platform @props/product&#34; id=&#34;c-1&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md&#34; xtrc=&#34;topic:6;184:15&#34; domains=&#34;a(props audience) a(props deliveryTarget) a(props otherprops) a(props platform) a(props product)&#34;&gt;&lt;title class=&#34;- topic/title &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md&#34; xtrc=&#34;title:6;184:15&#34;&gt;C&lt;/title&gt;&lt;body class=&#34;- topic/body &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md&#34; xtrc=&#34;body:6;184:15&#34;&gt;&lt;codeblock class=&#34;+ topic/pre pr-d/codeblock &#34; xml:space=&#34;preserve&#34; outputclass=&#34;c&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md&#34; xtrc=&#34;codeblock:2;184:15&#34;&gt;#define SXHASHALG_SHA1 ((const struct sxhashalg )((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SXHASHALG_SHA1))) &lt;/codeblock&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md&#34; xtrc=&#34;p:3;184:15&#34;&gt;Deprecated algorithm. NIST formally deprecated use of SHA-1 in 2011 and disallowed its use for digital signatures in 2013. SHA-3 or SHA-2 are recommended instead.&lt;/p&gt;&lt;/body&gt;&lt;/topic&gt;&lt;/topic&gt;&lt;topic class=&#34;- topic/topic &#34; ditaarch:DITAArchVersion=&#34;2.0&#34; specializations=&#34;@props/audience @props/deliveryTarget @props/otherprops @props/platform @props/product&#34; id=&#34;prepares-a-sha1-hash-operation-context&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md&#34; xtrc=&#34;topic:7;184:15&#34; domains=&#34;a(props audience) a(props deliveryTarget) a(props otherprops) a(props platform) a(props product)&#34;&gt;&lt;title class=&#34;- topic/title &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md&#34; xtrc=&#34;title:7;184:15&#34;&gt;Prepares a SHA1 hash operation context&lt;/title&gt;&lt;body class=&#34;- topic/body &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md&#34; xtrc=&#34;body:7;184:15&#34;&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md&#34; xtrc=&#34;p:4;184:15&#34;&gt;This function initializes the user allocated object \p c with a new hash operation context and reserves the HW resource.&lt;/p&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md&#34; xtrc=&#34;p:5;184:15&#34;&gt;After successful execution of this function, the context \p c can be passed to any of the hashing functions.&lt;/p&gt;&lt;/body&gt;&lt;topic class=&#34;- topic/topic &#34; ditaarch:DITAArchVersion=&#34;2.0&#34; specializations=&#34;@props/audience @props/deliveryTarget @props/otherprops @props/platform @props/product&#34; id=&#34;parameters&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md&#34; xtrc=&#34;topic:8;184:15&#34; domains=&#34;a(props audience) a(props deliveryTarget) a(props otherprops) a(props platform) a(props product)&#34;&gt;&lt;title class=&#34;- topic/title &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md&#34; xtrc=&#34;title:8;184:15&#34;&gt;Parameters&lt;/title&gt;&lt;body class=&#34;- topic/body &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md&#34; xtrc=&#34;body:8;184:15&#34;&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md&#34; xtrc=&#34;p:6;184:15&#34;&gt;&lt;xref class=&#34;- topic/xref &#34; keyref=&#34;out&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md&#34; xtrc=&#34;xref:1;184:15&#34;&gt;&lt;?ditaot usertext?&gt;&lt;/xref&gt; c hash operation context&lt;/p&gt;&lt;/body&gt;&lt;/topic&gt;&lt;topic class=&#34;- topic/topic &#34; ditaarch:DITAArchVersion=&#34;2.0&#34; specializations=&#34;@props/audience @props/deliveryTarget @props/otherprops @props/platform @props/product&#34; id=&#34;parameters-1&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md&#34; xtrc=&#34;topic:9;184:15&#34; domains=&#34;a(props audience) a(props deliveryTarget) a(props otherprops) a(props platform) a(props product)&#34;&gt;&lt;title class=&#34;- topic/title &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md&#34; xtrc=&#34;title:9;184:15&#34;&gt;Parameters&lt;/title&gt;&lt;body class=&#34;- topic/body &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md&#34; xtrc=&#34;body:9;184:15&#34;&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md&#34; xtrc=&#34;p:7;184:15&#34;&gt;&lt;xref class=&#34;- topic/xref &#34; keyref=&#34;in&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md&#34; xtrc=&#34;xref:2;184:15&#34;&gt;&lt;?ditaot usertext?&gt;&lt;/xref&gt; csz size of the hash operation context @return ::SX_OK @return ::SX_ERR_INCOMPATIBLE_HW @return ::SX_ERR_RETRY | Param | Description | |:----- |:----------- |&lt;/p&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md&#34; xtrc=&#34;p:8;184:15&#34;&gt;| @remark | SHA1 digest size is 20 bytes&lt;/p&gt;&lt;/body&gt;&lt;/topic&gt;&lt;/topic&gt;&lt;/dita&gt;"/><meta name="wh-source-relpath" content="GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.md"/><meta name="wh-out-relpath" content="GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.html"/>
+    <!-- Latest compiled and minified Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="./oxygen-webhelp/lib/bootstrap/css/bootstrap.min.css"/>
     
-                      window.parent.location.href = origUrl + "?" + url;
+    <link rel="stylesheet" href="./oxygen-webhelp/lib/jquery-ui/jquery-ui.min.css"/>
+    
+    <!-- Template default styles  -->
+    <link rel="stylesheet" type="text/css" href="./oxygen-webhelp/app/topic-page.css?buildId=2022062014"/>
+    
+    
+    <script src="./oxygen-webhelp/lib/jquery/jquery-3.5.1.min.js"></script>
+    
+    <script data-main="./oxygen-webhelp/app/topic-page.js" src="./oxygen-webhelp/lib/requirejs/require.js"></script>
+<link rel="stylesheet" type="text/css" href="oxygen-webhelp/template/microchip.css?buildId=2022062014"/><link rel="stylesheet" type="text/css" href="oxygen-webhelp/template/notes.css?buildId=2022062014"/>
+<script src="mchp-context-help.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async="" type="text/javascript"></script>
+    <script src="https://assets.adobedtm.com/6a72a357eb48/a636c708c7fe/launch-0b0023397020.min.js"></script><!-- Adobe Analytics -->
+</head>
 
-                      return false;
-                    }
-               }
-            }
-				});
-			}
+    <body class="wh_topic_page frmBody">
+        <a href="#wh_topic_body" class="sr-only sr-only-focusable">
+            Jump to main content
+        </a>
+        
+        
+        
+        
+        <header class="navbar navbar-default wh_header">
+    <div class="container-fluid">
+        <div class="wh_header_flex_container navbar-nav navbar-expand-md navbar-dark">
+            <div class="wh_logo_and_publication_title_container">
+                <div class="wh_logo_and_publication_title">
+                    
+                    <a href="index.html" class=" wh_logo d-none d-sm-block "><img src="oxygen-webhelp\template\resources/images/microchip.png" alt="MPLAB Harmony PIC32CX-BZ System Services &#xA;    "/></a>
+                    <div class=" wh_publication_title "><a href="index.html">MPLAB Harmony PIC32CX-BZ System Services 
+    </a></div>
+                    
+                </div>
+                
+                
+            </div>
 
-		</script><script language="javascript">
-         
-         function copyContent(content, button) {
-         
-            var textArea = document.createElement("textarea");
-            
-            // Place in the top-left corner of screen regardless of scroll position.
-            textArea.style.position = 'fixed';
-            textArea.style.top = 0;
-            textArea.style.left = 0;
-            
-            // Ensure it has a small width and height. Setting to 1px / 1em
-            // doesn't work as this gives a negative w/h on some browsers.
-            textArea.style.width = '2em';
-            textArea.style.height = '2em';
-            
-            // We don't need padding, reducing the size if it does flash render.
-            textArea.style.padding = 0;
-            
-            // Clean up any borders.
-            textArea.style.border = 'none';
-            textArea.style.outline = 'none';
-            textArea.style.boxShadow = 'none';
-            
-            // Avoid flash of the white box if rendered for any reason.
-            textArea.style.background = 'transparent';
-            
-            textArea.value = content;
-            
-            document.body.appendChild(textArea);
-            textArea.focus();
-            textArea.select();
-            
-            try {
-               var successful = document.execCommand('copy');
-               var msg = successful ? 'successful' : 'unsuccessful';
-               if (!button.classList.contains("copied")){
-                  button.textContent = "Copied";
-                  button.classList.add("copied");
-                  setTimeout(function(){
-                     button.textContent = "Copy";
-                     button.classList.remove("copied");
-                  },1000);
-               }
-            } catch (err) {
-               console.log('Oops, unable to copy');
-            }
-            
-            document.body.removeChild(textArea);
-         }
-         
-         function cpy(id, button) {
-            var element = document.getElementById(id);
-            var content = element.getAttribute("content");
-            
-            copyContent(content, button);
-         }
-         
-         document.addEventListener("DOMContentLoaded", function(event) {
-            document.querySelectorAll(".codeblock").forEach(function(elem) {
-               elem.style.position = "relative";
-               var copy = document.createElement("button");
-               copy.textContent = "Copy";
-               copy.setAttribute("class", "copy-code");
-               
-               var content = elem.textContent;
-               
-               copy.addEventListener("click", function(){
-                  copyContent(content, copy);
-               });
-               
-               elem.addEventListener("mouseenter", function(evt){
-                  elem.prepend(copy);
-               });
-            });
-            
-            document.querySelectorAll(".codeblock").forEach(function(elem) {
-               elem.addEventListener("mouseleave", function(evt){
-                  document.querySelector(".copy-code").remove();
-               });
-            });
-         });
-         
-      </script><script language="javascript">
-          
-          // Add the MathML namespace to html
-          var html = document.getElementsByTagName("html")[0],
-          head = document.getElementsByTagName("head")[0];
-          
-          var mathJax = document.createElement("script");
-          mathJax.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML";
-          head.appendChild(mathJax);
-          
-          html.setAttribute("xmlns:m","http://www.w3.org/1998/Math/MathML");
-          
-          function inIframe() { try { return window.self !== window.top; } catch (e) { return true; } }
-          
-          if (!inIframe()) { 
-          
-          var Default = "index.html?"; 
-          
-          var displaylocation = "value" + window.location.href;
-          
-          var GUIDS = displaylocation.split('GUID');          
-          
-          if (displaylocation.indexOf('#GUID') != -1) {            
-          var First = GUIDS[1].split('.html');  
-          if (GUIDS[3]){First = GUIDS[2].split('.html');}
-          if (GUIDS[4]){First = GUIDS[3].split('.html');}
-          if (GUIDS[5]){First = GUIDS[4].split('.html');}
-          
-          var Second = GUIDS[2].split('#');   
-          if (GUIDS[3]){Second = GUIDS[3].split('#');}
-          if (GUIDS[4]){Second = GUIDS[4].split('#');}
-          if (GUIDS[5]){Second = GUIDS[5].split('#');}
-          
-          Default = "index.html?" + "GUID" + First[0] + "GUID" + Second[0];     
-          }                    
-          window.top.location = Default;
-          }       
-          
-        </script><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /><style xml:space="">
-        
-          button.copy-code{
-            display:none;
-            padding:0.7em 1.4em;
-            margin:0 0.3em 0.3em 0;
-            border-radius:0.15em;
-            box-sizing: border-box;
-            text-decoration:none;
-            font-family:'Roboto',sans-serif;
-            text-transform:uppercase;
-            font-weight:400;
-            color:#FFFFFF;
-            background-color:#9c9c9c;
-            box-shadow:inset 0 -0.6em 0 -0.35em rgba(0,0,0,0.17);
-            text-align:center;
-            position:relative;
-            border: 0;
-            float: right;
-            border-radius: .5em;
-            cursor: pointer;
-          }
-          button.copy-code:active{
-            top:0.1em;
-          }
-          
-          pre:hover button.copy-code{
-            display: inline-block !important;
-          }
-          button.copy-code.copied {
-            cursor: default !important;
-          }
-          
-          
-          @media all and (max-width:30em){
-            button.copy-code{
-              display:block;
-              margin:0.4em auto;
-            }
-          }
+            <div class="wh_top_menu_and_indexterms_link collapse navbar-collapse" id="wh_top_menu_and_indexterms_link">
+                
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</header>
         
         
-      </style><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /></head>
-<body>
-<div class="nested0" aria-labelledby="ariaid-title1" id="cryptographic-message-hashing-sha-1"><h1 class="title topictitle1" id="ariaid-title1" style="">Cryptographic message hashing SHA-1.</h1><div class="body"></div>
-<div class="related-links">
-<div class="familylinks">
-<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="GUID-E5AC2B5B-4DA1-4D7D-A714-901692577E30.html" title="Enter a short description of your topic here (optional).">SX_symcrypt_API</a></div>
+         
+        
+        <div class=" wh_search_input navbar-form wh_topic_page_search search " role="form">
+            
+            
+            
+            <form id="searchForm" method="get" role="search" action="search.html"><div class="d-flex justify-contents-around"><div class="flex-grow-1"></div><div class="position-relative flex-grow-1"><input type="search" placeholder="Search " class="wh_search_textfield" id="textToSearch" name="searchQuery" aria-label="Search query" required="required"/><button type="submit" class="wh_search_button" aria-label="Search"><span class="search_input_text">Search</span></button></div><div class="align-self-center flex-grow-1 ml-2"><div class="d-flex justify-content-end"><div class="dropdown"><a style="font-size: 1em; padding: 7px 12px !important;" class="btn py-3 px-3 btn-outline-light dropdown-toggle" href="#" role="button" id="devicesMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Product Pages</a><div style="font-size: 1em;" class="dropdown-menu" aria-labelledby="devicesMenu"><a class="dropdown-item" target="_blank" href="https://www.microchip.com/en-us/product/wbz450">WBZ450</a><a class="dropdown-item" target="_blank" href="https://www.microchip.com/en-us/product/wbz451"> WBZ451</a><a class="dropdown-item" target="_blank" href="https://www.microchip.com/en-us/product/pic32cx-bz2"> PIC32CX-BZ2</a></div></div></div></div></div></form>
+            
+            <div class="mchp-color-stripe-grid-container">
+  <div class="mchp-main-bar mchp-orange-bar"></div>
+  <div class="mchp-main-bar mchp-blue-bar"></div>
+  <div class="mchp-main-bar mchp-green-bar"></div>
 </div>
-</div></div>
-<div class="topic nested0" aria-labelledby="ariaid-title2" id="sxsymcrypt-sha1-api-file-macro"><h1 class="title topictitle1" id="ariaid-title2" style="">SXSYMCRYPT_SHA1_API_FILE Macro</h1><div class="body"></div>
-<div class="topic nested1" aria-labelledby="ariaid-title3" id="c"><h2 class="title topictitle2" id="ariaid-title3" style="">C</h2><div class="body"><pre class="pre codeblock c"><span class="hl-directive">#define</span> <span class="hl-defines">SXSYMCRYPT_SHA1_API_FILE</span>
-</pre><p class="p">@file</p>
-<p class="p">@copyright Copyright (c) 2019-2020 Silex Insight. All Rights reserved.</p>
-</div>
-</div>
-</div>
-<div class="topic nested0" aria-labelledby="ariaid-title4" id="hash-algorithm-sha-1-secure-hash-algorithm-1"><h1 class="title topictitle1" id="ariaid-title4" style="">Hash algorithm SHA-1 (Secure Hash Algorithm 1)</h1><div class="body"></div>
-</div>
-<div class="topic nested0" aria-labelledby="ariaid-title5" id="sxhashalg-sha1-macro"><h1 class="title topictitle1" id="ariaid-title5" style="">SXHASHALG_SHA1 Macro</h1><div class="body"></div>
-<div class="topic nested1" aria-labelledby="ariaid-title6" id="c-1"><h2 class="title topictitle2" id="ariaid-title6" style="">C</h2><div class="body"><pre class="pre codeblock c"><span class="hl-directive">#define</span> <span class="hl-defines">SXHASHALG_SHA1</span> ((<strong class="hl-keyword">const</strong> <strong class="hl-keyword">struct</strong> sxhashalg )((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SXHASHALG_SHA1)))
-</pre><p class="p">Deprecated algorithm. NIST formally deprecated use of SHA-1 in 2011
+            
+        </div>
+        
+        <div class="container-fluid" id="wh_topic_container">
+            <div class="row">
+
+                <nav class="wh_tools d-print-none navbar-expand-md" aria-label="Tools">
+                    
+                    <div data-tooltip-position="bottom" class=" wh_breadcrumb "><ol class="d-print-none"><li><span class="home"><a href="index.html"><span>Home</span></a></span></li><li><div class="topicref" data-id="GUID-B92D56E1-C216-4D2D-827C-26D5B803B704"><div class="title"><a href="GUID-B92D56E1-C216-4D2D-827C-26D5B803B704.html"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1</ph>
+PIC32CX-BZ Family System Services</a><div class="wh-tooltip"><p class="shortdesc"><span class="ph instanceOffsets">             <p class="p">The PIC32CX-BZ System services provides several services to protocol developers and                 application users which use PIC32CX-BZ products. </p>         </span></p></div></div></div></li><li><div class="topicref" data-id="GUID-F9698DC6-BF78-4773-A5E3-CA7D4F570394"><div class="title"><a href="GUID-F9698DC6-BF78-4773-A5E3-CA7D4F570394.html"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2</ph>
+PIC32CX-BZ3 System Services</a></div></div></li><li><div class="topicref" data-id="GUID-04D7627E-7290-429B-88B9-2EFFFA11A3A8"><div class="title"><a href="GUID-04D7627E-7290-429B-88B9-2EFFFA11A3A8.html"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2.1</ph>
+PIC32CX-BZ3 Secure Boot ROM Help</a></div></div></li><li><div class="topicref" data-id="GUID-070C3957-164B-4B25-B4D1-A01BBA16D143"><div class="title"><a href="GUID-070C3957-164B-4B25-B4D1-A01BBA16D143.html"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2.1.1</ph>
+PIC32CX-BZ3 Secure Boot ROM Usage</a><div class="wh-tooltip"><p class="shortdesc">PIC32CX-BZ3 Secure Boot ROM Library Usage</p></div></div></div></li><li><div class="topicref" data-id="GUID-E5AC2B5B-4DA1-4D7D-A714-901692577E30"><div class="title"><a href="GUID-E5AC2B5B-4DA1-4D7D-A714-901692577E30.html"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2.1.1.1</ph>
+SX_symcrypt_API</a></div></div></li><li class="active"><div class="topicref" data-id="cryptographic-message-hashing-sha-1"><div class="title"><a href="GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.html"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2.1.1.1.5</ph>
+Cryptographic message hashing SHA-1.</a></div></div></li></ol></div>
+                    
+                    
+                    
+                    <div class="wh_right_tools">
+                        <button class="wh_hide_highlight" aria-label="Toggle search highlights" title="Toggle search highlights"></button>
+                        <button class="webhelp_expand_collapse_sections" data-next-state="collapsed" aria-label="Collapse sections" title="Collapse sections"></button>
+                        
+                        
+                        
+                        
+                        <div class=" wh_print_link print d-none d-md-inline-block "><button onClick="window.print()" title="Print this page" aria-label="Print this page"></button></div>
+                        
+                        <button type="button" id="wh_toc_button" class="custom-toggler navbar-toggler collapsed wh_toggle_button navbar-light" aria-expanded="false" aria-label="Toggle publishing table of content" aria-controls="wh_publication_toc">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
+                    
+                </nav>
+            </div>
+            
+            <div class="row" style="margin-top: -1em;"><div class="col-lg-7 col-md-7 col-sm-12 offset-lg-3 offset-md-3 text-right border-bottom mb-1"><h2 class="text-dark header_title">
+    </h2></div></div>
+            
+            
+            <div class="wh_content_area">
+                <div class="row">
+                    
+                        <nav id="wh_publication_toc" class="col-lg-3 col-md-3 col-sm-12 d-md-block d-none d-print-none" aria-label="Table of Contents Container">
+                            <div id="wh_publication_toc_content">
+		                        
+                            	<div class=" wh_publication_toc " data-tooltip-position="right"><span class="expand-button-action-labels"><span id="button-expand-action" role="button" aria-label="Expand"></span><span id="button-collapse-action" role="button" aria-label="Collapse"></span><span id="button-pending-action" role="button" aria-label="Pending"></span></span><ul role="tree" aria-label="Table of Contents"><li role="treeitem" aria-expanded="true"><div data-tocid="GUID-B92D56E1-C216-4D2D-827C-26D5B803B704-d2097e11" class="topicref" data-id="GUID-B92D56E1-C216-4D2D-827C-26D5B803B704" data-state="expanded"><span role="button" tabindex="0" aria-labelledby="button-collapse-action GUID-B92D56E1-C216-4D2D-827C-26D5B803B704-d2097e11-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-B92D56E1-C216-4D2D-827C-26D5B803B704.html" id="GUID-B92D56E1-C216-4D2D-827C-26D5B803B704-d2097e11-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1</ph>
+PIC32CX-BZ Family System Services</a><div class="wh-tooltip"><p class="shortdesc"><span class="ph instanceOffsets">             <p class="p">The PIC32CX-BZ System services provides several services to protocol developers and                 application users which use PIC32CX-BZ products. </p>         </span></p></div></div></div><ul role="group" class="navbar-nav nav-list"><li role="treeitem" aria-expanded="false"><div data-tocid="GUID-FFC9758F-305D-4A4A-A577-726CDCFA18C7-d2097e26" class="topicref" data-id="GUID-FFC9758F-305D-4A4A-A577-726CDCFA18C7" data-state="not-ready"><span role="button" tabindex="0" aria-labelledby="button-expand-action GUID-FFC9758F-305D-4A4A-A577-726CDCFA18C7-d2097e26-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-FFC9758F-305D-4A4A-A577-726CDCFA18C7.html" id="GUID-FFC9758F-305D-4A4A-A577-726CDCFA18C7-d2097e26-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1</ph>
+PIC32CX-BZ2 System Services</a></div></div></li><li role="treeitem" aria-expanded="true"><div data-tocid="GUID-F9698DC6-BF78-4773-A5E3-CA7D4F570394-d2097e1090" class="topicref" data-id="GUID-F9698DC6-BF78-4773-A5E3-CA7D4F570394" data-state="expanded"><span role="button" tabindex="0" aria-labelledby="button-collapse-action GUID-F9698DC6-BF78-4773-A5E3-CA7D4F570394-d2097e1090-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-F9698DC6-BF78-4773-A5E3-CA7D4F570394.html" id="GUID-F9698DC6-BF78-4773-A5E3-CA7D4F570394-d2097e1090-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2</ph>
+PIC32CX-BZ3 System Services</a></div></div><ul role="group" class="navbar-nav nav-list"><li role="treeitem" aria-expanded="true"><div data-tocid="GUID-04D7627E-7290-429B-88B9-2EFFFA11A3A8-d2097e1098" class="topicref" data-id="GUID-04D7627E-7290-429B-88B9-2EFFFA11A3A8" data-state="expanded"><span role="button" tabindex="0" aria-labelledby="button-collapse-action GUID-04D7627E-7290-429B-88B9-2EFFFA11A3A8-d2097e1098-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-04D7627E-7290-429B-88B9-2EFFFA11A3A8.html" id="GUID-04D7627E-7290-429B-88B9-2EFFFA11A3A8-d2097e1098-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2.1</ph>
+PIC32CX-BZ3 Secure Boot ROM Help</a></div></div><ul role="group" class="navbar-nav nav-list"><li role="treeitem" aria-expanded="true"><div data-tocid="GUID-070C3957-164B-4B25-B4D1-A01BBA16D143-d2097e1106" class="topicref" data-id="GUID-070C3957-164B-4B25-B4D1-A01BBA16D143" data-state="expanded"><span role="button" tabindex="0" aria-labelledby="button-collapse-action GUID-070C3957-164B-4B25-B4D1-A01BBA16D143-d2097e1106-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-070C3957-164B-4B25-B4D1-A01BBA16D143.html" id="GUID-070C3957-164B-4B25-B4D1-A01BBA16D143-d2097e1106-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2.1.1</ph>
+PIC32CX-BZ3 Secure Boot ROM Usage</a><div class="wh-tooltip"><p class="shortdesc">PIC32CX-BZ3 Secure Boot ROM Library Usage</p></div></div></div><ul role="group" class="navbar-nav nav-list"><li role="treeitem" aria-expanded="true"><div data-tocid="GUID-E5AC2B5B-4DA1-4D7D-A714-901692577E30-d2097e1117" class="topicref" data-id="GUID-E5AC2B5B-4DA1-4D7D-A714-901692577E30" data-state="expanded"><span role="button" tabindex="0" aria-labelledby="button-collapse-action GUID-E5AC2B5B-4DA1-4D7D-A714-901692577E30-d2097e1117-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-E5AC2B5B-4DA1-4D7D-A714-901692577E30.html" id="GUID-E5AC2B5B-4DA1-4D7D-A714-901692577E30-d2097e1117-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2.1.1.1</ph>
+SX_symcrypt_API</a></div></div><ul role="group" class="navbar-nav nav-list"><li role="treeitem"><div data-tocid="true-random-number-generator-trng-d2097e1125" class="topicref" data-id="true-random-number-generator-trng" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-15DB80F8-532D-4B27-BCD1-E272D026D496.html" id="true-random-number-generator-trng-d2097e1125-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2.1.1.1.1</ph>
+True Random Number Generator (TRNG)</a></div></div></li><li role="treeitem"><div data-tocid="statuserror-codes-of-sxsymcrypt-functions-d2097e1133" class="topicref" data-id="statuserror-codes-of-sxsymcrypt-functions" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-D0A0E15E-A5F3-45C8-B0BB-53DCE5A64018.html" id="statuserror-codes-of-sxsymcrypt-functions-d2097e1133-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2.1.1.1.2</ph>
+Status/error codes of sxsymcrypt functions</a></div></div></li><li role="treeitem"><div data-tocid="cryptographic-message-hashing-sm3-d2097e1141" class="topicref" data-id="cryptographic-message-hashing-sm3" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-1B1F437C-8198-4F09-A55A-E6CC9DC2F0D2.html" id="cryptographic-message-hashing-sm3-d2097e1141-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2.1.1.1.3</ph>
+Cryptographic message hashing SM3.</a></div></div></li><li role="treeitem"><div data-tocid="cryptographic-message-hashing-sha-2-d2097e1149" class="topicref" data-id="cryptographic-message-hashing-sha-2" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-E0055619-2139-42DA-97D1-F835927C2BB4.html" id="cryptographic-message-hashing-sha-2-d2097e1149-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2.1.1.1.4</ph>
+Cryptographic message hashing SHA-2.</a></div></div></li><li role="treeitem" class="active"><div data-tocid="cryptographic-message-hashing-sha-1-d2097e1157" class="topicref" data-id="cryptographic-message-hashing-sha-1" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-D8D857B8-0293-4D84-A0E6-364F92FFD026.html" id="cryptographic-message-hashing-sha-1-d2097e1157-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2.1.1.1.5</ph>
+Cryptographic message hashing SHA-1.</a></div></div></li><li role="treeitem"><div data-tocid="common-functions-used-for-generation-a-mac-message-authentication-code-d2097e1165" class="topicref" data-id="common-functions-used-for-generation-a-mac-message-authentication-code" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-6CD7C8E0-DD5B-486E-80A9-87573F66262F.html" id="common-functions-used-for-generation-a-mac-message-authentication-code-d2097e1165-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2.1.1.1.6</ph>
+Common functions used for generation a MAC (message authentication code).</a></div></div></li><li role="treeitem"><div data-tocid="common-function-definitions-for-keys-d2097e1173" class="topicref" data-id="common-function-definitions-for-keys" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-FD99E031-E3FF-4C96-88A3-327CDB03FFBC.html" id="common-function-definitions-for-keys-d2097e1173-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2.1.1.1.7</ph>
+Common function definitions for keys.</a></div></div></li><li role="treeitem"><div data-tocid="hardware-interrupts-d2097e1181" class="topicref" data-id="hardware-interrupts" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-F905E6E8-E863-41E1-97F8-FBB50F33260E.html" id="hardware-interrupts-d2097e1181-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2.1.1.1.8</ph>
+Hardware interrupts</a></div></div></li><li role="treeitem"><div data-tocid="internal-header-file-macro-d2097e1189" class="topicref" data-id="internal-header-file-macro" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-63FA0ED0-29CE-4F9B-AD5B-AECD9F0A97F7.html" id="internal-header-file-macro-d2097e1189-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2.1.1.1.9</ph>
+INTERNAL_HEADER_FILE Macro</a></div></div></li><li role="treeitem"><div data-tocid="cryptographic-hmackeyed-hash-message-authentication-code-d2097e1197" class="topicref" data-id="cryptographic-hmackeyed-hash-message-authentication-code" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-D35B19AE-30B6-42EB-80E0-E184688A4835.html" id="cryptographic-hmackeyed-hash-message-authentication-code-d2097e1197-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2.1.1.1.10</ph>
+Cryptographic HMAC(Keyed-Hash Message Authentication Code).</a></div></div></li><li role="treeitem"><div data-tocid="cryptographic-message-hashing-d2097e1206" class="topicref" data-id="cryptographic-message-hashing" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-C1425EF6-E258-4BB3-8A42-A4FA273D986A.html" id="cryptographic-message-hashing-d2097e1206-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2.1.1.1.11</ph>
+Cryptographic message hashing.</a></div></div></li><li role="treeitem"><div data-tocid="aes-counter-measures-mask-load-d2097e1214" class="topicref" data-id="aes-counter-measures-mask-load" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-34AF272B-8BA5-4F07-A02F-3927F5AD84D8.html" id="aes-counter-measures-mask-load-d2097e1214-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2.1.1.1.12</ph>
+AES counter-measures mask load</a></div></div></li><li role="treeitem"><div data-tocid="message-authentication-code-aes-cmac-d2097e1222" class="topicref" data-id="message-authentication-code-aes-cmac" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-B1B6548B-B190-4C76-AC2E-B4A3887DC4F0.html" id="message-authentication-code-aes-cmac-d2097e1222-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2.1.1.1.13</ph>
+Message Authentication Code AES CMAC.</a></div></div></li><li role="treeitem"><div data-tocid="common-simple-block-cipher-modes-d2097e1230" class="topicref" data-id="common-simple-block-cipher-modes" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-A04B89DB-7744-4F17-A9C5-892B32D918A0.html" id="common-simple-block-cipher-modes-d2097e1230-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2.1.1.1.14</ph>
+Common simple block cipher modes.</a></div></div></li><li role="treeitem"><div data-tocid="authenticated-encryption-with-associated-dataaead-d2097e1238" class="topicref" data-id="authenticated-encryption-with-associated-dataaead" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-A0B4C5A1-F2BD-4379-8CFD-BD1493E3C4C8.html" id="authenticated-encryption-with-associated-dataaead-d2097e1238-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2.1.1.1.15</ph>
+Authenticated encryption with associated data(AEAD).</a></div></div></li></ul></li><li role="treeitem" aria-expanded="false"><div data-tocid="GUID-82627570-09DA-49A7-95EC-D502E201BEA3-d2097e1246" class="topicref" data-id="GUID-82627570-09DA-49A7-95EC-D502E201BEA3" data-state="not-ready"><span role="button" tabindex="0" aria-labelledby="button-expand-action GUID-82627570-09DA-49A7-95EC-D502E201BEA3-d2097e1246-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-82627570-09DA-49A7-95EC-D502E201BEA3.html" id="GUID-82627570-09DA-49A7-95EC-D502E201BEA3-d2097e1246-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2.1.1.2</ph>
+Silex_PK_API</a></div></div></li></ul></li></ul></li><li role="treeitem" aria-expanded="false"><div data-tocid="GUID-AA710303-8EC4-46F9-9F40-B61401D0F4FB-d2097e1399" class="topicref" data-id="GUID-AA710303-8EC4-46F9-9F40-B61401D0F4FB" data-state="not-ready"><span role="button" tabindex="0" aria-labelledby="button-expand-action GUID-AA710303-8EC4-46F9-9F40-B61401D0F4FB-d2097e1399-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-AA710303-8EC4-46F9-9F40-B61401D0F4FB.html" id="GUID-AA710303-8EC4-46F9-9F40-B61401D0F4FB-d2097e1399-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2.2</ph>
+PIC32CX-BZ3 Device Support Component Library Help</a><div class="wh-tooltip"><p class="shortdesc">The PIC32CX-BZ3 Device Support Component Library provides software API's for various                 subsystems in the PIC32CX-BZ3.</p></div></div></div></li><li role="treeitem" aria-expanded="false"><div data-tocid="GUID-480322DE-77D7-4DD6-9AB0-9B92A193D321-d2097e1747" class="topicref" data-id="GUID-480322DE-77D7-4DD6-9AB0-9B92A193D321" data-state="not-ready"><span role="button" tabindex="0" aria-labelledby="button-expand-action GUID-480322DE-77D7-4DD6-9AB0-9B92A193D321-d2097e1747-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-480322DE-77D7-4DD6-9AB0-9B92A193D321.html" id="GUID-480322DE-77D7-4DD6-9AB0-9B92A193D321-d2097e1747-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2.3</ph>
+PIC32CX-BZ3 Persistent Data Server Component Library Help</a><div class="wh-tooltip"><p class="shortdesc">The PIC32CX-BZ3 Persistent Data Server Component Library provides interface for storing                 and restoring items into the Non volatile memory using wear leveling                 mechanism</p></div></div></div></li><li role="treeitem"><div data-tocid="GUID-6F443732-8F03-4525-A5EA-E0D25379C8AB-d2097e1995" class="topicref" data-id="GUID-6F443732-8F03-4525-A5EA-E0D25379C8AB" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-6F443732-8F03-4525-A5EA-E0D25379C8AB.html" id="GUID-6F443732-8F03-4525-A5EA-E0D25379C8AB-d2097e1995-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2.4</ph>
+PIC32CX-BZ3 Boot Services Help</a></div></div></li><li role="treeitem" aria-expanded="false"><div data-tocid="GUID-5E76E081-070E-46EA-86A9-EE08F3F1481F-d2097e2003" class="topicref" data-id="GUID-5E76E081-070E-46EA-86A9-EE08F3F1481F" data-state="not-ready"><span role="button" tabindex="0" aria-labelledby="button-expand-action GUID-5E76E081-070E-46EA-86A9-EE08F3F1481F-d2097e2003-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-5E76E081-070E-46EA-86A9-EE08F3F1481F.html" id="GUID-5E76E081-070E-46EA-86A9-EE08F3F1481F-d2097e2003-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2.5</ph>
+PIC32CX-BZ3 Standalone Bootloader Component Help</a></div></div></li></ul></li></ul></li><li role="treeitem" aria-expanded="false"><div data-tocid="GUID-0FB3F908-88EE-45CE-94F5-E97AF9049C9B-d2097e2319" class="topicref backmatter backmatter_parent" data-id="GUID-0FB3F908-88EE-45CE-94F5-E97AF9049C9B" data-state="not-ready"><span role="button" tabindex="0" aria-labelledby="button-expand-action GUID-0FB3F908-88EE-45CE-94F5-E97AF9049C9B-d2097e2319-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-0FB3F908-88EE-45CE-94F5-E97AF9049C9B.html" id="GUID-0FB3F908-88EE-45CE-94F5-E97AF9049C9B-d2097e2319-link">Microchip Information</a></div></div></li></ul></div>
+		                        
+                            </div>
+                        </nav>
+                    
+                    
+                    <div class="col-lg-7 col-md-9 col-sm-12" id="wh_topic_body">
+                        <button id="wh_close_publication_toc_button" class="close-toc-button d-none" aria-label="Toggle publishing table of content" aria-controls="wh_publication_toc" aria-expanded="true">
+                            <span class="close-toc-icon-container">
+                                <span class="close-toc-icon"></span>     
+                            </span>
+                        </button>
+                        <button id="wh_close_topic_toc_button" class="close-toc-button d-none" aria-label="Toggle topic table of content" aria-controls="wh_topic_toc" aria-expanded="true">
+                            <span class="close-toc-icon-container">
+                                <span class="close-toc-icon"></span>     
+                            </span>
+                        </button>
+                        
+                        <div class=" wh_topic_content body "><main role="main"><article role="article" aria-labelledby="ariaid-title1"><article class="nested0" aria-labelledby="ariaid-title1" id="cryptographic-message-hashing-sha-1"><h1 class="- topic/title title topictitle1" id="ariaid-title1" style="">Cryptographic message hashing SHA-1.</h1><div class="- topic/body body"></div></article><article class="- topic/topic topic nested0" aria-labelledby="ariaid-title2" id="sxsymcrypt-sha1-api-file-macro"><h1 class="- topic/title title topictitle1" id="ariaid-title2" style=""> SXSYMCRYPT_SHA1_API_FILE Macro</h1><div class="- topic/body body"></div><article class="- topic/topic topic nested1" aria-labelledby="ariaid-title3" id="c"><h2 class="- topic/title title topictitle2" id="ariaid-title3" style=""> C</h2><div class="- topic/body body"><pre class="+ topic/pre pr-d/codeblock pre codeblock c"><span class="hl-directive">#define</span> <span class="hl-defines">SXSYMCRYPT_SHA1_API_FILE</span>
+</pre><p class="- topic/p p">@file</p><p class="- topic/p p">@copyright Copyright (c) 2019-2020 Silex Insight. All Rights reserved.</p></div></article></article><article class="- topic/topic topic nested0" aria-labelledby="ariaid-title4" id="hash-algorithm-sha-1-secure-hash-algorithm-1"><h1 class="- topic/title title topictitle1" id="ariaid-title4" style=""> Hash algorithm SHA-1 (Secure Hash Algorithm 1)</h1><div class="- topic/body body"></div></article><article class="- topic/topic topic nested0" aria-labelledby="ariaid-title5" id="sxhashalg-sha1-macro"><h1 class="- topic/title title topictitle1" id="ariaid-title5" style=""> SXHASHALG_SHA1 Macro</h1><div class="- topic/body body"></div><article class="- topic/topic topic nested1" aria-labelledby="ariaid-title6" id="c-1"><h2 class="- topic/title title topictitle2" id="ariaid-title6" style=""> C</h2><div class="- topic/body body"><pre class="+ topic/pre pr-d/codeblock pre codeblock c"><span class="hl-directive">#define</span> <span class="hl-defines">SXHASHALG_SHA1</span> ((<strong class="hl-keyword">const</strong> <strong class="hl-keyword">struct</strong> sxhashalg )((uint32_t )(API_TABLE_BASE_ADDRESS + ATO_SXHASHALG_SHA1)))
+</pre><p class="- topic/p p">Deprecated algorithm. NIST formally deprecated use of SHA-1 in 2011
 and disallowed its use for digital signatures in 2013. SHA-3 or SHA-2
-are recommended instead.</p>
+are recommended instead.</p></div></article></article><article class="- topic/topic topic nested0" aria-labelledby="ariaid-title7" id="prepares-a-sha1-hash-operation-context"><h1 class="- topic/title title topictitle1" id="ariaid-title7" style=""> Prepares a SHA1 hash operation context</h1><div class="- topic/body body"><p class="- topic/p p">This function initializes the user allocated object \p c with a new hash
+operation context and reserves the HW resource.</p><p class="- topic/p p">After successful execution of this function, the context \p c can be passed
+to any of the hashing functions.</p></div><article class="- topic/topic topic nested1" aria-labelledby="ariaid-title8" id="parameters"><h2 class="- topic/title title topictitle2" id="ariaid-title8" style=""> Parameters</h2><div class="- topic/body body"><p class="- topic/p p"><span class="- topic/xref xref"></span> c hash operation context</p></div></article><article class="- topic/topic topic nested1" aria-labelledby="ariaid-title9" id="parameters-1"><h2 class="- topic/title title topictitle2" id="ariaid-title9" style=""> Parameters</h2><div class="- topic/body body"><p class="- topic/p p"><span class="- topic/xref xref"></span> csz size of the hash operation context  @return ::SX_OK  @return ::SX_ERR_INCOMPATIBLE_HW  @return ::SX_ERR_RETRY  | Param | Description |
+|:----- |:----------- |</p><p class="- topic/p p">| @remark | SHA1 digest size is 20 bytes</p></div></article></article></article></main></div>
+                        
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                    
+                        <nav role="navigation" id="wh_topic_toc" aria-label="On this page" class="col-lg-2 d-none d-lg-block navbar d-print-none"> 
+                            <div id="wh_topic_toc_content">
+		                        
+	                            <div class=" wh_topic_toc "><div class="wh_topic_label">On this page</div><ul><li class="topic-item"><a href="#c" data-tocid="c"> C</a></li><li class="topic-item"><a href="#c-1" data-tocid="c-1"> C</a></li><li class="topic-item"><a href="#parameters" data-tocid="parameters"> Parameters</a></li><li class="topic-item"><a href="#parameters-1" data-tocid="parameters-1"> Parameters</a></li></ul></div>
+	                        	
+                        	</div>
+                        </nav>
+                    
+                </div>
+            </div>
+            
+            
+            
+        </div> 
+        <footer class="navbar navbar-default wh_footer">
+  <div class=" footer-container mx-auto ">
+    <div class="footer">
+  <div class="mchp-wh-footer">
+    <div class="mchp-footer">
+      <div class="mchp-footer-tier1">
+        <div class="spacer"></div>
+        <div class="mchp-footer-container">
+          <div class="mchp-footer-links mchp-social-media-links">
+            <div class="mchp-component-items">
+              <div class="mchp-component-item">
+                <a class="cmp-image__link" href="https://www.facebook.com/pages/Microchip-Technology-Inc/20320981741" target="_blank">
+                  <img class="cmp-image__image" alt="Microchip Facebook" src="oxygen-webhelp/template/resources/images/201016-corp-facebook.png"/>
+                </a>
+              </div>
+              <div class="mchp-component-item">
+                <a class="cmp-image__link" href="https://www.linkedin.com/company/microchip-technology" target="_blank">
+                  <img class="cmp-image__image" alt="Microchip LinkedIn" src="oxygen-webhelp/template/resources/images/201016-corp-linkedin.png"/>
+                </a>
+              </div>
+              <div class="mchp-component-item">
+                <a class="cmp-image__link" href="https://twitter.com/MicrochipTech" target="_blank">
+                  <img class="cmp-image__image" alt="Microchip Twitter" src="oxygen-webhelp/template/resources/images/201016-corp-twitter.png"/>
+                </a>
+              </div>
+              <div class="mchp-component-item">
+                <a class="cmp-image__link" href="https://www.youtube.com/user/MicrochipTechnology" target="_blank">
+                  <img class="cmp-image__image" alt="Microchip YouTube" src="oxygen-webhelp/template/resources/images/201016-corp-youtube.png"/>
+                </a>
+              </div>
+              <div class="mchp-component-item">
+                <a class="cmp-image__link" href="https://www.instagram.com/microchiptechnologyinc/" target="_blank">
+                  <img class="cmp-image__image" alt="Microchip Instagram" src="oxygen-webhelp/template/resources/images/201016-corp-instagram.png"/>
+                </a>
+              </div>
+              <div class="mchp-component-item">
+                <a class="cmp-image__link" href="https://www.weibo.com/microchiptech" target="_blank">
+                  <img class="cmp-image__image" alt="Microchip Weibo" src="oxygen-webhelp/template/resources/images/201016-corp-weibo.png"/>
+                </a>
+              </div>
+              <div class="mchp-component-item">
+                <a class="cmp-image__link" href="https://www.microchip.com/en-us/about/blog" target="_blank">
+                  <img class="cmp-image__image" alt="Microchip Blog" src="oxygen-webhelp/template/resources/images/201016-corp-blog.png"/>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="mchp-footer-links">
+            <div class="mchp-component-items">
+              <div class="mchp-component-item">
+                <div class="link">
+                  <a href="https://www.microchip.com/about-us/contact-us" class="mchp-link__link">Contact</a>
+                  <span class="mchp-link__separator">|</span>
+                </div>
+              </div>
+              <div class="mchp-component-item ">
+                <div class="link">
+                  <a href="https://www.microchip.com/en-us/about/legal-information" class="mchp-link__link">Legal</a>
+                  <span class="mchp-link__separator">|</span>
+                </div>
+              </div>
+              <div class="mchp-component-item ">
+                <div class="link">
+                  <a href="https://www.microchip.com/en-us/about/legal-information/privacy-policy" class="mchp-link__link">Privacy Policy</a>
+                  <span class="mchp-link__separator">|</span>
+                </div>
+              </div>
+              <div class="mchp-component-item ">
+                <div class="link">
+                  <a href="https://www.microchip.com/en-us/about/legal-information/microchip-cookie-statement" class="mchp-link__link">Cookies</a>
+                  <span class="mchp-link__separator">|</span>
+                </div>
+              </div>
+              <div class="mchp-component-item">
+                <div class="link">
+                  <a href="https://careers.microchip.com/" class="mchp-link__link">Careers</a>
+                  <span class="mchp-link__separator"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mchp-footer-newsletter">
+            <div class="cmp-text">
+              <p>Stay on the leading edge with our blog</p>
+            </div>
+            <div class="mchp-button-wrapper">
+              <a role="button" href="https://www.microchip.com/en-us/about/blog" class="mchp-button mchp-button-regular solid">
+                <span class="mchp-button__span">MicroSolutions</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="graphic">
+          <img src="oxygen-webhelp/template/resources/images/footer-graphic.png"/>
+        </div>
+      </div>
+      <div class="mchp-footer-tier2">
+        <p class="mchp-copyright">© Copyright 1998-2022 Microchip Technology Inc. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async="true" src="https://www.googletagmanager.com/gtag/js?id=UA-2724382-19"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];  
+    function gtag(){dataLayer.push(arguments);}  
+    gtag('js', new Date());   
+    gtag('config', 'UA-2724382-19');
+  </script>
+  
+  <script type="text/javascript">_satellite.pageBottom();</script><!-- Adobe Analytics -->
+  <script type="text/javascript" src="mchp-js/prepend.js"></script><!-- Package for viewing PDFs on mobile devices -->
+  
 </div>
-</div>
-</div>
-<div class="topic nested0" aria-labelledby="ariaid-title7" id="prepares-a-sha1-hash-operation-context"><h1 class="title topictitle1" id="ariaid-title7" style="">Prepares a SHA1 hash operation context</h1><div class="body"><p class="p">This function initializes the user allocated object \p c with a new hash
-operation context and reserves the HW resource.</p>
-<p class="p">After successful execution of this function, the context \p c can be passed
-to any of the hashing functions.</p>
-</div>
-<div class="topic nested1" aria-labelledby="ariaid-title8" id="parameters"><h2 class="title topictitle2" id="ariaid-title8" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> c hash operation context</p>
-</div>
-</div>
-<div class="topic nested1" aria-labelledby="ariaid-title9" id="parameters-1"><h2 class="title topictitle2" id="ariaid-title9" style="">Parameters</h2><div class="body"><p class="p"><span class="xref"></span> csz size of the hash operation context  @return ::SX_OK  @return ::SX_ERR_INCOMPATIBLE_HW  @return ::SX_ERR_RETRY  | Param | Description |
-|:----- |:----------- |</p>
-<p class="p">| @remark | SHA1 digest size is 20 bytes</p>
-</div>
-</div>
-</div>
-</body>
+  </div>
+</footer>
+        
+        <div id="go2top" class="d-print-none">
+            <span class="oxy-icon oxy-icon-up"></span>
+        </div>
+        
+        <div id="modal_img_large" class="modal">
+            <span class="close oxy-icon oxy-icon-remove"></span>
+            <div id="modal_img_container"></div>
+            <div id="caption"></div>
+        </div>
+        
+        
+        
+       
+        </body>
 </html>

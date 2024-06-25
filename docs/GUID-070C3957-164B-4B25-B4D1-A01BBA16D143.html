@@ -1,259 +1,292 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html
-  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
-<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE11" /><meta name="copyright" content="(C) Copyright 2023" />
-<meta name="DC.rights.owner" content="(C) Copyright 2023" />
-<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="topic" />
-<meta name="DC.title" content="PIC32CX-BZ3 Secure Boot ROM Usage" />
-<meta name="Description" content="PIC32CX-BZ3 Secure Boot ROM Library Usage" />
-<meta name="DC.relation" scheme="URI" content="GUID-04D7627E-7290-429B-88B9-2EFFFA11A3A8.html" />
-<meta name="DC.relation" scheme="URI" content="GUID-E5AC2B5B-4DA1-4D7D-A714-901692577E30.html" />
-<meta name="DC.relation" scheme="URI" content="GUID-82627570-09DA-49A7-95EC-D502E201BEA3.html" />
-<meta name="DC.format" content="XHTML" />
-<meta name="DC.identifier" content="GUID-070C3957-164B-4B25-B4D1-A01BBA16D143" />
-<meta name="DC.language" content="en-US" />
-<link rel="stylesheet" type="text/css" href="stylesheets/atmel.css" />
-<title>PIC32CX-BZ3 Secure Boot ROM Usage</title>
-<meta name="Microsoft.Help.Id" content="GUID-2085FE66-A762-4CC0-B054-7F98E8AF999A-GUID-070C3957-164B-4B25-B4D1-A01BBA16D143" />
-<meta name="Microsoft.Help.TocParent" content="GUID-2085FE66-A762-4CC0-B054-7F98E8AF999A-GUID-04D7627E-7290-429B-88B9-2EFFFA11A3A8" />
-<meta name="Microsoft.Help.TocOrder" content="0" />
-<meta name="Microsoft.Help.Locale" content="en-US" />
-<meta name="Microsoft.Help.TopicLocale" content="en-US" />
-<meta name="Microsoft.Help.DisplayVersion" content="MPLAB Harmony PIC32CX-BZ System Services Reference 4 10/2023" />
-<script language="javascript">
-       
-       if (window.parent.location.protocol != 'file:') {
-				document.addEventListener('click', function(e) {
-				    if (e.target) {
-               if (e.target.nodeName == "A" ) {
-                    if (!e.target.target) {
-                      e.preventDefault();
-                      e.stopPropagation();
-                              
-                      var origUrl = window.parent.location.href.substr(0, window.parent.location.href.indexOf("?"));
-                      if (origUrl.length === 0) {
-                          origUrl = window.parent.location.href;
-                      }
-                      var href= e.target.getAttribute("href");
-                      var parts = href.split("#");
-          
-                      var url = "";
-                      if (parts.length == 2 ) {
-                        if (!parts[0].length) {
-                            url = window.parent.location.search.replace('?','')
-                        } else {
-                            url = parts[0].replace('.html','');
-                        }
-                      } else {
-                        url = parts[0].replace('.html','');
-                      }
-
-                      if (parts.length == 2) {
-                          url += "#" + parts[1];
-                      }
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us" data-whc_version="24.1">
+    <head><link rel="shortcut icon" href="oxygen-webhelp\template\resources/images/favicon.ico"/><link rel="icon" href="oxygen-webhelp\template\resources/images/favicon.ico"/><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="copyright" content="(C) Copyright 2024"/><meta name="generator" content="DITA-OT"/><meta name="description" content="PIC32CX-BZ3 Secure Boot ROM Library Usage"/>        
+      <title>1.2.1.1 PIC32CX-BZ3 Secure Boot ROM Usage</title><!--  Generated with Oxygen version 24.1, build number 2022062014.  --><meta name="wh-path2root" content=""/><meta name="wh-toc-id" content="GUID-070C3957-164B-4B25-B4D1-A01BBA16D143-d2097e1106"/><meta name="wh-source-relpath" content="GUID-070C3957-164B-4B25-B4D1-A01BBA16D143.xml"/><meta name="wh-out-relpath" content="GUID-070C3957-164B-4B25-B4D1-A01BBA16D143.html"/>
+    <!-- Latest compiled and minified Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="./oxygen-webhelp/lib/bootstrap/css/bootstrap.min.css"/>
     
-                      window.parent.location.href = origUrl + "?" + url;
+    <link rel="stylesheet" href="./oxygen-webhelp/lib/jquery-ui/jquery-ui.min.css"/>
+    
+    <!-- Template default styles  -->
+    <link rel="stylesheet" type="text/css" href="./oxygen-webhelp/app/topic-page.css?buildId=2022062014"/>
+    
+    
+    <script src="./oxygen-webhelp/lib/jquery/jquery-3.5.1.min.js"></script>
+    
+    <script data-main="./oxygen-webhelp/app/topic-page.js" src="./oxygen-webhelp/lib/requirejs/require.js"></script>
+<link rel="stylesheet" type="text/css" href="oxygen-webhelp/template/microchip.css?buildId=2022062014"/><link rel="stylesheet" type="text/css" href="oxygen-webhelp/template/notes.css?buildId=2022062014"/>
+<script src="mchp-context-help.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async="" type="text/javascript"></script>
+    <script src="https://assets.adobedtm.com/6a72a357eb48/a636c708c7fe/launch-0b0023397020.min.js"></script><!-- Adobe Analytics -->
+</head>
 
-                      return false;
-                    }
-               }
-            }
-				});
-			}
-
-		</script><script language="javascript">
-         
-         function copyContent(content, button) {
-         
-            var textArea = document.createElement("textarea");
-            
-            // Place in the top-left corner of screen regardless of scroll position.
-            textArea.style.position = 'fixed';
-            textArea.style.top = 0;
-            textArea.style.left = 0;
-            
-            // Ensure it has a small width and height. Setting to 1px / 1em
-            // doesn't work as this gives a negative w/h on some browsers.
-            textArea.style.width = '2em';
-            textArea.style.height = '2em';
-            
-            // We don't need padding, reducing the size if it does flash render.
-            textArea.style.padding = 0;
-            
-            // Clean up any borders.
-            textArea.style.border = 'none';
-            textArea.style.outline = 'none';
-            textArea.style.boxShadow = 'none';
-            
-            // Avoid flash of the white box if rendered for any reason.
-            textArea.style.background = 'transparent';
-            
-            textArea.value = content;
-            
-            document.body.appendChild(textArea);
-            textArea.focus();
-            textArea.select();
-            
-            try {
-               var successful = document.execCommand('copy');
-               var msg = successful ? 'successful' : 'unsuccessful';
-               if (!button.classList.contains("copied")){
-                  button.textContent = "Copied";
-                  button.classList.add("copied");
-                  setTimeout(function(){
-                     button.textContent = "Copy";
-                     button.classList.remove("copied");
-                  },1000);
-               }
-            } catch (err) {
-               console.log('Oops, unable to copy');
-            }
-            
-            document.body.removeChild(textArea);
-         }
-         
-         function cpy(id, button) {
-            var element = document.getElementById(id);
-            var content = element.getAttribute("content");
-            
-            copyContent(content, button);
-         }
-         
-         document.addEventListener("DOMContentLoaded", function(event) {
-            document.querySelectorAll(".codeblock").forEach(function(elem) {
-               elem.style.position = "relative";
-               var copy = document.createElement("button");
-               copy.textContent = "Copy";
-               copy.setAttribute("class", "copy-code");
-               
-               var content = elem.textContent;
-               
-               copy.addEventListener("click", function(){
-                  copyContent(content, copy);
-               });
-               
-               elem.addEventListener("mouseenter", function(evt){
-                  elem.prepend(copy);
-               });
-            });
-            
-            document.querySelectorAll(".codeblock").forEach(function(elem) {
-               elem.addEventListener("mouseleave", function(evt){
-                  document.querySelector(".copy-code").remove();
-               });
-            });
-         });
-         
-      </script><script language="javascript">
-          
-          // Add the MathML namespace to html
-          var html = document.getElementsByTagName("html")[0],
-          head = document.getElementsByTagName("head")[0];
-          
-          var mathJax = document.createElement("script");
-          mathJax.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML";
-          head.appendChild(mathJax);
-          
-          html.setAttribute("xmlns:m","http://www.w3.org/1998/Math/MathML");
-          
-          function inIframe() { try { return window.self !== window.top; } catch (e) { return true; } }
-          
-          if (!inIframe()) { 
-          
-          var Default = "index.html?GUID-070C3957-164B-4B25-B4D1-A01BBA16D143"; 
-          
-          var displaylocation = "value" + window.location.href;
-          
-          var GUIDS = displaylocation.split('GUID');          
-          
-          if (displaylocation.indexOf('#GUID') != -1) {            
-          var First = GUIDS[1].split('.html');  
-          if (GUIDS[3]){First = GUIDS[2].split('.html');}
-          if (GUIDS[4]){First = GUIDS[3].split('.html');}
-          if (GUIDS[5]){First = GUIDS[4].split('.html');}
-          
-          var Second = GUIDS[2].split('#');   
-          if (GUIDS[3]){Second = GUIDS[3].split('#');}
-          if (GUIDS[4]){Second = GUIDS[4].split('#');}
-          if (GUIDS[5]){Second = GUIDS[5].split('#');}
-          
-          Default = "index.html?" + "GUID" + First[0] + "GUID" + Second[0];     
-          }                    
-          window.top.location = Default;
-          }       
-          
-        </script><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /><style xml:space="">
-        
-          button.copy-code{
-            display:none;
-            padding:0.7em 1.4em;
-            margin:0 0.3em 0.3em 0;
-            border-radius:0.15em;
-            box-sizing: border-box;
-            text-decoration:none;
-            font-family:'Roboto',sans-serif;
-            text-transform:uppercase;
-            font-weight:400;
-            color:#FFFFFF;
-            background-color:#9c9c9c;
-            box-shadow:inset 0 -0.6em 0 -0.35em rgba(0,0,0,0.17);
-            text-align:center;
-            position:relative;
-            border: 0;
-            float: right;
-            border-radius: .5em;
-            cursor: pointer;
-          }
-          button.copy-code:active{
-            top:0.1em;
-          }
-          
-          pre:hover button.copy-code{
-            display: inline-block !important;
-          }
-          button.copy-code.copied {
-            cursor: default !important;
-          }
-          
-          
-          @media all and (max-width:30em){
-            button.copy-code{
-              display:block;
-              margin:0.4em auto;
-            }
-          }
+    <body id="GUID-070C3957-164B-4B25-B4D1-A01BBA16D143" class="wh_topic_page frmBody">
+        <a href="#wh_topic_body" class="sr-only sr-only-focusable">
+            Jump to main content
+        </a>
         
         
-      </style><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /></head>
-<body id="GUID-070C3957-164B-4B25-B4D1-A01BBA16D143">
+        
+        
+        <header class="navbar navbar-default wh_header">
+    <div class="container-fluid">
+        <div class="wh_header_flex_container navbar-nav navbar-expand-md navbar-dark">
+            <div class="wh_logo_and_publication_title_container">
+                <div class="wh_logo_and_publication_title">
+                    
+                    <a href="index.html" class=" wh_logo d-none d-sm-block "><img src="oxygen-webhelp\template\resources/images/microchip.png" alt="MPLAB Harmony PIC32CX-BZ System Services &#xA;    "/></a>
+                    <div class=" wh_publication_title "><a href="index.html">MPLAB Harmony PIC32CX-BZ System Services 
+    </a></div>
+                    
+                </div>
+                
+                
+            </div>
 
-<h1 class="title topictitle1" id="GUID-070C3957-164B-4B25-B4D1-A01BBA16D143__GUID-5A5DAE88-E504-4EC7-8E91-663CE2E89A85" style="">PIC32CX-BZ3 Secure Boot ROM Usage</h1>
-
-<div class="body"><p class="shortdesc">PIC32CX-BZ3 Secure Boot ROM Library Usage</p>
-
-        <p class="p"><strong class="ph b"><u class="ph u">Configuring the library</u></strong></p>
-
-        <p class="p">There is no configuration of this library.</p>
-
-        <p class="p"><strong class="ph b"><u class="ph u">Using the library</u></strong></p>
-
-<p class="p">This is the start of your topic.</p>
-
+            <div class="wh_top_menu_and_indexterms_link collapse navbar-collapse" id="wh_top_menu_and_indexterms_link">
+                
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</header>
+        
+        
+         
+        
+        <div class=" wh_search_input navbar-form wh_topic_page_search search " role="form">
+            
+            
+            
+            <form id="searchForm" method="get" role="search" action="search.html"><div class="d-flex justify-contents-around"><div class="flex-grow-1"></div><div class="position-relative flex-grow-1"><input type="search" placeholder="Search " class="wh_search_textfield" id="textToSearch" name="searchQuery" aria-label="Search query" required="required"/><button type="submit" class="wh_search_button" aria-label="Search"><span class="search_input_text">Search</span></button></div><div class="align-self-center flex-grow-1 ml-2"><div class="d-flex justify-content-end"><div class="dropdown"><a style="font-size: 1em; padding: 7px 12px !important;" class="btn py-3 px-3 btn-outline-light dropdown-toggle" href="#" role="button" id="devicesMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Product Pages</a><div style="font-size: 1em;" class="dropdown-menu" aria-labelledby="devicesMenu"><a class="dropdown-item" target="_blank" href="https://www.microchip.com/en-us/product/wbz450">WBZ450</a><a class="dropdown-item" target="_blank" href="https://www.microchip.com/en-us/product/wbz451"> WBZ451</a><a class="dropdown-item" target="_blank" href="https://www.microchip.com/en-us/product/pic32cx-bz2"> PIC32CX-BZ2</a></div></div></div></div></div></form>
+            
+            <div class="mchp-color-stripe-grid-container">
+  <div class="mchp-main-bar mchp-orange-bar"></div>
+  <div class="mchp-main-bar mchp-blue-bar"></div>
+  <div class="mchp-main-bar mchp-green-bar"></div>
 </div>
+            
+        </div>
+        
+        <div class="container-fluid" id="wh_topic_container">
+            <div class="row">
 
-<div class="related-links">
-<ul class="ullinks">
-<li class="link ulchildlink"><strong><a href="GUID-E5AC2B5B-4DA1-4D7D-A714-901692577E30.html">SX_symcrypt_API</a></strong><br />
-Enter a short description of your topic here (optional).</li>
-<li class="link ulchildlink"><strong><a href="GUID-82627570-09DA-49A7-95EC-D502E201BEA3.html">Silex_PK_API</a></strong><br />
-Enter a short description of your topic here (optional).</li>
-</ul>
+                <nav class="wh_tools d-print-none navbar-expand-md" aria-label="Tools">
+                    
+                    <div data-tooltip-position="bottom" class=" wh_breadcrumb "><ol class="d-print-none"><li><span class="home"><a href="index.html"><span>Home</span></a></span></li><li><div class="topicref" data-id="GUID-B92D56E1-C216-4D2D-827C-26D5B803B704"><div class="title"><a href="GUID-B92D56E1-C216-4D2D-827C-26D5B803B704.html"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1</ph>
+PIC32CX-BZ Family System Services</a><div class="wh-tooltip"><p class="shortdesc"><span class="ph instanceOffsets">             <p class="p">The PIC32CX-BZ System services provides several services to protocol developers and                 application users which use PIC32CX-BZ products. </p>         </span></p></div></div></div></li><li><div class="topicref" data-id="GUID-F9698DC6-BF78-4773-A5E3-CA7D4F570394"><div class="title"><a href="GUID-F9698DC6-BF78-4773-A5E3-CA7D4F570394.html"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2</ph>
+PIC32CX-BZ3 System Services</a></div></div></li><li><div class="topicref" data-id="GUID-04D7627E-7290-429B-88B9-2EFFFA11A3A8"><div class="title"><a href="GUID-04D7627E-7290-429B-88B9-2EFFFA11A3A8.html"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2.1</ph>
+PIC32CX-BZ3 Secure Boot ROM Help</a></div></div></li><li class="active"><div class="topicref" data-id="GUID-070C3957-164B-4B25-B4D1-A01BBA16D143"><div class="title"><a href="GUID-070C3957-164B-4B25-B4D1-A01BBA16D143.html"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2.1.1</ph>
+PIC32CX-BZ3 Secure Boot ROM Usage</a><div class="wh-tooltip"><p class="shortdesc">PIC32CX-BZ3 Secure Boot ROM Library Usage</p></div></div></div></li></ol></div>
+                    
+                    
+                    
+                    <div class="wh_right_tools">
+                        <button class="wh_hide_highlight" aria-label="Toggle search highlights" title="Toggle search highlights"></button>
+                        <button class="webhelp_expand_collapse_sections" data-next-state="collapsed" aria-label="Collapse sections" title="Collapse sections"></button>
+                        
+                        
+                        
+                        
+                        <div class=" wh_print_link print d-none d-md-inline-block "><button onClick="window.print()" title="Print this page" aria-label="Print this page"></button></div>
+                        
+                        <button type="button" id="wh_toc_button" class="custom-toggler navbar-toggler collapsed wh_toggle_button navbar-light" aria-expanded="false" aria-label="Toggle publishing table of content" aria-controls="wh_publication_toc">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
+                    
+                </nav>
+            </div>
+            
+            <div class="row" style="margin-top: -1em;"><div class="col-lg-9 col-md-9 col-sm-12 offset-lg-3 offset-md-3 text-right border-bottom mb-1"><h2 class="text-dark header_title">
+    </h2></div></div>
+            
+            
+            <div class="wh_content_area">
+                <div class="row">
+                    
+                        <nav id="wh_publication_toc" class="col-lg-3 col-md-3 col-sm-12 d-md-block d-none d-print-none" aria-label="Table of Contents Container">
+                            <div id="wh_publication_toc_content">
+		                        
+                            	<div class=" wh_publication_toc " data-tooltip-position="right"><span class="expand-button-action-labels"><span id="button-expand-action" role="button" aria-label="Expand"></span><span id="button-collapse-action" role="button" aria-label="Collapse"></span><span id="button-pending-action" role="button" aria-label="Pending"></span></span><ul role="tree" aria-label="Table of Contents"><li role="treeitem" aria-expanded="true"><div data-tocid="GUID-B92D56E1-C216-4D2D-827C-26D5B803B704-d2097e11" class="topicref" data-id="GUID-B92D56E1-C216-4D2D-827C-26D5B803B704" data-state="expanded"><span role="button" tabindex="0" aria-labelledby="button-collapse-action GUID-B92D56E1-C216-4D2D-827C-26D5B803B704-d2097e11-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-B92D56E1-C216-4D2D-827C-26D5B803B704.html" id="GUID-B92D56E1-C216-4D2D-827C-26D5B803B704-d2097e11-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1</ph>
+PIC32CX-BZ Family System Services</a><div class="wh-tooltip"><p class="shortdesc"><span class="ph instanceOffsets">             <p class="p">The PIC32CX-BZ System services provides several services to protocol developers and                 application users which use PIC32CX-BZ products. </p>         </span></p></div></div></div><ul role="group" class="navbar-nav nav-list"><li role="treeitem" aria-expanded="false"><div data-tocid="GUID-FFC9758F-305D-4A4A-A577-726CDCFA18C7-d2097e26" class="topicref" data-id="GUID-FFC9758F-305D-4A4A-A577-726CDCFA18C7" data-state="not-ready"><span role="button" tabindex="0" aria-labelledby="button-expand-action GUID-FFC9758F-305D-4A4A-A577-726CDCFA18C7-d2097e26-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-FFC9758F-305D-4A4A-A577-726CDCFA18C7.html" id="GUID-FFC9758F-305D-4A4A-A577-726CDCFA18C7-d2097e26-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1</ph>
+PIC32CX-BZ2 System Services</a></div></div></li><li role="treeitem" aria-expanded="true"><div data-tocid="GUID-F9698DC6-BF78-4773-A5E3-CA7D4F570394-d2097e1090" class="topicref" data-id="GUID-F9698DC6-BF78-4773-A5E3-CA7D4F570394" data-state="expanded"><span role="button" tabindex="0" aria-labelledby="button-collapse-action GUID-F9698DC6-BF78-4773-A5E3-CA7D4F570394-d2097e1090-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-F9698DC6-BF78-4773-A5E3-CA7D4F570394.html" id="GUID-F9698DC6-BF78-4773-A5E3-CA7D4F570394-d2097e1090-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2</ph>
+PIC32CX-BZ3 System Services</a></div></div><ul role="group" class="navbar-nav nav-list"><li role="treeitem" aria-expanded="true"><div data-tocid="GUID-04D7627E-7290-429B-88B9-2EFFFA11A3A8-d2097e1098" class="topicref" data-id="GUID-04D7627E-7290-429B-88B9-2EFFFA11A3A8" data-state="expanded"><span role="button" tabindex="0" aria-labelledby="button-collapse-action GUID-04D7627E-7290-429B-88B9-2EFFFA11A3A8-d2097e1098-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-04D7627E-7290-429B-88B9-2EFFFA11A3A8.html" id="GUID-04D7627E-7290-429B-88B9-2EFFFA11A3A8-d2097e1098-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2.1</ph>
+PIC32CX-BZ3 Secure Boot ROM Help</a></div></div><ul role="group" class="navbar-nav nav-list"><li role="treeitem" aria-expanded="true" class="active"><div data-tocid="GUID-070C3957-164B-4B25-B4D1-A01BBA16D143-d2097e1106" class="topicref" data-id="GUID-070C3957-164B-4B25-B4D1-A01BBA16D143" data-state="expanded"><span role="button" tabindex="0" aria-labelledby="button-collapse-action GUID-070C3957-164B-4B25-B4D1-A01BBA16D143-d2097e1106-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-070C3957-164B-4B25-B4D1-A01BBA16D143.html" id="GUID-070C3957-164B-4B25-B4D1-A01BBA16D143-d2097e1106-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2.1.1</ph>
+PIC32CX-BZ3 Secure Boot ROM Usage</a><div class="wh-tooltip"><p class="shortdesc">PIC32CX-BZ3 Secure Boot ROM Library Usage</p></div></div></div><ul role="group" class="navbar-nav nav-list"><li role="treeitem" aria-expanded="false"><div data-tocid="GUID-E5AC2B5B-4DA1-4D7D-A714-901692577E30-d2097e1117" class="topicref" data-id="GUID-E5AC2B5B-4DA1-4D7D-A714-901692577E30" data-state="not-ready"><span role="button" tabindex="0" aria-labelledby="button-expand-action GUID-E5AC2B5B-4DA1-4D7D-A714-901692577E30-d2097e1117-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-E5AC2B5B-4DA1-4D7D-A714-901692577E30.html" id="GUID-E5AC2B5B-4DA1-4D7D-A714-901692577E30-d2097e1117-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2.1.1.1</ph>
+SX_symcrypt_API</a></div></div></li><li role="treeitem" aria-expanded="false"><div data-tocid="GUID-82627570-09DA-49A7-95EC-D502E201BEA3-d2097e1246" class="topicref" data-id="GUID-82627570-09DA-49A7-95EC-D502E201BEA3" data-state="not-ready"><span role="button" tabindex="0" aria-labelledby="button-expand-action GUID-82627570-09DA-49A7-95EC-D502E201BEA3-d2097e1246-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-82627570-09DA-49A7-95EC-D502E201BEA3.html" id="GUID-82627570-09DA-49A7-95EC-D502E201BEA3-d2097e1246-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2.1.1.2</ph>
+Silex_PK_API</a></div></div></li></ul></li></ul></li><li role="treeitem" aria-expanded="false"><div data-tocid="GUID-AA710303-8EC4-46F9-9F40-B61401D0F4FB-d2097e1399" class="topicref" data-id="GUID-AA710303-8EC4-46F9-9F40-B61401D0F4FB" data-state="not-ready"><span role="button" tabindex="0" aria-labelledby="button-expand-action GUID-AA710303-8EC4-46F9-9F40-B61401D0F4FB-d2097e1399-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-AA710303-8EC4-46F9-9F40-B61401D0F4FB.html" id="GUID-AA710303-8EC4-46F9-9F40-B61401D0F4FB-d2097e1399-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2.2</ph>
+PIC32CX-BZ3 Device Support Component Library Help</a><div class="wh-tooltip"><p class="shortdesc">The PIC32CX-BZ3 Device Support Component Library provides software API's for various                 subsystems in the PIC32CX-BZ3.</p></div></div></div></li><li role="treeitem" aria-expanded="false"><div data-tocid="GUID-480322DE-77D7-4DD6-9AB0-9B92A193D321-d2097e1747" class="topicref" data-id="GUID-480322DE-77D7-4DD6-9AB0-9B92A193D321" data-state="not-ready"><span role="button" tabindex="0" aria-labelledby="button-expand-action GUID-480322DE-77D7-4DD6-9AB0-9B92A193D321-d2097e1747-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-480322DE-77D7-4DD6-9AB0-9B92A193D321.html" id="GUID-480322DE-77D7-4DD6-9AB0-9B92A193D321-d2097e1747-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2.3</ph>
+PIC32CX-BZ3 Persistent Data Server Component Library Help</a><div class="wh-tooltip"><p class="shortdesc">The PIC32CX-BZ3 Persistent Data Server Component Library provides interface for storing                 and restoring items into the Non volatile memory using wear leveling                 mechanism</p></div></div></div></li><li role="treeitem"><div data-tocid="GUID-6F443732-8F03-4525-A5EA-E0D25379C8AB-d2097e1995" class="topicref" data-id="GUID-6F443732-8F03-4525-A5EA-E0D25379C8AB" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-6F443732-8F03-4525-A5EA-E0D25379C8AB.html" id="GUID-6F443732-8F03-4525-A5EA-E0D25379C8AB-d2097e1995-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2.4</ph>
+PIC32CX-BZ3 Boot Services Help</a></div></div></li><li role="treeitem" aria-expanded="false"><div data-tocid="GUID-5E76E081-070E-46EA-86A9-EE08F3F1481F-d2097e2003" class="topicref" data-id="GUID-5E76E081-070E-46EA-86A9-EE08F3F1481F" data-state="not-ready"><span role="button" tabindex="0" aria-labelledby="button-expand-action GUID-5E76E081-070E-46EA-86A9-EE08F3F1481F-d2097e2003-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-5E76E081-070E-46EA-86A9-EE08F3F1481F.html" id="GUID-5E76E081-070E-46EA-86A9-EE08F3F1481F-d2097e2003-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2.5</ph>
+PIC32CX-BZ3 Standalone Bootloader Component Help</a></div></div></li></ul></li></ul></li><li role="treeitem" aria-expanded="false"><div data-tocid="GUID-0FB3F908-88EE-45CE-94F5-E97AF9049C9B-d2097e2319" class="topicref backmatter backmatter_parent" data-id="GUID-0FB3F908-88EE-45CE-94F5-E97AF9049C9B" data-state="not-ready"><span role="button" tabindex="0" aria-labelledby="button-expand-action GUID-0FB3F908-88EE-45CE-94F5-E97AF9049C9B-d2097e2319-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-0FB3F908-88EE-45CE-94F5-E97AF9049C9B.html" id="GUID-0FB3F908-88EE-45CE-94F5-E97AF9049C9B-d2097e2319-link">Microchip Information</a></div></div></li></ul></div>
+		                        
+                            </div>
+                        </nav>
+                    
+                    
+                    <div class="col-lg-9 col-md-9 col-sm-12" id="wh_topic_body">
+                        <button id="wh_close_publication_toc_button" class="close-toc-button d-none" aria-label="Toggle publishing table of content" aria-controls="wh_publication_toc" aria-expanded="true">
+                            <span class="close-toc-icon-container">
+                                <span class="close-toc-icon"></span>     
+                            </span>
+                        </button>
+                        
+                        
+                        <div class=" wh_topic_content body "><main role="main"><article role="article" aria-labelledby="GUID-070C3957-164B-4B25-B4D1-A01BBA16D143__GUID-5A5DAE88-E504-4EC7-8E91-663CE2E89A85">
+<h1 class="- topic/title title topictitle1" id="GUID-070C3957-164B-4B25-B4D1-A01BBA16D143__GUID-5A5DAE88-E504-4EC7-8E91-663CE2E89A85" style="">1.2.1.1 PIC32CX-BZ3 Secure Boot ROM Usage</h1>
 
-<div class="familylinks">
-<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="GUID-04D7627E-7290-429B-88B9-2EFFFA11A3A8.html">PIC32CX-BZ3 Secure Boot ROM Help</a></div>
+<div class="- topic/body body"><p class="- topic/shortdesc shortdesc">PIC32CX-BZ3 Secure Boot ROM Library Usage</p>
+        <p class="- topic/p p"><strong class="+ topic/ph hi-d/b ph b"><u class="+ topic/ph hi-d/u ph u">Configuring the library</u></strong></p>
+        <p class="- topic/p p">There is no configuration of this library.</p>
+        <p class="- topic/p p"><strong class="+ topic/ph hi-d/b ph b"><u class="+ topic/ph hi-d/u ph u">Using the library</u></strong></p>
 </div>
-</div></body>
+</article></main></div>
+                        
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            
+            
+        </div> 
+        <footer class="navbar navbar-default wh_footer">
+  <div class=" footer-container mx-auto ">
+    <div class="footer">
+  <div class="mchp-wh-footer">
+    <div class="mchp-footer">
+      <div class="mchp-footer-tier1">
+        <div class="spacer"></div>
+        <div class="mchp-footer-container">
+          <div class="mchp-footer-links mchp-social-media-links">
+            <div class="mchp-component-items">
+              <div class="mchp-component-item">
+                <a class="cmp-image__link" href="https://www.facebook.com/pages/Microchip-Technology-Inc/20320981741" target="_blank">
+                  <img class="cmp-image__image" alt="Microchip Facebook" src="oxygen-webhelp/template/resources/images/201016-corp-facebook.png"/>
+                </a>
+              </div>
+              <div class="mchp-component-item">
+                <a class="cmp-image__link" href="https://www.linkedin.com/company/microchip-technology" target="_blank">
+                  <img class="cmp-image__image" alt="Microchip LinkedIn" src="oxygen-webhelp/template/resources/images/201016-corp-linkedin.png"/>
+                </a>
+              </div>
+              <div class="mchp-component-item">
+                <a class="cmp-image__link" href="https://twitter.com/MicrochipTech" target="_blank">
+                  <img class="cmp-image__image" alt="Microchip Twitter" src="oxygen-webhelp/template/resources/images/201016-corp-twitter.png"/>
+                </a>
+              </div>
+              <div class="mchp-component-item">
+                <a class="cmp-image__link" href="https://www.youtube.com/user/MicrochipTechnology" target="_blank">
+                  <img class="cmp-image__image" alt="Microchip YouTube" src="oxygen-webhelp/template/resources/images/201016-corp-youtube.png"/>
+                </a>
+              </div>
+              <div class="mchp-component-item">
+                <a class="cmp-image__link" href="https://www.instagram.com/microchiptechnologyinc/" target="_blank">
+                  <img class="cmp-image__image" alt="Microchip Instagram" src="oxygen-webhelp/template/resources/images/201016-corp-instagram.png"/>
+                </a>
+              </div>
+              <div class="mchp-component-item">
+                <a class="cmp-image__link" href="https://www.weibo.com/microchiptech" target="_blank">
+                  <img class="cmp-image__image" alt="Microchip Weibo" src="oxygen-webhelp/template/resources/images/201016-corp-weibo.png"/>
+                </a>
+              </div>
+              <div class="mchp-component-item">
+                <a class="cmp-image__link" href="https://www.microchip.com/en-us/about/blog" target="_blank">
+                  <img class="cmp-image__image" alt="Microchip Blog" src="oxygen-webhelp/template/resources/images/201016-corp-blog.png"/>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="mchp-footer-links">
+            <div class="mchp-component-items">
+              <div class="mchp-component-item">
+                <div class="link">
+                  <a href="https://www.microchip.com/about-us/contact-us" class="mchp-link__link">Contact</a>
+                  <span class="mchp-link__separator">|</span>
+                </div>
+              </div>
+              <div class="mchp-component-item ">
+                <div class="link">
+                  <a href="https://www.microchip.com/en-us/about/legal-information" class="mchp-link__link">Legal</a>
+                  <span class="mchp-link__separator">|</span>
+                </div>
+              </div>
+              <div class="mchp-component-item ">
+                <div class="link">
+                  <a href="https://www.microchip.com/en-us/about/legal-information/privacy-policy" class="mchp-link__link">Privacy Policy</a>
+                  <span class="mchp-link__separator">|</span>
+                </div>
+              </div>
+              <div class="mchp-component-item ">
+                <div class="link">
+                  <a href="https://www.microchip.com/en-us/about/legal-information/microchip-cookie-statement" class="mchp-link__link">Cookies</a>
+                  <span class="mchp-link__separator">|</span>
+                </div>
+              </div>
+              <div class="mchp-component-item">
+                <div class="link">
+                  <a href="https://careers.microchip.com/" class="mchp-link__link">Careers</a>
+                  <span class="mchp-link__separator"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mchp-footer-newsletter">
+            <div class="cmp-text">
+              <p>Stay on the leading edge with our blog</p>
+            </div>
+            <div class="mchp-button-wrapper">
+              <a role="button" href="https://www.microchip.com/en-us/about/blog" class="mchp-button mchp-button-regular solid">
+                <span class="mchp-button__span">MicroSolutions</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="graphic">
+          <img src="oxygen-webhelp/template/resources/images/footer-graphic.png"/>
+        </div>
+      </div>
+      <div class="mchp-footer-tier2">
+        <p class="mchp-copyright">© Copyright 1998-2022 Microchip Technology Inc. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async="true" src="https://www.googletagmanager.com/gtag/js?id=UA-2724382-19"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];  
+    function gtag(){dataLayer.push(arguments);}  
+    gtag('js', new Date());   
+    gtag('config', 'UA-2724382-19');
+  </script>
+  
+  <script type="text/javascript">_satellite.pageBottom();</script><!-- Adobe Analytics -->
+  <script type="text/javascript" src="mchp-js/prepend.js"></script><!-- Package for viewing PDFs on mobile devices -->
+  
+</div>
+  </div>
+</footer>
+        
+        <div id="go2top" class="d-print-none">
+            <span class="oxy-icon oxy-icon-up"></span>
+        </div>
+        
+        <div id="modal_img_large" class="modal">
+            <span class="close oxy-icon oxy-icon-remove"></span>
+            <div id="modal_img_container"></div>
+            <div id="caption"></div>
+        </div>
+        
+        
+        
+       
+        </body>
 </html>

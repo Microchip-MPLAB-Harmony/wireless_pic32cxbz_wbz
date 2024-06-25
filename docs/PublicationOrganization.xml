@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<publication>
+   <title>MPLAB Harmony PIC32CX-BZ System Services</title>
+   <urls>
+      <url>
+         <loc>GUID-B92D56E1-C216-4D2D-827C-26D5B803B704.html</loc>
+         <lastmod>2023-11-08T20:19:36</lastmod>
+         <title>1 PIC32CX-BZ Family System Services</title>
+         <description>The PIC32CX-BZ System services provides several services to protocol developers and application users which use PIC32CX-BZ products.</description>
+         <urls>
+            <url>
+               <loc>GUID-FFC9758F-305D-4A4A-A577-726CDCFA18C7.html</loc>
+               <lastmod>2024-06-24T21:27:08</lastmod>
+               <title>1.1 PIC32CX-BZ2 System Services</title>
+               <description>This page has the necessary supporting documentation to get started with application development on PIC32CX-BZ2 and WBZ45x/WBZ45xH Family of </description>
+               <urls>
+                  <url>
+                     <loc>GUID-2167300F-6A96-440E-83CA-FC9C0C259914.html</loc>
+                     <lastmod>2024-04-01T09:50:41</lastmod>
+                     <title>1.1.1 Device Support Component Library Help</title>
+                     <description>ThePIC32CX-BZ2Device Support Component Library provides software API's for various subsystems in thePIC32CX-BZ2.</description>
+                     <urls>
+                        <url>
+                           <loc>GUID-F94F11C2-B9C2-46CA-873A-7F3BA47C12F9.html</loc>
+                           <lastmod>2023-09-20T17:58:06</lastmod>
+                           <title>1.1.1.1 Device Support Library Usage</title>
+                           <description>Configuring the libraryThere is no configuration for this library.Device Support Libraries groups classificationRF SystemPMU SystemInformation BaseSleep SystemDeep Sleep SystemUsing the library - An ...</description>
+                           <urls>
+                              <url>
+                                 <loc>GUID-EDAF833A-65A8-4C17-8178-AB52010F5638.html</loc>
+                                 <lastmod>2022-01-18T14:21:17</lastmod>
+                                 <title>1.1.1.1.1 RF System</title>
+                                 <description>RF System helps in initialization, calibration and other activities for using RF Sub system</description>
+                                 <urls/>
+                              </url>
+                              <url>
+                                 <loc>GUID-4F3FCED2-8D39-4756-838A-1248B8A619A4.html</loc>
+                                 <lastmod>2021-12-14T13:54:27</lastmod>
+                                 <title>1.1.1.1.2 PMU System</title>
+                                 <description>The PMU (Power Management Unit) subsystem helps in setting various power modes available in the system</description>
+                                 <urls/>
+                              </url>
+                              <url>
+                                 <loc>GUID-96F08F37-E558-49D3-9B97-9A086896263A.html</loc>
+                                 <lastmod>2022-04-27T12:27:29</lastmod>
+                                 <title>1.1.1.1.3 Info Block</title>
+                                 <description>Information block helps in getting factory set values from the information base</description>
+                                 <urls/>
+                              </url>
+                              <url>
+                                 <loc>GUID-BBF940E8-361C-4418-AA6E-7E55FE94DD87.html</loc>
+                                 <lastmod>2021-12-14T14:23:25</lastmod>
+                                 <title>1.1.1.1.4 Sleep System</title>
+                                 <description>Sleep system helps to enter and exit sleep modes</description>
+                                 <urls/>
+                              </url>
+                              <url>
+                                 <loc>GUID-277660E0-3BEF-465B-B8F4-B0E72E042EB6.html</loc>
+                                 <lastmod>2024-04-04T10:08:16</lastmod>
+                                 <title>1.1.1.1.5 Deep Sleep System</title>
+                                 <description/>
+                                 <urls/>
+                              </url>
+                           </urls>
+                        </url>
+                        <url>
+                           <loc>GUID-9F5447FF-EF42-4AC4-ADCF-1C0C2E5173CE.html</loc>
+                           <lastmod>2022-04-18T09:39:17</lastmod>
+                           <title>1.1.1.2 OSAL Extension for FreeRTOS</title>
+                           <description>OSAL (Operating System Abstraction Layer) Extension for FreeRTOS provide extension for OSAL mappings for the FreeRTOS Real-time operating system. The following table defines OSAL routines. Fuction ...</description>
+                           <urls/>
+                        </url>
+                        <url>
+                           <loc>GUID-B3D492FD-EE43-4E34-B7E0-43508DC5B865.html</loc>
+                           <lastmod>2022-03-17T12:12:41</lastmod>
+                           <title>1.1.1.3 App Idle Task</title>
+                           <description>App Idle task service provides idle task routines which will be called from FreeRTOS Idle hook function. It executes the idle activities. The following activities may be carried outRF Calibration if ...</description>
+                           <urls/>
+                        </url>
+                     </urls>
+                  </url>
+                  <url>
+                     <loc>GUID-D08C61D1-8CD6-4D2F-B74D-E58784C9042B.html</loc>
+                     <lastmod>2024-04-01T09:50:46</lastmod>
+                     <title>1.1.2 Persistent Data Server Component Library Help</title>
+                     <description>ThePIC32CX-BZ2Persistent Data Server Component Library provides interface for storing and restoring items into the Non volatile memory using wear leveling mechanism</description>
+                     <urls>
+                        <url>
+                           <loc>GUID-A7B0958C-E476-48EA-9C30-DA83508CC577.html</loc>
+                           <lastmod>2023-11-09T06:32:46</lastmod>
+                           <title>1.1.2.1 PDS Library Usage</title>
+                           <description>PIC32CX-BZ3 Persistent Data Server(PDS) Library Usage</description>
+                           <urls/>
+                        </url>
+                     </urls>
+                  </url>
+                  <url>
+                     <loc>GUID-E95D4418-FDD2-49A3-999F-6EFBA54DDA3D.html</loc>
+                     <lastmod>2022-05-17T11:48:40</lastmod>
+                     <title>1.1.3 PIC32CX-BZ2 Bootloader Services Component Help</title>
+                     <description>The PIC32CX-BZ2 Bootloader Services is a utility which helps in creating signed firmware image for OTA with the provided header and OTA header information. Please follow MCC Project Graph and how to ...</description>
+                     <urls/>
+                  </url>
+                  <url>
+                     <loc>GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD.html</loc>
+                     <lastmod>2022-04-27T11:07:06</lastmod>
+                     <title>1.1.4 PIC32CX-BZ2 Standalone Bootloader Component Help</title>
+                     <description>PIC32CX-BZ2 bootloader is a standalone harmony component, Using it, one can generate bootloader which is a program that is loaded on internal flash memory and gets executed every time the device ...</description>
+                     <urls>
+                        <url>
+                           <loc>GUID-4552A2E4-E35C-4FD0-9C01-0EE86D4F6163.html</loc>
+                           <lastmod>2022-05-17T09:36:18</lastmod>
+                           <title>1.1.4.1 Configuration Options</title>
+                           <description>Default configuration options window for bootloader is shown belowEnable Console option By enabling this option, Information on bootloader activities will printed into console using SERCOM UART. By ...</description>
+                           <urls/>
+                        </url>
+                        <url>
+                           <loc>GUID-079BEEAB-D3FE-415A-8EA6-F8A704302FCB.html</loc>
+                           <lastmod>2022-05-25T15:28:25</lastmod>
+                           <title>1.1.4.2 DFU Functionality - Serial image bootloader</title>
+                           <description>DFU, the device firmware upgrade in bootloader is used to load new image which is received from host over serial interface and writes into the flash(Slot 1). The host may be python script or pc ...</description>
+                           <urls/>
+                        </url>
+                        <url>
+                           <loc>GUID-9B3F465C-7297-4547-B7C6-3AAABEB7E261.html</loc>
+                           <lastmod>2022-05-13T05:20:53</lastmod>
+                           <title>1.1.4.3 Bootloader API Usage</title>
+                           <description>The following macros, typedef, functions defintions help for generic functions of </description>
+                           <urls/>
+                        </url>
+                        <url>
+                           <loc>GUID-601EC36F-434F-4CEE-BF96-232B23F39458.html</loc>
+                           <lastmod>2022-05-13T05:22:20</lastmod>
+                           <title>1.1.4.4 DFU API Usage</title>
+                           <description>The following macros, typedef, functions defintions help to understand DFU functionality of </description>
+                           <urls/>
+                        </url>
+                     </urls>
+                  </url>
+               </urls>
+            </url>
+            <url>
+               <loc>GUID-F9698DC6-BF78-4773-A5E3-CA7D4F570394.html</loc>
+               <lastmod>2023-11-08T20:27:46</lastmod>
+               <title>1.2 PIC32CX-BZ3 System Services</title>
+               <description>This page has the necessary supporting documentation to get started with application development on PIC32CX-BZ3 and WBZ35x Family of </description>
+               <urls>
+                  <url>
+                     <loc>GUID-04D7627E-7290-429B-88B9-2EFFFA11A3A8.html</loc>
+                     <lastmod>2024-06-24T21:27:20</lastmod>
+                     <title>1.2.1 PIC32CX-BZ3 Secure Boot ROM Help</title>
+                     <description>The Boot ROM allows to ensure the integrity of the device at boot.An immutable boot sequence (Secure Boot Code) is implemented into a ROM called the Secure Boot ROM. The Secure Boot ROM manages Test ...</description>
+                     <urls>
+                        <url>
+                           <loc>GUID-070C3957-164B-4B25-B4D1-A01BBA16D143.html</loc>
+                           <lastmod>2024-04-04T10:20:52</lastmod>
+                           <title>1.2.1.1 PIC32CX-BZ3 Secure Boot ROM Usage</title>
+                           <description>PIC32CX-BZ3 Secure Boot ROM Library Usage</description>
+                           <urls>
+                              <url>
+                                 <loc>GUID-E5AC2B5B-4DA1-4D7D-A714-901692577E30.html</loc>
+                                 <lastmod>2024-04-04T10:09:33</lastmod>
+                                 <title>1.2.1.1.1 SX_symcrypt_API</title>
+                                 <description/>
+                                 <urls/>
+                              </url>
+                              <url>
+                                 <loc>GUID-82627570-09DA-49A7-95EC-D502E201BEA3.html</loc>
+                                 <lastmod>2024-04-04T08:58:26</lastmod>
+                                 <title>1.2.1.1.2 Silex_PK_API</title>
+                                 <description/>
+                                 <urls/>
+                              </url>
+                           </urls>
+                        </url>
+                     </urls>
+                  </url>
+                  <url>
+                     <loc>GUID-AA710303-8EC4-46F9-9F40-B61401D0F4FB.html</loc>
+                     <lastmod>2023-10-19T13:51:14</lastmod>
+                     <title>1.2.2 PIC32CX-BZ3 Device Support Component Library Help</title>
+                     <description>The PIC32CX-BZ3 Device Support Component Library provides software API's for various subsystems in the PIC32CX-BZ3.</description>
+                     <urls>
+                        <url>
+                           <loc>GUID-911DF565-32FA-4B08-9364-0C6499C671E0.html</loc>
+                           <lastmod>2023-10-18T14:30:43</lastmod>
+                           <title>1.2.2.1 Device Support Library Usage</title>
+                           <description>Configuring the libraryThere is no configuration for this library.Device Support Libraries groups classificationRF SystemPMU SystemInformation BaseSleep SystemDeep Sleep SystemUsing the library - An ...</description>
+                           <urls>
+                              <url>
+                                 <loc>GUID-9D2DBA97-140B-4DEA-A9BF-A14020B464F5.html</loc>
+                                 <lastmod>2023-10-18T14:25:18</lastmod>
+                                 <title>1.2.2.1.1 RF System</title>
+                                 <description>RF System helps in initialization, calibration and other activities for using RF Sub system</description>
+                                 <urls/>
+                              </url>
+                              <url>
+                                 <loc>GUID-ACA732A7-9AED-4CAE-BFCD-6B19A151009E.html</loc>
+                                 <lastmod>2023-10-18T14:24:02</lastmod>
+                                 <title>1.2.2.1.2 PMU System</title>
+                                 <description>The PMU (Power Management Unit) subsystem helps in setting various power modes available in the system</description>
+                                 <urls/>
+                              </url>
+                              <url>
+                                 <loc>GUID-7C562439-484A-40C2-9D10-53C0C2B56158.html</loc>
+                                 <lastmod>2023-10-18T14:22:42</lastmod>
+                                 <title>1.2.2.1.3 Info Block</title>
+                                 <description>Information block helps in getting factory set values from the information base</description>
+                                 <urls/>
+                              </url>
+                              <url>
+                                 <loc>GUID-795D782C-B095-4F59-B03E-45D97B2E06A0.html</loc>
+                                 <lastmod>2024-04-04T08:59:16</lastmod>
+                                 <title>1.2.2.1.4 Deep Sleep System</title>
+                                 <description/>
+                                 <urls/>
+                              </url>
+                           </urls>
+                        </url>
+                        <url>
+                           <loc>GUID-51FD9A2A-6D80-455D-B236-6554EB19EEA3.html</loc>
+                           <lastmod>2023-10-18T14:26:55</lastmod>
+                           <title>1.2.2.2 OSAL Extension for FreeRTOS</title>
+                           <description>OSAL (Operating System Abstraction Layer) Extension for FreeRTOS provide extension for OSAL mappings for the FreeRTOS Real-time operating system. The following table defines OSAL routines. Fuction ...</description>
+                           <urls/>
+                        </url>
+                        <url>
+                           <loc>GUID-BD25E707-A5F1-44A2-9D31-2A71D87619DD.html</loc>
+                           <lastmod>2023-10-18T14:20:55</lastmod>
+                           <title>1.2.2.3 App Idle Task</title>
+                           <description>App Idle task service provides idle task routines which will be called from FreeRTOS Idle hook function. It executes the idle activities. The following activities may be carried outRF Calibration if ...</description>
+                           <urls/>
+                        </url>
+                     </urls>
+                  </url>
+                  <url>
+                     <loc>GUID-480322DE-77D7-4DD6-9AB0-9B92A193D321.html</loc>
+                     <lastmod>2023-10-20T13:54:21</lastmod>
+                     <title>1.2.3 PIC32CX-BZ3 Persistent Data Server Component Library Help</title>
+                     <description>The PIC32CX-BZ3 Persistent Data Server Component Library provides interface for storing and restoring items into the Non volatile memory using wear leveling mechanism</description>
+                     <urls>
+                        <url>
+                           <loc>GUID-A7AA3BE6-76B0-4441-A2A8-A735E57CEA4B.html</loc>
+                           <lastmod>2023-10-22T21:51:16</lastmod>
+                           <title>1.2.3.1 PDS Library Usage</title>
+                           <description>PIC32CX-BZ3 Persistent Data Server(PDS) Library Usage</description>
+                           <urls/>
+                        </url>
+                     </urls>
+                  </url>
+                  <url>
+                     <loc>GUID-6F443732-8F03-4525-A5EA-E0D25379C8AB.html</loc>
+                     <lastmod>2023-11-07T21:16:27</lastmod>
+                     <title>1.2.4 PIC32CX-BZ3 Boot Services Help</title>
+                     <description>The PIC32CX-BZ3 Boot Services is a utility which helps in creating firmware image for programming PIC32CXBZ3 device. This utility (Header, OTA tabs) can be used to append metadata header and OTA ...</description>
+                     <urls/>
+                  </url>
+                  <url>
+                     <loc>GUID-5E76E081-070E-46EA-86A9-EE08F3F1481F.html</loc>
+                     <lastmod>2023-11-07T23:51:32</lastmod>
+                     <title>1.2.5 PIC32CX-BZ3 Standalone Bootloader Component Help</title>
+                     <description>PIC32CX-BZ3 bootloader is a standalone harmony component, Using it, one can generate bootloader which is a program that typically is loaded in to the boot flash memory and gets executed every time ...</description>
+                     <urls>
+                        <url>
+                           <loc>GUID-80611E1C-ADA6-450A-B484-9B67D8C6BCFE.html</loc>
+                           <lastmod>2023-11-08T00:17:16</lastmod>
+                           <title>1.2.5.1 Configuration Options</title>
+                           <description>Default configuration options window for bootloader is shown belowEnable Console option Information on bootloader activities will printed into console using SERCOM UART. By Default, this option is ...</description>
+                           <urls/>
+                        </url>
+                        <url>
+                           <loc>GUID-3D686B12-9733-42ED-A3A8-8418CBB8CFA2.html</loc>
+                           <lastmod>2023-11-08T00:19:10</lastmod>
+                           <title>1.2.5.2 DFU Functionality - Serial image bootloader</title>
+                           <description>DFU, the device firmware upgrade in bootloader is used to load new image which is received from host over serial interface and writes into the internal flash or external flash. The host may be python ...</description>
+                           <urls/>
+                        </url>
+                        <url>
+                           <loc>GUID-9914BAEF-0E8A-43F0-A610-212D102107A6.html</loc>
+                           <lastmod>2023-11-08T20:03:49</lastmod>
+                           <title>1.2.5.3 Bootloader API Usage</title>
+                           <description>The following macros, typedef, functions defintions help for generic functions of </description>
+                           <urls/>
+                        </url>
+                        <url>
+                           <loc>GUID-317A5E50-6A52-4E41-AD29-F92236737621.html</loc>
+                           <lastmod>2023-11-08T20:03:42</lastmod>
+                           <title>1.2.5.4 DFU API Usage</title>
+                           <description>The following macros, typedef, functions defintions help to understand DFU functionality of </description>
+                           <urls/>
+                        </url>
+                     </urls>
+                  </url>
+               </urls>
+            </url>
+         </urls>
+      </url>
+      <url>
+         <loc>GUID-0FB3F908-88EE-45CE-94F5-E97AF9049C9B.html</loc>
+         <lastmod>2022-04-04T12:20:47</lastmod>
+         <title> Microchip Information</title>
+         <description/>
+         <urls>
+            <url>
+               <loc>GUID-7551DC67-D79D-4F0C-B56F-7B17E12400E0.html</loc>
+               <lastmod>2019-06-25T09:40:57</lastmod>
+               <title> The Microchip Website</title>
+               <description>Microchip provides online support via our website at . This website is used to make files and information easily available to customers. Some of the content available includes:Product Support – Data ...</description>
+               <urls/>
+            </url>
+            <url>
+               <loc>GUID-CDA512D8-0DE4-4672-8716-04CAC681CB38.html</loc>
+               <lastmod>2019-06-25T09:38:56</lastmod>
+               <title> Product Change Notification Service</title>
+               <description>Microchip’s product change notification service helps keep customers current on Microchip products. Subscribers will receive email notification whenever there are changes, updates, revisions or ...</description>
+               <urls/>
+            </url>
+            <url>
+               <loc>GUID-F05182E4-B102-4775-A746-1FF37F465312.html</loc>
+               <lastmod>2019-07-19T15:50:50</lastmod>
+               <title> Customer Support</title>
+               <description>Users of Microchip products can receive assistance through several channels:Distributor or RepresentativeLocal Sales OfficeEmbedded Solutions Engineer (ESE)Technical Support Customers should contact ...</description>
+               <urls/>
+            </url>
+            <url>
+               <loc>GUID-E8251634-7B15-4073-A103-5A5F128B8699.html</loc>
+               <lastmod>2021-09-15T14:48:25</lastmod>
+               <title> Microchip Devices Code Protection Feature</title>
+               <description>Note the following details of the code protection feature on Microchip products:Microchip products meet the specifications contained in their particular Microchip Data Sheet.Microchip believes that ...</description>
+               <urls/>
+            </url>
+            <url>
+               <loc>GUID-125F1A93-76CC-4BD7-BACA-01844FBD5F4F.html</loc>
+               <lastmod>2021-09-14T20:44:40</lastmod>
+               <title> Legal Notice</title>
+               <description>This publication and the information herein may be used only with Microchip products, including to design, test, and integrate Microchip products with your application. Use of this information in any ...</description>
+               <urls/>
+            </url>
+            <url>
+               <loc>GUID-21750586-F9F2-4E33-87FB-8F2994BF4744.html</loc>
+               <lastmod>2022-06-03T22:10:37</lastmod>
+               <title> Trademarks</title>
+               <description>The Microchip name and logo, the Microchip logo, Adaptec, AVR, AVR logo, AVR Freaks, BesTime, BitCloud, CryptoMemory, CryptoRF, dsPIC, flexPWR, HELDO, IGLOO, JukeBlox, KeeLoq, Kleer, LANCheck, ...</description>
+               <urls/>
+            </url>
+            <url>
+               <loc>GUID-07985EED-D525-413B-AEFE-78B563328687.html</loc>
+               <lastmod>2019-06-25T09:39:22</lastmod>
+               <title> Quality Management System</title>
+               <description>For information regarding Microchip’s Quality Management Systems, please visit </description>
+               <urls/>
+            </url>
+            <url>
+               <loc>GUID-02A694CF-88A5-4ADA-8785-7EEEC62D66EA.html</loc>
+               <lastmod>2020-03-03T22:46:38</lastmod>
+               <title> Worldwide Sales and Service</title>
+               <description>AMERICASASIA/PACIFICASIA/PACIFICEUROPE Corporate Office 2355 West Chandler Blvd. Chandler, AZ 85224-6199 Tel: 480-792-7200 Fax: 480-792-7277 Technical Support: Web Address: Atlanta Duluth, GA Tel: ...</description>
+               <urls/>
+            </url>
+         </urls>
+      </url>
+   </urls>
+</publication>

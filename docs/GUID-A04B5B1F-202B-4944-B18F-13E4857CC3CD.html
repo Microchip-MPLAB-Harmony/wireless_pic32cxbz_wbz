@@ -1,692 +1,529 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html
-  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
-<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE11" /><meta name="copyright" content="(C) Copyright 2023" />
-<meta name="DC.rights.owner" content="(C) Copyright 2023" />
-<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="topic" />
-<meta name="DC.title" content="PIC32CX-BZ2 Standalone Bootloader Component Help" />
-<meta name="DC.relation" scheme="URI" content="GUID-FFC9758F-305D-4A4A-A577-726CDCFA18C7.html" />
-<meta name="DC.relation" scheme="URI" content="GUID-4552A2E4-E35C-4FD0-9C01-0EE86D4F6163.html" />
-<meta name="DC.relation" scheme="URI" content="GUID-079BEEAB-D3FE-415A-8EA6-F8A704302FCB.html" />
-<meta name="DC.relation" scheme="URI" content="GUID-9B3F465C-7297-4547-B7C6-3AAABEB7E261.html" />
-<meta name="DC.relation" scheme="URI" content="GUID-601EC36F-434F-4CEE-BF96-232B23F39458.html" />
-<meta name="DC.format" content="XHTML" />
-<meta name="DC.identifier" content="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD" />
-<meta name="DC.language" content="en-US" />
-<link rel="stylesheet" type="text/css" href="stylesheets/atmel.css" />
-<title>PIC32CX-BZ2 Standalone Bootloader Component Help</title>
-<meta name="Microsoft.Help.Id" content="GUID-2085FE66-A762-4CC0-B054-7F98E8AF999A-GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD" />
-<meta name="Microsoft.Help.TocParent" content="GUID-2085FE66-A762-4CC0-B054-7F98E8AF999A-GUID-FFC9758F-305D-4A4A-A577-726CDCFA18C7" />
-<meta name="Microsoft.Help.TocOrder" content="0" />
-<meta name="Microsoft.Help.Locale" content="en-US" />
-<meta name="Microsoft.Help.TopicLocale" content="en-US" />
-<meta name="Microsoft.Help.DisplayVersion" content="MPLAB Harmony PIC32CX-BZ System Services Reference 4 10/2023" />
-<script language="javascript">
-       
-       if (window.parent.location.protocol != 'file:') {
-				document.addEventListener('click', function(e) {
-				    if (e.target) {
-               if (e.target.nodeName == "A" ) {
-                    if (!e.target.target) {
-                      e.preventDefault();
-                      e.stopPropagation();
-                              
-                      var origUrl = window.parent.location.href.substr(0, window.parent.location.href.indexOf("?"));
-                      if (origUrl.length === 0) {
-                          origUrl = window.parent.location.href;
-                      }
-                      var href= e.target.getAttribute("href");
-                      var parts = href.split("#");
-          
-                      var url = "";
-                      if (parts.length == 2 ) {
-                        if (!parts[0].length) {
-                            url = window.parent.location.search.replace('?','')
-                        } else {
-                            url = parts[0].replace('.html','');
-                        }
-                      } else {
-                        url = parts[0].replace('.html','');
-                      }
-
-                      if (parts.length == 2) {
-                          url += "#" + parts[1];
-                      }
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us" data-whc_version="24.1">
+    <head><link rel="shortcut icon" href="oxygen-webhelp\template\resources/images/favicon.ico"/><link rel="icon" href="oxygen-webhelp\template\resources/images/favicon.ico"/><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="description" content="PIC32CX-BZ2 bootloader is a standalone harmony component, Using it, one can generate bootloader which is a program that is loaded on internal flash memory and gets executed every time the device ..."/><meta name="copyright" content="(C) Copyright 2024"/><meta name="generator" content="DITA-OT"/><title>1.1.4 PIC32CX-BZ2 Standalone Bootloader Component Help</title><!--  Generated with Oxygen version 24.1, build number 2022062014.  --><meta name="wh-path2root" content=""/><meta name="wh-toc-id" content="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD-d2097e734"/><meta name="wh-source-relpath" content="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD.xml"/><meta name="wh-out-relpath" content="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD.html"/>
+    <!-- Latest compiled and minified Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="./oxygen-webhelp/lib/bootstrap/css/bootstrap.min.css"/>
     
-                      window.parent.location.href = origUrl + "?" + url;
+    <link rel="stylesheet" href="./oxygen-webhelp/lib/jquery-ui/jquery-ui.min.css"/>
+    
+    <!-- Template default styles  -->
+    <link rel="stylesheet" type="text/css" href="./oxygen-webhelp/app/topic-page.css?buildId=2022062014"/>
+    
+    
+    <script src="./oxygen-webhelp/lib/jquery/jquery-3.5.1.min.js"></script>
+    
+    <script data-main="./oxygen-webhelp/app/topic-page.js" src="./oxygen-webhelp/lib/requirejs/require.js"></script>
+<link rel="stylesheet" type="text/css" href="oxygen-webhelp/template/microchip.css?buildId=2022062014"/><link rel="stylesheet" type="text/css" href="oxygen-webhelp/template/notes.css?buildId=2022062014"/>
+<script src="mchp-context-help.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async="" type="text/javascript"></script>
+    <script src="https://assets.adobedtm.com/6a72a357eb48/a636c708c7fe/launch-0b0023397020.min.js"></script><!-- Adobe Analytics -->
+</head>
 
-                      return false;
-                    }
-               }
-            }
-				});
-			}
-
-		</script><script language="javascript">
-         
-         function copyContent(content, button) {
-         
-            var textArea = document.createElement("textarea");
-            
-            // Place in the top-left corner of screen regardless of scroll position.
-            textArea.style.position = 'fixed';
-            textArea.style.top = 0;
-            textArea.style.left = 0;
-            
-            // Ensure it has a small width and height. Setting to 1px / 1em
-            // doesn't work as this gives a negative w/h on some browsers.
-            textArea.style.width = '2em';
-            textArea.style.height = '2em';
-            
-            // We don't need padding, reducing the size if it does flash render.
-            textArea.style.padding = 0;
-            
-            // Clean up any borders.
-            textArea.style.border = 'none';
-            textArea.style.outline = 'none';
-            textArea.style.boxShadow = 'none';
-            
-            // Avoid flash of the white box if rendered for any reason.
-            textArea.style.background = 'transparent';
-            
-            textArea.value = content;
-            
-            document.body.appendChild(textArea);
-            textArea.focus();
-            textArea.select();
-            
-            try {
-               var successful = document.execCommand('copy');
-               var msg = successful ? 'successful' : 'unsuccessful';
-               if (!button.classList.contains("copied")){
-                  button.textContent = "Copied";
-                  button.classList.add("copied");
-                  setTimeout(function(){
-                     button.textContent = "Copy";
-                     button.classList.remove("copied");
-                  },1000);
-               }
-            } catch (err) {
-               console.log('Oops, unable to copy');
-            }
-            
-            document.body.removeChild(textArea);
-         }
-         
-         function cpy(id, button) {
-            var element = document.getElementById(id);
-            var content = element.getAttribute("content");
-            
-            copyContent(content, button);
-         }
-         
-         document.addEventListener("DOMContentLoaded", function(event) {
-            document.querySelectorAll(".codeblock").forEach(function(elem) {
-               elem.style.position = "relative";
-               var copy = document.createElement("button");
-               copy.textContent = "Copy";
-               copy.setAttribute("class", "copy-code");
-               
-               var content = elem.textContent;
-               
-               copy.addEventListener("click", function(){
-                  copyContent(content, copy);
-               });
-               
-               elem.addEventListener("mouseenter", function(evt){
-                  elem.prepend(copy);
-               });
-            });
-            
-            document.querySelectorAll(".codeblock").forEach(function(elem) {
-               elem.addEventListener("mouseleave", function(evt){
-                  document.querySelector(".copy-code").remove();
-               });
-            });
-         });
-         
-      </script><script language="javascript">
-          
-          // Add the MathML namespace to html
-          var html = document.getElementsByTagName("html")[0],
-          head = document.getElementsByTagName("head")[0];
-          
-          var mathJax = document.createElement("script");
-          mathJax.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML";
-          head.appendChild(mathJax);
-          
-          html.setAttribute("xmlns:m","http://www.w3.org/1998/Math/MathML");
-          
-          function inIframe() { try { return window.self !== window.top; } catch (e) { return true; } }
-          
-          if (!inIframe()) { 
-          
-          var Default = "index.html?GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD"; 
-          
-          var displaylocation = "value" + window.location.href;
-          
-          var GUIDS = displaylocation.split('GUID');          
-          
-          if (displaylocation.indexOf('#GUID') != -1) {            
-          var First = GUIDS[1].split('.html');  
-          if (GUIDS[3]){First = GUIDS[2].split('.html');}
-          if (GUIDS[4]){First = GUIDS[3].split('.html');}
-          if (GUIDS[5]){First = GUIDS[4].split('.html');}
-          
-          var Second = GUIDS[2].split('#');   
-          if (GUIDS[3]){Second = GUIDS[3].split('#');}
-          if (GUIDS[4]){Second = GUIDS[4].split('#');}
-          if (GUIDS[5]){Second = GUIDS[5].split('#');}
-          
-          Default = "index.html?" + "GUID" + First[0] + "GUID" + Second[0];     
-          }                    
-          window.top.location = Default;
-          }       
-          
-        </script><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /><style xml:space="">
-        
-          button.copy-code{
-            display:none;
-            padding:0.7em 1.4em;
-            margin:0 0.3em 0.3em 0;
-            border-radius:0.15em;
-            box-sizing: border-box;
-            text-decoration:none;
-            font-family:'Roboto',sans-serif;
-            text-transform:uppercase;
-            font-weight:400;
-            color:#FFFFFF;
-            background-color:#9c9c9c;
-            box-shadow:inset 0 -0.6em 0 -0.35em rgba(0,0,0,0.17);
-            text-align:center;
-            position:relative;
-            border: 0;
-            float: right;
-            border-radius: .5em;
-            cursor: pointer;
-          }
-          button.copy-code:active{
-            top:0.1em;
-          }
-          
-          pre:hover button.copy-code{
-            display: inline-block !important;
-          }
-          button.copy-code.copied {
-            cursor: default !important;
-          }
-          
-          
-          @media all and (max-width:30em){
-            button.copy-code{
-              display:block;
-              margin:0.4em auto;
-            }
-          }
+    <body id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD" class="wh_topic_page frmBody">
+        <a href="#wh_topic_body" class="sr-only sr-only-focusable">
+            Jump to main content
+        </a>
         
         
-      </style><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /></head>
-<body id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD">
+        
+        
+        <header class="navbar navbar-default wh_header">
+    <div class="container-fluid">
+        <div class="wh_header_flex_container navbar-nav navbar-expand-md navbar-dark">
+            <div class="wh_logo_and_publication_title_container">
+                <div class="wh_logo_and_publication_title">
+                    
+                    <a href="index.html" class=" wh_logo d-none d-sm-block "><img src="oxygen-webhelp\template\resources/images/microchip.png" alt="MPLAB Harmony PIC32CX-BZ System Services &#xA;    "/></a>
+                    <div class=" wh_publication_title "><a href="index.html">MPLAB Harmony PIC32CX-BZ System Services 
+    </a></div>
+                    
+                </div>
+                
+                
+            </div>
 
-<h1 class="title topictitle1" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__GUID-D9A86BED-B81C-42D8-8657-24BE47C108E3" style="">PIC32CX-BZ2 Standalone Bootloader Component
+            <div class="wh_top_menu_and_indexterms_link collapse navbar-collapse" id="wh_top_menu_and_indexterms_link">
+                
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</header>
+        
+        
+         
+        
+        <div class=" wh_search_input navbar-form wh_topic_page_search search " role="form">
+            
+            
+            
+            <form id="searchForm" method="get" role="search" action="search.html"><div class="d-flex justify-contents-around"><div class="flex-grow-1"></div><div class="position-relative flex-grow-1"><input type="search" placeholder="Search " class="wh_search_textfield" id="textToSearch" name="searchQuery" aria-label="Search query" required="required"/><button type="submit" class="wh_search_button" aria-label="Search"><span class="search_input_text">Search</span></button></div><div class="align-self-center flex-grow-1 ml-2"><div class="d-flex justify-content-end"><div class="dropdown"><a style="font-size: 1em; padding: 7px 12px !important;" class="btn py-3 px-3 btn-outline-light dropdown-toggle" href="#" role="button" id="devicesMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Product Pages</a><div style="font-size: 1em;" class="dropdown-menu" aria-labelledby="devicesMenu"><a class="dropdown-item" target="_blank" href="https://www.microchip.com/en-us/product/wbz450">WBZ450</a><a class="dropdown-item" target="_blank" href="https://www.microchip.com/en-us/product/wbz451"> WBZ451</a><a class="dropdown-item" target="_blank" href="https://www.microchip.com/en-us/product/pic32cx-bz2"> PIC32CX-BZ2</a></div></div></div></div></div></form>
+            
+            <div class="mchp-color-stripe-grid-container">
+  <div class="mchp-main-bar mchp-orange-bar"></div>
+  <div class="mchp-main-bar mchp-blue-bar"></div>
+  <div class="mchp-main-bar mchp-green-bar"></div>
+</div>
+            
+        </div>
+        
+        <div class="container-fluid" id="wh_topic_container">
+            <div class="row">
+
+                <nav class="wh_tools d-print-none navbar-expand-md" aria-label="Tools">
+                    
+                    <div data-tooltip-position="bottom" class=" wh_breadcrumb "><ol class="d-print-none"><li><span class="home"><a href="index.html"><span>Home</span></a></span></li><li><div class="topicref" data-id="GUID-B92D56E1-C216-4D2D-827C-26D5B803B704"><div class="title"><a href="GUID-B92D56E1-C216-4D2D-827C-26D5B803B704.html"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1</ph>
+PIC32CX-BZ Family System Services</a><div class="wh-tooltip"><p class="shortdesc"><span class="ph instanceOffsets">             <p class="p">The PIC32CX-BZ System services provides several services to protocol developers and                 application users which use PIC32CX-BZ products. </p>         </span></p></div></div></div></li><li><div class="topicref" data-id="GUID-FFC9758F-305D-4A4A-A577-726CDCFA18C7"><div class="title"><a href="GUID-FFC9758F-305D-4A4A-A577-726CDCFA18C7.html"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1</ph>
+PIC32CX-BZ2 System Services</a></div></div></li><li class="active"><div class="topicref" data-id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD"><div class="title"><a href="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD.html"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.4</ph>
+PIC32CX-BZ2 Standalone Bootloader Component Help</a></div></div></li></ol></div>
+                    
+                    
+                    
+                    <div class="wh_right_tools">
+                        <button class="wh_hide_highlight" aria-label="Toggle search highlights" title="Toggle search highlights"></button>
+                        <button class="webhelp_expand_collapse_sections" data-next-state="collapsed" aria-label="Collapse sections" title="Collapse sections"></button>
+                        
+                        
+                        
+                        
+                        <div class=" wh_print_link print d-none d-md-inline-block "><button onClick="window.print()" title="Print this page" aria-label="Print this page"></button></div>
+                        
+                        <button type="button" id="wh_toc_button" class="custom-toggler navbar-toggler collapsed wh_toggle_button navbar-light" aria-expanded="false" aria-label="Toggle publishing table of content" aria-controls="wh_publication_toc">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
+                    
+                </nav>
+            </div>
+            
+            <div class="row" style="margin-top: -1em;"><div class="col-lg-9 col-md-9 col-sm-12 offset-lg-3 offset-md-3 text-right border-bottom mb-1"><h2 class="text-dark header_title">
+    </h2></div></div>
+            
+            
+            <div class="wh_content_area">
+                <div class="row">
+                    
+                        <nav id="wh_publication_toc" class="col-lg-3 col-md-3 col-sm-12 d-md-block d-none d-print-none" aria-label="Table of Contents Container">
+                            <div id="wh_publication_toc_content">
+		                        
+                            	<div class=" wh_publication_toc " data-tooltip-position="right"><span class="expand-button-action-labels"><span id="button-expand-action" role="button" aria-label="Expand"></span><span id="button-collapse-action" role="button" aria-label="Collapse"></span><span id="button-pending-action" role="button" aria-label="Pending"></span></span><ul role="tree" aria-label="Table of Contents"><li role="treeitem" aria-expanded="true"><div data-tocid="GUID-B92D56E1-C216-4D2D-827C-26D5B803B704-d2097e11" class="topicref" data-id="GUID-B92D56E1-C216-4D2D-827C-26D5B803B704" data-state="expanded"><span role="button" tabindex="0" aria-labelledby="button-collapse-action GUID-B92D56E1-C216-4D2D-827C-26D5B803B704-d2097e11-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-B92D56E1-C216-4D2D-827C-26D5B803B704.html" id="GUID-B92D56E1-C216-4D2D-827C-26D5B803B704-d2097e11-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1</ph>
+PIC32CX-BZ Family System Services</a><div class="wh-tooltip"><p class="shortdesc"><span class="ph instanceOffsets">             <p class="p">The PIC32CX-BZ System services provides several services to protocol developers and                 application users which use PIC32CX-BZ products. </p>         </span></p></div></div></div><ul role="group" class="navbar-nav nav-list"><li role="treeitem" aria-expanded="true"><div data-tocid="GUID-FFC9758F-305D-4A4A-A577-726CDCFA18C7-d2097e26" class="topicref" data-id="GUID-FFC9758F-305D-4A4A-A577-726CDCFA18C7" data-state="expanded"><span role="button" tabindex="0" aria-labelledby="button-collapse-action GUID-FFC9758F-305D-4A4A-A577-726CDCFA18C7-d2097e26-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-FFC9758F-305D-4A4A-A577-726CDCFA18C7.html" id="GUID-FFC9758F-305D-4A4A-A577-726CDCFA18C7-d2097e26-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1</ph>
+PIC32CX-BZ2 System Services</a></div></div><ul role="group" class="navbar-nav nav-list"><li role="treeitem" aria-expanded="false"><div data-tocid="GUID-2167300F-6A96-440E-83CA-FC9C0C259914-d2097e34" class="topicref" data-id="GUID-2167300F-6A96-440E-83CA-FC9C0C259914" data-state="not-ready"><span role="button" tabindex="0" aria-labelledby="button-expand-action GUID-2167300F-6A96-440E-83CA-FC9C0C259914-d2097e34-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-2167300F-6A96-440E-83CA-FC9C0C259914.html" id="GUID-2167300F-6A96-440E-83CA-FC9C0C259914-d2097e34-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.1</ph>
+<span class="ph">PIC32CX-BZ2</span> Device Support Component Library Help</a><div class="wh-tooltip"><p class="shortdesc">The <span class="ph">PIC32CX-BZ2</span> Device Support Component Library provides                 software API's for various subsystems in the <span class="ph">PIC32CX-BZ2</span>.</p></div></div></div></li><li role="treeitem" aria-expanded="false"><div data-tocid="GUID-D08C61D1-8CD6-4D2F-B74D-E58784C9042B-d2097e481" class="topicref" data-id="GUID-D08C61D1-8CD6-4D2F-B74D-E58784C9042B" data-state="not-ready"><span role="button" tabindex="0" aria-labelledby="button-expand-action GUID-D08C61D1-8CD6-4D2F-B74D-E58784C9042B-d2097e481-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-D08C61D1-8CD6-4D2F-B74D-E58784C9042B.html" id="GUID-D08C61D1-8CD6-4D2F-B74D-E58784C9042B-d2097e481-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.2</ph>
+<span class="ph">PIC32CX-BZ2</span> Persistent Data Server Component Library Help</a><div class="wh-tooltip"><p class="shortdesc">The <span class="ph">PIC32CX-BZ2</span> Persistent Data Server Component Library                 provides interface for storing and restoring items into the Non volatile memory                 using wear leveling mechanism</p></div></div></div></li><li role="treeitem"><div data-tocid="GUID-E95D4418-FDD2-49A3-999F-6EFBA54DDA3D-d2097e726" class="topicref" data-id="GUID-E95D4418-FDD2-49A3-999F-6EFBA54DDA3D" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-E95D4418-FDD2-49A3-999F-6EFBA54DDA3D.html" id="GUID-E95D4418-FDD2-49A3-999F-6EFBA54DDA3D-d2097e726-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.3</ph>
+PIC32CX-BZ2 Bootloader Services Component Help</a></div></div></li><li role="treeitem" aria-expanded="true" class="active"><div data-tocid="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD-d2097e734" class="topicref" data-id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD" data-state="expanded"><span role="button" tabindex="0" aria-labelledby="button-collapse-action GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD-d2097e734-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD.html" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD-d2097e734-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.4</ph>
+PIC32CX-BZ2 Standalone Bootloader Component Help</a></div></div><ul role="group" class="navbar-nav nav-list"><li role="treeitem"><div data-tocid="GUID-4552A2E4-E35C-4FD0-9C01-0EE86D4F6163-d2097e742" class="topicref" data-id="GUID-4552A2E4-E35C-4FD0-9C01-0EE86D4F6163" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-4552A2E4-E35C-4FD0-9C01-0EE86D4F6163.html" id="GUID-4552A2E4-E35C-4FD0-9C01-0EE86D4F6163-d2097e742-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.4.1</ph>
+Configuration Options</a></div></div></li><li role="treeitem"><div data-tocid="GUID-079BEEAB-D3FE-415A-8EA6-F8A704302FCB-d2097e750" class="topicref" data-id="GUID-079BEEAB-D3FE-415A-8EA6-F8A704302FCB" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-079BEEAB-D3FE-415A-8EA6-F8A704302FCB.html" id="GUID-079BEEAB-D3FE-415A-8EA6-F8A704302FCB-d2097e750-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.4.2</ph>
+DFU Functionality - Serial image bootloader</a></div></div></li><li role="treeitem" aria-expanded="false"><div data-tocid="GUID-9B3F465C-7297-4547-B7C6-3AAABEB7E261-d2097e758" class="topicref" data-id="GUID-9B3F465C-7297-4547-B7C6-3AAABEB7E261" data-state="not-ready"><span role="button" tabindex="0" aria-labelledby="button-expand-action GUID-9B3F465C-7297-4547-B7C6-3AAABEB7E261-d2097e758-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-9B3F465C-7297-4547-B7C6-3AAABEB7E261.html" id="GUID-9B3F465C-7297-4547-B7C6-3AAABEB7E261-d2097e758-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.4.3</ph>
+Bootloader API Usage</a><div class="wh-tooltip"><p class="shortdesc"></p></div></div></div></li><li role="treeitem" aria-expanded="false"><div data-tocid="GUID-601EC36F-434F-4CEE-BF96-232B23F39458-d2097e1010" class="topicref" data-id="GUID-601EC36F-434F-4CEE-BF96-232B23F39458" data-state="not-ready"><span role="button" tabindex="0" aria-labelledby="button-expand-action GUID-601EC36F-434F-4CEE-BF96-232B23F39458-d2097e1010-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-601EC36F-434F-4CEE-BF96-232B23F39458.html" id="GUID-601EC36F-434F-4CEE-BF96-232B23F39458-d2097e1010-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.4.4</ph>
+DFU API Usage</a></div></div></li></ul></li></ul></li><li role="treeitem" aria-expanded="false"><div data-tocid="GUID-F9698DC6-BF78-4773-A5E3-CA7D4F570394-d2097e1090" class="topicref" data-id="GUID-F9698DC6-BF78-4773-A5E3-CA7D4F570394" data-state="not-ready"><span role="button" tabindex="0" aria-labelledby="button-expand-action GUID-F9698DC6-BF78-4773-A5E3-CA7D4F570394-d2097e1090-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-F9698DC6-BF78-4773-A5E3-CA7D4F570394.html" id="GUID-F9698DC6-BF78-4773-A5E3-CA7D4F570394-d2097e1090-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2</ph>
+PIC32CX-BZ3 System Services</a></div></div></li></ul></li><li role="treeitem" aria-expanded="false"><div data-tocid="GUID-0FB3F908-88EE-45CE-94F5-E97AF9049C9B-d2097e2319" class="topicref backmatter backmatter_parent" data-id="GUID-0FB3F908-88EE-45CE-94F5-E97AF9049C9B" data-state="not-ready"><span role="button" tabindex="0" aria-labelledby="button-expand-action GUID-0FB3F908-88EE-45CE-94F5-E97AF9049C9B-d2097e2319-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-0FB3F908-88EE-45CE-94F5-E97AF9049C9B.html" id="GUID-0FB3F908-88EE-45CE-94F5-E97AF9049C9B-d2097e2319-link">Microchip Information</a></div></div></li></ul></div>
+		                        
+                            </div>
+                        </nav>
+                    
+                    
+                    <div class="col-lg-9 col-md-9 col-sm-12" id="wh_topic_body">
+                        <button id="wh_close_publication_toc_button" class="close-toc-button d-none" aria-label="Toggle publishing table of content" aria-controls="wh_publication_toc" aria-expanded="true">
+                            <span class="close-toc-icon-container">
+                                <span class="close-toc-icon"></span>     
+                            </span>
+                        </button>
+                        
+                        
+                        <div class=" wh_topic_content body "><main role="main"><article role="article" aria-labelledby="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__GUID-D9A86BED-B81C-42D8-8657-24BE47C108E3">
+<h1 class="- topic/title title topictitle1" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__GUID-D9A86BED-B81C-42D8-8657-24BE47C108E3" style="">1.1.4 PIC32CX-BZ2 Standalone Bootloader Component
                 Help</h1>
-<div class="body">
-                <p class="p">PIC32CX-BZ2 bootloader is a standalone harmony component, Using it, one can generate bootloader which is a program that is loaded on internal flash memory and gets executed every
+<div class="- topic/body body">
+                <p class="- topic/p p">PIC32CX-BZ2 bootloader is a standalone harmony component, Using it, one can generate bootloader which is a program that is loaded on internal flash memory and gets executed every
       time the device powers up or resets. </p>
-
-                <p class="p">Bootloader can be used to upgrade firmware on a target device without the need
+                <p class="- topic/p p">Bootloader can be used to upgrade firmware on a target device without the need
                         for an external programmer or debugger. It does not fully operate on the
                         device, but can perform various functions prior to starting the main
                         application</p>
-
-                <div class="p"><strong class="ph b"><u class="ph u">Functionality of Bootloader</u></strong><ul class="ul" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__UL_QDH_5CY_XRB">
-                                <li class="li" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__GUID-F52C4978-469C-434C-BDB4-78F105693386">Loads firmware images to flash over the serial connection using a tool or python script, known as Device Firmware
+                <div class="- topic/p p"><strong class="+ topic/ph hi-d/b ph b"><u class="+ topic/ph hi-d/u ph u">Functionality of Bootloader</u></strong><ul class="- topic/ul ul" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__UL_QDH_5CY_XRB" data-ofbid="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__UL_QDH_5CY_XRB">
+                                <li class="- topic/li li" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__GUID-F52C4978-469C-434C-BDB4-78F105693386" data-ofbid="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__GUID-F52C4978-469C-434C-BDB4-78F105693386">Loads firmware images to flash over the serial connection using a tool or python script, known as Device Firmware
         Upgrade (DFU) </li>
-
-                                <li class="li" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__GUID-2DB19E83-86E2-4E8A-912E-CB9E67C7AB1D">Provides
+                                <li class="- topic/li li" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__GUID-2DB19E83-86E2-4E8A-912E-CB9E67C7AB1D" data-ofbid="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__GUID-2DB19E83-86E2-4E8A-912E-CB9E67C7AB1D">Provides
                                         application protection for firmware</li>
-
-                                <li class="li" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__GUID-288BFB1D-1360-45D6-8990-D1DF2BCA3C82">Replaces
+                                <li class="- topic/li li" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__GUID-288BFB1D-1360-45D6-8990-D1DF2BCA3C82" data-ofbid="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__GUID-288BFB1D-1360-45D6-8990-D1DF2BCA3C82">Replaces
                                         application firmware</li>
-
-                                <li class="li" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__GUID-324B3FBC-8935-4136-A7C1-C06D1CF4663D">Starts the application </li>
-
-        <li class="li" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__GUID-3EFFA0C5-2BEB-4C67-9D74-154D63A37DC4">If the device wakes from deep sleep, then bootloader directly jumps to the
+                                <li class="- topic/li li" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__GUID-324B3FBC-8935-4136-A7C1-C06D1CF4663D" data-ofbid="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__GUID-324B3FBC-8935-4136-A7C1-C06D1CF4663D">Starts the application </li>
+        <li class="- topic/li li" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__GUID-3EFFA0C5-2BEB-4C67-9D74-154D63A37DC4" data-ofbid="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__GUID-3EFFA0C5-2BEB-4C67-9D74-154D63A37DC4">If the device wakes from deep sleep, then bootloader directly jumps to the
           application</li>
-
                         </ul>
-
                 </div>
-
-                <p class="p"><strong class="ph b"><u class="ph u">Memory Information and Layout of PIC32CXBZ2 device</u></strong>
+                <p class="- topic/p p"><strong class="+ topic/ph hi-d/b ph b"><u class="+ topic/ph hi-d/u ph u">Memory Information and Layout of PIC32CXBZ2 device</u></strong>
                 </p>
-
-                <div class="p">
-                        
-<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_JYW_GYY_HSB" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table 1. </span></span></caption>
-                                        <col style="width:50%" />
-                                        <col style="width:50%" />
-                                        <thead class="thead" style="text-align:left;">
-                                                <tr class="row">
-                                                  <th class="entry cellrowborder" style="vertical-align:middle;" id="d63831e67"><span>Memory Area</span></th>
-
-                                                  <th class="entry cellrowborder" style="vertical-align:middle;" id="d63831e70"><span>Purpose</span></th>
-
+                <div class="- topic/p p">
+                        <div class="table-container"><table class="- topic/table table frame-all" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_JYW_GYY_HSB" data-ofbid="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_JYW_GYY_HSB" data-cols="2"><caption class="- topic/title title tablecap" data-caption-side="top" data-is-repeated="true"><span class="table--title-label"><span class="table--title-label">Table 1-5. </span></span><span class="table--title" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__GUID-2BCAA62D-E250-4449-8885-6EE808296843"></span></caption><colgroup><col style="width:50%"/><col style="width:50%"/></colgroup><thead class="- topic/thead thead">
+                                                <tr class="- topic/row">
+                                                  <th class="- topic/entry entry colsep-1 rowsep-1" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_JYW_GYY_HSB__entry__1">Memory Area</th>
+                                                  <th class="- topic/entry entry colsep-0 rowsep-1" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_JYW_GYY_HSB__entry__2">Purpose</th>
                                                 </tr>
-
-                                        </thead>
-
-                                        <tbody class="tbody">
-                                                <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e67 "><span>Boot Flash Size is 0x0 to 0x5E00 –
-                                                  (~24KB)</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e70 "><span>The memory where  bootloader code
-                                                  runs</span></td>
-
+                                        </thead><tbody class="- topic/tbody tbody">
+                                                <tr class="- topic/row">
+                                                  <td class="- topic/entry entry colsep-1 rowsep-1" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_JYW_GYY_HSB__entry__1">Boot Flash Size is 0x0 to 0x5E00 –
+                                                  (~24KB)</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-1" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_JYW_GYY_HSB__entry__2">The memory where  bootloader code
+                                                  runs</td>
                                                 </tr>
-
-                                                <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e67 "><span>Slot 0 base address - 0x01000000</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e70 "><span>The memory where the application firmware
+                                                <tr class="- topic/row">
+                                                  <td class="- topic/entry entry colsep-1 rowsep-1" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_JYW_GYY_HSB__entry__1">Slot 0 base address - 0x01000000</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-1" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_JYW_GYY_HSB__entry__2">The memory where the application firmware
                                                   runs and the memory where the bootloader copies
-                                                  the new application firmware </span></td>
-
+                                                  the new application firmware </td>
                                                 </tr>
-
-                                                <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e67 "><span>Slot 1 base address - 0x01080000</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e70 "><span>The memory where the received image(Either
+                                                <tr class="- topic/row">
+                                                  <td class="- topic/entry entry colsep-1 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_JYW_GYY_HSB__entry__1">Slot 1 base address - 0x01080000</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_JYW_GYY_HSB__entry__2">The memory where the received image(Either
                                                   through DFU or any other way) gets stored. and the
                                                   memory where bootloader looks for the new image to
-                                                  copy into the Slot 0</span></td>
-
+                                                  copy into the Slot 0</td>
                                                 </tr>
-
-                                        </tbody>
-
-                                </table>
-</div>
-
+                                        </tbody></table></div>
                 </div>
-
-                <p class="p">The full memory layout can be found here </p>
-
-                <p class="p">
-                        <img class="image" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__IMAGE_CL1_PGZ_XRB" src="GUID-6F204CB4-2DD3-49A2-9F21-DDA8A1AD7762-low.png" /></p>
-
-                <p class="p"><strong class="ph b"><u class="ph u">Boot Flash</u></strong></p>
-
-                <p class="p">In PIC32CXBZ2,  24KB boot flash memory is separated from the main execution
+                <p class="- topic/p p">The full memory layout can be found here </p>
+                <p class="- topic/p p">
+                        <div class=""><img class="- topic/image image" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__IMAGE_CL1_PGZ_XRB" src="GUID-6F204CB4-2DD3-49A2-9F21-DDA8A1AD7762-high.png"/></div></p>
+                <p class="- topic/p p"><strong class="+ topic/ph hi-d/b ph b"><u class="+ topic/ph hi-d/u ph u">Boot Flash</u></strong></p>
+                <p class="- topic/p p">In PIC32CXBZ2,  24KB boot flash memory is separated from the main execution
                         memory. This boot flash is used for bootloader code</p>
-
-                <p class="p"><strong class="ph b"><u class="ph u">Metadata Header</u></strong></p>
-
-                <p class="p">Format of image meta-data header are described below. Notice that some of the
+                <p class="- topic/p p"><strong class="+ topic/ph hi-d/b ph b"><u class="+ topic/ph hi-d/u ph u">Metadata Header</u></strong></p>
+                <p class="- topic/p p">Format of image meta-data header are described below. Notice that some of the
                         elements in the header is reserved for future expansion and they are not
                         used in this version of bootloader implementation</p>
-
-                <div class="p">
-                        
-<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap"><span class="table--title-label">Table 2. </span></span></caption>
-                                        <col style="width:" />
-                                        <col style="width:" />
-                                        <col style="width:" />
-          <thead class="thead" style="text-align:left;">
-            <tr class="row">
-              <th class="entry cellrowborder" style="text-align:left;vertical-align:middle;" id="d63831e151"><span>Offset</span></th>
-
-              <th class="entry cellrowborder" style="text-align:left;vertical-align:middle;" id="d63831e154"><span>Name</span></th>
-
-              <th class="entry cellrowborder" style="text-align:left;vertical-align:middle;" id="d63831e157"><span>Description</span></th>
-
+                <div class="- topic/p p">
+                        <div class="table-container"><table class="- topic/table table" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB" data-ofbid="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB" data-cols="3"><caption class="- topic/title title tablecap" data-caption-side="top" data-is-repeated="true"><span class="table--title-label"><span class="table--title-label">Table 1-6. </span></span><span class="table--title" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__GUID-4BF91806-32FA-4D16-AE9D-69D37B667835"></span></caption><colgroup><col/><col/><col/></colgroup><thead class="- topic/thead thead">
+            <tr class="- topic/row">
+              <th class="- topic/entry entry align-left colsep-0 rowsep-0" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__1">Offset</th>
+              <th class="- topic/entry entry align-left colsep-0 rowsep-0" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__2">Name</th>
+              <th class="- topic/entry entry align-left colsep-0 rowsep-0" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__3">Description</th>
             </tr>
-
-          </thead>
-
-                                        <tbody class="tbody">
-            <tr class="row">
-              <td class="entry cellrowborder" colspan="3" style="text-align:left;vertical-align:middle;" headers="d63831e151 d63831e154 d63831e157 "><span><strong class="ph b">Metadata Header</strong></span></td>
-
+          </thead><tbody class="- topic/tbody tbody">
+            <tr class="- topic/row">
+              <td class="- topic/entry entry align-left colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__1 GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__2 GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__3" colspan="3"><strong class="+ topic/ph hi-d/b ph b">Metadata Header</strong></td>
             </tr>
-
-                                                <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x00:0x07</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>Filler</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>Set to all zero</span></td>
-
+                                                <tr class="- topic/row">
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__1">0x00:0x07</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__2">Filler</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__3">Set to all zero</td>
                                                 </tr>
-
-                                                <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x08:0x0D</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>MANU_IDENTIFIER *</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>“MCHP” ASCII String Identifier</span></td>
-
+                                                <tr class="- topic/row">
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__1">0x08:0x0D</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__2">MANU_IDENTIFIER *</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__3">“MCHP” ASCII String Identifier</td>
                                                 </tr>
-
-                                                <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x0C:0x0F</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>Filler</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>Set to all zero</span></td>
-
+                                                <tr class="- topic/row">
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__1">0x0C:0x0F</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__2">Filler</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__3">Set to all zero</td>
                                                 </tr>
-
-                                                <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x10:0x13</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>SEQ_NUM *</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>Metadata Sequence Number of the image
+                                                <tr class="- topic/row">
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__1">0x10:0x13</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__2">SEQ_NUM *</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__3">Metadata Sequence Number of the image
                                                   (little endian). Monotonically decreasing image
                                                   index. Values of 0 or 0xFFFFFFFF indicate that the
-                                                  image is invalid. </span></td>
-
+                                                  image is invalid. </td>
                                                 </tr>
-
-                                                <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x14</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>MD_REV</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>Metadata Revision. This field must be set
+                                                <tr class="- topic/row">
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__1">0x14</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__2">MD_REV</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__3">Metadata Revision. This field must be set
                                                   to 0x02 for this version of metadata
-                                                  header</span></td>
-
+                                                  header</td>
                                                 </tr>
-
-                                                <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x15</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>CONT_IDX</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>
-                <p class="lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_KH5_5CW_3TB">Container Index<br />
-1: Plain firmware image<br />
-2: Encrypted firmware image </p>
-
-              </span></td>
-
+                                                <tr class="- topic/row">
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__1">0x15</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__2">CONT_IDX</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__3">
+                <p class="- topic/lines lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_KH5_5CW_3TB" data-ofbid="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_KH5_5CW_3TB">Container Index<br/>1: Plain firmware image<br/>2: Encrypted firmware image </p>
+              </td>
                                                 </tr>
-
-                                                <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x16</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>MD_AUTH_MTHD *</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>
-                <p class="lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_YLY_VCW_3TB">Metadata authentication method. <br />
-0: None<br />
-1: SHA-256<br />
-2: ECDSA p256 + SHA-256</p>
-
-              </span></td>
-
+                                                <tr class="- topic/row">
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__1">0x16</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__2">MD_AUTH_MTHD *</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__3">
+                <p class="- topic/lines lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_YLY_VCW_3TB" data-ofbid="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_YLY_VCW_3TB">Metadata authentication method. <br/>0: None<br/>1: SHA-256<br/>2: ECDSA p256 + SHA-256</p>
+              </td>
                                                 </tr>
-
-                                                <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x17</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>MD_AUTH_KEY</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>
-                <p class="lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_IRV_WCW_3TB">Key index for authenticating metadata<br />
-0: IB Key<br />
-1: Key #2 <br />
-Reserved for future use. Not for MD_REV 0x01</p>
-
-              </span></td>
-
+                                                <tr class="- topic/row">
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__1">0x17</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__2">MD_AUTH_KEY</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__3">
+                <p class="- topic/lines lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_IRV_WCW_3TB" data-ofbid="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_IRV_WCW_3TB">Key index for authenticating metadata<br/>0: IB Key<br/>1: Key #2 <br/>Reserved for future use. Not for MD_REV 0x01</p>
+              </td>
                                                 </tr>
-
-                                                <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x18</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>PL_DEC_MTHD</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>
-                <p class="lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_KVV_XCW_3TB">Payload Decryption method<br />
-0: Plain<br />
-1: AES</p>
-
-              </span></td>
-
+                                                <tr class="- topic/row">
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__1">0x18</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__2">PL_DEC_MTHD</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__3">
+                <p class="- topic/lines lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_KVV_XCW_3TB" data-ofbid="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_KVV_XCW_3TB">Payload Decryption method<br/>0: Plain<br/>1: AES</p>
+              </td>
                                                 </tr>
-
-                                                <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x19</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>PL_DEC_KEY</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>
-                <p class="lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_TSM_YCW_3TB">Key index for decrypting payload<br />
-0: Key #1<br />
-1: Key #2</p>
-
-              </span></td>
-
+                                                <tr class="- topic/row">
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__1">0x19</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__2">PL_DEC_KEY</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__3">
+                <p class="- topic/lines lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_TSM_YCW_3TB" data-ofbid="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_TSM_YCW_3TB">Key index for decrypting payload<br/>0: Key #1<br/>1: Key #2</p>
+              </td>
                                                 </tr>
-
-                                                <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x1A:0x1B</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>PL_LEN</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>Metadata payload length. The payload length
-                                                  for this version should be 0x55</span></td>
-
+                                                <tr class="- topic/row">
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__1">0x1A:0x1B</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__2">PL_LEN</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__3">Metadata payload length. The payload length
+                                                  for this version should be 0x55</td>
                                                 </tr>
-
-                                                <tr class="row">
-                                                  <td class="entry cellrowborder" colspan="3" style="vertical-align:middle;" headers="d63831e151 d63831e154 d63831e157 "><span><strong class="ph b">Metadata
-                                                  Payload = Firmware Image Header</strong></span></td>
-
+                                                <tr class="- topic/row">
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__1 GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__2 GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__3" colspan="3"><strong class="+ topic/ph hi-d/b ph b">Metadata
+                                                  Payload = Firmware Image Header</strong></td>
                                                 </tr>
-
-                                                <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x1C:0x1F</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>FW_IMG_REV *</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>Firmware Image revision (little
-                                                  endian).</span></td>
-
+                                                <tr class="- topic/row">
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__1">0x1C:0x1F</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__2">FW_IMG_REV *</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__3">Firmware Image revision (little
+                                                  endian).</td>
                                                 </tr>
-
-                                                <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x20:0x23</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>FW_IMG_LEN</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>Firmware Image length</span></td>
-
+                                                <tr class="- topic/row">
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__1">0x20:0x23</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__2">FW_IMG_LEN</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__3">Firmware Image length</td>
                                                 </tr>
-
-                                                <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x24</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>FW_IMG_AUTH_MTHD *</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>
-                <p class="lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_OZL_ZCW_3TB">Firmware Image authentication method. For Chimera the acceptable method are ECDSA p256 + SHA-256<br />
-0: None<br />
-1: SHA-256<br />
-2: ECDSA p256 + SHA-256</p>
-
-              </span></td>
-
+                                                <tr class="- topic/row">
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__1">0x24</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__2">FW_IMG_AUTH_MTHD *</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__3">
+                <p class="- topic/lines lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_OZL_ZCW_3TB" data-ofbid="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_OZL_ZCW_3TB">Firmware Image authentication method. For Chimera the acceptable method are ECDSA p256 + SHA-256<br/>0: None<br/>1: SHA-256<br/>2: ECDSA p256 + SHA-256</p>
+              </td>
                                                 </tr>
-
-                                                <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x25</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>FW_IMG_AUTH_KEY</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>
-                <p class="lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_FLQ_1DW_3TB">Firmware Image authentication key index<br />
-0: IB key<br />
-1: Key #2 </p>
-
-              </span></td>
-
+                                                <tr class="- topic/row">
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__1">0x25</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__2">FW_IMG_AUTH_KEY</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__3">
+                <p class="- topic/lines lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_FLQ_1DW_3TB" data-ofbid="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_FLQ_1DW_3TB">Firmware Image authentication key index<br/>0: IB key<br/>1: Key #2 </p>
+              </td>
                                                 </tr>
-
-                                                <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x26</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>FW_IMG_DEC_MTHD</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>
-                <p class="lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_FFJ_BDW_3TB">Firmware Image decryption method.<br />
-0: Plain<br />
-1: AES <br />
-Reserved for future use. Not for MD_REV 0x01</p>
-
-              </span></td>
-
+                                                <tr class="- topic/row">
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__1">0x26</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__2">FW_IMG_DEC_MTHD</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__3">
+                <p class="- topic/lines lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_FFJ_BDW_3TB" data-ofbid="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_FFJ_BDW_3TB">Firmware Image decryption method.<br/>0: Plain<br/>1: AES <br/>Reserved for future use. Not for MD_REV 0x01</p>
+              </td>
                                                 </tr>
-
-                                                <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x27</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>FW_IMG_DEC_KEY</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>
-                <p class="lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_PSH_CDW_3TB">Firmware Image decryption key index<br />
-0: Key #1<br />
-1: Key #2 <br />
-Reserved for future use. Not for MD_REV 0x01</p>
-
-              </span></td>
-
+                                                <tr class="- topic/row">
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__1">0x27</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__2">FW_IMG_DEC_KEY</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__3">
+                <p class="- topic/lines lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_PSH_CDW_3TB" data-ofbid="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_PSH_CDW_3TB">Firmware Image decryption key index<br/>0: Key #1<br/>1: Key #2 <br/>Reserved for future use. Not for MD_REV 0x01</p>
+              </td>
                                                 </tr>
-
-                                                <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x28</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>FW_IMG_SIG_SZ</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>Firmware Image signature size</span></td>
-
+                                                <tr class="- topic/row">
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__1">0x28</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__2">FW_IMG_SIG_SZ</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__3">Firmware Image signature size</td>
                                                 </tr>
-
-                                                <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x29:0x70</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>FW_IMG_SIG</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>
-                <p class="lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_XTG_DDW_3TB">Firmware Image Signature.<br />
-The concatenated R and S term of the ECDSA signature (P-256) of the SHA-256 hash of the firmware image</p>
-
-              </span></td>
-
+                                                <tr class="- topic/row">
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__1">0x29:0x70</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__2">FW_IMG_SIG</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__3">
+                <p class="- topic/lines lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_XTG_DDW_3TB" data-ofbid="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_XTG_DDW_3TB">Firmware Image Signature.<br/>The concatenated R and S term of the ECDSA signature (P-256) of the SHA-256 hash of the firmware image</p>
+              </td>
                                                 </tr>
-
-                                                <tr class="row">
-                                                  <td class="entry cellrowborder" colspan="3" style="vertical-align:middle;" headers="d63831e151 d63831e154 d63831e157 "><span><strong class="ph b">Metadata
-                                                  Footer</strong></span></td>
-
+                                                <tr class="- topic/row">
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__1 GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__2 GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__3" colspan="3"><strong class="+ topic/ph hi-d/b ph b">Metadata
+                                                  Footer</strong></td>
                                                 </tr>
-
-                                                <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x1B7</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>MD_SIG_SZ</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>Metadata payload signature size</span></td>
-
+                                                <tr class="- topic/row">
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__1">0x1B7</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__2">MD_SIG_SZ</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__3">Metadata payload signature size</td>
                                                 </tr>
-
-                                                <tr class="row">
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e151 "><span>0x1B8:0x1FF</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e154 "><span>MD_SIG</span></td>
-
-                                                  <td class="entry cellrowborder" style="vertical-align:middle;" headers="d63831e157 "><span>
-                <p class="lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_HKW_DDW_3TB">Metadata payload signature<br />
-The concatenated R and S term of the ECDSA signature (P-256r1) of the SHA-256 hash of the metadata payload (firmware image header). </p>
-
-              </span></td>
-
+                                                <tr class="- topic/row">
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__1">0x1B8:0x1FF</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__2">MD_SIG</td>
+                                                  <td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__TABLE_QLZ_Z4K_XSB__entry__3">
+                <p class="- topic/lines lines" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_HKW_DDW_3TB" data-ofbid="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__LINES_HKW_DDW_3TB">Metadata payload signature<br/>The concatenated R and S term of the ECDSA signature (P-256r1) of the SHA-256 hash of the metadata payload (firmware image header). </p>
+              </td>
                                                 </tr>
-
-                                        </tbody>
-
-                                </table>
-</div>
-
+                                        </tbody></table></div>
                 </div>
-
-                <p class="p">* Configurable by user</p>
-
-                <p class="p"><u class="ph u"><strong class="ph b">Working of Bootloader</strong></u></p>
-
-                <p class="p">when the application receives new image from a server or via a tool, it
+                <p class="- topic/p p">* Configurable by user</p>
+                <p class="- topic/p p"><u class="+ topic/ph hi-d/u ph u"><strong class="+ topic/ph hi-d/b ph b">Working of Bootloader</strong></u></p>
+                <p class="- topic/p p">when the application receives new image from a server or via a tool, it
                         will/should store in the Slot 1 location with meta data header &amp;
                         firmware and it should trigger software reset so that bootloader code
                         runs</p>
-
-                <div class="p">Bootloader checks for valid image in Slot 1 by reading the meta data header and
+                <div class="- topic/p p">Bootloader checks for valid image in Slot 1 by reading the meta data header and
                         firmware and authenticating the same with the selected authentication
-                        method. If valid image is found and successfully authenticated, then <ul class="ul" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__UL_YGN_2QK_XSB">
-                                <li class="li" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__GUID-362B3526-AAD1-4355-8F6A-B96E72FD09DA">Erases Slot 0</li>
-
-                                <li class="li" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__GUID-EA6D5CA3-55ED-4696-9AC7-B5FFEEBC52D9">Copies the Slot 1 image to Slot 0</li>
-
-                                <li class="li" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__GUID-46819B28-AEA1-4839-A457-72BBA2040587">Verifies the Copy</li>
-
-                        </ul>
-After that it checks for valid image in Slot 0 by validating it, it
+                        method. If valid image is found and successfully authenticated, then <ul class="- topic/ul ul" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__UL_YGN_2QK_XSB" data-ofbid="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__UL_YGN_2QK_XSB">
+                                <li class="- topic/li li" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__GUID-362B3526-AAD1-4355-8F6A-B96E72FD09DA" data-ofbid="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__GUID-362B3526-AAD1-4355-8F6A-B96E72FD09DA">Erases Slot 0</li>
+                                <li class="- topic/li li" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__GUID-EA6D5CA3-55ED-4696-9AC7-B5FFEEBC52D9" data-ofbid="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__GUID-EA6D5CA3-55ED-4696-9AC7-B5FFEEBC52D9">Copies the Slot 1 image to Slot 0</li>
+                                <li class="- topic/li li" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__GUID-46819B28-AEA1-4839-A457-72BBA2040587" data-ofbid="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__GUID-46819B28-AEA1-4839-A457-72BBA2040587">Verifies the Copy</li>
+                        </ul>After that it checks for valid image in Slot 0 by validating it, it
                         jumps to the application if valid image is found</div>
-
-                <p class="p"><u class="ph u"><strong class="ph b">Bootloader usage with DFU</strong></u></p>
-
-                <p class="p">bootloader programmed to the MCU (in DFU mode) receives an application image from
+                <p class="- topic/p p"><u class="+ topic/ph hi-d/u ph u"><strong class="+ topic/ph hi-d/b ph b">Bootloader usage with DFU</strong></u></p>
+                <p class="- topic/p p">bootloader programmed to the MCU (in DFU mode) receives an application image from
                         the host over serial interface and writes it to the internal flash in Slot 1
                         . After loading new image on slot 1, if reset is triggered, then bootloader
                         erases the slot 0, copies the image from slot 1 to slot 0, verifies the copy
                         procedure, erases the slot 1. Then bootloader jumps to application which is
                         the new application image</p>
-
-                <p class="p">Bootloader stores information about the image in Meta Data Header. This is
+                <p class="- topic/p p">Bootloader stores information about the image in Meta Data Header. This is
                         basically size of 0x200 bytes and gets stored at the start of slot.
                         Bootloader reads this meta data header and does the authentication procedure
                         based on the information in meta data header</p>
-
-                <p class="p"><strong class="ph b"><u class="ph u">Flow Diagram of Bootloader</u></strong></p>
-
-                <p class="p">The detailed flow diagram of bootloader with the optional DFU block can be found
+                <p class="- topic/p p"><strong class="+ topic/ph hi-d/b ph b"><u class="+ topic/ph hi-d/u ph u">Flow Diagram of Bootloader</u></strong></p>
+                <p class="- topic/p p">The detailed flow diagram of bootloader with the optional DFU block can be found
                         below</p>
-
-                <p class="p"><img class="image" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__IMAGE_RC2_VZ1_3SB" src="GUID-4F6F866C-B279-4888-BE8B-E5C1DF40C5E7-low.png" /></p>
-
+                <p class="- topic/p p"><div class=""><img class="- topic/image image" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD__IMAGE_RC2_VZ1_3SB" src="GUID-4F6F866C-B279-4888-BE8B-E5C1DF40C5E7-high.png"/></div></p>
         </div>
-
-<div class="related-links">
-<ul class="ullinks">
-<li class="link ulchildlink"><strong><a href="GUID-4552A2E4-E35C-4FD0-9C01-0EE86D4F6163.html">Configuration Options</a></strong><br />
-</li>
-<li class="link ulchildlink"><strong><a href="GUID-079BEEAB-D3FE-415A-8EA6-F8A704302FCB.html">DFU Functionality - Serial image bootloader</a></strong><br />
-</li>
-<li class="link ulchildlink"><strong><a href="GUID-9B3F465C-7297-4547-B7C6-3AAABEB7E261.html">Bootloader API Usage</a></strong><br />
-</li>
-<li class="link ulchildlink"><strong><a href="GUID-601EC36F-434F-4CEE-BF96-232B23F39458.html">DFU API Usage</a></strong><br />
-</li>
-</ul>
-
-<div class="familylinks">
-<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="GUID-FFC9758F-305D-4A4A-A577-726CDCFA18C7.html">PIC32CX-BZ2 System Services</a></div>
+</article></main></div>
+                        
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            
+            
+        </div> 
+        <footer class="navbar navbar-default wh_footer">
+  <div class=" footer-container mx-auto ">
+    <div class="footer">
+  <div class="mchp-wh-footer">
+    <div class="mchp-footer">
+      <div class="mchp-footer-tier1">
+        <div class="spacer"></div>
+        <div class="mchp-footer-container">
+          <div class="mchp-footer-links mchp-social-media-links">
+            <div class="mchp-component-items">
+              <div class="mchp-component-item">
+                <a class="cmp-image__link" href="https://www.facebook.com/pages/Microchip-Technology-Inc/20320981741" target="_blank">
+                  <img class="cmp-image__image" alt="Microchip Facebook" src="oxygen-webhelp/template/resources/images/201016-corp-facebook.png"/>
+                </a>
+              </div>
+              <div class="mchp-component-item">
+                <a class="cmp-image__link" href="https://www.linkedin.com/company/microchip-technology" target="_blank">
+                  <img class="cmp-image__image" alt="Microchip LinkedIn" src="oxygen-webhelp/template/resources/images/201016-corp-linkedin.png"/>
+                </a>
+              </div>
+              <div class="mchp-component-item">
+                <a class="cmp-image__link" href="https://twitter.com/MicrochipTech" target="_blank">
+                  <img class="cmp-image__image" alt="Microchip Twitter" src="oxygen-webhelp/template/resources/images/201016-corp-twitter.png"/>
+                </a>
+              </div>
+              <div class="mchp-component-item">
+                <a class="cmp-image__link" href="https://www.youtube.com/user/MicrochipTechnology" target="_blank">
+                  <img class="cmp-image__image" alt="Microchip YouTube" src="oxygen-webhelp/template/resources/images/201016-corp-youtube.png"/>
+                </a>
+              </div>
+              <div class="mchp-component-item">
+                <a class="cmp-image__link" href="https://www.instagram.com/microchiptechnologyinc/" target="_blank">
+                  <img class="cmp-image__image" alt="Microchip Instagram" src="oxygen-webhelp/template/resources/images/201016-corp-instagram.png"/>
+                </a>
+              </div>
+              <div class="mchp-component-item">
+                <a class="cmp-image__link" href="https://www.weibo.com/microchiptech" target="_blank">
+                  <img class="cmp-image__image" alt="Microchip Weibo" src="oxygen-webhelp/template/resources/images/201016-corp-weibo.png"/>
+                </a>
+              </div>
+              <div class="mchp-component-item">
+                <a class="cmp-image__link" href="https://www.microchip.com/en-us/about/blog" target="_blank">
+                  <img class="cmp-image__image" alt="Microchip Blog" src="oxygen-webhelp/template/resources/images/201016-corp-blog.png"/>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="mchp-footer-links">
+            <div class="mchp-component-items">
+              <div class="mchp-component-item">
+                <div class="link">
+                  <a href="https://www.microchip.com/about-us/contact-us" class="mchp-link__link">Contact</a>
+                  <span class="mchp-link__separator">|</span>
+                </div>
+              </div>
+              <div class="mchp-component-item ">
+                <div class="link">
+                  <a href="https://www.microchip.com/en-us/about/legal-information" class="mchp-link__link">Legal</a>
+                  <span class="mchp-link__separator">|</span>
+                </div>
+              </div>
+              <div class="mchp-component-item ">
+                <div class="link">
+                  <a href="https://www.microchip.com/en-us/about/legal-information/privacy-policy" class="mchp-link__link">Privacy Policy</a>
+                  <span class="mchp-link__separator">|</span>
+                </div>
+              </div>
+              <div class="mchp-component-item ">
+                <div class="link">
+                  <a href="https://www.microchip.com/en-us/about/legal-information/microchip-cookie-statement" class="mchp-link__link">Cookies</a>
+                  <span class="mchp-link__separator">|</span>
+                </div>
+              </div>
+              <div class="mchp-component-item">
+                <div class="link">
+                  <a href="https://careers.microchip.com/" class="mchp-link__link">Careers</a>
+                  <span class="mchp-link__separator"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mchp-footer-newsletter">
+            <div class="cmp-text">
+              <p>Stay on the leading edge with our blog</p>
+            </div>
+            <div class="mchp-button-wrapper">
+              <a role="button" href="https://www.microchip.com/en-us/about/blog" class="mchp-button mchp-button-regular solid">
+                <span class="mchp-button__span">MicroSolutions</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="graphic">
+          <img src="oxygen-webhelp/template/resources/images/footer-graphic.png"/>
+        </div>
+      </div>
+      <div class="mchp-footer-tier2">
+        <p class="mchp-copyright">© Copyright 1998-2022 Microchip Technology Inc. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async="true" src="https://www.googletagmanager.com/gtag/js?id=UA-2724382-19"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];  
+    function gtag(){dataLayer.push(arguments);}  
+    gtag('js', new Date());   
+    gtag('config', 'UA-2724382-19');
+  </script>
+  
+  <script type="text/javascript">_satellite.pageBottom();</script><!-- Adobe Analytics -->
+  <script type="text/javascript" src="mchp-js/prepend.js"></script><!-- Package for viewing PDFs on mobile devices -->
+  
 </div>
-</div></body>
+  </div>
+</footer>
+        
+        <div id="go2top" class="d-print-none">
+            <span class="oxy-icon oxy-icon-up"></span>
+        </div>
+        
+        <div id="modal_img_large" class="modal">
+            <span class="close oxy-icon oxy-icon-remove"></span>
+            <div id="modal_img_container"></div>
+            <div id="caption"></div>
+        </div>
+        
+        
+        
+       
+        </body>
 </html>

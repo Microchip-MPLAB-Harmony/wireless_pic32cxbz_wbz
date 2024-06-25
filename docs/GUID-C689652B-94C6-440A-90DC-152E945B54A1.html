@@ -1,240 +1,321 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html
-  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE11" /><meta name="copyright" content="(C) Copyright 2023" />
-<meta name="DC.rights.owner" content="(C) Copyright 2023" />
-<meta name="generator" content="DITA-OT" /><meta name="DC.type" content="topic" />
-<meta name="DC.title" content="PDS_DIRECTORY_ID_MASK Macro" />
-<meta name="DC.relation" scheme="URI" content="GUID-A7B0958C-E476-48EA-9C30-DA83508CC577.html" />
-<meta name="DC.format" content="XHTML" />
-<meta name="DC.identifier" content="pds-directory-id-mask-macro" />
-<link rel="stylesheet" type="text/css" href="stylesheets/atmel.css" />
-<title>PDS_DIRECTORY_ID_MASK Macro</title>
-<meta name="Microsoft.Help.Id" content="GUID-2085FE66-A762-4CC0-B054-7F98E8AF999A-pds-directory-id-mask-macro" />
-<meta name="Microsoft.Help.TocParent" content="GUID-2085FE66-A762-4CC0-B054-7F98E8AF999A-GUID-A7B0958C-E476-48EA-9C30-DA83508CC577" />
-<meta name="Microsoft.Help.TocOrder" content="0" />
-<meta name="Microsoft.Help.Locale" content="en-US" />
-<meta name="Microsoft.Help.TopicLocale" content="en-US" />
-<meta name="Microsoft.Help.DisplayVersion" content="MPLAB Harmony PIC32CX-BZ System Services Reference 4 10/2023" />
-<script language="javascript">
-       
-       if (window.parent.location.protocol != 'file:') {
-				document.addEventListener('click', function(e) {
-				    if (e.target) {
-               if (e.target.nodeName == "A" ) {
-                    if (!e.target.target) {
-                      e.preventDefault();
-                      e.stopPropagation();
-                              
-                      var origUrl = window.parent.location.href.substr(0, window.parent.location.href.indexOf("?"));
-                      if (origUrl.length === 0) {
-                          origUrl = window.parent.location.href;
-                      }
-                      var href= e.target.getAttribute("href");
-                      var parts = href.split("#");
-          
-                      var url = "";
-                      if (parts.length == 2 ) {
-                        if (!parts[0].length) {
-                            url = window.parent.location.search.replace('?','')
-                        } else {
-                            url = parts[0].replace('.html','');
-                        }
-                      } else {
-                        url = parts[0].replace('.html','');
-                      }
-
-                      if (parts.length == 2) {
-                          url += "#" + parts[1];
-                      }
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us" data-whc_version="24.1">
+    <head><link rel="shortcut icon" href="oxygen-webhelp\template\resources/images/favicon.ico"/><link rel="icon" href="oxygen-webhelp\template\resources/images/favicon.ico"/><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="description" content="#define PDS_DIRECTORY_ID_MASK 0x0C00U // (Bit 11 and Bit 10) Use this Directory mask on declaring directory item id's along with module specific offsets"/><meta name="copyright" content="(C) Copyright 2024"/><meta name="generator" content="DITA-OT"/><title>1.1.2.1.7 PDS_DIRECTORY_ID_MASK Macro</title><!--  Generated with Oxygen version 24.1, build number 2022062014.  --><meta name="wh-path2root" content=""/><meta name="wh-toc-id" content="&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;&lt;?workdir /D:\InfoShare\Data\Publish\Data\csk2m13l54v\work\temp?&gt;&lt;?workdir-uri file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/temp/?&gt;&lt;?path2project?&gt;&lt;?path2project-uri ./?&gt;&lt;?path2rootmap-uri ./?&gt;&lt;topic xmlns:dita-ot=&#34;http://dita-ot.sourceforge.net/ns/201007/dita-ot&#34; xmlns:ditaarch=&#34;http://dita.oasis-open.org/architecture/2005/&#34; class=&#34;- topic/topic &#34; ditaarch:DITAArchVersion=&#34;2.0&#34; specializations=&#34;@props/audience @props/deliveryTarget @props/otherprops @props/platform @props/product&#34; id=&#34;pds-directory-id-mask-macro&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-C689652B-94C6-440A-90DC-152E945B54A1.md&#34; xtrc=&#34;topic:1;184:15&#34; domains=&#34;a(props audience) a(props deliveryTarget) a(props otherprops) a(props platform) a(props product)&#34;&gt;&lt;title class=&#34;- topic/title &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-C689652B-94C6-440A-90DC-152E945B54A1.md&#34; xtrc=&#34;title:1;184:15&#34;&gt;PDS_DIRECTORY_ID_MASK Macro&lt;/title&gt;&lt;body class=&#34;- topic/body &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-C689652B-94C6-440A-90DC-152E945B54A1.md&#34; xtrc=&#34;body:1;184:15&#34;/&gt;&lt;related-links class=&#34;- topic/related-links &#34;&gt;&lt;linkpool class=&#34;- topic/linkpool &#34; mapkeyref=&#34;GUID-D1BC16D5-C0DF-4B29-97E7-19AAEC885FC2&#34; xtrc=&#34;topicref:9;6:1339&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8529D79-A3C9-4093-AED0-DACB0134D79C.ditamap&#34;&gt;&lt;link class=&#34;- topic/link &#34; format=&#34;dita&#34; href=&#34;GUID-A7B0958C-E476-48EA-9C30-DA83508CC577.xml&#34; mapclass=&#34;- map/topicref &#34; role=&#34;parent&#34; scope=&#34;local&#34; type=&#34;topic&#34; xtrc=&#34;topicref:2;6:251&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-D8529D79-A3C9-4093-AED0-DACB0134D79C.ditamap&#34;&gt;&lt;?ditaot usertext?&gt;&lt;linktext class=&#34;- topic/linktext &#34;&gt;&lt;?ditaot gentext?&gt;PDS Library Usage&lt;/linktext&gt;&lt;?ditaot genshortdesc?&gt;&lt;desc class=&#34;- topic/desc &#34;&gt;PIC32CX-BZ3 Persistent Data Server(PDS) Library Usage&lt;/desc&gt;&lt;/link&gt;&lt;/linkpool&gt;&lt;/related-links&gt;&lt;topic class=&#34;- topic/topic &#34; ditaarch:DITAArchVersion=&#34;2.0&#34; specializations=&#34;@props/audience @props/deliveryTarget @props/otherprops @props/platform @props/product&#34; id=&#34;c&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-C689652B-94C6-440A-90DC-152E945B54A1.md&#34; xtrc=&#34;topic:2;184:15&#34; domains=&#34;a(props audience) a(props deliveryTarget) a(props otherprops) a(props platform) a(props product)&#34;&gt;&lt;title class=&#34;- topic/title &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-C689652B-94C6-440A-90DC-152E945B54A1.md&#34; xtrc=&#34;title:2;184:15&#34;&gt;C&lt;/title&gt;&lt;body class=&#34;- topic/body &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-C689652B-94C6-440A-90DC-152E945B54A1.md&#34; xtrc=&#34;body:2;184:15&#34;&gt;&lt;codeblock class=&#34;+ topic/pre pr-d/codeblock &#34; xml:space=&#34;preserve&#34; outputclass=&#34;c&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-C689652B-94C6-440A-90DC-152E945B54A1.md&#34; xtrc=&#34;codeblock:1;184:15&#34;&gt;#define PDS_DIRECTORY_ID_MASK 0x0C00U // (Bit 11 and Bit 10) &lt;/codeblock&gt;&lt;/body&gt;&lt;/topic&gt;&lt;topic class=&#34;- topic/topic &#34; ditaarch:DITAArchVersion=&#34;2.0&#34; specializations=&#34;@props/audience @props/deliveryTarget @props/otherprops @props/platform @props/product&#34; id=&#34;description&#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-C689652B-94C6-440A-90DC-152E945B54A1.md&#34; xtrc=&#34;topic:3;184:15&#34; domains=&#34;a(props audience) a(props deliveryTarget) a(props otherprops) a(props platform) a(props product)&#34;&gt;&lt;title class=&#34;- topic/title &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-C689652B-94C6-440A-90DC-152E945B54A1.md&#34; xtrc=&#34;title:3;184:15&#34;&gt;Description&lt;/title&gt;&lt;body class=&#34;- topic/body &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-C689652B-94C6-440A-90DC-152E945B54A1.md&#34; xtrc=&#34;body:3;184:15&#34;&gt;&lt;p class=&#34;- topic/p &#34; xtrf=&#34;file:/D:/InfoShare/Data/Publish/Data/csk2m13l54v/work/5/en-US/GUID-C689652B-94C6-440A-90DC-152E945B54A1.md&#34; xtrc=&#34;p:1;184:15&#34;&gt;Use this Directory mask on declaring directory item id's along with module specific offsets&lt;/p&gt;&lt;/body&gt;&lt;/topic&gt;&lt;/topic&gt;"/><meta name="wh-source-relpath" content="GUID-C689652B-94C6-440A-90DC-152E945B54A1.md"/><meta name="wh-out-relpath" content="GUID-C689652B-94C6-440A-90DC-152E945B54A1.html"/>
+    <!-- Latest compiled and minified Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="./oxygen-webhelp/lib/bootstrap/css/bootstrap.min.css"/>
     
-                      window.parent.location.href = origUrl + "?" + url;
+    <link rel="stylesheet" href="./oxygen-webhelp/lib/jquery-ui/jquery-ui.min.css"/>
+    
+    <!-- Template default styles  -->
+    <link rel="stylesheet" type="text/css" href="./oxygen-webhelp/app/topic-page.css?buildId=2022062014"/>
+    
+    
+    <script src="./oxygen-webhelp/lib/jquery/jquery-3.5.1.min.js"></script>
+    
+    <script data-main="./oxygen-webhelp/app/topic-page.js" src="./oxygen-webhelp/lib/requirejs/require.js"></script>
+<link rel="stylesheet" type="text/css" href="oxygen-webhelp/template/microchip.css?buildId=2022062014"/><link rel="stylesheet" type="text/css" href="oxygen-webhelp/template/notes.css?buildId=2022062014"/>
+<script src="mchp-context-help.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async="" type="text/javascript"></script>
+    <script src="https://assets.adobedtm.com/6a72a357eb48/a636c708c7fe/launch-0b0023397020.min.js"></script><!-- Adobe Analytics -->
+</head>
 
-                      return false;
-                    }
-               }
-            }
-				});
-			}
+    <body id="pds-directory-id-mask-macro" class="wh_topic_page frmBody">
+        <a href="#wh_topic_body" class="sr-only sr-only-focusable">
+            Jump to main content
+        </a>
+        
+        
+        
+        
+        <header class="navbar navbar-default wh_header">
+    <div class="container-fluid">
+        <div class="wh_header_flex_container navbar-nav navbar-expand-md navbar-dark">
+            <div class="wh_logo_and_publication_title_container">
+                <div class="wh_logo_and_publication_title">
+                    
+                    <a href="index.html" class=" wh_logo d-none d-sm-block "><img src="oxygen-webhelp\template\resources/images/microchip.png" alt="MPLAB Harmony PIC32CX-BZ System Services &#xA;    "/></a>
+                    <div class=" wh_publication_title "><a href="index.html">MPLAB Harmony PIC32CX-BZ System Services 
+    </a></div>
+                    
+                </div>
+                
+                
+            </div>
 
-		</script><script language="javascript">
-         
-         function copyContent(content, button) {
-         
-            var textArea = document.createElement("textarea");
-            
-            // Place in the top-left corner of screen regardless of scroll position.
-            textArea.style.position = 'fixed';
-            textArea.style.top = 0;
-            textArea.style.left = 0;
-            
-            // Ensure it has a small width and height. Setting to 1px / 1em
-            // doesn't work as this gives a negative w/h on some browsers.
-            textArea.style.width = '2em';
-            textArea.style.height = '2em';
-            
-            // We don't need padding, reducing the size if it does flash render.
-            textArea.style.padding = 0;
-            
-            // Clean up any borders.
-            textArea.style.border = 'none';
-            textArea.style.outline = 'none';
-            textArea.style.boxShadow = 'none';
-            
-            // Avoid flash of the white box if rendered for any reason.
-            textArea.style.background = 'transparent';
-            
-            textArea.value = content;
-            
-            document.body.appendChild(textArea);
-            textArea.focus();
-            textArea.select();
-            
-            try {
-               var successful = document.execCommand('copy');
-               var msg = successful ? 'successful' : 'unsuccessful';
-               if (!button.classList.contains("copied")){
-                  button.textContent = "Copied";
-                  button.classList.add("copied");
-                  setTimeout(function(){
-                     button.textContent = "Copy";
-                     button.classList.remove("copied");
-                  },1000);
-               }
-            } catch (err) {
-               console.log('Oops, unable to copy');
-            }
-            
-            document.body.removeChild(textArea);
-         }
-         
-         function cpy(id, button) {
-            var element = document.getElementById(id);
-            var content = element.getAttribute("content");
-            
-            copyContent(content, button);
-         }
-         
-         document.addEventListener("DOMContentLoaded", function(event) {
-            document.querySelectorAll(".codeblock").forEach(function(elem) {
-               elem.style.position = "relative";
-               var copy = document.createElement("button");
-               copy.textContent = "Copy";
-               copy.setAttribute("class", "copy-code");
-               
-               var content = elem.textContent;
-               
-               copy.addEventListener("click", function(){
-                  copyContent(content, copy);
-               });
-               
-               elem.addEventListener("mouseenter", function(evt){
-                  elem.prepend(copy);
-               });
-            });
-            
-            document.querySelectorAll(".codeblock").forEach(function(elem) {
-               elem.addEventListener("mouseleave", function(evt){
-                  document.querySelector(".copy-code").remove();
-               });
-            });
-         });
-         
-      </script><script language="javascript">
-          
-          // Add the MathML namespace to html
-          var html = document.getElementsByTagName("html")[0],
-          head = document.getElementsByTagName("head")[0];
-          
-          var mathJax = document.createElement("script");
-          mathJax.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML";
-          head.appendChild(mathJax);
-          
-          html.setAttribute("xmlns:m","http://www.w3.org/1998/Math/MathML");
-          
-          function inIframe() { try { return window.self !== window.top; } catch (e) { return true; } }
-          
-          if (!inIframe()) { 
-          
-          var Default = "index.html?GUID-C689652B-94C6-440A-90DC-152E945B54A1"; 
-          
-          var displaylocation = "value" + window.location.href;
-          
-          var GUIDS = displaylocation.split('GUID');          
-          
-          if (displaylocation.indexOf('#GUID') != -1) {            
-          var First = GUIDS[1].split('.html');  
-          if (GUIDS[3]){First = GUIDS[2].split('.html');}
-          if (GUIDS[4]){First = GUIDS[3].split('.html');}
-          if (GUIDS[5]){First = GUIDS[4].split('.html');}
-          
-          var Second = GUIDS[2].split('#');   
-          if (GUIDS[3]){Second = GUIDS[3].split('#');}
-          if (GUIDS[4]){Second = GUIDS[4].split('#');}
-          if (GUIDS[5]){Second = GUIDS[5].split('#');}
-          
-          Default = "index.html?" + "GUID" + First[0] + "GUID" + Second[0];     
-          }                    
-          window.top.location = Default;
-          }       
-          
-        </script><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /><style xml:space="">
-        
-          button.copy-code{
-            display:none;
-            padding:0.7em 1.4em;
-            margin:0 0.3em 0.3em 0;
-            border-radius:0.15em;
-            box-sizing: border-box;
-            text-decoration:none;
-            font-family:'Roboto',sans-serif;
-            text-transform:uppercase;
-            font-weight:400;
-            color:#FFFFFF;
-            background-color:#9c9c9c;
-            box-shadow:inset 0 -0.6em 0 -0.35em rgba(0,0,0,0.17);
-            text-align:center;
-            position:relative;
-            border: 0;
-            float: right;
-            border-radius: .5em;
-            cursor: pointer;
-          }
-          button.copy-code:active{
-            top:0.1em;
-          }
-          
-          pre:hover button.copy-code{
-            display: inline-block !important;
-          }
-          button.copy-code.copied {
-            cursor: default !important;
-          }
-          
-          
-          @media all and (max-width:30em){
-            button.copy-code{
-              display:block;
-              margin:0.4em auto;
-            }
-          }
+            <div class="wh_top_menu_and_indexterms_link collapse navbar-collapse" id="wh_top_menu_and_indexterms_link">
+                
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</header>
         
         
-      </style><link rel="stylesheet" type="text/css" href="syntax-highlight.css" /></head>
-<body id="pds-directory-id-mask-macro">
-<h1 class="title topictitle1" id="ariaid-title1" style="">PDS_DIRECTORY_ID_MASK Macro</h1><div class="body"></div>
-<div class="related-links">
-<div class="familylinks">
-<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="GUID-A7B0958C-E476-48EA-9C30-DA83508CC577.html" title="PIC32CX-BZ2 Persistent Data Server(PDS) Library Usage">PDS Library Usage</a></div>
+         
+        
+        <div class=" wh_search_input navbar-form wh_topic_page_search search " role="form">
+            
+            
+            
+            <form id="searchForm" method="get" role="search" action="search.html"><div class="d-flex justify-contents-around"><div class="flex-grow-1"></div><div class="position-relative flex-grow-1"><input type="search" placeholder="Search " class="wh_search_textfield" id="textToSearch" name="searchQuery" aria-label="Search query" required="required"/><button type="submit" class="wh_search_button" aria-label="Search"><span class="search_input_text">Search</span></button></div><div class="align-self-center flex-grow-1 ml-2"><div class="d-flex justify-content-end"><div class="dropdown"><a style="font-size: 1em; padding: 7px 12px !important;" class="btn py-3 px-3 btn-outline-light dropdown-toggle" href="#" role="button" id="devicesMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Product Pages</a><div style="font-size: 1em;" class="dropdown-menu" aria-labelledby="devicesMenu"><a class="dropdown-item" target="_blank" href="https://www.microchip.com/en-us/product/wbz450">WBZ450</a><a class="dropdown-item" target="_blank" href="https://www.microchip.com/en-us/product/wbz451"> WBZ451</a><a class="dropdown-item" target="_blank" href="https://www.microchip.com/en-us/product/pic32cx-bz2"> PIC32CX-BZ2</a></div></div></div></div></div></form>
+            
+            <div class="mchp-color-stripe-grid-container">
+  <div class="mchp-main-bar mchp-orange-bar"></div>
+  <div class="mchp-main-bar mchp-blue-bar"></div>
+  <div class="mchp-main-bar mchp-green-bar"></div>
 </div>
-</div><div class="topic nested1" aria-labelledby="ariaid-title2" id="c"><h2 class="title topictitle2" id="ariaid-title2" style="">C</h2><div class="body"><pre class="pre codeblock c"><span class="hl-directive">#define</span>  PDS_DIRECTORY_ID_MASK      <span class="hl-number">0x0C00U</span> <em class="hl-comment">// (Bit 11 and Bit 10)</em>
-</pre></div>
+            
+        </div>
+        
+        <div class="container-fluid" id="wh_topic_container">
+            <div class="row">
+
+                <nav class="wh_tools d-print-none navbar-expand-md" aria-label="Tools">
+                    
+                    <div data-tooltip-position="bottom" class=" wh_breadcrumb "><ol class="d-print-none"><li><span class="home"><a href="index.html"><span>Home</span></a></span></li><li><div class="topicref" data-id="GUID-B92D56E1-C216-4D2D-827C-26D5B803B704"><div class="title"><a href="GUID-B92D56E1-C216-4D2D-827C-26D5B803B704.html"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1</ph>
+PIC32CX-BZ Family System Services</a><div class="wh-tooltip"><p class="shortdesc"><span class="ph instanceOffsets">             <p class="p">The PIC32CX-BZ System services provides several services to protocol developers and                 application users which use PIC32CX-BZ products. </p>         </span></p></div></div></div></li><li><div class="topicref" data-id="GUID-FFC9758F-305D-4A4A-A577-726CDCFA18C7"><div class="title"><a href="GUID-FFC9758F-305D-4A4A-A577-726CDCFA18C7.html"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1</ph>
+PIC32CX-BZ2 System Services</a></div></div></li><li><div class="topicref" data-id="GUID-D08C61D1-8CD6-4D2F-B74D-E58784C9042B"><div class="title"><a href="GUID-D08C61D1-8CD6-4D2F-B74D-E58784C9042B.html"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.2</ph>
+<span class="ph">PIC32CX-BZ2</span> Persistent Data Server Component Library Help</a><div class="wh-tooltip"><p class="shortdesc">The <span class="ph">PIC32CX-BZ2</span> Persistent Data Server Component Library                 provides interface for storing and restoring items into the Non volatile memory                 using wear leveling mechanism</p></div></div></div></li><li><div class="topicref" data-id="GUID-A7B0958C-E476-48EA-9C30-DA83508CC577"><div class="title"><a href="GUID-A7B0958C-E476-48EA-9C30-DA83508CC577.html"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.2.1</ph>
+PDS Library Usage</a><div class="wh-tooltip"><p class="shortdesc">PIC32CX-BZ3 Persistent Data Server(PDS) Library Usage</p></div></div></div></li><li class="active"><div class="topicref" data-id="pds-directory-id-mask-macro"><div class="title"><a href="GUID-C689652B-94C6-440A-90DC-152E945B54A1.html"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.2.1.7</ph>
+PDS_DIRECTORY_ID_MASK Macro</a></div></div></li></ol></div>
+                    
+                    
+                    
+                    <div class="wh_right_tools">
+                        <button class="wh_hide_highlight" aria-label="Toggle search highlights" title="Toggle search highlights"></button>
+                        <button class="webhelp_expand_collapse_sections" data-next-state="collapsed" aria-label="Collapse sections" title="Collapse sections"></button>
+                        
+                        
+                        
+                        
+                        <div class=" wh_print_link print d-none d-md-inline-block "><button onClick="window.print()" title="Print this page" aria-label="Print this page"></button></div>
+                        
+                        <button type="button" id="wh_toc_button" class="custom-toggler navbar-toggler collapsed wh_toggle_button navbar-light" aria-expanded="false" aria-label="Toggle publishing table of content" aria-controls="wh_publication_toc">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
+                    
+                </nav>
+            </div>
+            
+            <div class="row" style="margin-top: -1em;"><div class="col-lg-7 col-md-7 col-sm-12 offset-lg-3 offset-md-3 text-right border-bottom mb-1"><h2 class="text-dark header_title">
+    </h2></div></div>
+            
+            
+            <div class="wh_content_area">
+                <div class="row">
+                    
+                        <nav id="wh_publication_toc" class="col-lg-3 col-md-3 col-sm-12 d-md-block d-none d-print-none" aria-label="Table of Contents Container">
+                            <div id="wh_publication_toc_content">
+		                        
+                            	<div class=" wh_publication_toc " data-tooltip-position="right"><span class="expand-button-action-labels"><span id="button-expand-action" role="button" aria-label="Expand"></span><span id="button-collapse-action" role="button" aria-label="Collapse"></span><span id="button-pending-action" role="button" aria-label="Pending"></span></span><ul role="tree" aria-label="Table of Contents"><li role="treeitem" aria-expanded="true"><div data-tocid="GUID-B92D56E1-C216-4D2D-827C-26D5B803B704-d2097e11" class="topicref" data-id="GUID-B92D56E1-C216-4D2D-827C-26D5B803B704" data-state="expanded"><span role="button" tabindex="0" aria-labelledby="button-collapse-action GUID-B92D56E1-C216-4D2D-827C-26D5B803B704-d2097e11-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-B92D56E1-C216-4D2D-827C-26D5B803B704.html" id="GUID-B92D56E1-C216-4D2D-827C-26D5B803B704-d2097e11-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1</ph>
+PIC32CX-BZ Family System Services</a><div class="wh-tooltip"><p class="shortdesc"><span class="ph instanceOffsets">             <p class="p">The PIC32CX-BZ System services provides several services to protocol developers and                 application users which use PIC32CX-BZ products. </p>         </span></p></div></div></div><ul role="group" class="navbar-nav nav-list"><li role="treeitem" aria-expanded="true"><div data-tocid="GUID-FFC9758F-305D-4A4A-A577-726CDCFA18C7-d2097e26" class="topicref" data-id="GUID-FFC9758F-305D-4A4A-A577-726CDCFA18C7" data-state="expanded"><span role="button" tabindex="0" aria-labelledby="button-collapse-action GUID-FFC9758F-305D-4A4A-A577-726CDCFA18C7-d2097e26-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-FFC9758F-305D-4A4A-A577-726CDCFA18C7.html" id="GUID-FFC9758F-305D-4A4A-A577-726CDCFA18C7-d2097e26-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1</ph>
+PIC32CX-BZ2 System Services</a></div></div><ul role="group" class="navbar-nav nav-list"><li role="treeitem" aria-expanded="false"><div data-tocid="GUID-2167300F-6A96-440E-83CA-FC9C0C259914-d2097e34" class="topicref" data-id="GUID-2167300F-6A96-440E-83CA-FC9C0C259914" data-state="not-ready"><span role="button" tabindex="0" aria-labelledby="button-expand-action GUID-2167300F-6A96-440E-83CA-FC9C0C259914-d2097e34-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-2167300F-6A96-440E-83CA-FC9C0C259914.html" id="GUID-2167300F-6A96-440E-83CA-FC9C0C259914-d2097e34-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.1</ph>
+<span class="ph">PIC32CX-BZ2</span> Device Support Component Library Help</a><div class="wh-tooltip"><p class="shortdesc">The <span class="ph">PIC32CX-BZ2</span> Device Support Component Library provides                 software API's for various subsystems in the <span class="ph">PIC32CX-BZ2</span>.</p></div></div></div></li><li role="treeitem" aria-expanded="true"><div data-tocid="GUID-D08C61D1-8CD6-4D2F-B74D-E58784C9042B-d2097e481" class="topicref" data-id="GUID-D08C61D1-8CD6-4D2F-B74D-E58784C9042B" data-state="expanded"><span role="button" tabindex="0" aria-labelledby="button-collapse-action GUID-D08C61D1-8CD6-4D2F-B74D-E58784C9042B-d2097e481-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-D08C61D1-8CD6-4D2F-B74D-E58784C9042B.html" id="GUID-D08C61D1-8CD6-4D2F-B74D-E58784C9042B-d2097e481-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.2</ph>
+<span class="ph">PIC32CX-BZ2</span> Persistent Data Server Component Library Help</a><div class="wh-tooltip"><p class="shortdesc">The <span class="ph">PIC32CX-BZ2</span> Persistent Data Server Component Library                 provides interface for storing and restoring items into the Non volatile memory                 using wear leveling mechanism</p></div></div></div><ul role="group" class="navbar-nav nav-list"><li role="treeitem" aria-expanded="true"><div data-tocid="GUID-A7B0958C-E476-48EA-9C30-DA83508CC577-d2097e497" class="topicref" data-id="GUID-A7B0958C-E476-48EA-9C30-DA83508CC577" data-state="expanded"><span role="button" tabindex="0" aria-labelledby="button-collapse-action GUID-A7B0958C-E476-48EA-9C30-DA83508CC577-d2097e497-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-A7B0958C-E476-48EA-9C30-DA83508CC577.html" id="GUID-A7B0958C-E476-48EA-9C30-DA83508CC577-d2097e497-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.2.1</ph>
+PDS Library Usage</a><div class="wh-tooltip"><p class="shortdesc">PIC32CX-BZ3 Persistent Data Server(PDS) Library Usage</p></div></div></div><ul role="group" class="navbar-nav nav-list"><li role="treeitem"><div data-tocid="item-id-to-mem-mapping-macro-d2097e508" class="topicref" data-id="item-id-to-mem-mapping-macro" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-183B334C-1BDF-4564-A870-F4C2BE978405.html" id="item-id-to-mem-mapping-macro-d2097e508-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.2.1.1</ph>
+ITEM_ID_TO_MEM_MAPPING Macro</a></div></div></li><li role="treeitem"><div data-tocid="item-under-security-control-macro-d2097e516" class="topicref" data-id="item-under-security-control-macro" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-D08972F4-21A8-4F0E-8273-03AC48C7F790.html" id="item-under-security-control-macro-d2097e516-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.2.1.2</ph>
+ITEM_UNDER_SECURITY_CONTROL Macro</a></div></div></li><li role="treeitem"><div data-tocid="pds-declare-item-macro-d2097e524" class="topicref" data-id="pds-declare-item-macro" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-7D9AC457-8781-4DAA-BEDB-6CA258BA5C59.html" id="pds-declare-item-macro-d2097e524-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.2.1.3</ph>
+PDS_DECLARE_ITEM Macro</a></div></div></li><li role="treeitem"><div data-tocid="no-item-flags-macro-d2097e532" class="topicref" data-id="no-item-flags-macro" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-4B67B429-8AD1-401B-A4C5-E80B38261F31.html" id="no-item-flags-macro-d2097e532-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.2.1.4</ph>
+NO_ITEM_FLAGS Macro</a></div></div></li><li role="treeitem"><div data-tocid="no-file-marks-macro-d2097e540" class="topicref" data-id="no-file-marks-macro" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-C51A10C8-084D-4BF8-A6F0-3EE59657C130.html" id="no-file-marks-macro-d2097e540-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.2.1.5</ph>
+NO_FILE_MARKS Macro</a></div></div></li><li role="treeitem"><div data-tocid="pds-max-file-size-macro-d2097e548" class="topicref" data-id="pds-max-file-size-macro" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-D6B3AF6D-9520-47FA-AC15-AE93D53328FC.html" id="pds-max-file-size-macro-d2097e548-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.2.1.6</ph>
+PDS_MAX_FILE_SIZE Macro</a></div></div></li><li role="treeitem" class="active"><div data-tocid="pds-directory-id-mask-macro-d2097e556" class="topicref" data-id="pds-directory-id-mask-macro" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-C689652B-94C6-440A-90DC-152E945B54A1.html" id="pds-directory-id-mask-macro-d2097e556-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.2.1.7</ph>
+PDS_DIRECTORY_ID_MASK Macro</a></div></div></li><li role="treeitem"><div data-tocid="size-modification-allowed-macro-d2097e564" class="topicref" data-id="size-modification-allowed-macro" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-0FEC3EB2-1308-4A1C-B574-9559D9EC3D32.html" id="size-modification-allowed-macro-d2097e564-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.2.1.8</ph>
+SIZE_MODIFICATION_ALLOWED Macro</a></div></div></li><li role="treeitem"><div data-tocid="pds-module-offset-macro-d2097e572" class="topicref" data-id="pds-module-offset-macro" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-C7436175-9555-4084-8CC2-D745C53F113C.html" id="pds-module-offset-macro-d2097e572-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.2.1.9</ph>
+PDS_MODULE OFFSET Macro</a></div></div></li><li role="treeitem"><div data-tocid="pds-dataserverstate-t-enum-d2097e580" class="topicref" data-id="pds-dataserverstate-t-enum" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-259CFA61-09A7-423C-8608-8494531680CC.html" id="pds-dataserverstate-t-enum-d2097e580-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.2.1.10</ph>
+PDS_DataServerState_t Enum</a></div></div></li><li role="treeitem"><div data-tocid="itemidtomemorymapping-t-struct-d2097e589" class="topicref" data-id="itemidtomemorymapping-t-struct" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-60770A63-E7A8-4C18-9B4D-1A78A64FAFC6.html" id="itemidtomemorymapping-t-struct-d2097e589-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.2.1.11</ph>
+ItemIdToMemoryMapping_t Struct</a></div></div></li><li role="treeitem"><div data-tocid="pds-dirdescr-t-struct-d2097e597" class="topicref" data-id="pds-dirdescr-t-struct" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-133C54E9-8E07-4D8E-BDC4-289780F9AAF2.html" id="pds-dirdescr-t-struct-d2097e597-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.2.1.12</ph>
+PDS_DirDescr_t Struct</a></div></div></li><li role="treeitem"><div data-tocid="pds-operation-offset-t-struct-d2097e605" class="topicref" data-id="pds-operation-offset-t-struct" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-E2612D52-C312-4265-8EE8-A9EA4B8DDDC7.html" id="pds-operation-offset-t-struct-d2097e605-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.2.1.13</ph>
+PDS_Operation_Offset_t Struct</a></div></div></li><li role="treeitem"><div data-tocid="pds-updatememory-t-struct-d2097e613" class="topicref" data-id="pds-updatememory-t-struct" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-B0A065DE-8AA5-45D9-9564-74D2D6B2737A.html" id="pds-updatememory-t-struct-d2097e613-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.2.1.14</ph>
+PDS_UpdateMemory_t Struct</a></div></div></li><li role="treeitem"><div data-tocid="pds-additemexcpetionfromdeleteall-function-d2097e621" class="topicref" data-id="pds-additemexcpetionfromdeleteall-function" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-2A4A2013-6E0B-4723-ACFA-4F47F89002D0.html" id="pds-additemexcpetionfromdeleteall-function-d2097e621-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.2.1.15</ph>
+PDS_AddItemExcpetionFromDeleteAll Function</a></div></div></li><li role="treeitem"><div data-tocid="pds-delete-function-d2097e629" class="topicref" data-id="pds-delete-function" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-1F2868F0-CA59-47E2-80D0-16DF4E8A01CE.html" id="pds-delete-function-d2097e629-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.2.1.16</ph>
+PDS_Delete Function</a></div></div></li><li role="treeitem"><div data-tocid="pds-deleteall-function-d2097e637" class="topicref" data-id="pds-deleteall-function" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-8AADBB19-32FD-4C50-AE4F-482599F9D02F.html" id="pds-deleteall-function-d2097e637-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.2.1.17</ph>
+PDS_DeleteAll Function</a></div></div></li><li role="treeitem"><div data-tocid="pds-getitemdescr-function-d2097e645" class="topicref" data-id="pds-getitemdescr-function" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-F1364A8C-3E96-429B-A880-609E7A704762.html" id="pds-getitemdescr-function-d2097e645-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.2.1.18</ph>
+PDS_GetItemDescr Function</a></div></div></li><li role="treeitem"><div data-tocid="pds-getpendingitemscount-function-d2097e653" class="topicref" data-id="pds-getpendingitemscount-function" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-C9597087-8DE9-4755-9D6A-C93DF62BD1E1.html" id="pds-getpendingitemscount-function-d2097e653-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.2.1.19</ph>
+PDS_GetPendingItemsCount Function</a></div></div></li><li role="treeitem"><div data-tocid="pds-init-function-d2097e661" class="topicref" data-id="pds-init-function" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-AAC3B8D6-B77A-4883-BE1B-0EA0BE4872BC.html" id="pds-init-function-d2097e661-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.2.1.20</ph>
+PDS_Init Function</a></div></div></li><li role="treeitem"><div data-tocid="pds-inititems-function-d2097e669" class="topicref" data-id="pds-inititems-function" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-B1E12C3C-2987-4791-BA2A-54F90EB76C38.html" id="pds-inititems-function-d2097e669-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.2.1.21</ph>
+PDS_InitItems Function</a></div></div></li><li role="treeitem"><div data-tocid="pds-isabletorestore-function-d2097e678" class="topicref" data-id="pds-isabletorestore-function" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-C949561B-9512-4FF1-B590-1A41E6336777.html" id="pds-isabletorestore-function-d2097e678-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.2.1.22</ph>
+PDS_IsAbleToRestore Function</a></div></div></li><li role="treeitem"><div data-tocid="pds-registerupdatememorycallback-function-d2097e686" class="topicref" data-id="pds-registerupdatememorycallback-function" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-FCE3BB9C-EE95-44A0-AD6B-699B9CF1395B.html" id="pds-registerupdatememorycallback-function-d2097e686-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.2.1.23</ph>
+PDS_RegisterUpdateMemoryCallback Function</a></div></div></li><li role="treeitem"><div data-tocid="pds-registerwritecompletecallback-function-d2097e694" class="topicref" data-id="pds-registerwritecompletecallback-function" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-6F51DFED-F916-4803-8B8F-0A9286A08226.html" id="pds-registerwritecompletecallback-function-d2097e694-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.2.1.24</ph>
+PDS_RegisterWriteCompleteCallback Function</a></div></div></li><li role="treeitem"><div data-tocid="pds-restore-function-d2097e702" class="topicref" data-id="pds-restore-function" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-7CAED737-9F28-458E-B9A3-1D20184705F0.html" id="pds-restore-function-d2097e702-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.2.1.25</ph>
+PDS_Restore Function</a></div></div></li><li role="treeitem"><div data-tocid="pds-store-function-d2097e710" class="topicref" data-id="pds-store-function" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-9FC50B7F-D694-4BE2-94AE-576D308FF56B.html" id="pds-store-function-d2097e710-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.2.1.26</ph>
+PDS_Store Function</a></div></div></li><li role="treeitem"><div data-tocid="pds-storeitemtaskhandler-function-d2097e718" class="topicref" data-id="pds-storeitemtaskhandler-function" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-5A8DBB18-071C-4159-87F2-E34ED758FCB1.html" id="pds-storeitemtaskhandler-function-d2097e718-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.2.1.27</ph>
+PDS_StoreItemTaskHandler Function</a></div></div></li></ul></li></ul></li><li role="treeitem"><div data-tocid="GUID-E95D4418-FDD2-49A3-999F-6EFBA54DDA3D-d2097e726" class="topicref" data-id="GUID-E95D4418-FDD2-49A3-999F-6EFBA54DDA3D" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-E95D4418-FDD2-49A3-999F-6EFBA54DDA3D.html" id="GUID-E95D4418-FDD2-49A3-999F-6EFBA54DDA3D-d2097e726-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.3</ph>
+PIC32CX-BZ2 Bootloader Services Component Help</a></div></div></li><li role="treeitem" aria-expanded="false"><div data-tocid="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD-d2097e734" class="topicref" data-id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD" data-state="not-ready"><span role="button" tabindex="0" aria-labelledby="button-expand-action GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD-d2097e734-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD.html" id="GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD-d2097e734-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1.4</ph>
+PIC32CX-BZ2 Standalone Bootloader Component Help</a></div></div></li></ul></li><li role="treeitem" aria-expanded="false"><div data-tocid="GUID-F9698DC6-BF78-4773-A5E3-CA7D4F570394-d2097e1090" class="topicref" data-id="GUID-F9698DC6-BF78-4773-A5E3-CA7D4F570394" data-state="not-ready"><span role="button" tabindex="0" aria-labelledby="button-expand-action GUID-F9698DC6-BF78-4773-A5E3-CA7D4F570394-d2097e1090-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-F9698DC6-BF78-4773-A5E3-CA7D4F570394.html" id="GUID-F9698DC6-BF78-4773-A5E3-CA7D4F570394-d2097e1090-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2</ph>
+PIC32CX-BZ3 System Services</a></div></div></li></ul></li><li role="treeitem" aria-expanded="false"><div data-tocid="GUID-0FB3F908-88EE-45CE-94F5-E97AF9049C9B-d2097e2319" class="topicref backmatter backmatter_parent" data-id="GUID-0FB3F908-88EE-45CE-94F5-E97AF9049C9B" data-state="not-ready"><span role="button" tabindex="0" aria-labelledby="button-expand-action GUID-0FB3F908-88EE-45CE-94F5-E97AF9049C9B-d2097e2319-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-0FB3F908-88EE-45CE-94F5-E97AF9049C9B.html" id="GUID-0FB3F908-88EE-45CE-94F5-E97AF9049C9B-d2097e2319-link">Microchip Information</a></div></div></li></ul></div>
+		                        
+                            </div>
+                        </nav>
+                    
+                    
+                    <div class="col-lg-7 col-md-9 col-sm-12" id="wh_topic_body">
+                        <button id="wh_close_publication_toc_button" class="close-toc-button d-none" aria-label="Toggle publishing table of content" aria-controls="wh_publication_toc" aria-expanded="true">
+                            <span class="close-toc-icon-container">
+                                <span class="close-toc-icon"></span>     
+                            </span>
+                        </button>
+                        <button id="wh_close_topic_toc_button" class="close-toc-button d-none" aria-label="Toggle topic table of content" aria-controls="wh_topic_toc" aria-expanded="true">
+                            <span class="close-toc-icon-container">
+                                <span class="close-toc-icon"></span>     
+                            </span>
+                        </button>
+                        
+                        <div class=" wh_topic_content body "><main role="main"><article role="article" aria-labelledby="ariaid-title1"><h1 class="- topic/title title topictitle1" id="ariaid-title1" style="">1.1.2.1.7 PDS_DIRECTORY_ID_MASK Macro</h1><div class="- topic/body body"></div><article class="- topic/topic topic nested1" aria-labelledby="ariaid-title2" id="c"><h2 class="- topic/title title topictitle2" id="ariaid-title2" style=""> C</h2><div class="- topic/body body"><pre class="+ topic/pre pr-d/codeblock pre codeblock c"><span class="hl-directive">#define</span>  PDS_DIRECTORY_ID_MASK      <span class="hl-number">0x0C00U</span> <em class="hl-comment">// (Bit 11 and Bit 10)</em>
+</pre></div></article><article class="- topic/topic topic nested1" aria-labelledby="ariaid-title3" id="description"><h2 class="- topic/title title topictitle2" id="ariaid-title3" style=""> Description</h2><div class="- topic/body body"><p class="- topic/p p">Use this Directory mask on declaring directory item id's along with module specific offsets</p></div></article></article></main></div>
+                        
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                    
+                        <nav role="navigation" id="wh_topic_toc" aria-label="On this page" class="col-lg-2 d-none d-lg-block navbar d-print-none"> 
+                            <div id="wh_topic_toc_content">
+		                        
+	                            <div class=" wh_topic_toc "><div class="wh_topic_label">On this page</div><ul><li class="topic-item"><a href="#c" data-tocid="c"> C</a></li><li class="topic-item"><a href="#description" data-tocid="description"> Description</a></li></ul></div>
+	                        	
+                        	</div>
+                        </nav>
+                    
+                </div>
+            </div>
+            
+            
+            
+        </div> 
+        <footer class="navbar navbar-default wh_footer">
+  <div class=" footer-container mx-auto ">
+    <div class="footer">
+  <div class="mchp-wh-footer">
+    <div class="mchp-footer">
+      <div class="mchp-footer-tier1">
+        <div class="spacer"></div>
+        <div class="mchp-footer-container">
+          <div class="mchp-footer-links mchp-social-media-links">
+            <div class="mchp-component-items">
+              <div class="mchp-component-item">
+                <a class="cmp-image__link" href="https://www.facebook.com/pages/Microchip-Technology-Inc/20320981741" target="_blank">
+                  <img class="cmp-image__image" alt="Microchip Facebook" src="oxygen-webhelp/template/resources/images/201016-corp-facebook.png"/>
+                </a>
+              </div>
+              <div class="mchp-component-item">
+                <a class="cmp-image__link" href="https://www.linkedin.com/company/microchip-technology" target="_blank">
+                  <img class="cmp-image__image" alt="Microchip LinkedIn" src="oxygen-webhelp/template/resources/images/201016-corp-linkedin.png"/>
+                </a>
+              </div>
+              <div class="mchp-component-item">
+                <a class="cmp-image__link" href="https://twitter.com/MicrochipTech" target="_blank">
+                  <img class="cmp-image__image" alt="Microchip Twitter" src="oxygen-webhelp/template/resources/images/201016-corp-twitter.png"/>
+                </a>
+              </div>
+              <div class="mchp-component-item">
+                <a class="cmp-image__link" href="https://www.youtube.com/user/MicrochipTechnology" target="_blank">
+                  <img class="cmp-image__image" alt="Microchip YouTube" src="oxygen-webhelp/template/resources/images/201016-corp-youtube.png"/>
+                </a>
+              </div>
+              <div class="mchp-component-item">
+                <a class="cmp-image__link" href="https://www.instagram.com/microchiptechnologyinc/" target="_blank">
+                  <img class="cmp-image__image" alt="Microchip Instagram" src="oxygen-webhelp/template/resources/images/201016-corp-instagram.png"/>
+                </a>
+              </div>
+              <div class="mchp-component-item">
+                <a class="cmp-image__link" href="https://www.weibo.com/microchiptech" target="_blank">
+                  <img class="cmp-image__image" alt="Microchip Weibo" src="oxygen-webhelp/template/resources/images/201016-corp-weibo.png"/>
+                </a>
+              </div>
+              <div class="mchp-component-item">
+                <a class="cmp-image__link" href="https://www.microchip.com/en-us/about/blog" target="_blank">
+                  <img class="cmp-image__image" alt="Microchip Blog" src="oxygen-webhelp/template/resources/images/201016-corp-blog.png"/>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="mchp-footer-links">
+            <div class="mchp-component-items">
+              <div class="mchp-component-item">
+                <div class="link">
+                  <a href="https://www.microchip.com/about-us/contact-us" class="mchp-link__link">Contact</a>
+                  <span class="mchp-link__separator">|</span>
+                </div>
+              </div>
+              <div class="mchp-component-item ">
+                <div class="link">
+                  <a href="https://www.microchip.com/en-us/about/legal-information" class="mchp-link__link">Legal</a>
+                  <span class="mchp-link__separator">|</span>
+                </div>
+              </div>
+              <div class="mchp-component-item ">
+                <div class="link">
+                  <a href="https://www.microchip.com/en-us/about/legal-information/privacy-policy" class="mchp-link__link">Privacy Policy</a>
+                  <span class="mchp-link__separator">|</span>
+                </div>
+              </div>
+              <div class="mchp-component-item ">
+                <div class="link">
+                  <a href="https://www.microchip.com/en-us/about/legal-information/microchip-cookie-statement" class="mchp-link__link">Cookies</a>
+                  <span class="mchp-link__separator">|</span>
+                </div>
+              </div>
+              <div class="mchp-component-item">
+                <div class="link">
+                  <a href="https://careers.microchip.com/" class="mchp-link__link">Careers</a>
+                  <span class="mchp-link__separator"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mchp-footer-newsletter">
+            <div class="cmp-text">
+              <p>Stay on the leading edge with our blog</p>
+            </div>
+            <div class="mchp-button-wrapper">
+              <a role="button" href="https://www.microchip.com/en-us/about/blog" class="mchp-button mchp-button-regular solid">
+                <span class="mchp-button__span">MicroSolutions</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="graphic">
+          <img src="oxygen-webhelp/template/resources/images/footer-graphic.png"/>
+        </div>
+      </div>
+      <div class="mchp-footer-tier2">
+        <p class="mchp-copyright">© Copyright 1998-2022 Microchip Technology Inc. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async="true" src="https://www.googletagmanager.com/gtag/js?id=UA-2724382-19"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];  
+    function gtag(){dataLayer.push(arguments);}  
+    gtag('js', new Date());   
+    gtag('config', 'UA-2724382-19');
+  </script>
+  
+  <script type="text/javascript">_satellite.pageBottom();</script><!-- Adobe Analytics -->
+  <script type="text/javascript" src="mchp-js/prepend.js"></script><!-- Package for viewing PDFs on mobile devices -->
+  
 </div>
-<div class="topic nested1" aria-labelledby="ariaid-title3" id="description"><h2 class="title topictitle2" id="ariaid-title3" style="">Description</h2><div class="body"><p class="p">Use this Directory mask on declaring directory item id's along with module specific offsets</p>
-</div>
-</div>
-</body>
+  </div>
+</footer>
+        
+        <div id="go2top" class="d-print-none">
+            <span class="oxy-icon oxy-icon-up"></span>
+        </div>
+        
+        <div id="modal_img_large" class="modal">
+            <span class="close oxy-icon oxy-icon-remove"></span>
+            <div id="modal_img_container"></div>
+            <div id="caption"></div>
+        </div>
+        
+        
+        
+       
+        </body>
 </html>
