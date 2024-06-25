@@ -2,7 +2,7 @@
 <Package name="wireless_pic32cxbz_wbz">
     <Dependencies>
         <Dependency name="csp" version="v3.19.0"/>
-        <Dependency name="core" version="v3.13.3"/>
+        <Dependency name="core" version="v3.13.4"/>
         <Dependency name="CMSIS-FreeRTOS" version="v11.1.0"/>
 		<Dependency name="bsp" version="v3.20.0"/>
 		<Dependency name="crypto" version="v3.8.1"/>
