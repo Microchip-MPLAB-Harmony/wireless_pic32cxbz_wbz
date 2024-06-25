@@ -15,7 +15,7 @@
   None
 
 ### Development Tools
-- [MPLAB X v620](https://www.microchip.com/mplab/mplab-x-ide)
+- [MPLAB X v6.20](https://www.microchip.com/mplab/mplab-x-ide) or higher
 - [MPLAB® XC32 C/C++ Compiler v4.40](https://www.microchip.com/mplab/compilers)
 -  MPLAB® X IDE plug-ins: 
   MPLAB® Code Configurator (MCC) v5.5.0 and above.
