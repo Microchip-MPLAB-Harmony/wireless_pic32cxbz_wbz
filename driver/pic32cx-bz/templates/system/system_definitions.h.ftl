@@ -33,3 +33,6 @@
 <#if ENABLE_DEEP_SLEEP>
 #include "device_deep_sleep.h"
 </#if>
+<#if PTA_ENABLE>
+#include "driver/pta/pta.h"
+</#if>

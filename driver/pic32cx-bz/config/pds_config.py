@@ -36,6 +36,16 @@ pic32cx_bz3_family = {'PIC32CX5109BZ31048',
                       'WBZ350',
                       }
 
+pic32cx_bz6_family = {'PIC32CX2051BZ62132',
+                      'PIC32CX2051BZ62064',
+                      'PIC32CX2051BZ66048',
+                      'WBZ653',
+                      'WBZ652',
+                      'WBZ651',
+                      'PIC32WM_BZ6204',
+                      'PIC32WM_BZ6203',
+                      'PIC32WM_BZ6602',
+                     }
 
 def isOTAEnabled(symbol, event):
     if ((event["value"] == True)):
@@ -53,6 +63,8 @@ def getRetentionRAMSize():
     components = Database.getActiveComponentIDs()
     if('pic32cx_bz3_devsupport' in components):
         return int(Database.getSymbolValue("pic32cx_bz3_devsupport", "TOTAL_RETENTION_RAM_BYTES"))
+    elif('pic32cx_bz6_devsupport' in components):
+        return int(Database.getSymbolValue("pic32cx_bz6_devsupport", "TOTAL_RETENTION_RAM_BYTES"))
     else:
         return 0
 
@@ -61,20 +73,31 @@ def updateValue(symbol, event):
     if('pic32cx_bz3_devsupport' in components):
         value = int(Database.getSymbolValue("pic32cx_bz3_devsupport", "TOTAL_RETENTION_RAM_BYTES"))
         Database.setSymbolValue("pdsSystem", "RETENTION_RAM_SIZE", int(value))
+    elif('pic32cx_bz6_devsupport' in components):
+        value = int(Database.getSymbolValue("pic32cx_bz6_devsupport", "TOTAL_RETENTION_RAM_BYTES"))
+        Database.setSymbolValue("pdsSystem", "RETENTION_RAM_SIZE", int(value))
 
 def getSleepState():
     components = Database.getActiveComponentIDs()
     if('pic32cx_bz3_devsupport' in components):
         return bool(Database.getSymbolValue("pic32cx_bz3_devsupport", "ENABLE_DEEP_SLEEP"))
+    elif('pic32cx_bz6_devsupport' in components):
+        return bool(Database.getSymbolValue("pic32cx_bz6_devsupport", "ENABLE_DEEP_SLEEP"))
     else:
         return False
 
 def getRetentionRAMState():
     components = Database.getActiveComponentIDs()
     if('pic32cx_bz3_devsupport' in components):
-        return bool(Database.getSymbolValue("pic32cx_bz3_devsupport", "TOTAL_RETENTION_RAM"))
+        return int(Database.getSymbolValue("pic32cx_bz3_devsupport", "TOTAL_RETENTION_RAM"))
+    elif('pic32cx_bz6_devsupport' in components):
+        return int(Database.getSymbolValue("pic32cx_bz6_devsupport", "TOTAL_RETENTION_RAM"))
     else:
-        return False
+        return 0
+
+def updateRetentionRAMState(symbol, event):
+    symbol.setValue(event["value"])
+     
 
 processor = Variables.get('__PROCESSOR')
 print('processor={}'.format(processor))
@@ -141,17 +164,17 @@ otaFwSignVerify.setDependencies(isOTAEnabled, ["BootloaderServices:APP_FW_SIGN_V
 dsleepEnabled = libPDS.createBooleanSymbol("DEEP_SLEEP_ENABLED", None)
 dsleepEnabled.setDefaultValue(getSleepState())
 dsleepEnabled.setVisible(False)
-dsleepEnabled.setDependencies(isEnabled, ["pic32cx_bz3_devsupport.ENABLE_DEEP_SLEEP"])
+dsleepEnabled.setDependencies(isEnabled, ["pic32cx_bz3_devsupport.ENABLE_DEEP_SLEEP", "pic32cx_bz6_devsupport.ENABLE_DEEP_SLEEP"])
 
-retentionRAMVerify = libPDS.createBooleanSymbol("RETENTION_RAM", None)
+retentionRAMVerify = libPDS.createIntegerSymbol("RETENTION_RAM", None)
 retentionRAMVerify.setDefaultValue(getRetentionRAMState())
 retentionRAMVerify.setVisible(False)
-retentionRAMVerify.setDependencies(isEnabled, ["pic32cx_bz3_devsupport.TOTAL_RETENTION_RAM"])
+retentionRAMVerify.setDependencies(updateRetentionRAMState, ["pic32cx_bz3_devsupport.TOTAL_RETENTION_RAM", "pic32cx_bz6_devsupport.TOTAL_RETENTION_RAM"])
 
 retentionRAMSize = libPDS.createIntegerSymbol("RETENTION_RAM_SIZE", None)
 retentionRAMSize.setDefaultValue(getRetentionRAMSize())
 retentionRAMSize.setVisible(False)
-retentionRAMSize.setDependencies(updateValue, ["pic32cx_bz3_devsupport.TOTAL_RETENTION_RAM"])
+retentionRAMSize.setDependencies(updateValue, ["pic32cx_bz3_devsupport.TOTAL_RETENTION_RAM_BYTES", "pic32cx_bz6_devsupport.TOTAL_RETENTION_RAM_BYTES"])
 
 ############################################################################
 ### Create Application configuration items for PDS
@@ -184,7 +207,8 @@ if (processor in pic32cx_bz2_family):
     pdsLinkerFile.setSourcePath("driver/pic32cx-bz/templates/PIC32CX1012BZ25048.ld.ftl")
 elif (processor in pic32cx_bz3_family):
     pdsLinkerFile.setSourcePath("driver/pic32cx-bz/templates/PIC32CX5109BZ31048.ld.ftl")
-
+elif (processor in pic32cx_bz6_family):
+    pdsLinkerFile.setSourcePath("driver/pic32cx-bz/templates/PIC32CX2051BZ62132.ld.ftl")
 
 pdsLinkerFile.setOutputName("{0}.ld".format(processor))
 pdsLinkerFile.setMarkup(True)

@@ -49,6 +49,18 @@ def instantiateComponent(libPDS):
                           'WBZ351',
                           'WBZ350',
                           }
+
+    pic32cx_bz6_family = {'PIC32CX2051BZ62132',
+                          'PIC32CX2051BZ62064',
+                          'PIC32CX2051BZ66048',
+                          'WBZ653',
+                          'WBZ652',
+                          'WBZ651',
+                          'PIC32WM_BZ6204',
+                          'PIC32WM_BZ6203',
+                          'PIC32WM_BZ6602',
+                         }
+    
     global deviceName
     deviceName = Variables.get("__PROCESSOR")
     configName = Variables.get('__CONFIGURATION_NAME')
@@ -99,6 +111,8 @@ def instantiateComponent(libPDS):
         pds_a.setSourcePath('driver/pic32cx-bz/src/src_bz2/pds/pds_bz2.a')
     elif (deviceName in pic32cx_bz3_family):
         pds_a.setSourcePath('driver/pic32cx-bz/src/src_bz3/pds/pds_bz3.a')
+    elif (deviceName in pic32cx_bz6_family):
+        pds_a.setSourcePath('driver/pic32cx-bz/src/src_bz6/pds/pds_bz6.a')
     pds_a.setOutputName('pds.a')
 
     ############################################################################
@@ -111,6 +125,8 @@ def instantiateComponent(libPDS):
         pdsHeaderFile.setSourcePath('driver/pic32cx-bz/src/src_bz2/pds/pds.h')
     elif (deviceName in pic32cx_bz3_family):
         pdsHeaderFile.setSourcePath('driver/pic32cx-bz/src/src_bz3/pds/pds.h')
+    elif (deviceName in pic32cx_bz6_family):
+        pdsHeaderFile.setSourcePath('driver/pic32cx-bz/src/src_bz6/pds/pds.h')
     pdsHeaderFile.setOutputName('pds.h')
     pdsHeaderFile.setOverwrite(True)
     pdsHeaderFile.setDestPath('driver/pds/include')

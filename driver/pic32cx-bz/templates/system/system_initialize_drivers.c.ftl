@@ -33,15 +33,20 @@
     PMU_Set_Mode(${SYSTEM_PMU_MODE});
 </#if>
 <#if (ENABLE_DEEP_SLEEP == true)>
-	<#if PIC32CX_BZ3_DEVICE == true>
+	<#if ((PIC32CX_BZ3_DEVICE == true) || (PIC32CX_BZ6_DEVICE == true))>
 
-	//Config retention RAM size
-	PMU_REGS->PMU_WCMSIZ &= ~PMU_WCMSIZ_SRAM1_SIZ_Msk;
-	<#if (TOTAL_RETENTION_RAM == true)>
+    //Config retention RAM size
+    PMU_REGS->PMU_WCMSIZ &= ~PMU_WCMSIZ_SRAM1_SIZ_Msk;
+	<#if (TOTAL_RETENTION_RAM == 1)>
+    PMU_REGS->PMU_WCMSIZ |= PMU_WCMSIZ_SRAM1_SIZ_16K_SRAM;
+    <#elseif (TOTAL_RETENTION_RAM == 2)>
 	PMU_REGS->PMU_WCMSIZ |= PMU_WCMSIZ_SRAM1_SIZ_32K_SRAM;
-	<#else>
-	PMU_REGS->PMU_WCMSIZ |= PMU_WCMSIZ_SRAM1_SIZ_16K_SRAM;
+    <#elseif ((TOTAL_RETENTION_RAM == 3) && (PIC32CX_BZ6_DEVICE == true))>
+	PMU_REGS->PMU_WCMSIZ |= PMU_WCMSIZ_SRAM1_SIZ_64K_SRAM;
 	</#if>
 	</#if>
 </#if>
 
+<#if PTA_ENABLE == true>
+	PTA_init();
+</#if>

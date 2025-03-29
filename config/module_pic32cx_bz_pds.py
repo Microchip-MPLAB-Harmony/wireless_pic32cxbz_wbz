@@ -35,6 +35,18 @@ pic32cx_bz3_family = {'PIC32CX5109BZ31048',
                       'WBZ351',
                       'WBZ350',
                       }
+
+pic32cx_bz6_family = {'PIC32CX2051BZ62132',
+                      'PIC32CX2051BZ62064',
+                      'PIC32CX2051BZ66048',
+                      'WBZ653',
+                      'WBZ652',
+                      'WBZ651',
+                      'PIC32WM_BZ6204',
+                      'PIC32WM_BZ6203',
+                      'PIC32WM_BZ6602',
+                     }
+
 global deviceName
 deviceName = Variables.get("__PROCESSOR")
 print('Load Module: Harmony Wireless PIC32CX-BZ PDS Support')
@@ -47,5 +59,7 @@ if (deviceName in pic32cx_bz2_family):
     initPDSComponent.addDependency('PIC32CX_BZ2_DevSupport_Dependency', 'Device_Support', None, True, True)
 elif (deviceName in pic32cx_bz3_family):
     initPDSComponent.addDependency('PIC32CX_BZ3_DevSupport_Dependency', 'Device_Support', None, True, True)
+elif (deviceName in pic32cx_bz6_family):
+    initPDSComponent.addDependency('PIC32CX_BZ6_DevSupport_Dependency', 'Device_Support', None, True, True)
 initPDSComponent.addDependency("NVM_Dependency", "MEMORY", None, False, True)
 

@@ -47,6 +47,7 @@
 *******************************************************************************/
 // DOM-IGNORE-END
 
+<#if (DISABLE_APP_CODE_GEN == false) >
 
 #error User action required - manually edit files as described here
 // after completing the required edits, comment out or remove the #error line
@@ -77,6 +78,6 @@
  * Add the following code:
     app_idle_updateRtcCnt(RTC_Timer32CounterGet());
 </#if>
-
  ********************************************************************/
+</#if>
 

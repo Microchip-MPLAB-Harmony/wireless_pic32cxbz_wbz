@@ -55,7 +55,7 @@
 #include <string.h>
 #include "app.h"
 #include "definitions.h"
-${LIST_DS_BLE_INCLUDE_C}
+${LIST_DEV_SUPP_INCLUDE_C}
 <#if ZIGBEESTACK_LOADED>
 #include "app_zigbee/app_zigbee.h"
 #include <z3device/common/include/z3Device.h>
@@ -71,7 +71,7 @@ ${LIST_DS_BLE_INCLUDE_C}
 // *****************************************************************************
 // *****************************************************************************
 
-${LIST_DS_BLE_DATA_C}
+${LIST_DEV_SUPP_DATA_C}
 
 <#if ZIGBEESTACK_LOADED && (ENABLE_CONSOLE == true) >
 extern void process_UART_evt(char* cmdBuf);
@@ -110,6 +110,8 @@ APP_DATA appData;
 /* TODO:  Add any necessary callback functions.
 */
 
+${LIST_DEV_SUPP_CB_FUNC_C}
+
 // *****************************************************************************
 // *****************************************************************************
 // Section: Application Local Functions
@@ -120,6 +122,7 @@ APP_DATA appData;
 /* TODO:  Add any necessary local functions.
 */
 
+${LIST_DEV_SUPP_LOCAL_FUNC_C}
 
 // *****************************************************************************
 // *****************************************************************************
@@ -174,6 +177,9 @@ void APP_Tasks ( void )
 <#if ZIGBEESTACK_LOADED>
     ZB_AppGenericCallbackParam_t cb;
 </#if>
+
+    <#lt>${LIST_DEV_SUPP_APP_ENTRY_C}
+
     /* Check the application's current state. */
     switch ( appData.state )
     {
@@ -183,7 +189,7 @@ void APP_Tasks ( void )
             bool appInitialized = true;
             //appData.appQueue = xQueueCreate( 10, sizeof(APP_Msg_T) );
 
-			<#lt>${LIST_DS_BLE_INIT_C}
+			<#lt>${LIST_DEV_SUPP_INIT_C}
 
 <#if (SLEEP_SUPPORTED || ((ZB_DEEP_SLEEP_SUPPORTED == true) || ((OT_DEEP_SLEEP_SUPPORTED == true) || (MAC_DEEP_SLEEP_SUPPORTED == true)))) && (BLESTACK_LOADED == false)>
             if (!(RTC_REGS->MODE0.RTC_CTRLA & RTC_MODE0_CTRLA_ENABLE_Msk))
@@ -205,7 +211,7 @@ void APP_Tasks ( void )
             if (OSAL_QUEUE_Receive(&appData.appQueue, &appMsg, OSAL_WAIT_FOREVER))
             {
 
-				<#lt>${LIST_DS_BLE_TASK_ENTRY_C}
+				<#lt>${LIST_DEV_SUPP_TASK_ENTRY_C}
 
 <#if ZIGBEESTACK_LOADED>
                 if (p_appMsg->msgId == APP_MSG_ZB_STACK_CB)
@@ -253,9 +259,9 @@ void APP_Tasks ( void )
             }
             break;
         }
-
+        
         /* TODO: implement your application state machine.*/
-
+        <#lt>${LIST_DEV_SUPP_CUSTOM_STATE_C}
 
         /* The default state should never be executed. */
         default:

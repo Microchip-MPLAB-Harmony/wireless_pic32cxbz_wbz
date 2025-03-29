@@ -82,14 +82,22 @@
  * while the SysTick counter is stopped during tickless idle calculations.
  * (SOSC is used as the low power clock.)
  */
+<#if PIC32CX_BZ6_DEVICE == true>
+#define APP_IDLE_RTC_TIMER_FACTOR_SOSC                   ( 27UL )   //2.7ms
+<#else>
 #define APP_IDLE_RTC_TIMER_FACTOR_SOSC                   ( 22UL )   //2.2ms
+</#if>
 
 /*
  * A factor to estimate the duration time between RTC timer and Application timer expired
  * while the SysTick counter is stopped during tickless idle calculations.
  * (POSC is used as the low power clock.)
  */
+<#if PIC32CX_BZ6_DEVICE == true>
+#define APP_IDLE_RTC_TIMER_FACTOR_POSC                   ( 14UL )   //1.4ms
+<#else>
 #define APP_IDLE_RTC_TIMER_FACTOR_POSC                   ( 12UL )   //1.2ms
+</#if>
 
 /* The RTC is a 32-bit counter. */
 #define APP_IDLE_MAX_32_BIT_NUMBER                  ( 0xffffffffUL )

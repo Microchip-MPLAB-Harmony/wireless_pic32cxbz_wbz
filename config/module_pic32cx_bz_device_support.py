@@ -33,6 +33,18 @@ pic32cx_bz3_family = {'PIC32CX5109BZ31048',
                       'WBZ351',
                       'WBZ350',
                       }
+
+pic32cx_bz6_family = {'PIC32CX2051BZ62132',
+                      'PIC32CX2051BZ62064',
+                      'PIC32CX2051BZ66048',
+                      'WBZ653',
+                      'WBZ652',
+                      'WBZ651',
+                      'PIC32WM_BZ6204',
+                      'PIC32WM_BZ6203',
+                      'PIC32WM_BZ6602',
+                     }
+
 global deviceName
 deviceName = Variables.get("__PROCESSOR")
 
@@ -45,6 +57,10 @@ if (deviceName in pic32cx_bz2_family):
 elif (deviceName in pic32cx_bz3_family):
     initDeviceSupport = Module.CreateComponent('pic32cx_bz3_devsupport', 'Device_Support', '/Wireless/Drivers/PIC32CX-BZ System Services', 'driver/pic32cx-bz/config/device_support.py')
     initDeviceSupport.setDisplayType('PIC32CX-BZ3 Device Support')
+elif (deviceName in pic32cx_bz6_family):
+    initDeviceSupport = Module.CreateComponent('pic32cx_bz6_devsupport', 'Device_Support', '/Wireless/Drivers/PIC32CX-BZ System Services', 'driver/pic32cx-bz/config/device_support.py')
+    initDeviceSupport.setDisplayType('PIC32CX-BZ6 Device Support')
+
 initDeviceSupport.addCapability('Device_Support_Capability', 'Device_Support', True)
 initDeviceSupport.addDependency('HarmonyCoreDependency', 'Core Service', 'Core Service', True, True)
 if (deviceName in pic32cx_bz2_family):

@@ -4,18 +4,18 @@ package:
   type: "package"
   status: "production"
   required: false
-  version: "v1.4.0"
+  version: "v1.5.0"
 
   dependencies:
     - name: "csp"
       type: "package"
-      version: "v3.19.1"
+      version: "v3.21.0"
     - name: "core"
       type: "package"
-      version: "v3.13.5"
+      version: "v3.14.2"
     - name: "crypto"
       type: "package"
       version: "v3.8.1"
     - name: "bsp"
       type: "package"
-      version: "v3.20.1"
+      version: "v3.22.0"

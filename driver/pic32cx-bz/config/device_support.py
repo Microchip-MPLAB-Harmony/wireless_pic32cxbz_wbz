@@ -54,6 +54,23 @@ pic32cx_bz3_48pin_family = {'PIC32CX5109BZ31048',
                             'WBZ351',
                            }
 
+pic32cx_bz6_family = {'PIC32CX2051BZ62132',
+                      'PIC32CX2051BZ62064',
+                      'PIC32CX2051BZ66048',
+                      'WBZ653',
+                      'WBZ652',
+                      'WBZ651',
+                      'PIC32WM_BZ6204',
+                      'PIC32WM_BZ6203',
+                      'PIC32WM_BZ6602',
+                     }
+
+pic32wm_bz6_family = {
+                      'PIC32WM_BZ6204',
+                      'PIC32WM_BZ6203',
+                      'PIC32WM_BZ6602',
+                     }
+
 global deviceName
 deviceName = Variables.get("__PROCESSOR")
 
@@ -131,6 +148,7 @@ DEV_WBZ451  = 0
 DEV_WBZ450  = 1
 DEV_WBZ451H = 2
 DEV_WBZ35X  = 3
+DEV_WBZ65X  = 4
 
 # Column Index of TxBackoffTable
 COL_REG = 0     # Regulatory
@@ -161,6 +179,7 @@ devTxInfo = [
     [6,  5], # DEV_WBZ450
     [20, 4], # DEV_WBZ451H
     [11, 3], # DEV_WBZ35X
+    [11, 3], # DEV_WBZ65X
     ]
 
 devDefMaxTxVal =[
@@ -168,6 +187,7 @@ devDefMaxTxVal =[
     devTxInfo[DEV_WBZ450][COL_COND_TX_MAX] + devTxInfo[DEV_WBZ450][COL_ANT_GAIN],   # DEV_WBZ450
     devTxInfo[DEV_WBZ451H][COL_COND_TX_MAX] + devTxInfo[DEV_WBZ451H][COL_ANT_GAIN], # DEV_WBZ451H
     devTxInfo[DEV_WBZ35X][COL_COND_TX_MAX] + devTxInfo[DEV_WBZ35X][COL_ANT_GAIN],   # DEV_WBZ35X
+    devTxInfo[DEV_WBZ65X][COL_COND_TX_MAX] + devTxInfo[DEV_WBZ65X][COL_ANT_GAIN],   # DEV_WBZ65X
     ]
 
 # BLE Backoff tables
@@ -243,6 +263,24 @@ bleTxBackoffTableForWBZ35X = [
     [REG_TAIWAN, MD_FHSS, devDefMaxTxVal[DEV_WBZ35X]],
     ]
 
+bleTxBackoffTableForWBZ65X = [
+    # Regulatory(COL_REG), Mode(COL_MD), Value of Backoff(COL_VAL)
+    # Non-FHSS
+    [REG_ETSI_UK, MD_NON_FHSS, 8],
+    [REG_FCC_IC, MD_NON_FHSS, devDefMaxTxVal[DEV_WBZ65X]],
+    [REG_JAPAN, MD_NON_FHSS, 11],
+    [REG_KOREA, MD_NON_FHSS, 10],
+    [REG_CHINA, MD_NON_FHSS, devDefMaxTxVal[DEV_WBZ65X]],
+    [REG_TAIWAN, MD_NON_FHSS, devDefMaxTxVal[DEV_WBZ65X]],
+    # FHSS
+    [REG_ETSI_UK, MD_FHSS, devDefMaxTxVal[DEV_WBZ65X]],
+    [REG_FCC_IC, MD_FHSS, devDefMaxTxVal[DEV_WBZ65X]],
+    [REG_JAPAN, MD_FHSS, 11],
+    [REG_KOREA, MD_FHSS, 10],
+    [REG_CHINA, MD_FHSS, devDefMaxTxVal[DEV_WBZ65X]],
+    [REG_TAIWAN, MD_FHSS, devDefMaxTxVal[DEV_WBZ65X]],
+    ]
+
 # Zigbee Backoff tables
 zbTxBackoffTableForWBZ451 = [
     # Regulatory(COL_REG), Mode(COL_MD), Value of Backoff(COL_VAL)
@@ -290,7 +328,7 @@ zbTxBackoffTableForWBZ35X = [
 
 devTxBackoffTable=[
     # DEV_WBZ451, DEV_WBZ450, DEV_WBZ451H, DEV_WBZ35X
-    [bleTxBackoffTableForWBZ451, bleTxBackoffTableForWBZ450, bleTxBackoffTableForWBZ451H, bleTxBackoffTableForWBZ35X], # PROTO_BLE
+    [bleTxBackoffTableForWBZ451, bleTxBackoffTableForWBZ450, bleTxBackoffTableForWBZ451H, bleTxBackoffTableForWBZ35X, bleTxBackoffTableForWBZ65X], # PROTO_BLE
     [zbTxBackoffTableForWBZ451, zbTxBackoffTableForWBZ450, zbTxBackoffTableForWBZ451H, zbTxBackoffTableForWBZ35X], # PROTO_ZB
     ]
 
@@ -542,9 +580,16 @@ def calcTxPwrBackoff(devIdx, protoType, regEnList, antGain):
 
     return txPwrMaxNonFHSS, txPwrMaxFHSS;
 
-def notifyTxPwrInfo(component):
+def notifyTxPwrInfo(source, target):
 
     global deviceName
+    targetList = []
+
+    # Target to Msg: Specific component or All of active and radio components
+    if (target != None):
+        targetList.append(target.getID())
+    else:
+        targetList = Database.getActiveComponentIDs()
 
     # Device Idx
     if deviceName == 'WBZ451' or deviceName == 'PIC32CX1012BZ25048' or deviceName == 'PIC32CX1012BZ25032':
@@ -555,45 +600,48 @@ def notifyTxPwrInfo(component):
         devIdx = DEV_WBZ451H
     elif deviceName == 'WBZ351' or deviceName == 'WBZ350' or deviceName == 'PIC32CX5109BZ31048' or deviceName == 'PIC32CX5109BZ31032': # no backoff table received
         devIdx = DEV_WBZ35X
+    elif deviceName == 'PIC32CX2051BZ62132' or deviceName == 'PIC32CX2051BZ62064' or deviceName == 'PIC32CX2051BZ66048' or deviceName =='PIC32WM_BZ6204' or deviceName == 'PIC32WM_BZ6203' or deviceName == 'PIC32WM_BZ6602' or deviceName == 'WBZ653' or deviceName == 'WBZ652' or deviceName == 'WBZ651':
+        devIdx = DEV_WBZ65X
     else:
         print("Not supported device")
         return;
 
+
     # Regulatory regions enabled
-    regEnList[COL_ETSI_UK]  = component.getSymbolValue('ETSI_REGION')
-    regEnList[COL_FCC_IC]   = component.getSymbolValue('FCC_REGION')
-    regEnList[COL_JAPAN]    = component.getSymbolValue('JAPAN_REGION')
-    regEnList[COL_KOREA]    = component.getSymbolValue('KOREA_REGION')
-    regEnList[COL_CHINA]    = component.getSymbolValue('CHINA_REGION')
-    regEnList[COL_TAIWAN]   = component.getSymbolValue('TAIWAN_REGION')
-    
+    regEnList[COL_ETSI_UK]  = source.getSymbolValue('ETSI_REGION')
+    regEnList[COL_FCC_IC]   = source.getSymbolValue('FCC_REGION')
+    regEnList[COL_JAPAN]    = source.getSymbolValue('JAPAN_REGION')
+    regEnList[COL_KOREA]    = source.getSymbolValue('KOREA_REGION')
+    regEnList[COL_CHINA]    = source.getSymbolValue('CHINA_REGION')
+    regEnList[COL_TAIWAN]   = source.getSymbolValue('TAIWAN_REGION')
+
     # Antenna Gain
-    if (component.getSymbolValue('CUSTOM_ANT_ENABLE')):
-        antGain = component.getSymbolValue('CUSTOM_ANT_GAIN')
+    if (source.getSymbolValue('CUSTOM_ANT_ENABLE')):
+        antGain = source.getSymbolValue('CUSTOM_ANT_GAIN')
     else:
         antGain = devTxInfo[devIdx][COL_ANT_GAIN]
-    
+
     # Send message to all active components after the calculation of backoff value(upper limit).
     for client in RADIOSTACK_COMPONENTS:
-        if client in Database.getActiveComponentIDs():
+        if client in targetList:
             if (client == 'BLE_STACK_LIB'):
                 protoType = PROTO_BLE
             elif (client in ZIGBEE_COMPONENTS) or (client == 'OPEN_THREAD') or (client == 'IEEE_802154_PHY') or (client == 'IEEE_802154_MAC'):
                 protoType = PROTO_ZB
             else:
                 break;
-            
+
             # Max value(backoff value)
             txPwrMaxNonFHSS, txPwrMaxFHSS = calcTxPwrBackoff(devIdx, protoType, regEnList, antGain)
-            
+
             # Message of max value for Non-FHSS/FHSS
             Log.writeInfoMessage('{:<17}: Sending  - target={} ID={} Value={}'.format('device_support', client, 'TX_PWR_MAX_NON_FHSS', txPwrMaxNonFHSS))
             Database.sendMessage(client, "ANTENNA_GAIN_CHANGE", {'target': client, 'TX_PWR_MAX_NON_FHSS':txPwrMaxNonFHSS})
-            
+
             if (protoType == PROTO_BLE):
                 Log.writeInfoMessage('{:<17}: Sending  - target={} ID={} Value={}'.format('device_support', client, 'TX_PWR_MAX_FHSS', txPwrMaxFHSS))
                 Database.sendMessage(client, "ANTENNA_GAIN_CHANGE", {'target': client, 'TX_PWR_MAX_FHSS':txPwrMaxFHSS})
-            
+
             # Message of Gain value
             Database.sendMessage(client, "ANTENNA_GAIN_CHANGE", {'target': client, 'CUSTOM_ANT_GAIN':antGain})
 
@@ -604,7 +652,7 @@ def antGainEnable(symbol, event):
 
 def antGainChanged(symbol, event):
     Log.writeInfoMessage('device_support:antGainChanged(symbolID:{}, eventID:{}, eventValue:{})'.format(symbol.getID(), event["id"], event["value"]))    
-    notifyTxPwrInfo(symbol.getComponent())
+    notifyTxPwrInfo(symbol.getComponent(), None)
 
 def getBLEStackLibDsadven():
     components = Database.getActiveComponentIDs()
@@ -635,7 +683,15 @@ def computeMaxAppRetentionRAM():
         appRequirements = (8192 - stackRetentionRAM.getValue())
     elif (deviceName in pic32cx_bz3_family):
         appRequirements = (32768 - stackRetentionRAM.getValue())
+    elif (deviceName in pic32cx_bz6_family):
+        appRequirements = (32768 - stackRetentionRAM.getValue())
     return appRequirements
+
+def configAppCodeEnable(symbol, event):
+
+    enAppFile = not event["value"]
+    # Disable/Enable app.c/ app.h generated by Device_Support
+    symbol.setEnabled(enAppFile)
 
 def instantiateComponent(libBTZBCore):
     print('PIC32CX-BZ BTZB_Common')
@@ -732,7 +788,9 @@ def instantiateComponent(libBTZBCore):
     elif (deviceName in pic32cx_bz3_family):
         sys_service_a.setSourcePath('driver/pic32cx-bz/src/src_bz3/device_support/pic32cx_bz3_device_support.a')
         sys_service_a.setOutputName('pic32cx_bz3_device_support.a')
-
+    elif (deviceName in pic32cx_bz6_family):
+        sys_service_a.setSourcePath('driver/pic32cx-bz/src/src_bz6/device_support/pic32cx_bz6_device_support.a')
+        sys_service_a.setOutputName('pic32cx_bz6_device_support.a')
 
     ############################################################################
     ### Add pic32cx-bz static header files
@@ -744,6 +802,8 @@ def instantiateComponent(libBTZBCore):
         rfSysInitializeHeaderFile.setSourcePath('driver/pic32cx-bz/src/src_bz2/device_support/rf_system.h')
     elif (deviceName in pic32cx_bz3_family):
         rfSysInitializeHeaderFile.setSourcePath('driver/pic32cx-bz/src/src_bz3/device_support/rf_system.h')
+    elif (deviceName in pic32cx_bz6_family):
+        rfSysInitializeHeaderFile.setSourcePath('driver/pic32cx-bz/src/src_bz6/device_support/rf_system.h')
     rfSysInitializeHeaderFile.setOutputName('rf_system.h')
     rfSysInitializeHeaderFile.setOverwrite(True)
     rfSysInitializeHeaderFile.setDestPath('driver/device_support/include')
@@ -757,6 +817,8 @@ def instantiateComponent(libBTZBCore):
         pmuSystemHeaderFile.setSourcePath('driver/pic32cx-bz/src/src_bz2/device_support/pmu_system.h')
     elif (deviceName in pic32cx_bz3_family):
         pmuSystemHeaderFile.setSourcePath('driver/pic32cx-bz/src/src_bz3/device_support/pmu_system.h')
+    elif (deviceName in pic32cx_bz6_family):
+        pmuSystemHeaderFile.setSourcePath('driver/pic32cx-bz/src/src_bz6/device_support/pmu_system.h')
     pmuSystemHeaderFile.setOutputName('pmu_system.h')
     pmuSystemHeaderFile.setOverwrite(True)
     pmuSystemHeaderFile.setDestPath('driver/device_support/include')
@@ -770,6 +832,8 @@ def instantiateComponent(libBTZBCore):
         infoBlockHeaderFile.setSourcePath('driver/pic32cx-bz/src/src_bz2/device_support/info_block.h')
     elif (deviceName in pic32cx_bz3_family):
         infoBlockHeaderFile.setSourcePath('driver/pic32cx-bz/src/src_bz3/device_support/info_block.h')
+    elif (deviceName in pic32cx_bz6_family):
+        infoBlockHeaderFile.setSourcePath('driver/pic32cx-bz/src/src_bz6/device_support/info_block.h')
     infoBlockHeaderFile.setOutputName('info_block.h')
     infoBlockHeaderFile.setOverwrite(True)
     infoBlockHeaderFile.setDestPath('driver/device_support/include')
@@ -783,6 +847,8 @@ def instantiateComponent(libBTZBCore):
         sleepSystemHeaderFile.setSourcePath('driver/pic32cx-bz/src/src_bz2/device_support/sleep_system.h')
     elif (deviceName in pic32cx_bz3_family):
         sleepSystemHeaderFile.setSourcePath('driver/pic32cx-bz/src/src_bz3/device_support/sleep_system.h')
+    elif (deviceName in pic32cx_bz6_family):
+        sleepSystemHeaderFile.setSourcePath('driver/pic32cx-bz/src/src_bz6/device_support/sleep_system.h')
     sleepSystemHeaderFile.setOutputName('sleep_system.h')
     sleepSystemHeaderFile.setOverwrite(True)
     sleepSystemHeaderFile.setDestPath('driver/device_support/include')
@@ -796,6 +862,8 @@ def instantiateComponent(libBTZBCore):
         HeaderFile.setSourcePath('driver/pic32cx-bz/src/src_bz2/app_fw/framework_defs.h')
     elif (deviceName in pic32cx_bz3_family):
         HeaderFile.setSourcePath('driver/pic32cx-bz/src/src_bz3/app_fw/framework_defs.h')
+    elif (deviceName in pic32cx_bz6_family):
+        HeaderFile.setSourcePath('driver/pic32cx-bz/src/src_bz6/app_fw/framework_defs.h')
     HeaderFile.setOutputName('framework_defs.h')
     HeaderFile.setOverwrite(True)
     HeaderFile.setDestPath('')
@@ -809,6 +877,8 @@ def instantiateComponent(libBTZBCore):
         HeaderFile.setSourcePath('driver/pic32cx-bz/src/src_bz2/app_fw/osal_freertos_extend.h')
     elif (deviceName in pic32cx_bz3_family):
         HeaderFile.setSourcePath('driver/pic32cx-bz/src/src_bz3/app_fw/osal_freertos_extend.h')
+    elif (deviceName in pic32cx_bz6_family):
+        HeaderFile.setSourcePath('driver/pic32cx-bz/src/src_bz6/app_fw/osal_freertos_extend.h')
     HeaderFile.setOutputName('osal_freertos_extend.h')
     HeaderFile.setOverwrite(True)
     HeaderFile.setDestPath('/osal')
@@ -822,6 +892,8 @@ def instantiateComponent(libBTZBCore):
         HeaderFile.setSourcePath('driver/pic32cx-bz/src/src_bz2/app_fw/osal_freertos.h')
     elif (deviceName in pic32cx_bz3_family):
         HeaderFile.setSourcePath('driver/pic32cx-bz/src/src_bz3/app_fw/osal_freertos.h')
+    elif (deviceName in pic32cx_bz6_family):
+        HeaderFile.setSourcePath('driver/pic32cx-bz/src/src_bz6/app_fw/osal_freertos.h')
     HeaderFile.setOutputName('osal_freertos.h')
     HeaderFile.setOverwrite(True)
     HeaderFile.setDestPath('/osal')
@@ -835,6 +907,8 @@ def instantiateComponent(libBTZBCore):
         HeaderFile.setSourcePath('driver/pic32cx-bz/src/src_bz2/app_fw/osal.h')
     elif (deviceName in pic32cx_bz3_family):
         HeaderFile.setSourcePath('driver/pic32cx-bz/src/src_bz3/app_fw/osal.h')
+    elif (deviceName in pic32cx_bz6_family):
+        HeaderFile.setSourcePath('driver/pic32cx-bz/src/src_bz6/app_fw/osal.h')
     HeaderFile.setOutputName('osal.h')
     HeaderFile.setOverwrite(True)
     HeaderFile.setDestPath('/osal')
@@ -853,6 +927,8 @@ def instantiateComponent(libBTZBCore):
         SourceFile.setSourcePath('driver/pic32cx-bz/src/src_bz2/app_fw/osal_freertos_extend.c')
     elif (deviceName in pic32cx_bz3_family):
         SourceFile.setSourcePath('driver/pic32cx-bz/src/src_bz3/app_fw/osal_freertos_extend.c')
+    elif (deviceName in pic32cx_bz6_family):
+        SourceFile.setSourcePath('driver/pic32cx-bz/src/src_bz6/app_fw/osal_freertos_extend.c')
     SourceFile.setOutputName('osal_freertos_extend.c')
     SourceFile.setOverwrite(True)
     SourceFile.setDestPath('/osal')
@@ -867,6 +943,8 @@ def instantiateComponent(libBTZBCore):
         SourceFile.setSourcePath('driver/pic32cx-bz/src/src_bz2/app_fw/osal_freertos.c')
     elif (deviceName in pic32cx_bz3_family):
         SourceFile.setSourcePath('driver/pic32cx-bz/src/src_bz3/app_fw/osal_freertos.c')
+    elif (deviceName in pic32cx_bz6_family):
+        SourceFile.setSourcePath('driver/pic32cx-bz/src/src_bz6/app_fw/osal_freertos.c')
     SourceFile.setOutputName('osal_freertos.c')
     SourceFile.setOverwrite(True)
     SourceFile.setDestPath('/osal')
@@ -895,9 +973,10 @@ def instantiateComponent(libBTZBCore):
     HeaderFile.setType('HEADER')
     HeaderFile.setMarkup(True)
     HeaderFile.setEnabled(True)
+    HeaderFile.setDependencies(configAppCodeEnable, ["DISABLE_APP_CODE_GEN"])
 
     # Application definitions from BLE
-    dsAppBleMsgIdList = libBTZBCore.createListSymbol("LIST_DS_BLE_MSG_ID_H", None)
+    dsAppBleMsgIdList = libBTZBCore.createListSymbol("LIST_DEV_SUPP_MSG_ID_H", None)
 
     # Add app_idle_task.h
     freertosidleTaskHeaderFile = libBTZBCore.createFileSymbol("APP_IDLE_TASK_H", None)
@@ -905,6 +984,8 @@ def instantiateComponent(libBTZBCore):
         freertosidleTaskHeaderFile.setSourcePath("driver/pic32cx-bz/src/src_bz3/app_fw/app_idle_task.h")
     elif (deviceName in pic32cx_bz3_family):
         freertosidleTaskHeaderFile.setSourcePath("driver/pic32cx-bz/src/src_bz3/app_fw/app_idle_task.h")
+    elif (deviceName in pic32cx_bz6_family):
+        freertosidleTaskHeaderFile.setSourcePath("driver/pic32cx-bz/src/src_bz6/app_fw/app_idle_task.h")
     freertosidleTaskHeaderFile.setOutputName("app_idle_task.h")
     freertosidleTaskHeaderFile.setDestPath('../../')
     freertosidleTaskHeaderFile.setProjectPath('')
@@ -928,12 +1009,17 @@ def instantiateComponent(libBTZBCore):
     SourceFile.setType('SOURCE')
     SourceFile.setEnabled(True)
     SourceFile.setMarkup(True)
+    SourceFile.setDependencies(configAppCodeEnable, ["DISABLE_APP_CODE_GEN"])
 
-    # Application codes from BLE
-    dsAppBleIncludeList = libBTZBCore.createListSymbol("LIST_DS_BLE_INCLUDE_C", None)
-    dsAppBleDataList = libBTZBCore.createListSymbol("LIST_DS_BLE_DATA_C", None)
-    dsAppBleInitList = libBTZBCore.createListSymbol("LIST_DS_BLE_INIT_C", None)
-    dsAppBleTaskEntryList = libBTZBCore.createListSymbol("LIST_DS_BLE_TASK_ENTRY_C", None)
+    # Application codes from plug-in
+    dsAppIncludeList = libBTZBCore.createListSymbol("LIST_DEV_SUPP_INCLUDE_C", None)
+    dsAppDataList = libBTZBCore.createListSymbol("LIST_DEV_SUPP_DATA_C", None)
+    dsAppInitList = libBTZBCore.createListSymbol("LIST_DEV_SUPP_INIT_C", None)
+    dsAppEntryList = libBTZBCore.createListSymbol("LIST_DEV_SUPP_APP_ENTRY_C", None)
+    dsAppTaskEntryList = libBTZBCore.createListSymbol("LIST_DEV_SUPP_TASK_ENTRY_C", None)
+    dsAppCbFuncList = libBTZBCore.createListSymbol("LIST_DEV_SUPP_CB_FUNC_C", None)
+    dsAppLocalFuncList = libBTZBCore.createListSymbol("LIST_DEV_SUPP_LOCAL_FUNC_C", None)
+    dsAppCustomStateList = libBTZBCore.createListSymbol("LIST_DEV_SUPP_CUSTOM_STATE_C", None)
 
     # Add app_idle_task.c
     freertosidleTaskSourceFile = libBTZBCore.createFileSymbol("APP_IDLE_TASK_C", None)
@@ -956,6 +1042,8 @@ def instantiateComponent(libBTZBCore):
     appUserEditsSourceFile.setMarkup(True)
     # setEnabled is controlled in configAppIdleTask
     appUserEditsSourceFile.setEnabled(False)
+    appUserEditsSourceFile.setDependencies(configAppCodeEnable, ["DISABLE_APP_CODE_GEN"])
+
 
     # Add device_deep_sleep.h
     global deviceDeepSleepHeaderFile
@@ -964,6 +1052,8 @@ def instantiateComponent(libBTZBCore):
         deviceDeepSleepHeaderFile.setSourcePath("driver/pic32cx-bz/src/src_bz2/app_fw/device_deep_sleep.h")
     elif (deviceName in pic32cx_bz3_family):
         deviceDeepSleepHeaderFile.setSourcePath("driver/pic32cx-bz/src/src_bz3/app_fw/device_deep_sleep.h")
+    elif (deviceName in pic32cx_bz6_family):
+        deviceDeepSleepHeaderFile.setSourcePath("driver/pic32cx-bz/src/src_bz6/app_fw/device_deep_sleep.h")
     deviceDeepSleepHeaderFile.setOutputName("device_deep_sleep.h")
     deviceDeepSleepHeaderFile.setDestPath('')
     deviceDeepSleepHeaderFile.setProjectPath('config/' + configName)
@@ -975,8 +1065,10 @@ def instantiateComponent(libBTZBCore):
     # Add device_deep_sleep.c
     global deviceDeepSleepSourceFile
     deviceDeepSleepSourceFile = libBTZBCore.createFileSymbol("DEVICE_DEEP_SLEEP_C", None)
-
-    deviceDeepSleepSourceFile.setSourcePath("driver/pic32cx-bz/templates/low_power/device_deep_sleep.ftl")
+    if (deviceName in pic32cx_bz6_family):
+        deviceDeepSleepSourceFile.setSourcePath("driver/pic32cx-bz/templates/low_power/device_deep_sleep_bz6.ftl")
+    else:
+        deviceDeepSleepSourceFile.setSourcePath("driver/pic32cx-bz/templates/low_power/device_deep_sleep.ftl")
     deviceDeepSleepSourceFile.setOutputName("device_deep_sleep.c")
     deviceDeepSleepSourceFile.setDestPath('')
     deviceDeepSleepSourceFile.setProjectPath('config/' + configName)
@@ -993,6 +1085,8 @@ def instantiateComponent(libBTZBCore):
         deviceSleepHeaderFile.setSourcePath("driver/pic32cx-bz/src/src_bz2/app_fw/device_sleep.h")
     elif (deviceName in pic32cx_bz3_family):
         deviceSleepHeaderFile.setSourcePath("driver/pic32cx-bz/src/src_bz3/app_fw/device_sleep.h")
+    elif (deviceName in pic32cx_bz6_family):
+        deviceSleepHeaderFile.setSourcePath("driver/pic32cx-bz/src/src_bz6/app_fw/device_sleep.h")
     deviceSleepHeaderFile.setOutputName("device_sleep.h")
     deviceSleepHeaderFile.setDestPath('')
     deviceSleepHeaderFile.setProjectPath('config/' + configName)
@@ -1008,6 +1102,8 @@ def instantiateComponent(libBTZBCore):
         deviceSleepSourceFile.setSourcePath("driver/pic32cx-bz/templates/low_power/device_sleep_bz2.ftl")
     elif (deviceName in pic32cx_bz3_family):
         deviceSleepSourceFile.setSourcePath("driver/pic32cx-bz/templates/low_power/device_sleep_bz3.ftl")
+    elif (deviceName in pic32cx_bz6_family):
+        deviceSleepSourceFile.setSourcePath("driver/pic32cx-bz/templates/low_power/device_sleep_bz6.ftl")
     deviceSleepSourceFile.setOutputName("device_sleep.c")
     deviceSleepSourceFile.setDestPath('')
     deviceSleepSourceFile.setProjectPath('config/' + configName)
@@ -1070,11 +1166,62 @@ def instantiateComponent(libBTZBCore):
             incFileSym.setType('HEADER')
             incFileSym.setEnabled(True)
 
+    if (deviceName in pic32cx_bz6_family):
+        rom_apiAPIHeaders = [
+            ('api_table.h', 'driver/pic32cx-bz/src/src_bz6/rom_api/', 'driver/security/'),
+
+            ('adapter_api.h', 'driver/pic32cx-bz/src/src_bz6/rom_api/cryptopk/', 'driver/security/cryptopk/'),
+            ('cmddefs_api.h', 'driver/pic32cx-bz/src/src_bz6/rom_api/cryptopk/', 'driver/security/cryptopk/'),
+            ('core_api.h', 'driver/pic32cx-bz/src/src_bz6/rom_api/cryptopk/', 'driver/security/cryptopk/'),
+            ('dsa_api.h', 'driver/pic32cx-bz/src/src_bz6/rom_api/cryptopk/', 'driver/security/cryptopk/'),
+            ('ec_curves_api.h', 'driver/pic32cx-bz/src/src_bz6/rom_api/cryptopk/', 'driver/security/cryptopk/'),
+            ('eccweierstrass_api.h', 'driver/pic32cx-bz/src/src_bz6/rom_api/cryptopk/', 'driver/security/cryptopk/'),
+            ('ecjpake.h', 'driver/pic32cx-bz/src/src_bz6/rom_api/cryptopk/', 'driver/security/cryptopk/'),
+            ('ed448_api.h', 'driver/pic32cx-bz/src/src_bz6/rom_api/cryptopk/', 'driver/security/cryptopk/'),
+            ('ed25519_api.h', 'driver/pic32cx-bz/src/src_bz6/rom_api/cryptopk/', 'driver/security/cryptopk/'),
+            ('impl.h', 'driver/pic32cx-bz/src/src_bz6/rom_api/cryptopk/', 'driver/security/cryptopk/'),
+            ('inputslots.h', 'driver/pic32cx-bz/src/src_bz6/rom_api/cryptopk/', 'driver/security/cryptopk/'),
+            ('internal.h', 'driver/pic32cx-bz/src/src_bz6/rom_api/cryptopk/', 'driver/security/cryptopk/'),
+            ('iomem.h', 'driver/pic32cx-bz/src/src_bz6/rom_api/cryptopk/', 'driver/security/cryptopk/'),
+            ('montgomery_api.h', 'driver/pic32cx-bz/src/src_bz6/rom_api/cryptopk/', 'driver/security/cryptopk/'),
+            ('rsa.h', 'driver/pic32cx-bz/src/src_bz6/rom_api/cryptopk/', 'driver/security/cryptopk/'),
+            ('statuscodes_api.h', 'driver/pic32cx-bz/src/src_bz6/rom_api/cryptopk/', 'driver/security/cryptopk/'),
+            ('sxbufop.h', 'driver/pic32cx-bz/src/src_bz6/rom_api/cryptopk/', 'driver/security/cryptopk/'),
+            ('version.h', 'driver/pic32cx-bz/src/src_bz6/rom_api/cryptopk/', 'driver/security/cryptopk/'),
+
+            ('aead_api.h', 'driver/pic32cx-bz/src/src_bz6/rom_api/cryptosym/', 'driver/security/cryptosym/'),
+            ('blkcipher_api.h', 'driver/pic32cx-bz/src/src_bz6/rom_api/cryptosym/', 'driver/security/cryptosym/'),
+            ('cmac_api.h', 'driver/pic32cx-bz/src/src_bz6/rom_api/cryptosym/', 'driver/security/cryptosym/'),
+            ('cmmask_api.h', 'driver/pic32cx-bz/src/src_bz6/rom_api/cryptosym/', 'driver/security/cryptosym/'),
+            ('hash_api.h', 'driver/pic32cx-bz/src/src_bz6/rom_api/cryptosym/', 'driver/security/cryptosym/'),
+            ('hmac_api.h', 'driver/pic32cx-bz/src/src_bz6/rom_api/cryptosym/', 'driver/security/cryptosym/'),
+            ('internal.h', 'driver/pic32cx-bz/src/src_bz6/rom_api/cryptosym/', 'driver/security/cryptosym/'),
+            ('interrupts_api.h', 'driver/pic32cx-bz/src/src_bz6/rom_api/cryptosym/', 'driver/security/cryptosym/'),
+            ('keyref_api.h', 'driver/pic32cx-bz/src/src_bz6/rom_api/cryptosym/', 'driver/security/cryptosym/'),
+            ('mac_api.h', 'driver/pic32cx-bz/src/src_bz6/rom_api/cryptosym/', 'driver/security/cryptosym/'),
+            ('sha1_api.h', 'driver/pic32cx-bz/src/src_bz6/rom_api/cryptosym/', 'driver/security/cryptosym/'),
+            ('sha2_api.h', 'driver/pic32cx-bz/src/src_bz6/rom_api/cryptosym/', 'driver/security/cryptosym/'),
+            ('sm3_api.h', 'driver/pic32cx-bz/src/src_bz6/rom_api/cryptosym/', 'driver/security/cryptosym/'),
+            ('statuscodes.h', 'driver/pic32cx-bz/src/src_bz6/rom_api/cryptosym/', 'driver/security/cryptosym/'),
+            ('trng_api.h', 'driver/pic32cx-bz/src/src_bz6/rom_api/cryptosym/', 'driver/security/cryptosym/'),
+            ('trnginternal.h', 'driver/pic32cx-bz/src/src_bz6/rom_api/cryptosym/', 'driver/security/cryptosym/'),
+            ]
+
+        for incFile, srcPath,dstPath in rom_apiAPIHeaders:
+            incFileSym = libBTZBCore.createFileSymbol(None, None)
+            incFileSym.setSourcePath(srcPath + incFile)
+            incFileSym.setOutputName(incFile)
+            incFileSym.setOverwrite(True)
+            incFileSym.setDestPath(dstPath)
+            incFileSym.setProjectPath('config/' + configName + '/' + dstPath)
+            incFileSym.setType('HEADER')
+            incFileSym.setEnabled(True)
     ############################################################################
     ### Add logic for adding BLE stack to app.c
     ############################################################################
     # This boolean is controlled configAppIdleTask called by:
     #   onAttachmentConnected or onAttachmentDisconnected
+    global bleStackLoaded
     bleStackLoaded = libBTZBCore.createBooleanSymbol('BLESTACK_LOADED', None)
     bleStackLoaded.setDefaultValue('BLE_STACK_LIB' in activeComponents)
     bleStackLoaded.setVisible(False)
@@ -1108,6 +1255,7 @@ def instantiateComponent(libBTZBCore):
     ############################################################################
     # This boolean is controlled configAppIdleTask called by:
     #   onAttachmentConnected or onAttachmentDisconnected
+    global phyLoaded
     phyLoaded = libBTZBCore.createBooleanSymbol('IEEE_802154_PHY_LOADED', None)
     phyLoaded.setDefaultValue('IEEE_802154_PHY' in activeComponents)
     phyLoaded.setVisible(False)
@@ -1216,10 +1364,18 @@ def instantiateComponent(libBTZBCore):
     ### Add logic for retention RAM option
     ############################################################################
     global totalRetentionRAM
-    totalRetentionRAM = libBTZBCore.createBooleanSymbol('TOTAL_RETENTION_RAM', deepSleepEnable)
+    #totalRetentionRAM = libBTZBCore.createBooleanSymbol('TOTAL_RETENTION_RAM', deepSleepEnable)
+    #totalRetentionRAM.setVisible(False)
+    #totalRetentionRAM.setDefaultValue(False)
+    #totalRetentionRAM.setDependencies(enable32KRetentionRAM, ["APP_RETENTION_RAM", "STACK_RETENTION_RAM"])
+    totalRetentionRAM = libBTZBCore.createIntegerSymbol('TOTAL_RETENTION_RAM', deepSleepEnable)
     totalRetentionRAM.setVisible(False)
-    totalRetentionRAM.setDefaultValue(False)
+    totalRetentionRAM.setDefaultValue(0)
     totalRetentionRAM.setDependencies(enable32KRetentionRAM, ["APP_RETENTION_RAM", "STACK_RETENTION_RAM"])
+    #0: No need to assign ret ram size
+    #1: 16kbytes ret ram
+    #2: 32kbytes ret ram
+    #3: 64kbytes ret ram
 
     ############################################################################
     ### Add logic for retention RAM option
@@ -1437,6 +1593,30 @@ def instantiateComponent(libBTZBCore):
     pic32cxbznPinDevice = libBTZBCore.createBooleanSymbol('PIC32CX_BZ3_48PIN_DEVICE', None)
     pic32cxbznPinDevice.setDefaultValue(deviceName in pic32cx_bz3_48pin_family)
     pic32cxbznPinDevice.setVisible(False)
+    
+    execfile(Module.getPath()+'/driver/pic32cx-bz/config/pta_config.py')
+
+    ############################################################################
+    ### PIC32CX-BZ6 family Identification symbol
+    ############################################################################
+    # This boolean identifies the device is PIC32CX-BZ6 family device
+    pic32cxbz6Device = libBTZBCore.createBooleanSymbol('PIC32CX_BZ6_DEVICE', None)
+    pic32cxbz6Device.setDefaultValue(deviceName in pic32cx_bz6_family)
+    pic32cxbz6Device.setVisible(False)
+
+    # This boolean identifies the device is new module name of PIC32WM-BZ6 family device
+    pic32wmbz6Device = libBTZBCore.createBooleanSymbol('PIC32WM_BZ6_DEVICE', None)
+    pic32wmbz6Device.setDefaultValue(deviceName in pic32wm_bz6_family)
+    pic32wmbz6Device.setVisible(False)
+
+    ############################################################################
+    ### BLE Disable App Code Generation setting
+    ############################################################################
+    disAppCodeGen = libBTZBCore.createBooleanSymbol('DISABLE_APP_CODE_GEN', None)
+    disAppCodeGen.setLabel('Disable App Code Gen')
+    disAppCodeGen.setDescription('Disable App Code Gen')
+    disAppCodeGen.setDefaultValue(False)
+    disAppCodeGen.setVisible(False)
 
 def finalizeComponent(libBTZBCore):
     print('Finalizing: libBTZBCore')
@@ -1482,7 +1662,7 @@ def onAttachmentConnected(source, target):
         configAppIdleTask(source["component"], targetID, True)
 
     # send initial Custom Antenna values to clients
-    notifyTxPwrInfo(source["component"])
+    notifyTxPwrInfo(source["component"], target["component"])
 
     if targetID == 'rtc':
         Database.setSymbolValue("rtc", "RTC_MODE0_INTENSET_CMP0_ENABLE", True)
@@ -1581,6 +1761,8 @@ def handleSleepEnable(args):
             handleRTC_Support({"target": "pic32cx_bz2_devsupport", "source": "pic32cx_bz2_devsupport", "rtcRequired": True})
         elif (deviceName in pic32cx_bz3_family):
             handleRTC_Support({"target": "pic32cx_bz3_devsupport", "source": "pic32cx_bz3_devsupport", "rtcRequired": True})
+        elif (deviceName in pic32cx_bz6_family):
+            handleRTC_Support({"target": "pic32cx_bz6_devsupport", "source": "pic32cx_bz6_devsupport", "rtcRequired": True})
 
         if (requestSource == "BLE_STACK_LIB"):
             print("BLE requests Sleep")
@@ -1609,7 +1791,8 @@ def handleSleepEnable(args):
                     handleRTC_Support({"target": "pic32cx_bz2_devsupport", "source": "pic32cx_bz2_devsupport", "rtcRequired": False})
                 elif (deviceName in pic32cx_bz3_family):
                     handleRTC_Support({"target": "pic32cx_bz3_devsupport", "source": "pic32cx_bz3_devsupport", "rtcRequired": False})
-
+                elif (deviceName in pic32cx_bz6_family):
+                    handleRTC_Support({"target": "pic32cx_bz6_devsupport", "source": "pic32cx_bz6_devsupport", "rtcRequired": False})
 
 # Dependency callback called upon PMU Mode Setting is enabled
 def enablePMUModeSettingOption(symbol, event):
@@ -1633,6 +1816,8 @@ def handleDeepSleepFile(args):
             handleRTC_Support({"target": "pic32cx_bz2_devsupport", "source": "pic32cx_bz2_devsupport", "rtcRequired": True})
         elif (deviceName in pic32cx_bz3_family):
             handleRTC_Support({"target": "pic32cx_bz3_devsupport", "source": "pic32cx_bz3_devsupport", "rtcRequired": True})
+        elif (deviceName in pic32cx_bz6_family):
+            handleRTC_Support({"target": "pic32cx_bz6_devsupport", "source": "pic32cx_bz6_devsupport", "rtcRequired": True})
     else:
         #print("handleDeepSleepFile Disable")
         deviceDeepSleepHeaderFile.setEnabled(False)
@@ -1649,6 +1834,8 @@ def handleDeepSleepFile(args):
                 handleRTC_Support({"target": "pic32cx_bz2_devsupport", "source": "pic32cx_bz2_devsupport", "rtcRequired": False})
             elif (deviceName in pic32cx_bz3_family):
                 handleRTC_Support({"target": "pic32cx_bz3_devsupport", "source": "pic32cx_bz3_devsupport", "rtcRequired": False})
+            elif (deviceName in pic32cx_bz6_family):
+                handleRTC_Support({"target": "pic32cx_bz6_devsupport", "source": "pic32cx_bz6_devsupport", "rtcRequired": False})
 
 def handleDeepSleepEnable(args):
     deepSleepEnable.setValue(args["isEnabled"])
@@ -1678,6 +1865,8 @@ def enableRetentionRAMSetting(symbol, event):
                 handleDeepSleepFile({"target": "pic32cx_bz2_devsupport", "source": "pic32cx_bz2_devsupport", "isEnabled": True})
             elif (deviceName in pic32cx_bz3_family):
                 handleDeepSleepFile({"target": "pic32cx_bz3_devsupport", "source": "pic32cx_bz3_devsupport", "isEnabled": True})
+            elif (deviceName in pic32cx_bz6_family):
+                handleDeepSleepFile({"target": "pic32cx_bz6_devsupport", "source": "pic32cx_bz6_devsupport", "isEnabled": True})
     else:
         if(event["source"] == "BLE_STACK_LIB:GAP_DSAVD_EN"):
             print("GAP_DSADV_EN disabled")
@@ -1687,9 +1876,15 @@ def enableRetentionRAMSetting(symbol, event):
                 handleDeepSleepFile({"target": "pic32cx_bz2_devsupport", "source": "pic32cx_bz2_devsupport", "isEnabled": False})
             elif (deviceName in pic32cx_bz3_family):
                 handleDeepSleepFile({"target": "pic32cx_bz3_devsupport", "source": "pic32cx_bz3_devsupport", "isEnabled": False})
+            elif (deviceName in pic32cx_bz6_family):
+                handleDeepSleepFile({"target": "pic32cx_bz6_devsupport", "source": "pic32cx_bz6_devsupport", "isEnabled": False})
 
 def enableStackRetentionRAM(symbol, event):
-    if(getDeepSleepState() and (deviceName in pic32cx_bz3_family)):
+    stackRetRamRequired = False
+    if ((deviceName in pic32cx_bz3_family) or (deviceName in pic32cx_bz6_family)):
+        stackRetRamRequired = True
+
+    if(getDeepSleepState() and stackRetRamRequired == True):
         stackRetentionRAM.setValue(computeRetentionRAMRequirements())
         stackRetentionRAM.setVisible(True)
         stackRetentionRAM.setReadOnly(True)
@@ -1698,7 +1893,11 @@ def enableStackRetentionRAM(symbol, event):
         stackRetentionRAM.setReadOnly(False)
 
 def enableAppRetentionRAM(symbol, event):
-    if(getDeepSleepState() and (deviceName in pic32cx_bz3_family)):
+    appRetRamRequired = False
+    if ((deviceName in pic32cx_bz3_family) or (deviceName in pic32cx_bz6_family)):
+        appRetRamRequired = True
+
+    if(getDeepSleepState() and appRetRamRequired == True):
         appRetentionRAM.setMax(computeMaxAppRetentionRAM())
         appRetentionRAM.setVisible(True)
     else:
@@ -1709,11 +1908,20 @@ def enable32KRetentionRAM(symbol, event):
         appvalue = int(Database.getSymbolValue("pic32cx_bz3_devsupport", "APP_RETENTION_RAM"))
         configureRetentionRAM = int(appvalue + int(stackRetentionRAM.getValue()))
         totalRetentionRAMBytes.setValue(configureRetentionRAM)
-        if((configureRetentionRAM > 16384) and (configureRetentionRAM < 32768)):
-            totalRetentionRAM.setValue(True)
+        if((configureRetentionRAM > 16384) and (configureRetentionRAM <= 32768)):
+            totalRetentionRAM.setValue(2)   #32kbytes
         else:
-            totalRetentionRAM.setValue(False)
-
+            totalRetentionRAM.setValue(1)   #16kbytes
+    elif (deviceName in pic32cx_bz6_family):
+        appvalue = int(Database.getSymbolValue("pic32cx_bz6_devsupport", "APP_RETENTION_RAM"))
+        configureRetentionRAM = int(appvalue + int(stackRetentionRAM.getValue()))
+        totalRetentionRAMBytes.setValue(configureRetentionRAM)
+        if (configureRetentionRAM <= 16384):
+            totalRetentionRAM.setValue(1)   #16kbytes
+        elif ((configureRetentionRAM > 16384) and (configureRetentionRAM <= 32768)):
+            totalRetentionRAM.setValue(2)   #32kbytes
+        elif ((configureRetentionRAM > 32768) and (configureRetentionRAM <= 65536)):
+            totalRetentionRAM.setValue(3)   #64bytes
 
 def handleMessage(messageID, args):
     '''
@@ -1740,6 +1948,11 @@ def handleMessage(messageID, args):
                         'source':       <module name>,
                         'isEnabled':     True/False,
                         }
+        TX_PWR_INFO_UPDATE: ask an update about TX Power Info
+            payload:    {
+                        'target':       <this module>
+                        'source':       <module name>
+                        }
     '''
     Log.writeInfoMessage("device_support:handleMessage ID='{}'".format(messageID))
     if (messageID == "CONSOLE_ENABLE"):
@@ -1752,4 +1965,6 @@ def handleMessage(messageID, args):
         handleSleepEnable(args)
     elif (messageID == "DEEP_SLEEP_ENABLE"):
         handleDeepSleepEnable(args)
+    elif (messageID == "TX_PWR_INFO_UPDATE"):
+        notifyTxPwrInfo(Database.getComponentByID(args["target"]), Database.getComponentByID(args["source"]))
 

@@ -41,10 +41,22 @@ def loadModule():
                           }
     pic32cx_bz3_module_family = {'WBZ351',
                                 }
+    
+    pic32cx_bz6_family = {'PIC32CX2051BZ62132',
+                          'PIC32CX2051BZ62064',
+                          'PIC32CX2051BZ66048',
+                          'WBZ653',
+                          'WBZ652',
+                          'WBZ651',
+                          'PIC32WM_BZ6204',
+                          'PIC32WM_BZ6203',
+                          'PIC32WM_BZ6602',
+                         }
+
     processor = Variables.get('__PROCESSOR')
     print('processor={}'.format(processor))
 
-    if((processor in pic32cx_bz2_family) or (processor in pic32cx_bz3_family)):
+    if((processor in pic32cx_bz2_family) or (processor in pic32cx_bz3_family) or (processor in pic32cx_bz6_family)):
         ## Device Support
         execfile(Module.getPath() + '/config/module_pic32cx_bz_device_support.py')
         ## Persistant Data Storage

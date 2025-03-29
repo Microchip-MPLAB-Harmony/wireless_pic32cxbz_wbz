@@ -99,7 +99,7 @@ typedef enum APP_MsgId_T
     APP_MSG_UART_CMD_READY,
 </#if>
 
-	<#lt>${LIST_DS_BLE_MSG_ID_H}
+	<#lt>${LIST_DEV_SUPP_MSG_ID_H}
 
     APP_MSG_ZB_STACK_EVT,
     APP_MSG_ZB_STACK_CB,
