@@ -1916,11 +1916,11 @@ def enable32KRetentionRAM(symbol, event):
         appvalue = int(Database.getSymbolValue("pic32cx_bz6_devsupport", "APP_RETENTION_RAM"))
         configureRetentionRAM = int(appvalue + int(stackRetentionRAM.getValue()))
         totalRetentionRAMBytes.setValue(configureRetentionRAM)
-        if (configureRetentionRAM <= 16384):
+        if (configureRetentionRAM <= 16352):
             totalRetentionRAM.setValue(1)   #16kbytes
-        elif ((configureRetentionRAM > 16384) and (configureRetentionRAM <= 32768)):
+        elif ((configureRetentionRAM > 16352) and (configureRetentionRAM <= 32736)):
             totalRetentionRAM.setValue(2)   #32kbytes
-        elif ((configureRetentionRAM > 32768) and (configureRetentionRAM <= 65536)):
+        elif ((configureRetentionRAM > 32736) and (configureRetentionRAM <= 65504)):
             totalRetentionRAM.setValue(3)   #64bytes
 
 def handleMessage(messageID, args):
