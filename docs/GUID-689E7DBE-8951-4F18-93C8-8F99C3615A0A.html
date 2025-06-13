@@ -1,0 +1,609 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us" data-whc_version="26.1">
+    <head><link rel="shortcut icon" href="oxygen-webhelp\template\resources/images/favicon.ico"/><link rel="icon" href="oxygen-webhelp\template\resources/images/favicon.ico"/><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="description" content="PIC32CX-BZ6 bootloader is a standalone harmony component, Using it, one can generate bootloader which is a program that typically is loaded in to the boot flash memory and gets executed every time the ..."/><meta name="copyright" content="(C) Copyright 2025"/><meta name="generator" content="DITA-OT"/><title>1.3.5 Standalone Bootloader Component Help</title><!--  Generated with Oxygen version 26.1, build number 2024091616.  --><meta name="wh-path2root" content=""/><meta name="wh-toc-id" content="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A-d3481e3406"/><meta name="wh-source-relpath" content="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A.xml"/><meta name="wh-out-relpath" content="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A.html"/>
+
+    <link rel="stylesheet" type="text/css" href="./oxygen-webhelp/app/commons.css?buildId=2024091616"/>
+    <link rel="stylesheet" type="text/css" href="./oxygen-webhelp/app/topic.css?buildId=2024091616"/>
+
+    <script src="./oxygen-webhelp/app/options/properties.js?buildId=20250613073839"></script>
+    <script src="./oxygen-webhelp/app/localization/strings.js?buildId=2024091616"></script>
+    <script src="./oxygen-webhelp/app/search/index/keywords.js?buildId=20250613073839"></script>
+    <script defer="defer" src="./oxygen-webhelp/app/commons.js?buildId=2024091616"></script>
+    <script defer="defer" src="./oxygen-webhelp/app/topic.js?buildId=2024091616"></script>
+<link rel="stylesheet" type="text/css" href="oxygen-webhelp/template/resources/css/microchip.css?buildId=2024091616"/><link rel="stylesheet" type="text/css" href="oxygen-webhelp/template/resources/css/notes.css?buildId=2024091616"/><link rel="stylesheet" type="text/css" href="oxygen-webhelp/template/resources/css/mchp-css-overrides.css?buildId=2024091616"/><link rel="stylesheet" type="text/css" href="oxygen-webhelp/template/resources/css/syntax-highlight.css?buildId=2024091616"/>
+
+<!-- OneTrust Cookies Consent Notice start for onlinedocs.microchip.com -->
+<script type="text/javascript" src="https://cdn.cookielaw.org/consent/0194dac3-b686-73e5-b876-eb9241be4496/OtAutoBlock.js"></script>
+<script src="https://cdn.cookielaw.org/consent/0194dac3-b686-73e5-b876-eb9241be4496/otSDKStub.js" type="text/javascript" charset="UTF-8" data-domain-script="0194dac3-b686-73e5-b876-eb9241be4496"></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for onlinedocs.microchip.com -->
+ 
+<script src="mchp-context-help.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async="" type="text/javascript"></script>
+<script src="https://assets.adobedtm.com/6a72a357eb48/a636c708c7fe/launch-0b0023397020.min.js"></script><!-- Adobe Analytics -->
+</head>
+
+    <body id="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A" class="wh_topic_page frmBody">
+        <a href="#wh_topic_body" class="sr-only sr-only-focusable">
+            Jump to main content
+        </a>
+        
+        
+        
+        
+        <header class="navbar navbar-default wh_header">
+    <div class="container-fluid">
+        <div class="wh_header_flex_container navbar-nav navbar-expand-md navbar-dark">
+            <div class="wh_logo_and_publication_title_container">
+                <div class="wh_logo_and_publication_title">
+                    
+                    <a href="index.html" class=" wh_logo d-none d-sm-block "><img src="oxygen-webhelp\template\resources/images/microchip.png" alt="MPLAB Harmony PIC32CX-BZ System Services &#xA;    "/></a>
+                    <div class=" wh_publication_title "><a href="index.html">MPLAB Harmony PIC32CX-BZ System Services 
+    </a></div>
+                    
+                </div>
+                
+                
+            </div>
+
+            <div class="wh_top_menu_and_indexterms_link collapse navbar-collapse" id="wh_top_menu_and_indexterms_link">
+                
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</header>
+        
+        
+         
+        
+        <div class=" wh_search_input navbar-form wh_topic_page_search search " role="form">
+            
+            
+            
+            <form id="searchForm" method="get" role="search" action="search.html"><div class="d-flex justify-contents-around"><div class="flex-grow-1"></div><div class="position-relative flex-grow-1"><input type="search" placeholder="Search " class="wh_search_textfield" id="textToSearch" name="searchQuery" aria-label="Search query" required="required"/><button type="submit" class="wh_search_button" aria-label="Search"><span class="search_input_text">Search</span></button></div><div class="align-self-center flex-grow-1 ml-2"><div class="d-flex justify-content-end"><div class="dropdown"><a style="font-size: 1em; padding: 7px 12px !important;" class="btn py-3 px-3 btn-outline-light dropdown-toggle" href="#" role="button" id="devicesMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Product Pages</a><div style="font-size: 1em;" class="dropdown-menu" aria-labelledby="devicesMenu"><a class="dropdown-item" target="_blank" href="https://www.microchip.com/en-us/product/pic32cx-bz2">PIC32CX-BZ2</a><a class="dropdown-item" target="_blank" href="https://www.microchip.com/en-us/product/pic32cx-bz3"> PIC32CX-BZ3</a><a class="dropdown-item" target="_blank" href="https://www.microchip.com/en-us/product/pic32cx-bz6"> PIC32CX-BZ6</a><a class="dropdown-item" target="_blank" href="https://www.microchip.com/en-us/product/wbz350"> WBZ350</a><a class="dropdown-item" target="_blank" href="https://www.microchip.com/en-us/product/wbz351"> WBZ351</a><a class="dropdown-item" target="_blank" href="https://www.microchip.com/en-us/product/wbz450"> WBZ450</a><a class="dropdown-item" target="_blank" href="https://www.microchip.com/en-us/product/wbz451"> WBZ451</a></div></div></div></div></div></form>
+            
+            <div class="mchp-color-stripe-grid-container">
+  <div class="mchp-main-bar mchp-orange-bar"></div>
+  <div class="mchp-main-bar mchp-blue-bar"></div>
+  <div class="mchp-main-bar mchp-green-bar"></div>
+</div>
+            
+        </div>
+        
+        <div class="container-fluid" id="wh_topic_container">
+            <div class="row">
+
+                <nav class="wh_tools d-print-none navbar-expand-md" aria-label="Tools">
+                    
+                    <div data-tooltip-position="bottom" class=" wh_breadcrumb "><ol class="d-print-none"><li><span class="home"><a href="index.html"><span>Home</span></a></span></li><li><div class="topicref" data-id="GUID-B92D56E1-C216-4D2D-827C-26D5B803B704"><div class="title"><a href="GUID-B92D56E1-C216-4D2D-827C-26D5B803B704.html"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1</ph>
+PIC32CX-BZ Family System Services</a><div class="wh-tooltip"><p class="shortdesc"><span class="ph instanceOffsets">             <p class="p">The PIC32CX-BZ System services provides several services to protocol developers and                 application users which use PIC32CX-BZ products. </p>         </span></p></div></div></div></li><li><div class="topicref" data-id="GUID-7D251371-80BC-4F30-A782-5688C0649BC9"><div class="title"><a href="GUID-7D251371-80BC-4F30-A782-5688C0649BC9.html"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.3</ph>
+PIC32CX-BZ6 System Services</a></div></div></li><li class="active"><div class="topicref" data-id="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A"><div class="title"><a href="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A.html"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.3.5</ph>
+Standalone Bootloader Component Help</a></div></div></li></ol></div>
+                    
+                    
+                    
+                    <div class="wh_right_tools">
+                        <button class="wh_hide_highlight" aria-label="Toggle search highlights" title="Toggle search highlights"></button>
+                        <button class="webhelp_expand_collapse_sections" data-next-state="collapsed" aria-label="Collapse sections" title="Collapse sections"></button>
+                        
+                        
+                        
+                        
+                        <div class=" wh_print_link print d-none d-md-inline-block "><button onClick="window.print()" title="Print this page" aria-label="Print this page"></button></div>
+                        
+                        <button type="button" id="wh_toc_button" class="custom-toggler navbar-toggler collapsed wh_toggle_button navbar-light" aria-expanded="false" aria-label="Toggle publishing table of content" aria-controls="wh_publication_toc">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
+                    
+                </nav>
+            </div>
+            
+            <div class="row" style="margin-top: -1em;"><div class="col-lg-9 col-md-9 col-sm-12 offset-lg-3 offset-md-3 text-right border-bottom mb-1"><h2 class="text-dark header_title">
+    </h2></div></div>
+            
+            
+            <div class="wh_content_area">
+                <div class="row">
+                    
+                        <nav id="wh_publication_toc" class="col-lg-3 col-md-3 col-sm-12 d-md-block d-none d-print-none" aria-label="Table of Contents Container">
+                            <div id="wh_publication_toc_content">
+		                        
+                            	<div class=" wh_publication_toc " data-tooltip-position="right"><span class="expand-button-action-labels"><span id="button-expand-action" role="button" aria-label="Expand"></span><span id="button-collapse-action" role="button" aria-label="Collapse"></span><span id="button-pending-action" role="button" aria-label="Pending"></span></span><ul role="tree" aria-label="Table of Contents"><li role="treeitem" aria-expanded="true"><div data-tocid="GUID-B92D56E1-C216-4D2D-827C-26D5B803B704-d3481e11" class="topicref" data-id="GUID-B92D56E1-C216-4D2D-827C-26D5B803B704" data-state="expanded"><span role="button" tabindex="0" aria-labelledby="button-collapse-action GUID-B92D56E1-C216-4D2D-827C-26D5B803B704-d3481e11-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-B92D56E1-C216-4D2D-827C-26D5B803B704.html" id="GUID-B92D56E1-C216-4D2D-827C-26D5B803B704-d3481e11-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1</ph>
+PIC32CX-BZ Family System Services</a><div class="wh-tooltip"><p class="shortdesc"><span class="ph instanceOffsets">             <p class="p">The PIC32CX-BZ System services provides several services to protocol developers and                 application users which use PIC32CX-BZ products. </p>         </span></p></div></div></div><ul role="group" class="navbar-nav nav-list"><li role="treeitem" aria-expanded="false"><div data-tocid="GUID-FFC9758F-305D-4A4A-A577-726CDCFA18C7-d3481e26" class="topicref" data-id="GUID-FFC9758F-305D-4A4A-A577-726CDCFA18C7" data-state="not-ready"><span role="button" tabindex="0" aria-labelledby="button-expand-action GUID-FFC9758F-305D-4A4A-A577-726CDCFA18C7-d3481e26-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-FFC9758F-305D-4A4A-A577-726CDCFA18C7.html" id="GUID-FFC9758F-305D-4A4A-A577-726CDCFA18C7-d3481e26-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.1</ph>
+PIC32CX-BZ2 System Services</a></div></div></li><li role="treeitem" aria-expanded="false"><div data-tocid="GUID-F9698DC6-BF78-4773-A5E3-CA7D4F570394-d3481e1090" class="topicref" data-id="GUID-F9698DC6-BF78-4773-A5E3-CA7D4F570394" data-state="not-ready"><span role="button" tabindex="0" aria-labelledby="button-expand-action GUID-F9698DC6-BF78-4773-A5E3-CA7D4F570394-d3481e1090-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-F9698DC6-BF78-4773-A5E3-CA7D4F570394.html" id="GUID-F9698DC6-BF78-4773-A5E3-CA7D4F570394-d3481e1090-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.2</ph>
+PIC32CX-BZ3 System Services</a></div></div></li><li role="treeitem" aria-expanded="true"><div data-tocid="GUID-7D251371-80BC-4F30-A782-5688C0649BC9-d3481e2319" class="topicref" data-id="GUID-7D251371-80BC-4F30-A782-5688C0649BC9" data-state="expanded"><span role="button" tabindex="0" aria-labelledby="button-collapse-action GUID-7D251371-80BC-4F30-A782-5688C0649BC9-d3481e2319-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-7D251371-80BC-4F30-A782-5688C0649BC9.html" id="GUID-7D251371-80BC-4F30-A782-5688C0649BC9-d3481e2319-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.3</ph>
+PIC32CX-BZ6 System Services</a></div></div><ul role="group" class="navbar-nav nav-list"><li role="treeitem" aria-expanded="false"><div data-tocid="GUID-69184E2E-B4C8-4089-BFBA-F87EC0F37971-d3481e2327" class="topicref" data-id="GUID-69184E2E-B4C8-4089-BFBA-F87EC0F37971" data-state="not-ready"><span role="button" tabindex="0" aria-labelledby="button-expand-action GUID-69184E2E-B4C8-4089-BFBA-F87EC0F37971-d3481e2327-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-69184E2E-B4C8-4089-BFBA-F87EC0F37971.html" id="GUID-69184E2E-B4C8-4089-BFBA-F87EC0F37971-d3481e2327-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.3.1</ph>
+PIC32CX-BZ6 Secure Boot ROM Help</a></div></div></li><li role="treeitem" aria-expanded="false"><div data-tocid="GUID-5A3C5CC2-6BB5-4213-87C4-F0FABD1A66BC-d3481e2856" class="topicref" data-id="GUID-5A3C5CC2-6BB5-4213-87C4-F0FABD1A66BC" data-state="not-ready"><span role="button" tabindex="0" aria-labelledby="button-expand-action GUID-5A3C5CC2-6BB5-4213-87C4-F0FABD1A66BC-d3481e2856-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-5A3C5CC2-6BB5-4213-87C4-F0FABD1A66BC.html" id="GUID-5A3C5CC2-6BB5-4213-87C4-F0FABD1A66BC-d3481e2856-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.3.2</ph>
+Device Support Component Library Help</a><div class="wh-tooltip"><p class="shortdesc">The PIC32CX-BZ6 Device Support Component Library provides software API's for various         subsystems in the PIC32CX-BZ6.</p></div></div></div></li><li role="treeitem" aria-expanded="false"><div data-tocid="GUID-0861A8BB-1E21-41EE-908A-7728245C2B1A-d3481e3207" class="topicref" data-id="GUID-0861A8BB-1E21-41EE-908A-7728245C2B1A" data-state="not-ready"><span role="button" tabindex="0" aria-labelledby="button-expand-action GUID-0861A8BB-1E21-41EE-908A-7728245C2B1A-d3481e3207-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-0861A8BB-1E21-41EE-908A-7728245C2B1A.html" id="GUID-0861A8BB-1E21-41EE-908A-7728245C2B1A-d3481e3207-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.3.3</ph>
+PIC32CX-BZ6 Persistent Data Server Component Library Help</a><div class="wh-tooltip"><p class="shortdesc">The PIC32CX-BZ6 Persistent Data Server Component Library provides interface for storing     and restoring items into the Non volatile memory using wear leveling mechanism</p></div></div></div></li><li role="treeitem"><div data-tocid="GUID-A712F34C-2E07-456B-98A6-F54355E5A434-d3481e3398" class="topicref" data-id="GUID-A712F34C-2E07-456B-98A6-F54355E5A434" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-A712F34C-2E07-456B-98A6-F54355E5A434.html" id="GUID-A712F34C-2E07-456B-98A6-F54355E5A434-d3481e3398-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.3.4</ph>
+Bootloader Services Component Help</a></div></div></li><li role="treeitem" aria-expanded="true" class="active"><div data-tocid="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A-d3481e3406" class="topicref" data-id="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A" data-state="expanded"><span role="button" tabindex="0" aria-labelledby="button-collapse-action GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A-d3481e3406-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A.html" id="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A-d3481e3406-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.3.5</ph>
+Standalone Bootloader Component Help</a></div></div><ul role="group" class="navbar-nav nav-list"><li role="treeitem"><div data-tocid="GUID-3EBBEBDE-A3B9-4FD9-AD9D-7A454C7C8B1F-d3481e3414" class="topicref" data-id="GUID-3EBBEBDE-A3B9-4FD9-AD9D-7A454C7C8B1F" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-3EBBEBDE-A3B9-4FD9-AD9D-7A454C7C8B1F.html" id="GUID-3EBBEBDE-A3B9-4FD9-AD9D-7A454C7C8B1F-d3481e3414-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.3.5.1</ph>
+Configuration options</a></div></div></li><li role="treeitem"><div data-tocid="GUID-89186295-AAE7-43F6-B398-E379F4B934B3-d3481e3422" class="topicref" data-id="GUID-89186295-AAE7-43F6-B398-E379F4B934B3" data-state="leaf"><span role="button" class="wh-expand-btn"></span><div class="title"><a href="GUID-89186295-AAE7-43F6-B398-E379F4B934B3.html" id="GUID-89186295-AAE7-43F6-B398-E379F4B934B3-d3481e3422-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.3.5.2</ph>
+DFU Functionality</a></div></div></li><li role="treeitem" aria-expanded="false"><div data-tocid="GUID-080A5872-7CE7-4A40-8228-56F6DAA0EF80-d3481e3430" class="topicref" data-id="GUID-080A5872-7CE7-4A40-8228-56F6DAA0EF80" data-state="not-ready"><span role="button" tabindex="0" aria-labelledby="button-expand-action GUID-080A5872-7CE7-4A40-8228-56F6DAA0EF80-d3481e3430-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-080A5872-7CE7-4A40-8228-56F6DAA0EF80.html" id="GUID-080A5872-7CE7-4A40-8228-56F6DAA0EF80-d3481e3430-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.3.5.3</ph>
+Bootloader generic</a><div class="wh-tooltip"><p class="shortdesc"></p></div></div></div></li><li role="treeitem" aria-expanded="false"><div data-tocid="GUID-CAC20328-D3F2-4C54-AECF-4C307AEC2B45-d3481e3682" class="topicref" data-id="GUID-CAC20328-D3F2-4C54-AECF-4C307AEC2B45" data-state="not-ready"><span role="button" tabindex="0" aria-labelledby="button-expand-action GUID-CAC20328-D3F2-4C54-AECF-4C307AEC2B45-d3481e3682-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-CAC20328-D3F2-4C54-AECF-4C307AEC2B45.html" id="GUID-CAC20328-D3F2-4C54-AECF-4C307AEC2B45-d3481e3682-link"><ph xmlns="http://www.oxygenxml.com/ns/webhelp/toc">1.3.5.4</ph>
+Bootloader DFU</a></div></div></li></ul></li></ul></li></ul></li><li role="treeitem" aria-expanded="false"><div data-tocid="GUID-0FB3F908-88EE-45CE-94F5-E97AF9049C9B-d3481e3722" class="topicref backmatter backmatter_parent" data-id="GUID-0FB3F908-88EE-45CE-94F5-E97AF9049C9B" data-state="not-ready"><span role="button" tabindex="0" aria-labelledby="button-expand-action GUID-0FB3F908-88EE-45CE-94F5-E97AF9049C9B-d3481e3722-link" class="wh-expand-btn"></span><div class="title"><a href="GUID-0FB3F908-88EE-45CE-94F5-E97AF9049C9B.html" id="GUID-0FB3F908-88EE-45CE-94F5-E97AF9049C9B-d3481e3722-link">Microchip Information</a></div></div></li></ul></div>
+		                        
+                            </div>
+                        </nav>
+                    
+                    
+                    <div class="col-lg-9 col-md-9 col-sm-12" id="wh_topic_body">
+                        <button id="wh_close_publication_toc_button" class="close-toc-button d-none" aria-label="Toggle publishing table of content" aria-controls="wh_publication_toc" aria-expanded="true">
+                            <span class="close-toc-icon-container">
+                                <span class="close-toc-icon"></span>     
+                            </span>
+                        </button>
+                        
+                        
+                        <div class=" wh_topic_content body "><main role="main"><article role="article" aria-labelledby="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A__GUID-DFFBDD56-27A7-4243-9B93-C179F96FD97E"><h1 class="- topic/title title topictitle1" id="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A__GUID-DFFBDD56-27A7-4243-9B93-C179F96FD97E" style="">1.3.5 Standalone Bootloader Component Help</h1><div class="- topic/body body"><p class="- topic/p p">PIC32CX-BZ6 bootloader is a standalone harmony component, Using it, one can generate
+            bootloader which is a program that typically is loaded in to the boot flash memory and
+            gets executed every time the device powers up or resets. Due to the size of the internal
+            flash, PIC32CX-BZ6 bootloader supports external flash. The external flash that is
+            supported in this component is SST26 (available on PIC32WM_BZ6 curiosity board) </p><p class="- topic/p p">Bootloader can be used to upgrade firmware on a target device without the need for an
+            external programmer or debugger. It does not fully operate on the device, but can
+            perform various functions prior to starting the main application</p><div class="- topic/p p"><strong class="+ topic/ph hi-d/b ph b"><u class="+ topic/ph hi-d/u ph u">Functionality of Bootloader</u></strong><ul class="- topic/ul ul" id="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A__UL_JBR_HX3_JZB" data-ofbid="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A__UL_JBR_HX3_JZB"><li class="- topic/li li" id="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A__GUID-BEA6458F-2F31-46AA-8184-D3606C4AFA7F" data-ofbid="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A__GUID-BEA6458F-2F31-46AA-8184-D3606C4AFA7F">Loads firmware images to embedded
+                    flash/external flash over the serial connection using a tool or python script,
+                    known as Device Firmware Upgrade (DFU)</li><li class="- topic/li li" id="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A__GUID-1C9C974B-3F9D-4DFF-B6FA-75F24FEA6AAB" data-ofbid="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A__GUID-1C9C974B-3F9D-4DFF-B6FA-75F24FEA6AAB">Provides application protection
+                    for firmware (Secured device)</li><li class="- topic/li li" id="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A__GUID-C05FA656-D2AB-4D57-A2F6-C5607A644FAE" data-ofbid="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A__GUID-C05FA656-D2AB-4D57-A2F6-C5607A644FAE">Upgrades application firmware to
+                    newer revision</li><li class="- topic/li li" id="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A__GUID-B03F2B1F-8198-4A88-8B87-0800E635016D" data-ofbid="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A__GUID-B03F2B1F-8198-4A88-8B87-0800E635016D">Controls which application can
+                    run based on Sequence number and other metadata information embedded in the OTA
+                    image.</li></ul></div><p class="- topic/p p"><strong class="+ topic/ph hi-d/b ph b"><u class="+ topic/ph hi-d/u ph u">Memory Information and Layout of PIC32CXBZ6 device (PIC32WM_BZ6 Curiosity
+                    Board)</u></strong>
+        </p><div class="- topic/p p">
+            <div class="table-container"><table class="- topic/table table frame-all" id="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A__TABLE_JYW_GYY_HSB" data-ofbid="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A__TABLE_JYW_GYY_HSB" data-cols="2"><caption class="- topic/title title tablecap" data-caption-side="top" data-is-repeated="true"><span class="table--title-label"><span class="table--title-label">Table 1-21. </span></span><span class="table--title" id="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A__GUID-2BCAA62D-E250-4449-8885-6EE808296843"></span></caption><colgroup><col style="width:50%"/><col style="width:50%"/></colgroup><thead class="- topic/thead thead"><tr class="- topic/row"><th class="- topic/entry entry colsep-1 rowsep-1" id="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A__TABLE_JYW_GYY_HSB__entry__1">Memory Area</th><th class="- topic/entry entry colsep-0 rowsep-1" id="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A__TABLE_JYW_GYY_HSB__entry__2">Purpose</th></tr></thead><tbody class="- topic/tbody tbody"><tr class="- topic/row"><td class="- topic/entry entry colsep-1 rowsep-1" headers="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A__TABLE_JYW_GYY_HSB__entry__1">Boot Flash Size is 0x0080_0000 to 0x0080_3FFF (16KB)</td><td class="- topic/entry entry colsep-0 rowsep-1" headers="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A__TABLE_JYW_GYY_HSB__entry__2">The memory where bootloader code runs</td></tr><tr class="- topic/row"><td class="- topic/entry entry colsep-1 rowsep-1" headers="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A__TABLE_JYW_GYY_HSB__entry__1">Embeded Flash Slot 0 base address - 0x01000000</td><td class="- topic/entry entry colsep-0 rowsep-1" headers="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A__TABLE_JYW_GYY_HSB__entry__2">The memory where the application firmware runs and the memory
+                                where the bootloader copies the new application firmware </td></tr><tr class="- topic/row"><td class="- topic/entry entry colsep-1 rowsep-1" headers="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A__TABLE_JYW_GYY_HSB__entry__1">Embedded Flash Slot 1 base address - 0x01040000</td><td class="- topic/entry entry colsep-0 rowsep-1" headers="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A__TABLE_JYW_GYY_HSB__entry__2">The memory where the received image(Either through DFU or any
+                                other way) gets stored. and the memory where bootloader looks for
+                                the new image to copy into the Slot 0</td></tr><tr class="- topic/row"><td class="- topic/entry entry colsep-1 rowsep-1" headers="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A__TABLE_JYW_GYY_HSB__entry__1">External Flash Slot 0 (SST26)</td><td class="- topic/entry entry colsep-0 rowsep-1" headers="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A__TABLE_JYW_GYY_HSB__entry__2">Start Address (relative):0x00000; Size 512KB</td></tr><tr class="- topic/row"><td class="- topic/entry entry colsep-1 rowsep-0" headers="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A__TABLE_JYW_GYY_HSB__entry__1">External Flash Slot 1(SST26)</td><td class="- topic/entry entry colsep-0 rowsep-0" headers="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A__TABLE_JYW_GYY_HSB__entry__2">Start Address (relative): 0x80000; Size 512KB</td></tr></tbody></table></div>
+        </div><p class="- topic/p p"><strong class="+ topic/ph hi-d/b ph b"><u class="+ topic/ph hi-d/u ph u">Boot Flash</u></strong></p><p class="- topic/p p">In PIC32CXBZ6, 16KB boot flash memory is separated from the main execution memory. This
+            boot flash is used for bootloader code</p><p class="- topic/p p"><strong class="+ topic/ph hi-d/b ph b"><u class="+ topic/ph hi-d/u ph u">Metadata Header</u></strong></p><p class="- topic/p p">Format of image meta-data header is described in the Secure Boot ROM Help page - <a class="- topic/xref xref" href="GUID-04D7627E-7290-429B-88B9-2EFFFA11A3A8.html"><span><span>PIC32CX-BZ3 Secure Boot ROM Help</span></span></a>
+        </p><p class="- topic/p p"><u class="+ topic/ph hi-d/u ph u"><strong class="+ topic/ph hi-d/b ph b">Working of Bootloader</strong></u></p><p class="- topic/p p">when the application receives new image from a server or via a tool, it will/should store
+            in the Slot 1 location with meta data header &amp; firmware or in the external flash and
+            it should trigger software reset so that bootloader code runs</p><div class="- topic/p p">Bootloader checks for valid image in the external flash and the internal flash by reading
+            the meta data header and firmware and authenticating the same with the selected
+            authentication method. If valid image is found and successfully authenticated, then <ul class="- topic/ul ul" id="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A__UL_YGN_2QK_XSB" data-ofbid="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A__UL_YGN_2QK_XSB"><li class="- topic/li li" id="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A__GUID-362B3526-AAD1-4355-8F6A-B96E72FD09DA" data-ofbid="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A__GUID-362B3526-AAD1-4355-8F6A-B96E72FD09DA">Erases Slot 0</li><li class="- topic/li li" id="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A__GUID-EA6D5CA3-55ED-4696-9AC7-B5FFEEBC52D9" data-ofbid="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A__GUID-EA6D5CA3-55ED-4696-9AC7-B5FFEEBC52D9">Copies the new image (DFU or OTA)
+                    image to Slot 0</li><li class="- topic/li li" id="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A__GUID-46819B28-AEA1-4839-A457-72BBA2040587" data-ofbid="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A__GUID-46819B28-AEA1-4839-A457-72BBA2040587">Verifies the Copy</li></ul>After that it checks for valid image in Slot 0 by validating it, it jumps to the
+            application if valid image is found</div><p class="- topic/p p"><u class="+ topic/ph hi-d/u ph u"><strong class="+ topic/ph hi-d/b ph b">Bootloader usage with DFU</strong></u></p><p class="- topic/p p">Bootloader programmed to the MCU (in DFU mode) receives an application image from the
+            host over serial interface and writes it to the external flash or internal flash slot 1
+            . After loading new image on external flash or internal flash slot 1, if reset is
+            triggered, then bootloader erases the slot 0, copies the image to slot 0, verifies the
+            copy. Then bootloader jumps to application which is the new application image</p><p class="- topic/p p">Bootloader stores information about the image in Meta Data Header. This is basically size
+            of 0x200 bytes and gets stored at the start of slot. Bootloader reads this meta data
+            header and does the authentication procedure based on the information in meta data
+            header</p><p class="- topic/p p"><strong class="+ topic/ph hi-d/b ph b"><u class="+ topic/ph hi-d/u ph u">Flow Diagram of Bootloader</u></strong></p><p class="- topic/p p">The detailed flow diagram of bootloader with the optional DFU block can be found
+            below</p><p class="- topic/p p"><span class=""><img class="- topic/image image" id="GUID-689E7DBE-8951-4F18-93C8-8F99C3615A0A__IMAGE_RC2_VZ1_3SB" src="GUID-4F6F866C-B279-4888-BE8B-E5C1DF40C5E7-high.png"/></span></p></div></article></main></div>
+                        
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            
+            
+        </div> 
+        <footer class="wh_footer">
+  <div class=" footer-container mx-auto ">
+    <div class="main">
+  <div class="max">
+    <div>
+      <div class="accordion-list">
+        <input type="checkbox" class="accordion-input" id="section-1"/>
+        <span for="section-1" class="accordion-label">
+          <div id="text-5521a8ec2b" class="cmp-text">
+            <p>About</p>
+          </div>
+        </span>
+        <div class="mchp-component-list" style="display: block; max-height: none">
+          <div class="mchp-component-items">
+            <div class="mchp-component-item mchp-component-item--first">
+              <div class="link">
+                <div>
+                  <a href="https://www.microchip.com/en-us/about/corporate-overview" class="mchp-link__link" aria-label="Company">Company</a>
+                  <span class="mchp-link__separator"></span>
+                </div>
+              </div>
+            </div>
+            <div class="mchp-component-item">
+              <div class="link">
+                <div>
+                  <a href="https://www.microchip.com/en-us/about/careers" class="mchp-link__link" aria-label="Careers">Careers</a>
+                  <span class="mchp-link__separator"></span>
+                </div>
+              </div>
+            </div>
+            <div class="mchp-component-item">
+              <div class="link">
+                <div>
+                  <a href="https://www.microchip.com/en-us/about/contact-us" class="mchp-link__link" aria-label="Contact Us">Contact Us</a>
+                  <span class="mchp-link__separator"></span>
+                </div>
+              </div>
+            </div>
+            <div class="mchp-component-item">
+              <div class="link">
+                <div>
+                  <a href="https://www.microchip.com/en-us/about/media-center" class="mchp-link__link" aria-label="Media Center">Media Center</a>
+                  <span class="mchp-link__separator"></span>
+                </div>
+              </div>
+            </div>
+            <div class="mchp-component-item">
+              <div class="link">
+                <div>
+                  <a href="https://www.microchip.com/en-us/about/investors" class="mchp-link__link" aria-label="Investor Relations">Investor Relations</a>
+                  <span class="mchp-link__separator"></span>
+                </div>
+              </div>
+            </div>
+            <div class="mchp-component-item mchp-component-item--last">
+              <div class="link">
+                <div>
+                  <a href="https://www.microchip.com/en-us/about/corporate-responsibility" class="mchp-link__link" aria-label="Corporate Responsibility">Corporate Responsibility</a>
+                  <span class="mchp-link__separator"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="accordion-list">
+        <input type="checkbox" class="accordion-input" id="section-2"/>
+        <span for="section-2" class="accordion-label">
+          <div id="text-ea8a67216c" class="cmp-text">
+            <p>Support</p>
+          </div>
+        </span>
+        <div class="mchp-component-list" style="display: block; max-height: none">
+          <div class="mchp-component-items">
+            <div class="mchp-component-item mchp-component-item--first">
+              <div class="link">
+                <div>
+                  <a target="_blank" href="https://forum.microchip.com/" class="mchp-link__link" aria-label="Microchip Forums">Microchip Forums</a>
+                  <span class="mchp-link__separator"></span>
+                </div>
+              </div>
+            </div>
+            <div class="mchp-component-item">
+              <div class="link">
+                <div>
+                  <a target="_blank" href="https://www.avrfreaks.net/" class="mchp-link__link" aria-label="AVR Freaks">AVR Freaks</a>
+                  <span class="mchp-link__separator"></span>
+                </div>
+              </div>
+            </div>
+            <div class="mchp-component-item">
+              <div class="link">
+                <div>
+                  <a href="https://www.microchip.com/en-us/support/design-help" class="mchp-link__link" aria-label="Design Help">Design Help</a>
+                  <span class="mchp-link__separator"></span>
+                </div>
+              </div>
+            </div>
+            <div class="mchp-component-item">
+              <div class="link">
+                <div>
+                  <a href="https://www.microchip.com/en-us/support/technical-support" class="mchp-link__link" aria-label="Technical Support">Technical Support</a>
+                  <span class="mchp-link__separator"></span>
+                </div>
+              </div>
+            </div>
+            <div class="mchp-component-item">
+              <div class="link">
+                <div>
+                  <a target="_blank" href="https://www.microchip.com/exportcontroldata/" class="mchp-link__link" aria-label="Export Control Data">Export Control Data</a>
+                  <span class="mchp-link__separator"></span>
+                </div>
+              </div>
+            </div>
+            <div class="mchp-component-item mchp-component-item--last">
+              <div class="link">
+                <div>
+                  <a href="https://www.microchip.com/en-us/support/product-change-notification" class="mchp-link__link" aria-label="PCNs">PCNs</a>
+                  <span class="mchp-link__separator"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="accordion-list">
+        <input type="checkbox" class="accordion-input" id="section-3"/>
+        <span for="section-3" class="accordion-label">
+          <div id="text-229415b3f9" class="cmp-text">
+            <p>Quick Links</p>
+          </div>
+        </span>
+        <div class="mchp-component-list" style="display: block; max-height: none">
+          <div class="mchp-component-items">
+            <div class="mchp-component-item mchp-component-item--first">
+              <div class="link">
+                <div>
+                  <a target="_blank" href="https://www.microchipdirect.com/" class="mchp-link__link" aria-label="microchipDIRECT.com">microchipDIRECT.com</a>
+                  <span class="mchp-link__separator"></span>
+                </div>
+              </div>
+            </div>
+            <div class="mchp-component-item">
+              <div class="link">
+                <div>
+                  <a target="_blank" href="https://secure.microchip.com/mu" class="mchp-link__link" aria-label="Microchip University">Microchip University</a>
+                  <span class="mchp-link__separator"></span>
+                </div>
+              </div>
+            </div>
+            <div class="mchp-component-item">
+              <div class="link">
+                <div>
+                  <a href="https://www.microchip.com/mymicrochip/" class="mchp-link__link" aria-label="myMicrochip">myMicrochip</a>
+                  <span class="mchp-link__separator"></span>
+                </div>
+              </div>
+            </div>
+            <div class="mchp-component-item">
+              <div class="link">
+                <div>
+                  <a href="https://www.microchip.com/en-us/about/media-center/blog" class="mchp-link__link" aria-label="Blogs">Blogs</a>
+                  <span class="mchp-link__separator"></span>
+                </div>
+              </div>
+            </div>
+            <div class="mchp-component-item">
+              <div class="link">
+                <div>
+                  <a href="https://www.microchip.com/en-us/tools-resources/reference-designs" class="mchp-link__link" aria-label="Reference Designs">Reference Designs</a>
+                  <span class="mchp-link__separator"></span>
+                </div>
+              </div>
+            </div>
+            <div class="mchp-component-item mchp-component-item--last">
+              <div class="link">
+                <div>
+                  <a href="https://www.microchip.com/en-us/products/selection-tools/parametric-search-landing-page" class="mchp-link__link" aria-label="Parametric Search">Parametric Search</a>
+                  <span class="mchp-link__separator"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div>
+        <div>
+          <div class="cmp-image">
+            <img class="cmp-image__image" alt="Microchip Logo" src="oxygen-webhelp/template/resources/images/microchip-logo.png"/>
+          </div>
+        </div>
+        <div>
+          <div id="text-cf91d72ddd" class="cmp-text">
+            <p>Microchip Technology Inc.</p>
+            <p>2355 West Chandler Blvd.</p>
+            <p>Chandler, Arizona, USA</p>
+          </div>
+        </div>
+        <div>
+          <div class="mchp-component-list">
+            <div class="mchp-component-items">
+              <div class="mchp-component-item mchp-component-item--first">
+                <div class="image">
+                  <div class="cmp-image">
+                    <a class="cmp-image__link" href="https://www.facebook.com/microchiptechnology/" aria-label="Microchip Facebook" target="_blank">
+                      <img class="cmp-image__image" alt="Microchip Facebook" src="oxygen-webhelp/template/resources/images/facebook-icon.png"/>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="mchp-component-item">
+                <div class="image">
+                  <div class="cmp-image">
+                    <a class="cmp-image__link" href="https://www.linkedin.com/company/microchip-technology" aria-label="Microchip LinkedIn" target="_blank">
+                      <img class="cmp-image__image" alt="Microchip LinkedIn" src="oxygen-webhelp/template/resources/images/linkedin-icon.png"/>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="mchp-component-item">
+                <div class="image">
+                  <div class="cmp-image">
+                    <a class="cmp-image__link" href="https://x.com/MicrochipTech" aria-label="Microchip Twitter" target="_blank">
+                      <img class="cmp-image__image" alt="Microchip Twitter" src="oxygen-webhelp/template/resources/images/twitter-new.png"/>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="mchp-component-item">
+                <div class="image">
+                  <div class="cmp-image">
+                    <a class="cmp-image__link" href="https://www.youtube.com/user/MicrochipTechnology" aria-label="Image Hyperlink" target="_blank">
+                      <img class="cmp-image__image" alt="" src="oxygen-webhelp/template/resources/images/youtube-icon.png"/>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="mchp-component-item">
+                <div class="image">
+                  <div class="cmp-image">
+                    <a class="cmp-image__link" href="https://www.instagram.com/microchiptechnologyinc/" aria-label="Microchip Instagram" target="_blank">
+                      <img class="cmp-image__image" alt="Microchip Instagram" src="oxygen-webhelp/template/resources/images/instagram-icon.png"/>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="mchp-component-item mchp-component-item--last">
+                <div class="image">
+                  <div class="cmp-image">
+                    <a class="cmp-image__link" href="https://www.weibo.com/microchiptech" aria-label="Microchip Weibo" target="_blank">
+                      <img class="cmp-image__image" alt="Microchip Weibo" src="oxygen-webhelp/template/resources/images/snap.png"/>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p>
+        © Copyright 1998-<span class="current-year">2024</span> Microchip Technology Inc. All rights reserved.
+        Shanghai ICP Recordal No.09049794
+      </p>
+      <p></p>
+    </div>
+    <div>
+      <div class="legal-privacy-cookie-container">
+        <div class="mchp-component-list">
+          <div class="mchp-component-items">
+            <div class="mchp-component-item mchp-component-item--first">
+              <div class="link">
+                <div>
+                  <a href="https://www.microchip.com/en-us/about/legal-information/website-terms-and-conditions" class="mchp-link__link" aria-label="Terms Of Use">Terms Of Use</a>
+                  <span class="mchp-link__separator"></span>
+                </div>
+              </div>
+            </div>
+            <div class="mchp-component-item">
+              <div class="link">
+                <div>
+                  <a href="https://www.microchip.com/en-us/about/legal-information/privacy-notice" class="mchp-link__link" aria-label="Privacy Notice">Privacy Notice</a>
+                  <span class="mchp-link__separator"></span>
+                </div>
+              </div>
+            </div>
+            <div class="mchp-component-item mchp-component-item--last">
+              <div class="link">
+                <div>
+                  <a href="https://www.microchip.com/en-us/about/legal-information" class="mchp-link__link" aria-label="Legal">Legal</a>
+                  <span class="mchp-link__separator"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- OneTrust Cookies Settings button start -->
+        <div>
+          <a id="ot-sdk-btn" class="ot-sdk-show-settings">Your Privacy Choices</a>
+          <img src="oxygen-webhelp/template/resources/images/privacyoptions29x14.png" alt="California Consumer Privacy Act (CCPA) Opt-Out Icon" data-tooltip="California Consumer Privacy Act (CCPA) Opt-Out Icon" data-tooltip-position="top-center" class="tooltip-initialized"/>
+        </div>
+        <!-- OneTrust Cookies Settings button end -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<script><!--
+
+  (function () {
+    var currentYear = new Date().getFullYear();
+    document.querySelector('.current-year').textContent = currentYear;
+  })();
+
+--></script>
+
+<script type="text/javascript"><!--
+
+  _satellite.pageBottom();
+
+--></script>
+<!-- Adobe Analytics -->
+<script type="text/javascript" src="mchp-js/prepend.js"></script>
+<!-- Package for viewing PDFs on mobile devices -->
+<script type="text/javascript" src="mchp-js/onetrust.js"></script>
+<!-- Package for viewing PDFs on mobile devices -->
+
+<script><!--
+
+
+  // wait until jquery is ready
+  var jqInterval = setInterval(function() {
+    if (typeof jQuery !== 'undefined') {
+      clearInterval(jqInterval);
+      // jQuery is ready, run your code here
+      $(document).ready(function() {
+        $(document).ready(function() {
+          function open() {
+              $(".accordion-label").click(function(e) {
+                  e.preventDefault();
+                  if (!mediaQueryMatch.matches) {
+                      e = $(this).next(".mchp-component-list");
+                      var f = $(".accordion-list > .mchp-component-list").not(e);
+                      $(this).hasClass("active") ? ($(this).removeClass("active"),
+                      e.slideUp(300, function() {
+                          $(this).css("max-height", "0")
+                      })) : (f.slideUp(300, function() {
+                          $(this).css("max-height", "0")
+                      }),
+                      $(".accordion-label").removeClass("active"),
+                      $(this).addClass("active"),
+                      e.slideDown(300, function() {
+                          $(this).css("max-height", "none")
+                      }))
+                  }
+              })
+          }
+          function hide(activeLabel) {
+              if (activeLabel.matches) {
+                  activeLabel = document.getElementsByClassName("accordion-label active");
+                  for (let f = 0; f < activeLabel.length; f++) {
+                    activeLabel[f].classList.remove("active");
+                  }
+                  for (activeLabel = 0; activeLabel < accordionList.length; activeLabel++) {
+                    accordionList[activeLabel].style.display = "block",
+                    accordionList[activeLabel].style.maxHeight = "none"
+                  }
+              } else {
+                for (activeLabel = 0; activeLabel < accordionList.length; activeLabel++) {
+                  accordionList[activeLabel].style.display = "none",
+                  accordionList[activeLabel].style.maxHeight = "0"
+                }
+              }
+          }
+          var mediaQueryMatch = window.matchMedia("(min-width: 630px)");
+          var accordionList = $(".accordion-list > .mchp-component-list");
+          hide(mediaQueryMatch);
+          setTimeout(function() {
+              $(".legal-privacy-cookie-container .ot-sdk-show-settings")?.text("Your Privacy Choices")
+          }, 1000);
+          $(window).on("load", function() {
+              open()
+          });
+          mediaQueryMatch.addListener(hide)
+        });
+      });
+    }
+  }, 100);
+
+
+--></script>
+  </div>
+</footer>
+        
+        <div id="go2top" class="d-print-none">
+            <span class="oxy-icon oxy-icon-up"></span>
+        </div>
+        
+        <div id="modal_img_large" class="modal">
+            <span class="close oxy-icon oxy-icon-remove"></span>
+            <div id="modal_img_container"></div>
+            <div id="caption"></div>
+        </div>
+        
+        
+        
+    </body>
+</html>

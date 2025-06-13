@@ -12,8 +12,7 @@
 - None
 
 ### Known Issues
-  Standalone bootloader not tested
-
+ - None
 ### Development Tools
 - [MPLAB X v6.25](https://www.microchip.com/mplab/mplab-x-ide) or higher
 - [MPLAB® XC32 C/C++ Compiler v4.60](https://www.microchip.com/mplab/compilers)
