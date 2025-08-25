@@ -24,7 +24,6 @@
 #ifndef IB_BLOCK_H
 #define IB_BLOCK_H
 
-#include <xc.h>
 #include <stdbool.h>
 #include "rf_system.h"
 #ifdef __cplusplus

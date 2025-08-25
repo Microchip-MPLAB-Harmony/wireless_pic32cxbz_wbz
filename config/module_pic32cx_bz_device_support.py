@@ -26,6 +26,7 @@ pic32cx_bz2_family = {'PIC32CX1012BZ25048',
                       'WBZ451',
                       'WBZ450',
                       'WBZ451H',
+                      'PIC32WM_BW1',
                       }
 
 pic32cx_bz3_family = {'PIC32CX5109BZ31048',
@@ -33,7 +34,11 @@ pic32cx_bz3_family = {'PIC32CX5109BZ31048',
                       'WBZ351',
                       'WBZ350',
                       }
-
+pic32cx_bz36_family = {'PIC32CX5109BZ36048',
+                       'PIC32CX5109BZ36032',
+                       'PIC32WM_BZ3601',
+                       'PIC32WM_BZ3602',
+                       }
 pic32cx_bz6_family = {'PIC32CX2051BZ62132',
                       'PIC32CX2051BZ62064',
                       'PIC32CX2051BZ66048',
@@ -57,6 +62,9 @@ if (deviceName in pic32cx_bz2_family):
 elif (deviceName in pic32cx_bz3_family):
     initDeviceSupport = Module.CreateComponent('pic32cx_bz3_devsupport', 'Device_Support', '/Wireless/Drivers/PIC32CX-BZ System Services', 'driver/pic32cx-bz/config/device_support.py')
     initDeviceSupport.setDisplayType('PIC32CX-BZ3 Device Support')
+elif (deviceName in pic32cx_bz36_family):
+    initDeviceSupport = Module.CreateComponent('pic32cx_bz3_devsupport', 'Device_Support', '/Wireless/Drivers/PIC32CX-BZ System Services', 'driver/pic32cx-bz/config/device_support.py')
+    initDeviceSupport.setDisplayType('PIC32CX-BZ36 Device Support')
 elif (deviceName in pic32cx_bz6_family):
     initDeviceSupport = Module.CreateComponent('pic32cx_bz6_devsupport', 'Device_Support', '/Wireless/Drivers/PIC32CX-BZ System Services', 'driver/pic32cx-bz/config/device_support.py')
     initDeviceSupport.setDisplayType('PIC32CX-BZ6 Device Support')

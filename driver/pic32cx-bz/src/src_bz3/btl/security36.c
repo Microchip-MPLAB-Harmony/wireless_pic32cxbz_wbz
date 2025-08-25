@@ -426,8 +426,7 @@ uint32_t SecurityStatusGet(void)
     uint32_t codeProt = 0;
     
     //Read dbg lck status to determine whether the device is secured or not
-    secBoot = ((SECCFG & 0xC0) >> 0x06) ;
-            
+    secBoot = ((SECCFG & 0xC0) >> 0x06) ;            
     //Read code protection status
     codeProt = (((DSU_REGS->DSU_STATUSB) & DSU_STATUSB_PROT_Msk) >> DSU_STATUSB_PROT_Pos);
     
@@ -757,10 +756,11 @@ bool validMetaHeader(FW_IMG_HDR *fwHdr)
 {
   uint8_t rbctrInv;
   
-  if (fwHdr->MD_REV != 0x01)
+  if (fwHdr->MD_REV != 0x03)
   {
       return false;
   }
+
   
   if (fwHdr->MD_SEQ_NUM == 0x00000000)
   {
@@ -1026,7 +1026,7 @@ uint16_t get_crc16(uint32_t saddr, bool is_ext_flash, bool is_encrypted)
   img_len = p_header->FW_IMG_LEN;
   p_header->FW_IMG_SRC_ADDR = 0;
   
-  cal_crc16 = crc16(&buffer[16], (READ_BLOCK_SZ-16), 0xffff);
+  cal_crc16 = crc16(&buffer[32], (READ_BLOCK_SZ-32), 0xffff);
   
 //  if( is_ext_flash )
 //  {

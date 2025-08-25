@@ -445,7 +445,7 @@ static void Device_GpioConfig(void)
 
     /*  PORT D  */
     GPIOD_REGS->GPIO_TRISSET = 0xFFFF;  //Set all pins as input
-    GPIOD_REGS->GPIO_CNPUSET = 0xFFEF;  //Except PD4 (Temp sensor), the others are pulled up
+    GPIOD_REGS->GPIO_CNPUSET = 0xFFEE;  //Except PD4 (Temp sensor), PD0, the others are pulled up
 
     /*  PORT E  */
     GPIOE_REGS->GPIO_TRISSET = 0xFFFF;  //Set all pins as input

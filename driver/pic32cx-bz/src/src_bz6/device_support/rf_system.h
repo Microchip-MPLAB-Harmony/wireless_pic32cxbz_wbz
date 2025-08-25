@@ -1,8 +1,8 @@
 #ifndef RF_SYSTEM_H
 #define RF_SYSTEM_H
 
-#include <xc.h>
 #include <stdbool.h>
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -96,17 +96,6 @@ void SYS_ClkGen_Config(void);
 *@retval None
 */
 void RF_SetIdleMode(void);
-
-// *****************************************************************************
-/**
-*@brief registers needs to be updated depending on the current temperature.
-*
-*@param int16_t temp            Temperathre value.
-*@param uint8_t compLutSel      Compensation table selection.
-*
-*@retval None
-*/
-void CalBiasCompensation(int16_t temp, uint8_t compLutSel);
 
 #ifdef __cplusplus
 }

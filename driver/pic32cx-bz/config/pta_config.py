@@ -29,6 +29,7 @@ pic32cx_bz2_family = {'PIC32CX1012BZ25048',
                       'WBZ451',
                       'WBZ450',
                       'WBZ451H',
+                      'PIC32WM_BW1',
                       }
 
 pic32cx_bz3_family = {'PIC32CX5109BZ31048',
@@ -36,7 +37,11 @@ pic32cx_bz3_family = {'PIC32CX5109BZ31048',
                       'WBZ351',
                       'WBZ350',
                       }
-
+pic32cx_bz36_family = {'PIC32CX5109BZ36048',
+                       'PIC32CX5109BZ36032',
+                       'PIC32WM_BZ3601',
+                       'PIC32WM_BZ3602',
+                      }
 pic32cx_bz6_family = {'PIC32CX2051BZ62132',
                       'PIC32CX2051BZ62064',
                       'PIC32CX2051BZ66048',
@@ -109,7 +114,7 @@ def handlePTA_Support(symbol,event):
     
     if (deviceName in pic32cx_bz2_family):
         devsupport_component = "pic32cx_bz2_devsupport"
-    elif (deviceName in pic32cx_bz3_family):
+    elif ((deviceName in pic32cx_bz3_family) or (deviceName in pic32cx_bz36_family)):
         devsupport_component = "pic32cx_bz3_devsupport"
     elif (deviceName in pic32cx_bz6_family):
         devsupport_component = "pic32cx_bz6_devsupport"
@@ -232,7 +237,7 @@ def ptaConfigurationCallback(symbol,event):
     value = event["value"]
     if (deviceName in pic32cx_bz2_family):
         devsupport_component = "pic32cx_bz2_devsupport"
-    elif (deviceName in pic32cx_bz3_family):
+    elif ((deviceName in pic32cx_bz3_family) or (deviceName in pic32cx_bz36_family)):
         devsupport_component = "pic32cx_bz3_devsupport"
     elif (deviceName in pic32cx_bz6_family):
         devsupport_component = "pic32cx_bz6_devsupport"
@@ -406,7 +411,18 @@ for pad in sort_alphanumeric(availablePinDictionary.values()):
     ptaReqPin.addKey(key, value, description)
     ptaWlanActivePin.addKey(key, value, description)
     ptaPriorityPin.addKey(key, value, description)
-    if (deviceName in pic32cx_bz2_family):
+
+    if deviceName == 'PIC32WM_BW1':
+        if value == '40':
+            ptaReqPin.setDefaultValue(iter)
+            PTA_PIN_CONFIG.update({"PTA_REQ_PIN":'BSP_PIN_17'})
+        if value == '42':
+            ptaPriorityPin.setDefaultValue(iter)
+            PTA_PIN_CONFIG.update({"PTA_PRIO_PIN":'BSP_PIN_16'})
+        if value == '43':
+            ptaWlanActivePin.setDefaultValue(iter)
+            PTA_PIN_CONFIG.update({"WLAN_ACTIVE_PIN":'BSP_PIN_30'})
+    elif (deviceName in pic32cx_bz2_family):
         if value == '34':
             ptaReqPin.setDefaultValue(iter)
             PTA_PIN_CONFIG.update({"PTA_REQ_PIN":'BSP_PIN_34'})
@@ -416,7 +432,7 @@ for pad in sort_alphanumeric(availablePinDictionary.values()):
         if value == '4':
             ptaWlanActivePin.setDefaultValue(iter)
             PTA_PIN_CONFIG.update({"WLAN_ACTIVE_PIN":'BSP_PIN_4'})        
-    elif (deviceName in pic32cx_bz3_family):
+    elif ((deviceName in pic32cx_bz3_family)or (deviceName in pic32cx_bz36_family)):
         if value == '36':
             ptaReqPin.setDefaultValue(iter)
             PTA_PIN_CONFIG.update({"PTA_REQ_PIN":'BSP_PIN_36'})

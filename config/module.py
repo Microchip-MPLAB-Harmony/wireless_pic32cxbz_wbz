@@ -32,6 +32,7 @@ def loadModule():
                           'WBZ451',
                           'WBZ450',
                           'WBZ451H',
+                          'PIC32WM_BW1',
                           }
 
     pic32cx_bz3_family = {'PIC32CX5109BZ31048',
@@ -41,7 +42,15 @@ def loadModule():
                           }
     pic32cx_bz3_module_family = {'WBZ351',
                                 }
-    
+   
+    pic32cx_bz36_family = {'PIC32CX5109BZ36048',
+                           'PIC32CX5109BZ36032',
+                           'PIC32WM_BZ3601',
+                           'PIC32WM_BZ3602',
+                          }
+    pic32cx_bz36_module_family = {'PIC32WM_BZ3602',
+                                }
+
     pic32cx_bz6_family = {'PIC32CX2051BZ62132',
                           'PIC32CX2051BZ62064',
                           'PIC32CX2051BZ66048',
@@ -56,7 +65,7 @@ def loadModule():
     processor = Variables.get('__PROCESSOR')
     print('processor={}'.format(processor))
 
-    if((processor in pic32cx_bz2_family) or (processor in pic32cx_bz3_family) or (processor in pic32cx_bz6_family)):
+    if((processor in pic32cx_bz2_family) or (processor in pic32cx_bz3_family) or (processor in pic32cx_bz6_family) or (processor in pic32cx_bz36_family)):
         ## Device Support
         execfile(Module.getPath() + '/config/module_pic32cx_bz_device_support.py')
         ## Persistant Data Storage
@@ -69,6 +78,10 @@ def loadModule():
         execfile(Module.getPath() + '/config/module_pic32cx_bz2_bootloaderServices.py')
 
     if( processor in pic32cx_bz3_module_family):
-        ## PIC32CX-BZ3 Bootloader
+        ## PIC32CX-BZ3 Bootloader and PIC32CX-BZ36 Bootloader
         execfile(Module.getPath() + '/config/module_pic32cx_bz3_bootloader.py')
+    if( processor in pic32cx_bz36_module_family):
+        ## PIC32CX-BZ3 Bootloader and PIC32CX-BZ36 Bootloader
+        execfile(Module.getPath() + '/config/module_pic32cx_bz36_bootloader.py')
+
 

@@ -49,6 +49,7 @@
 /* TODO:  Include other files here if needed. */
 #include <stdbool.h>
 #include "pta.h"
+#include "definitions.h"
 
 /* ************************************************************************** */
 /* ************************************************************************** */
@@ -117,11 +118,13 @@ bool PTA_WlanStatus (void)
 
 void PTA_WlanIrqCb (GPIO_PIN pin, uintptr_t context)
 {
+    taskENTER_CRITICAL();
     if((NULL != gIrqHandler) && (true == PTA_WlanStatus()))
     {
         gIrqHandler();
         gIrqHandler = NULL;
     }
+    taskEXIT_CRITICAL();
 }
 
 void PTA_init(void)

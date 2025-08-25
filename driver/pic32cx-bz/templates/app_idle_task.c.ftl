@@ -99,6 +99,11 @@
 #define APP_IDLE_RTC_TIMER_FACTOR_POSC                   ( 12UL )   //1.2ms
 </#if>
 
+/* A fiddle factor to estimate the number of SysTick counts that would have
+ * occurred while the SysTick counter is stopped during tickless idle
+ * calculations. */
+#define APP_IDLE_MISSED_COUNTS_FACTOR                    ( 94UL )
+
 /* The RTC is a 32-bit counter. */
 #define APP_IDLE_MAX_32_BIT_NUMBER                  ( 0xffffffffUL )
 
@@ -109,6 +114,8 @@
 #define APP_IDLE_NVIC_SYSTICK_CTRL_REG           ( * ( ( volatile uint32_t * ) 0xe000e010 ) )
 #define APP_IDLE_NVIC_SYSTICK_LOAD_REG           ( * ( ( volatile uint32_t * ) 0xe000e014 ) )
 #define APP_IDLE_NVIC_SYSTICK_CURRENT_VALUE_REG  ( * ( ( volatile uint32_t * ) 0xe000e018 ) )
+#define APP_IDLE_NVIC_INT_CTRL_REG               ( * ( ( volatile uint32_t * ) 0xe000ed04 ) )
+
 
 /* ...then bits in the registers. */
 #define APP_IDLE_NVIC_SYSTICK_ENABLE_BIT         ( 1UL << 0UL )
@@ -116,6 +123,7 @@
 #define APP_IDLE_NVIC_SYSTICK_CLK_BIT            ( 1UL << 2UL )
 #define APP_IDLE_NVIC_SYSTICK_COUNT_FLAG_BIT     ( 1UL << 16UL )
 #define APP_IDLE_NVIC_PENDSVCLEAR_BIT            ( 1UL << 27UL )
+#define APP_IDLE_NVIC_PEND_SYSTICK_SET_BIT       ( 1UL << 26UL )
 #define APP_IDLE_NVIC_PEND_SYSTICK_CLEAR_BIT     ( 1UL << 25UL )
 
 <#if PIC32CX_BZ2_HPA_DEVICE == true>
@@ -149,11 +157,18 @@ static bool s_rtcIntFlag;
 static uint32_t xMaximumPossibleSuppressedTicksRtc = 0UL;
 
 /*
+ * The maximum number of tick periods that can be suppressed is limited by the
+ * 24 bit resolution of the SysTick timer.
+ */
+static uint32_t s_xMaximumPossibleSuppressedTicksIdle = 0;
+
+/*
  * Compensate for the CPU cycles that pass while the SysTick is stopped (low
  * power functionality only.
  */
 static uint32_t s_ulStoppedTimerCompensationRtcP = 0UL;
 static uint32_t s_ulStoppedTimerCompensationRtcS = 0UL;
+static uint32_t s_ulStoppedTimerCompensationIdle = 0UL;
 
 static uint32_t s_rtcCntBeforeSleep = 0UL;
 static bool s_chkRtcCnt;
@@ -225,7 +240,7 @@ void app_idle_task( void )
                {
                    PHY_TrxWakeup();
                    intStatus = OSAL_CRIT_Enter(OSAL_CRIT_TYPE_LOW);
-                   RF_Timer_Cal(WSS_ENABLE_ZB);
+                   RF_Timer_Cal(${WSS_ENABLE_MODE});
                    OSAL_CRIT_Leave(OSAL_CRIT_TYPE_LOW, intStatus);
                    PHY_TrxSleep(SLEEP_MODE_1);
                }
@@ -394,6 +409,8 @@ void vPortSetupTimerInterrupt( void )
     /* Calculate the constants required to configure the tick interrupt. */
 
     ulTimerCountsForOneTick = ( APP_IDLE_SYSTICK_CLOCK_HZ / configTICK_RATE_HZ );
+    s_xMaximumPossibleSuppressedTicksIdle = APP_IDLE_MAX_24_BIT_NUMBER / ulTimerCountsForOneTick;
+    s_ulStoppedTimerCompensationIdle = APP_IDLE_MISSED_COUNTS_FACTOR;
 
     /*
        RTC count per one ms (CNT/ms) = RTC Clock / 1000 
@@ -441,6 +458,7 @@ void vPortSetupTimerInterrupt( void )
 void vPortSuppressTicksAndSleep( TickType_t xExpectedIdleTime )
 {
     bool isSystemCanSleep = false;
+    uint32_t ulCompleteTickPeriods = 0;
 
     /* If a context switch is pending or a task is waiting for the scheduler
     to be unsuspended then abandon the low power entry. */
@@ -460,7 +478,6 @@ void vPortSuppressTicksAndSleep( TickType_t xExpectedIdleTime )
     /* Allow system to enter sleep mode */
     ${STACK_SLEEP_CHECK}
     {
-        uint32_t ulCompleteTickPeriods = 0;
         TickType_t xModifiableIdleTime = 0;
         uint32_t ulRtcCntBeforeSleep = 0;
         uint32_t ulRtcCntAfterSleep = 0;
@@ -655,6 +672,173 @@ void vPortSuppressTicksAndSleep( TickType_t xExpectedIdleTime )
         </#if>
 		</#if>
     }
+    <#if (!(THREADSTACK_LOADED || IEEE_802154_PHY_LOADED || IEEE_802154_MAC_LOADED || ZIGBEESTACK_LOADED))>
+    else    /* Enter FreeRTOS Tickless Idle Mode if system is not allowed to enter sleep mode */
+    {
+        uint32_t ulSysTickDecrementsLeft;
+        uint32_t ulReloadValue;
+        uint32_t ulCompletedSysTickDecrements;
+
+        /* Make sure the SysTick reload value does not overflow the counter. */
+        if ( xExpectedIdleTime > s_xMaximumPossibleSuppressedTicksIdle )
+        {
+            xExpectedIdleTime = s_xMaximumPossibleSuppressedTicksIdle;
+        }
+
+        /* Stop the SysTick momentarily.  The time the SysTick is stopped for
+         * is accounted for as best it can be, but using the tickless mode will
+         * inevitably result in some tiny drift of the time maintained by the
+         * kernel with respect to calendar time. */
+        APP_IDLE_NVIC_SYSTICK_CTRL_REG = ( APP_IDLE_NVIC_SYSTICK_CLK_BIT | APP_IDLE_NVIC_SYSTICK_INT_BIT );
+
+        /* Use the SysTick current-value register to determine the number of
+         * SysTick decrements remaining until the next tick interrupt.  If the
+         * current-value register is zero, then there are actually
+         * ulTimerCountsForOneTick decrements remaining, not zero, because the
+         * SysTick requests the interrupt when decrementing from 1 to 0. */
+        ulSysTickDecrementsLeft = APP_IDLE_NVIC_SYSTICK_CURRENT_VALUE_REG;
+
+        if ( ulSysTickDecrementsLeft == 0UL )
+        {
+            ulSysTickDecrementsLeft = ulTimerCountsForOneTick;
+        }
+
+        /* Calculate the reload value required to wait xExpectedIdleTime
+         * tick periods.  -1 is used because this code normally executes part
+         * way through the first tick period.  But if the SysTick IRQ is now
+         * pending, then clear the IRQ, suppressing the first tick, and correct
+         * the reload value to reflect that the second tick period is already
+         * underway.  The expected idle time is always at least two ticks.
+         * (Set as five ticks for pic32cx) */
+        ulReloadValue = ulSysTickDecrementsLeft + ( ulTimerCountsForOneTick * ( xExpectedIdleTime - 1UL ) );
+
+        if ( ( APP_IDLE_NVIC_INT_CTRL_REG & APP_IDLE_NVIC_PEND_SYSTICK_SET_BIT ) != 0U )
+        {
+            APP_IDLE_NVIC_INT_CTRL_REG = APP_IDLE_NVIC_PEND_SYSTICK_CLEAR_BIT;
+            ulReloadValue -= ulTimerCountsForOneTick;
+        }
+
+        if ( ulReloadValue > s_ulStoppedTimerCompensationIdle )
+        {
+            ulReloadValue -= s_ulStoppedTimerCompensationIdle;
+        }
+
+        /* Set the new reload value. */
+        APP_IDLE_NVIC_SYSTICK_LOAD_REG = ulReloadValue;
+
+        /* Clear the SysTick count flag and set the count value back to
+         * zero. */
+        APP_IDLE_NVIC_SYSTICK_CURRENT_VALUE_REG = 0UL;
+
+        /* Restart SysTick. */
+        APP_IDLE_NVIC_SYSTICK_CTRL_REG |= APP_IDLE_NVIC_SYSTICK_ENABLE_BIT;
+
+        /* Sleep until something happens.  configPRE_SLEEP_PROCESSING() can
+         * set its parameter to 0 to indicate that its implementation contains
+         * its own wait for interrupt or wait for event instruction, and so wfi
+         * should not be executed again.  However, the original expected idle
+         * time variable must remain unmodified, so a copy is taken. */
+        if ( xExpectedIdleTime > 0 )
+        {
+            __asm volatile ( "dsb" ::: "memory" );
+            __asm volatile ( "wfi" );
+            __asm volatile ( "isb" );
+        }
+
+        configPOST_SLEEP_PROCESSING( xExpectedIdleTime );
+    
+        /* Re-enable interrupts to allow the interrupt that brought the MCU
+         * out of sleep mode to execute immediately.  See comments above
+         * the cpsid instruction above. */
+        __asm volatile ( "cpsie i" ::: "memory" );
+        __asm volatile ( "dsb" );
+        __asm volatile ( "isb" );
+
+        /* Disable interrupts again because the clock is about to be stopped
+         * and interrupts that execute while the clock is stopped will increase
+         * any slippage between the time maintained by the RTOS and calendar
+         * time. */
+        __asm volatile ( "cpsid i" ::: "memory" );
+        __asm volatile ( "dsb" );
+        __asm volatile ( "isb" );
+
+        /* Disable the SysTick clock without reading the
+         * APP_IDLE_NVIC_SYSTICK_CTRL_REG register to ensure the
+         * APP_IDLE_NVIC_SYSTICK_COUNT_FLAG_BIT is not cleared if it is set.  Again,
+         * the time the SysTick is stopped for is accounted for as best it can
+         * be, but using the tickless mode will inevitably result in some tiny
+         * drift of the time maintained by the kernel with respect to calendar
+         * time*/
+        APP_IDLE_NVIC_SYSTICK_CTRL_REG = ( APP_IDLE_NVIC_SYSTICK_CLK_BIT | APP_IDLE_NVIC_SYSTICK_INT_BIT );
+
+        /* Determine whether the SysTick has already counted to zero. */
+        if ( ( APP_IDLE_NVIC_SYSTICK_CTRL_REG & APP_IDLE_NVIC_SYSTICK_COUNT_FLAG_BIT ) != 0U )
+        {
+            uint32_t ulCalculatedLoadValue;
+
+            /* The tick interrupt ended the sleep (or is now pending), and
+             * a new tick period has started.  Reset APP_IDLE_NVIC_SYSTICK_LOAD_REG
+             * with whatever remains of the new tick period. */
+            ulCalculatedLoadValue = ( ulTimerCountsForOneTick - 1UL ) - ( ulReloadValue - APP_IDLE_NVIC_SYSTICK_CURRENT_VALUE_REG );
+
+            /* Don't allow a tiny value, or values that have somehow
+             * underflowed because the post sleep hook did something
+             * that took too long or because the SysTick current-value register
+             * is zero. */
+            if ( ( ulCalculatedLoadValue <= s_ulStoppedTimerCompensationIdle ) || ( ulCalculatedLoadValue > ulTimerCountsForOneTick ) )
+            {
+                ulCalculatedLoadValue = ( ulTimerCountsForOneTick - 1UL );
+            }
+
+            APP_IDLE_NVIC_SYSTICK_LOAD_REG = ulCalculatedLoadValue;
+
+            /* As the pending tick will be processed as soon as this
+             * function exits, the tick value maintained by the tick is stepped
+             * forward by one less than the time spent waiting. */
+            ulCompleteTickPeriods = xExpectedIdleTime - 1UL;
+        }
+        else
+        {
+            /* Something other than the tick interrupt ended the sleep. */
+
+            /* Use the SysTick current-value register to determine the
+             * number of SysTick decrements remaining until the expected idle
+             * time would have ended. */
+            ulSysTickDecrementsLeft = APP_IDLE_NVIC_SYSTICK_CURRENT_VALUE_REG;
+
+            /* Work out how long the sleep lasted rounded to complete tick
+             * periods (not the ulReload value which accounted for part
+             * ticks). */
+            ulCompletedSysTickDecrements = ( xExpectedIdleTime * ulTimerCountsForOneTick ) - ulSysTickDecrementsLeft;
+
+            /* How many complete tick periods passed while the processor
+             * was waiting? */
+            ulCompleteTickPeriods = ulCompletedSysTickDecrements / ulTimerCountsForOneTick;
+
+            /* The reload value is set to whatever fraction of a single tick
+             * period remains. */
+            APP_IDLE_NVIC_SYSTICK_LOAD_REG = ( ( ulCompleteTickPeriods + 1UL ) * ulTimerCountsForOneTick ) - ulCompletedSysTickDecrements;
+        }
+
+        /* Restart SysTick so it runs from APP_IDLE_NVIC_SYSTICK_LOAD_REG again,
+         * then set APP_IDLE_NVIC_SYSTICK_LOAD_REG back to its standard value.  If
+         * the SysTick is not using the core clock, temporarily configure it to
+         * use the core clock.  This configuration forces the SysTick to load
+         * from APP_IDLE_NVIC_SYSTICK_LOAD_REG immediately instead of at the next
+         * cycle of the other clock.  Then APP_IDLE_NVIC_SYSTICK_LOAD_REG is ready
+         * to receive the standard value immediately. */
+        APP_IDLE_NVIC_SYSTICK_CURRENT_VALUE_REG = 0UL;
+        APP_IDLE_NVIC_SYSTICK_CTRL_REG = APP_IDLE_NVIC_SYSTICK_CLK_BIT | APP_IDLE_NVIC_SYSTICK_INT_BIT | APP_IDLE_NVIC_SYSTICK_ENABLE_BIT;
+
+        APP_IDLE_NVIC_SYSTICK_LOAD_REG = ulTimerCountsForOneTick - 1UL;
+
+        /* Step the tick to account for any tick periods that elapsed. */
+        vTaskStepTick( ulCompleteTickPeriods );
+
+        /* Exit with interrupts enabled. */
+        __asm volatile ( "cpsie i" ::: "memory" );
+    }
+    </#if>
 }
 </#if>
 

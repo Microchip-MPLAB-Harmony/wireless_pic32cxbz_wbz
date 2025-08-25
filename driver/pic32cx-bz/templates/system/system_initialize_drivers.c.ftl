@@ -33,7 +33,7 @@
     PMU_Set_Mode(${SYSTEM_PMU_MODE});
 </#if>
 <#if (ENABLE_DEEP_SLEEP == true)>
-	<#if ((PIC32CX_BZ3_DEVICE == true) || (PIC32CX_BZ6_DEVICE == true))>
+	<#if ((PIC32CX_BZ3_DEVICE == true) || (PIC32CX_BZ6_DEVICE == true) || (PIC32CX_BZ36_DEVICE == true))>
 
     //Config retention RAM size
     PMU_REGS->PMU_WCMSIZ &= ~PMU_WCMSIZ_SRAM1_SIZ_Msk;

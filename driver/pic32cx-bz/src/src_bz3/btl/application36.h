@@ -59,26 +59,32 @@
 
 typedef struct __attribute__((packed))
 {
-    uint32_t        MD_SEQ_NUM;
-    uint8_t         MD_REV;
-    uint8_t         MD_CONT_IDX;
-    uint32_t        MD_COHERENCE;
-    uint8_t         MD_AUTH_METHOD;
-    uint8_t         MD_AUTH_KEY;
-    uint8_t         MD_DEC_METHOD;
-    uint8_t         MD_DEC_KEY;
-    uint16_t        MD_PL_LEN;
+  uint32_t        filler1;
+  uint32_t        filler2;
+  uint32_t        MD_COHERENCE;
+  uint32_t        filler3;
+  uint32_t        filler4;
+  uint32_t        filler5;
+  uint32_t        filler6;
+  uint32_t        MD_SEQ_NUM;
+  uint8_t         MD_REV;
+  uint8_t         MD_CONT_IDX;
+  uint8_t         MD_AUTH_METHOD;
+  uint8_t         MD_AUTH_KEY;
+  uint8_t         MD_DEC_METHOD;
+  uint8_t         MD_DEC_KEY;
+  uint16_t        MD_PL_LEN;
     
-    uint32_t        FW_IMG_REV;
-    uint32_t        FW_IMG_SRC_ADDR;
-    uint32_t        FW_IMG_DST_ADDR;
-    uint32_t        FW_IMG_LEN;
-    uint8_t         FW_IMG_AUTH_METHOD;
-    uint8_t         FW_IMG_AUTH_KEY;
-    uint8_t         FW_IMG_DEC_METHOD;
-    uint8_t         FW_IMG_DEC_KEY;
-    uint8_t         FW_IMG_SIG[96];
-    uint8_t         MD_SIG[96];
+  uint32_t        FW_IMG_REV;
+  uint32_t        FW_IMG_SRC_ADDR;
+  uint32_t        FW_IMG_DST_ADDR;
+  uint32_t        FW_IMG_LEN;
+  uint8_t         FW_IMG_AUTH_METHOD;
+  uint8_t         FW_IMG_AUTH_KEY;
+  uint8_t         FW_IMG_DEC_METHOD;
+  uint8_t         FW_IMG_DEC_KEY;
+  uint8_t         FW_IMG_SIG[96];
+  uint8_t         MD_SIG[96];
 } FW_IMG_HDR;
 
 const void * GetTopologies(void);

@@ -28,6 +28,7 @@ pic32cx_bz2_family = {'PIC32CX1012BZ25048',
                       'WBZ451',
                       'WBZ450',
                       'WBZ451H',
+                      'PIC32WM_BW1',
                       }
 
 pic32cx_bz3_family = {'PIC32CX5109BZ31048',
@@ -35,6 +36,11 @@ pic32cx_bz3_family = {'PIC32CX5109BZ31048',
                       'WBZ351',
                       'WBZ350',
                       }
+pic32cx_bz36_family = {'PIC32CX5109BZ36048',
+                       'PIC32CX5109BZ36032',
+                       'PIC32WM_BZ3601',
+                       'PIC32WM_BZ3602',
+                        }
 
 pic32cx_bz6_family = {'PIC32CX2051BZ62132',
                       'PIC32CX2051BZ62064',
@@ -57,7 +63,7 @@ initPDSComponent.setDisplayType('Persistant Data Storage')
 initPDSComponent.addCapability('pds_Command_Capability', 'PDS_SubSystem', True)
 if (deviceName in pic32cx_bz2_family):
     initPDSComponent.addDependency('PIC32CX_BZ2_DevSupport_Dependency', 'Device_Support', None, True, True)
-elif (deviceName in pic32cx_bz3_family):
+elif ((deviceName in pic32cx_bz3_family) or (deviceName in pic32cx_bz36_family)):
     initPDSComponent.addDependency('PIC32CX_BZ3_DevSupport_Dependency', 'Device_Support', None, True, True)
 elif (deviceName in pic32cx_bz6_family):
     initPDSComponent.addDependency('PIC32CX_BZ6_DevSupport_Dependency', 'Device_Support', None, True, True)

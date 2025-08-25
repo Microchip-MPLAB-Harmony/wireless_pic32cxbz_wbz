@@ -129,6 +129,9 @@ static uint32_t s_refo6Backup;
 
 static uint8_t s_adcCpBackup;
 static uint16_t s_rfRegBackup[6];
+static uint32_t s_pcheRegBackup;
+static uint32_t s_pb1divRegBackup;
+
 
 // *****************************************************************************
 // *****************************************************************************
@@ -624,11 +627,12 @@ static void device_configPmdReg(DEVICE_SLEEP_ActionId_T action)
         }
 
         //DAC doesn't need clock
+        /*
         if (pmdReg.dac != 0U)
         {
-            //pmd3Val &= ~CFG_PMD3_DACMD_Msk;    //Keep DAC enabled
+            pmd3Val &= ~CFG_PMD3_DACMD_Msk;
         }
-
+        */
 
         if (pmdReg.tc0 != 0U)
         {
@@ -894,9 +898,12 @@ void DEVICE_EnterSleepMode(void)
     DEVICE_SLEEP_DisableDebugBus();
 
     // Step 14 : Disable PCHE Cache, which is proposed by SOC team for low power optimization
-    PCHE_REGS->PCHE_CHECON = 0xf;
-    
+    s_pcheRegBackup =  PCHE_REGS->PCHE_CHECON;
+    typedef void (*FUNC_PCHE_SETUP)(uint32_t setup);
+    (void)((FUNC_PCHE_SETUP)(*(uint32_t*)0xF2D0))(PCHE_CHECON_PFMWS(0xF));
+
     // Step 15 : Set PB1 CLK to SYS_CLK/5, which is proposed by SOC team for low power optimization
+    s_pb1divRegBackup = CRU_REGS->CRU_PB1DIV;
     CRU_REGS->CRU_PB1DIV = 0x8804;
 
     // Step 16 : set REFOx registers to 0, combining step 17 to de-assert external PLL request 
@@ -1031,11 +1038,10 @@ void DEVICE_ExitSleepMode(void)
     // If XTAL clock is off
     if ((CFG_REGS->CFG_CFGCON4 & CFG_CFGCON4_VBKP_32KCSEL_Msk) == 0x2000U) //SOSC : XTAL_OFF
     {
-        
         // Step 2 : If XTAL clock is off when bt_zb_subsys enters into low power mode, wait for xtal_ready_out_sync
         // Enable bit 7 to creates one clk_lp_cycle wide pulse on ZBT Subsystem.external_NMI0 pin
         CFG_REGS->CFG_CFGCON1 |= CFG_CFGCON1_ZBTWKSYS_Msk;
-        
+
         // Wait for xtal_ready      
         while(BTZB_XTAL_NOT_READY)
         {
@@ -1124,10 +1130,11 @@ void DEVICE_ExitSleepMode(void)
     device_configAdcCpClk(DEVICE_SLEEP_EXIT_SLEEP);
 
     // Step 16 : Set PB1 CLK to SYS_CLK to restore its clock rate for run mode 
-    CRU_REGS->CRU_PB1DIV = 0x8800; 
+    CRU_REGS->CRU_PB1DIV = s_pb1divRegBackup;
 
     // Step 17 : Restore PCHE Cache programming for run mode
-    PCHE_REGS->PCHE_CHECON = 0x07000011;
+    typedef void (*FUNC_PCHE_SETUP)(uint32_t setup);
+    (void)((FUNC_PCHE_SETUP)(*(uint32_t*)0xF2D0))(s_pcheRegBackup);
 
     // Step 18 : Change CLK source in CRU from POSC CLK to SPLL1 CLK
     CRU_REGS->CRU_OSCCON &= ~((uint32_t)0xf01U);

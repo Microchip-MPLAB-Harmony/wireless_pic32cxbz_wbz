@@ -25,7 +25,7 @@
 #ifndef POWER_H
 #define POWER_H
 
-#include <xc.h>
+#include <stdint.h>
 #include <stdbool.h>
 
 

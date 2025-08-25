@@ -28,6 +28,7 @@ pic32cx_bz2_family = {'PIC32CX1012BZ25048',
                       'WBZ451',
                       'WBZ450',
                       'WBZ451H',
+                      'PIC32WM_BW1',
                       }
 
 pic32cx_bz3_family = {'PIC32CX5109BZ31048',
@@ -35,6 +36,13 @@ pic32cx_bz3_family = {'PIC32CX5109BZ31048',
                       'WBZ351',
                       'WBZ350',
                       }
+
+pic32cx_bz36_family = {'PIC32CX5109BZ36048',
+                       'PIC32CX5109BZ36032',
+                       'PIC32WM_BZ3601',
+                       'PIC32WM_BZ3602',
+                      }
+
 
 pic32cx_bz6_family = {'PIC32CX2051BZ62132',
                       'PIC32CX2051BZ62064',
@@ -196,7 +204,7 @@ PDS_DisplayApps1.setReadOnly(False)
 # PDS_USES_BOOT_FLASH - Applicable/enabled only for BZ3 family
 PDS_UsesBootFlash = libPDS.createBooleanSymbol("PDS_USES_BOOT_FLASH", None)
 PDS_UsesBootFlash.setDefaultValue(False)
-PDS_UsesBootFlash.setVisible(processor in pic32cx_bz3_family)
+PDS_UsesBootFlash.setVisible((processor in pic32cx_bz3_family) or (processor in pic32cx_bz36_family))
 PDS_UsesBootFlash.setReadOnly(False)
 
 ############################################################################
@@ -207,6 +215,8 @@ if (processor in pic32cx_bz2_family):
     pdsLinkerFile.setSourcePath("driver/pic32cx-bz/templates/PIC32CX1012BZ25048.ld.ftl")
 elif (processor in pic32cx_bz3_family):
     pdsLinkerFile.setSourcePath("driver/pic32cx-bz/templates/PIC32CX5109BZ31048.ld.ftl")
+elif (processor in pic32cx_bz36_family):
+    pdsLinkerFile.setSourcePath("driver/pic32cx-bz/templates/PIC32CX5109BZ36048.ld.ftl")
 elif (processor in pic32cx_bz6_family):
     pdsLinkerFile.setSourcePath("driver/pic32cx-bz/templates/PIC32CX2051BZ62132.ld.ftl")
 

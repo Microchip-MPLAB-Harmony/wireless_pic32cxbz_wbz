@@ -118,6 +118,9 @@ static uint32_t s_refo4Backup;
 static uint32_t s_refo5Backup;
 static uint32_t s_refo6Backup;
 
+static uint32_t s_pcheRegBackup;
+static uint32_t s_pb1divRegBackup;
+
 
 // *****************************************************************************
 // *****************************************************************************
@@ -719,9 +722,11 @@ void DEVICE_EnterSleepMode(void)
     DEVICE_SLEEP_DisableDebugBus();
 
     // Step 14 : Disable PCHE Cache, which is proposed by SOC team for low power optimization
+    s_pcheRegBackup =  PCHE_REGS->PCHE_CHECON;
     PCHE_REGS->PCHE_CHECON = 0xf;
-    
+
     // Step 15 : Set PB1 CLK to SYS_CLK/5, which is proposed by SOC team for low power optimization
+    s_pb1divRegBackup = CRU_REGS->CRU_PB1DIV;
     CRU_REGS->CRU_PB1DIV = 0x8804;
 
     // Step 16 : set REFOx registers to 0, combining step 17 to de-assert external PLL request 
@@ -961,10 +966,10 @@ void DEVICE_ExitSleepMode(void)
     device_configRefOscReg(DEVICE_SLEEP_EXIT_SLEEP);
 
     // Step 16 : Set PB1 CLK to SYS_CLK to restore its clock rate for run mode 
-    CRU_REGS->CRU_PB1DIV = 0x8800; 
+    CRU_REGS->CRU_PB1DIV = s_pb1divRegBackup;
 
     // Step 17 : Restore PCHE Cache programming for run mode
-    PCHE_REGS->PCHE_CHECON = 0x07000011;
+    PCHE_REGS->PCHE_CHECON = s_pcheRegBackup;
 
     // Step 18 : Change CLK source in CRU from POSC CLK to SPLL1 CLK
     CRU_REGS->CRU_OSCCON &= ~((uint32_t)0xf01U);

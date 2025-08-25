@@ -1,5 +1,5 @@
 /*--------------------------------------------------------------------------
- * MPLAB XC32 Compiler -  PIC32CXBZ3 linker script
+ * MPLAB XC32 Compiler -  PIC32CX5109BZ36048 linker script
  * 
  * Copyright (c) 2020, Microchip Technology Inc. and its subsidiaries ("Microchip")
  * All rights reserved.
@@ -62,22 +62,71 @@ ENTRY(__XC32_RESET_HANDLER_NAME)
  *************************************************************************/
 
 #ifndef ROM_ORIGIN
-#  define ROM_ORIGIN 0x00800200
+#  define ROM_ORIGIN 0x1000200
 #endif
+
+#ifndef PDS_LENGTH
+#  define PDS_LENGTH 0x4000
+#endif
+
 #ifndef ROM_LENGTH
-#  define ROM_LENGTH 0x4000
-#elif (ROM_LENGTH > 0x4000)
-#  error ROM_LENGTH is greater than the max size of 0x4000
+<#if (PDS_USES_BOOT_FLASH == false)>
+#  define ROM_LENGTH 0x7FE00 - PDS_LENGTH
+#elif (ROM_LENGTH > (0x7FE00 - PDS_LENGTH))
+#  error ROM_LENGTH is greater than the max size of 0x7FE00 - PDS_LENGTH
+<#else>
+#  define ROM_LENGTH 0x7FE00
+#elif (ROM_LENGTH > 0x7FE00)
+#  error ROM_LENGTH is greater than the max size of 0x7FE00
+</#if>
+#endif
+
+#ifndef BOOT_FLASH_ORIGIN
+#  define BOOT_FLASH_ORIGIN 0x00800000
+#endif
+
+#ifndef BOOT_FLASH_LENGTH
+#  define BOOT_FLASH_LENGTH 0x5000
+#elif (BOOT_FLASH_LENGTH > 0x5000)
+#  error BOOT_FLASH_LENGTH is greater than the max size of 0x5000
+#endif
+
+
+<#if (DEEP_SLEEP_ENABLED)>
+#ifndef BACKUPRAM_ORIGIN
+#  define BACKUPRAM_ORIGIN 0x20000010
+#endif
+#ifndef BACKUPRAM_LENGTH
+#  define BACKUPRAM_LENGTH ${RETENTION_RAM_SIZE}
 #endif
 #ifndef RAM_ORIGIN
-#  define RAM_ORIGIN 0x20008000
+#  define RAM_ORIGIN (0x20000010 + BACKUPRAM_LENGTH)
 #endif
 #ifndef RAM_LENGTH
-#  define RAM_LENGTH 0x8000
-#elif (RAM_LENGTH > 0x8000)
-#  error RAM_LENGTH is greater than the max size of 0x8000
+#  define RAM_LENGTH (0x18000 - BACKUPRAM_LENGTH - 0x10)
+#elif ((RAM_LENGTH + BACKUPRAM_LENGTH + 0x10) > 0x18000)
+#  error RAM_LENGTH is greater than the max size of 0x18000
 #endif
-  
+<#else>
+#ifndef RAM_ORIGIN
+#  define RAM_ORIGIN 0x20000000
+#endif
+#ifndef RAM_LENGTH
+#  define RAM_LENGTH 0x18000
+#elif (RAM_LENGTH > 0x18000)
+#  error RAM_LENGTH is greater than the max size of 0x18000
+#endif
+</#if>
+
+
+#ifndef PDS_ORIGIN
+<#if (PDS_USES_BOOT_FLASH == false)>
+#  define PDS_ORIGIN 0x0107C000
+<#else>
+#  define PDS_ORIGIN BOOT_FLASH_ORIGIN
+</#if>
+#endif
+
 
 /*************************************************************************
  * Memory-Region Definitions
@@ -86,14 +135,31 @@ ENTRY(__XC32_RESET_HANDLER_NAME)
  *************************************************************************/
 MEMORY
 {
-  rom (LRX) : ORIGIN = ROM_ORIGIN, LENGTH = ROM_LENGTH
-  ram (WX!R) : ORIGIN = RAM_ORIGIN, LENGTH = RAM_LENGTH
+  rom (LRX) : ORIGIN = ROM_ORIGIN, LENGTH = ROM_LENGTH  
+  pds (RX) : ORIGIN = PDS_ORIGIN, LENGTH = PDS_LENGTH
+<#if (DEEP_SLEEP_ENABLED)>
+  bkupram    : ORIGIN = BACKUPRAM_ORIGIN, LENGTH = BACKUPRAM_LENGTH  
+</#if>
+  ram (WX!R) : ORIGIN = RAM_ORIGIN, LENGTH = RAM_LENGTH  
   config_D0045F88 : ORIGIN = 0xD0045F88, LENGTH = 0x4
   config_D0045F8C : ORIGIN = 0xD0045F8C, LENGTH = 0x4
   config_D0045F90 : ORIGIN = 0xD0045F90, LENGTH = 0x4
   config_D0045F94 : ORIGIN = 0xD0045F94, LENGTH = 0x4
   config_D0045F98 : ORIGIN = 0xD0045F98, LENGTH = 0x4
+
 }
+
+<#if (DEEP_SLEEP_ENABLED)>
+SECTIONS {
+    .bkupram_data : {
+      *(.bkupram_data .bkupram_data.*)
+    } > bkupram
+    .bkupram_bss : {
+      *(.bkupram_bss .bkupram_bss.*)
+      *(.pbss .pbss.*)
+    } > bkupram
+}
+</#if>
 
 /*************************************************************************
  * Output region definitions.
@@ -118,6 +184,9 @@ MEMORY
 #endif 
 #ifndef VECTOR_REGION
 # define VECTOR_REGION rom
+#endif
+#ifndef PDS_REGION
+#define PDS_REGION pds
 #endif
 
 __rom_end = ORIGIN(rom) + LENGTH(rom);
@@ -167,6 +236,15 @@ SECTIONS
      */
     .text :
     {
+        /* Non-volatile file system PDS_FF section */
+        PROVIDE(__pds_ff_start = .);
+        KEEP(*(.pds_ff .pds_ff.*))
+        PROVIDE(__pds_ff_end = .);
+        /* Non-volatile file system PDS_FF section */
+        PROVIDE(__pds_fd_start = .);
+        KEEP(*(.pds_fd .pds_fd.*))
+        PROVIDE(__pds_fd_end = .);
+
         . = ALIGN(4);
         *(.glue_7t) *(.glue_7)
         *(.gnu.linkonce.r.*)
@@ -217,6 +295,11 @@ SECTIONS
     {
       *(.ARM.exidx* .gnu.linkonce.armexidx.*)
     } > CODE_REGION
+    .dnvMem :
+    {
+       __d_nv_mem_start = .;
+       __d_nv_mem_end = ORIGIN(pds) + LENGTH(pds);
+    } > PDS_REGION
     PROVIDE_HIDDEN (__exidx_end = .);
 
     . = ALIGN(4);

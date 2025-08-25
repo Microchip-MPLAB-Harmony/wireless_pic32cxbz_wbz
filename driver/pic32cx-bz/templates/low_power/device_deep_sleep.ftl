@@ -145,7 +145,7 @@ static void device_DisableSercom(void)
     {
         SERCOM1_REGS->USART_INT.SERCOM_CTRLB &= ~SERCOM_USART_INT_CTRLB_TXEN_Msk;
     }
-<#if ((PIC32CX_BZ2_48PIN_DEVICE == true) || (PIC32CX_BZ3_48PIN_DEVICE == true))>
+<#if ((PIC32CX_BZ2_48PIN_DEVICE == true) || (PIC32CX_BZ3_48PIN_DEVICE == true) || (PIC32CX_BZ36_48PIN_DEVICE == true))>
 
     if ((SERCOM2_REGS->USART_INT.SERCOM_CTRLB & SERCOM_USART_INT_CTRLB_TXEN_Msk) != 0U)
     {
@@ -438,6 +438,14 @@ static void Device_GpioConfig(void)
     GPIOB_REGS->GPIO_TRISSET = 0xFFFF;  //Set all pins as input
     GPIOB_REGS->GPIO_CNPUSET = 0x3D96;  //Pull up: PRB 1, 2, 4, 7, 8, 10, 11, 12 , 13
     GPIOB_REGS->GPIO_CNPDSET = 0x0029;  //Pull down RB0,3,5 for LED
+<#elseif PIC32CX_BZ36_DEVICE == true>
+    GPIOA_REGS->GPIO_TRISSET = 0xFFFF; //Set all pins as input
+    GPIOA_REGS->GPIO_CNPUSET = 0x7FF3; //Except PA2 (QSPI Data), PA3, the others are pulled up
+    GPIOA_REGS->GPIO_CNPDSET = 0x0008; //RPA3 is Pulled down: SERCOM 0-RTS
+
+    GPIOB_REGS->GPIO_TRISSET = 0xFFFF;  //Set all pins as input
+    GPIOB_REGS->GPIO_CNPUSET = 0x3D96;  //Pull up: PRB 1, 2, 4, 7, 8, 10, 11, 12 , 13
+    GPIOB_REGS->GPIO_CNPDSET = 0x0029;  //Pull down RB0,3,5 for LED
 </#if>
 }
 
@@ -571,6 +579,12 @@ void DEVICE_EnterDeepSleep(bool enableRetRam, uint32_t interval)
     {
         PMU_REGS->PMU_WCMSIZ &= ~PMU_WCMSIZ_SRAM1_SIZ_Msk;
     }
+<#elseif PIC32CX_BZ36_DEVICE == true>
+    //Config retention RAM size
+    if (!enableRetRam)
+    {
+        PMU_REGS->PMU_WCMSIZ &= ~PMU_WCMSIZ_SRAM1_SIZ_Msk;
+    }
 </#if>
 
     // Disable system timer
@@ -582,6 +596,8 @@ void DEVICE_EnterDeepSleep(bool enableRetRam, uint32_t interval)
 <#if PIC32CX_BZ2_DEVICE == true>
     // Configure INT0 for DS, fixed @ RB4.
 <#elseif PIC32CX_BZ3_DEVICE == true>
+    // Configure INT0 for DS, fixed @ RB9.
+<#elseif PIC32CX_BZ36_DEVICE == true>
     // Configure INT0 for DS, fixed @ RB9.
 </#if>
     device_ConfigInt0();
@@ -631,6 +647,8 @@ void DEVICE_EnterExtremeDeepSleep(bool enableInt0)
 <#if PIC32CX_BZ2_DEVICE == true>
     DEVICE_SLEEP_ConfigRetRam(false);
 <#elseif PIC32CX_BZ3_DEVICE == true>
+    PMU_REGS->PMU_WCMSIZ &= ~PMU_WCMSIZ_SRAM1_SIZ_Msk;
+<#elseif PIC32CX_BZ36_DEVICE == true>
     PMU_REGS->PMU_WCMSIZ &= ~PMU_WCMSIZ_SRAM1_SIZ_Msk;
 </#if>
 

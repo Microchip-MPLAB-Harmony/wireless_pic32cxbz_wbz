@@ -4,15 +4,15 @@ package:
   type: "package"
   status: "production"
   required: false
-  version: "v1.5.0"
+  version: "v1.6.0"
 
   dependencies:
     - name: "csp"
       type: "package"
-      version: "v3.21.0"
+      version: "v3.22.7"
     - name: "core"
       type: "package"
-      version: "v3.14.2"
+      version: "v3.15.4"
     - name: "crypto"
       type: "package"
       version: "v3.8.1"

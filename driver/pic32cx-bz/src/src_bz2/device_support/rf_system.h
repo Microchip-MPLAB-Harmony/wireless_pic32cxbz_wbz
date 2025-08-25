@@ -1,9 +1,8 @@
 #ifndef RF_SYSTEM_H
 #define RF_SYSTEM_H
 
-#include <xc.h>
 #include <stdbool.h>
-
+#include <stdint.h>
 #ifdef __cplusplus
 extern "C" {
 #endif
