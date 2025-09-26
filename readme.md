@@ -46,7 +46,7 @@ To view the documentation offline, follow these steps:
 
 ____
 
-#License
+##License
 Silex Public Key Cryptography API, included in this repository(for PIC32CXBZ3 and PIC32CXBZ36, WBZ35X) comes with the following BSD 3-Clause
 
 Copyright (c) 2018-2020 Silex Insight sa
