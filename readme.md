@@ -39,10 +39,10 @@ To view the documentation offline, follow these steps:
 
 |Service|	Description|
 |---|---|
-|**[Device Support Library]**|This service provides help on the Device Support library that can be used as interface with RF System, PMU System, Info Block and Sleep System|
-|**[Persistent Data Server Library]**|	This service provides help on the PDS library that can be used for storing and restoring of important data in non-volatile memory using wear levelling mechanism|
-|**[Standalone Bootloader]**|	This service provides help on the Standalone Bootloader component that can be used to upgrade firmware on a target device without the need for an external programmer or debugger|
-|**[Bootloader Services]**|	This service provides help on the Bootloader Services that can be used to create signed firmware image for OTA with the provided header and OTA header information |
+|Device Support Library        |This service provides help on the Device Support library that can be used as interface with RF System, PMU System, Info Block and Sleep System|
+|Persistent Data Server Library|	This service provides help on the PDS library that can be used for storing and restoring of important data in non-volatile memory using wear levelling mechanism|
+|Standalone Bootloader         |	This service provides help on the Standalone Bootloader component that can be used to upgrade firmware on a target device without the need for an external programmer or debugger|
+|Bootloader Services           |	This service provides help on the Bootloader Services that can be used to create signed firmware image for OTA with the provided header and OTA header information |
 
 ____
 
