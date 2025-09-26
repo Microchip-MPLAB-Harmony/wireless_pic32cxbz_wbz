@@ -23,24 +23,31 @@ This repository contains the MPLAB® Harmony 3 wireless system solutions. Quickl
 | Folder     | Description                                                                          |
 | ---        | ---                                                                                  |
 | config     | Wireless pic32cx-bz system services module configuration file                        |
-| **[docs](docs/index.html)**       | Wireless pic32cx-bz system services help documentation-html, md and pdf              |
 | drivers    | Driver/Firmware files of pic32cx-bz system services                                  |
 | utilities  | Contains scripts and other utilities                                                 |
+
+## Documentation
+
+Click [here](https://onlinedocs.microchip.com/?find=MPLAB%20Harmony%20PIC32CX-BZ%20System%20Services) to view the online documentation of wireless_pic32cxbz_wbz repository.
+
+To view the documentation offline, follow these steps:
+ - Download the publication as a zip file from [here](https://onlinedocs.microchip.com/download/GUID-2085FE66-A762-4CC0-B054-7F98E8AF999A?type=webhelp).
+ - Extract the zip file into a folder.
+ - Navigate to the folder and open **index.html** in a web browser of your choice.
 
 ## System Services
 
 |Service|	Description|
 |---|---|
-|**[Device Support Library](docs/GUID-2167300F-6A96-440E-83CA-FC9C0C259914.html)**	|This service provides help on the Device Support library that can be used as interface with RF System, PMU System, Info Block and Sleep System|
-|**[Persistent Data Server Library](docs/GUID-D08C61D1-8CD6-4D2F-B74D-E58784C9042B.html)**	|	This service provides help on the PDS library that can be used for storing and restoring of important data in non-volatile memory using wear levelling mechanism|
-|**[Standalone Bootloader](docs/GUID-A04B5B1F-202B-4944-B18F-13E4857CC3CD.html)**	|	This service provides help on the Standalone Bootloader component that can be used to upgrade firmware on a target device without the need for an external programmer or debugger|
-|**[Bootloader Services](docs/GUID-E95D4418-FDD2-49A3-999F-6EFBA54DDA3D.html)**	|	This service provides help on the Bootloader Services that can be used to create signed firmware image for OTA with the provided header and OTA header information |
+|**[Device Support Library]**|This service provides help on the Device Support library that can be used as interface with RF System, PMU System, Info Block and Sleep System|
+|**[Persistent Data Server Library]**|	This service provides help on the PDS library that can be used for storing and restoring of important data in non-volatile memory using wear levelling mechanism|
+|**[Standalone Bootloader]**|	This service provides help on the Standalone Bootloader component that can be used to upgrade firmware on a target device without the need for an external programmer or debugger|
+|**[Bootloader Services]**|	This service provides help on the Bootloader Services that can be used to create signed firmware image for OTA with the provided header and OTA header information |
 
 ____
 
 #License
-Silex Public Key Cryptography API, included in this repository(for PIC32CXBZ3, WBZ35X) comes with the following BSD 3-Clause
-
+Silex Public Key Cryptography API, included in this repository(for PIC32CXBZ3 and PIC32CXBZ36, WBZ35X) comes with the following BSD 3-Clause
 
 Copyright (c) 2018-2020 Silex Insight sa
 Copyright (c) 2018-2020 Beerten Engineering scs
@@ -52,7 +59,6 @@ Redistribution and use in source and binary forms, with or without modification,
 2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
 
 3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
-
 
 [![License](https://img.shields.io/badge/license-Harmony%20license-orange.svg)](https://github.com/Microchip-MPLAB-Harmony/wireless_pic32cxbz_wbz/blob/master/mplab_harmony_license.md)
 [![Latest release](https://img.shields.io/github/release/Microchip-MPLAB-Harmony/wireless_pic32cxbz_wbz.svg)](https://github.com/Microchip-MPLAB-Harmony/wireless_pic32cxbz_wbz/releases/latest)
