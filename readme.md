@@ -13,8 +13,8 @@ MPLAB® Harmony 3 is an extension of the MPLAB® ecosystem for creating embedded
 
 This repository contains the MPLAB® Harmony 3 wireless system solutions. Quickly incorporate connectivity to your designs with wireless ICs, modules, software and development kits that make connecting effortless for your customers. Our comprehensive wireless portfolio has the technology to meet your range, data rate, interoperability, frequency and topology needs. Refer to the following links for release notes, training materials, and interface reference information.
 
-- [Release Notes](./release_notes.md)
-- [MPLAB® Harmony License](mplab_harmony_license.md)
+- [Release Notes](release_notes.md)
+- [MPLAB® Harmony License](License.md)
 - [MPLAB® Harmony 3 Wireless PIC32CXBZ Wiki](https://github.com/Microchip-MPLAB-Harmony/wireless_pic32cxbz_wbz/wiki)
 - [MPLAB® Harmony 3 Wireless PIC32CXBZ API Help](https://microchip-mplab-harmony.github.io/wireless_pic32cxbz_wbz)
 
@@ -60,7 +60,7 @@ Redistribution and use in source and binary forms, with or without modification,
 
 3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
 
-[![License](https://img.shields.io/badge/license-Harmony%20license-orange.svg)](https://github.com/Microchip-MPLAB-Harmony/wireless_pic32cxbz_wbz/blob/master/mplab_harmony_license.md)
+[![License](https://img.shields.io/badge/license-Harmony%20license-orange.svg)](https://github.com/Microchip-MPLAB-Harmony/wireless_pic32cxbz_wbz/blob/master/License.md)
 [![Latest release](https://img.shields.io/github/release/Microchip-MPLAB-Harmony/wireless_pic32cxbz_wbz.svg)](https://github.com/Microchip-MPLAB-Harmony/wireless_pic32cxbz_wbz/releases/latest)
 [![Latest release date](https://img.shields.io/github/release-date/Microchip-MPLAB-Harmony/wireless_pic32cxbz_wbz.svg)](https://github.com/Microchip-MPLAB-Harmony/wireless_pic32cxbz_wbz/releases/latest)
 [![Commit activity](https://img.shields.io/github/commit-activity/y/Microchip-MPLAB-Harmony/wireless_pic32cxbz_wbz.svg)](https://github.com/Microchip-MPLAB-Harmony/wireless_pic32cxbz_wbz/graphs/commit-activity)
